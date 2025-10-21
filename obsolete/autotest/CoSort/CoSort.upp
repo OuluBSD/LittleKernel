@@ -1,0 +1,12 @@
+uses
+	Core;
+
+file
+	CoSort.cpp,
+	srcdoc.tpp,
+	info.txt;
+
+mainconfig
+	"" = "MT",
+	"" = "MT USEMALLOC";
+

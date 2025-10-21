@@ -1,0 +1,14 @@
+#include "Vfs.h"
+
+NAMESPACE_UPP
+
+INITBLOCK {
+	VfsValueExtFactory::Register<Compiler>			("Compiler",		VFSEXT_DEFAULT, "vfs.compiler",        "Vfs|Code");
+	VfsValueExtFactory::Register<AstNode>			("AstNode",			VFSEXT_DEFAULT, "vfs.ast.node",        "Vfs|Code");
+	VfsValueExtFactory::Register<AstRunner>			("AstRunner",		VFSEXT_DEFAULT, "vfs.ast.runner",      "Vfs|Code");
+	VfsValueExtFactory::Register<SemanticParser>	("SemanticParser",	VFSEXT_DEFAULT, "vfs.semantic.parser", "Vfs|Code");
+	VfsValueExtFactory::Register<TokenNode>			("TokenNode",		VFSEXT_DEFAULT, "vfs.token.node",      "Vfs|Code");
+	VfsValueExtFactory::Register<TokenStructure>	("TokenStructure",	VFSEXT_DEFAULT, "vfs.token.structure", "Vfs|Code");
+}
+
+END_UPP_NAMESPACE

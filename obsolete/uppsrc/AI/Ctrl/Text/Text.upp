@@ -1,0 +1,26 @@
+description "AI Ctrl Text\3770,0,255";
+
+uses
+	AI/Ctrl/Base;
+
+file
+	AGENTS.md,
+	Text.h,
+	Text.lay,
+	SourceText.h,
+	SourceText.cpp,
+	LyricsEditor.h,
+	LyricsEditor.cpp,
+	LyricContent.h,
+	LyricContent.cpp,
+	LyricRef.h,
+	LyricRef.cpp,
+	Song.h,
+	Song.cpp,
+	Transcript.h,
+	Transcript.cpp,
+	Script.h,
+	Script.cpp,
+	Reasoning.h,
+	Reasoning.cpp;
+

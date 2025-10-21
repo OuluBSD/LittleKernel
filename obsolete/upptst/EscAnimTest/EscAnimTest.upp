@@ -1,0 +1,10 @@
+uses
+	EscAnim;
+
+file
+	EscAnimTests.h,
+	EscAnimTests.cpp;
+
+mainconfig
+	"" = "GUI";
+

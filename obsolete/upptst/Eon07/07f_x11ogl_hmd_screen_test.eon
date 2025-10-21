@@ -1,0 +1,16 @@
+machine app:
+	
+	driver context:
+		x11.ogl.context
+	
+	chain program:
+		state event.register
+		
+		loop ogl.fbo:
+			ogl.customer
+			x11.ogl.fbo.standalone:
+				close_machine =			true
+				fullscreen =			true
+				find.vr.screen =		true
+				env =					event.register
+				shader.frag.path =		"shaders/toys/stereo/mario_cross_eye_3d/stage0.glsl"

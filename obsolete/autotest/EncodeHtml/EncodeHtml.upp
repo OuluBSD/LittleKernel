@@ -1,0 +1,11 @@
+uses
+	RichText;
+
+file
+	Test.tpp,
+	test.html,
+	main.cpp;
+
+mainconfig
+	"" = "";
+

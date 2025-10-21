@@ -1,0 +1,26 @@
+description "AI/Core/Core\377128,0,0";
+
+uses
+	AI/Core/Base,
+	Esc;
+
+file
+	AGENTS.md,
+	Core.h,
+	Defs.h,
+	Enums.h,
+	Enums.cpp,
+	EnumsContent.cpp,
+	Types.h,
+	Types.cpp,
+	Common.h,
+	Common.cpp,
+	Container.h,
+	Fn.h,
+	Fn.cpp,
+	NatLang.h,
+	NatLang.cpp,
+	Phoneme.h,
+	Phoneme.cpp,
+	Core.cpp;
+

@@ -1,0 +1,11 @@
+#include "EonCtrl.h"
+
+NAMESPACE_UPP
+
+INITBLOCK {
+	
+	Engine::Register<DesktopSuiteSystem>("desktop");
+	
+}
+
+END_UPP_NAMESPACE

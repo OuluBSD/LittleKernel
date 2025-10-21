@@ -1,0 +1,7719 @@
+{
+	"saved_hash": "ba53530b279a54c4598fcf9e772a03aff630cfbd",
+	"files": [
+		{
+			"key": "Img.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Paint",
+						"t": "void (Draw &)",
+						"i": "IdeImgView::Paint(Draw&)",
+						"r": "void Paint(Draw& w)",
+						"s": "",
+						"u": "PAINT",
+						"q": "IdeImgView",
+						"w": "IDEIMGVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a527c9ffcf5ec904abb2b292be774d9057daab3e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "EditMenu",
+						"t": "void (Bar &)",
+						"i": "IdeImgView::EditMenu(Bar&)",
+						"r": "void EditMenu(Bar& menu)",
+						"s": "",
+						"u": "EDITMENU",
+						"q": "IdeImgView",
+						"w": "IDEIMGVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "eb80cbead307c739779095c63f2fd34ab985dcbf"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsImgFile",
+						"t": "bool (const String &)",
+						"i": "IsImgFile(const String&)",
+						"r": "bool IsImgFile(const String& path)",
+						"s": "",
+						"u": "ISIMGFILE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1f59cd0e0f6e20f56a75620241bc9388325008e0"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ImageViewModule",
+						"t": "ImageViewModule",
+						"i": "ImageViewModule",
+						"r": "ImageViewModule : public IdeModule",
+						"s": "",
+						"u": "IMAGEVIEWMODULE",
+						"q": "ImageViewModule",
+						"w": "IMAGEVIEWMODULE",
+						"y": "IdeModule",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b578caf70ddcbad20fdfe7eae7d0ae2752cde284"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetID",
+						"t": "String ()",
+						"i": "ImageViewModule::GetID()",
+						"r": "String GetID()",
+						"s": "",
+						"u": "GETID",
+						"q": "ImageViewModule",
+						"w": "IMAGEVIEWMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2ee709d47a0399e4c7b0b3a91c98d46a9f8fa798"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "FileIcon",
+						"t": "Image (const char *)",
+						"i": "ImageViewModule::FileIcon(const char*)",
+						"r": "Image FileIcon(const char *path)",
+						"s": "",
+						"u": "FILEICON",
+						"q": "ImageViewModule",
+						"w": "IMAGEVIEWMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e62fed00ace9f670650c50812d76263739a7ee0d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "CreateDesigner",
+						"t": "IdeDesigner *(const char *, byte)",
+						"i": "ImageViewModule::CreateDesigner(const char*,byte)",
+						"r": "IdeDesigner *CreateDesigner(const char *path, byte)",
+						"s": "",
+						"u": "CREATEDESIGNER",
+						"q": "ImageViewModule",
+						"w": "IMAGEVIEWMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7cd172316f60b21cad07f0e45098be166b50fa9e"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Img__initializer_fn",
+						"t": "void ()",
+						"i": "Img__initializer_fn()",
+						"r": "void Img__initializer_fn()",
+						"s": "",
+						"u": "IMG__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "35cf8504f137162218bb925d42c3294cd921f206"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Img__initializer",
+						"t": "void ()",
+						"i": "Img__initializer()",
+						"r": "void Img__initializer()",
+						"s": "",
+						"u": "IMG__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ec086295d0d34267d62e6c7de6789c455ba03c0c"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "Qtf.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeQtfEditPos",
+						"t": "IdeQtfEditPos",
+						"i": "IdeQtfEditPos",
+						"r": "IdeQtfEditPos : Moveable<IdeQtfEditPos>",
+						"s": "",
+						"u": "IDEQTFEDITPOS",
+						"q": "IdeQtfEditPos",
+						"w": "IDEQTFEDITPOS",
+						"y": "Upp::Moveable",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "94fab00a22f504777cdce7e1e23ca715ac002a8a"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "filetime",
+						"t": "Time",
+						"i": "IdeQtfEditPos::filetime",
+						"r": "Time filetime",
+						"s": "",
+						"u": "FILETIME",
+						"q": "IdeQtfEditPos",
+						"w": "IDEQTFEDITPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c68cdc6fd6d4da991806faa680f16ef2404e2ef6"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "pos",
+						"t": "RichEdit::PosInfo",
+						"i": "IdeQtfEditPos::pos",
+						"r": "RichEdit::PosInfo pos",
+						"s": "",
+						"u": "POS",
+						"q": "IdeQtfEditPos",
+						"w": "IDEQTFEDITPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9d1cb902b40069cc6bf4c99f770da80d940d377a"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "uf",
+						"t": "RichEdit::UndoInfo",
+						"i": "IdeQtfEditPos::uf",
+						"r": "RichEdit::UndoInfo uf",
+						"s": "",
+						"u": "UF",
+						"q": "IdeQtfEditPos",
+						"w": "IDEQTFEDITPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a129759f311ea6d2b2d39646f12f66bbe6cc4ad4"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeQtfEditPos",
+						"t": "void ()",
+						"i": "IdeQtfEditPos::IdeQtfEditPos()",
+						"r": "IdeQtfEditPos()",
+						"s": "",
+						"u": "IDEQTFEDITPOS",
+						"q": "IdeQtfEditPos",
+						"w": "IDEQTFEDITPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a3f5e764c071fccb8389f92ba74aed496882ddd9"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "sEP",
+						"t": "VectorMap<String, IdeQtfEditPos> &()",
+						"i": "sEP()",
+						"r": "static VectorMap<String, IdeQtfEditPos>& sEP()",
+						"s": "",
+						"u": "SEP",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a724257b02761910449e3aa3ee5bcdd77167e7b2"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "SaveEditPos",
+						"t": "void ()",
+						"i": "IdeQtfDes::SaveEditPos()",
+						"r": "void SaveEditPos()",
+						"s": "",
+						"u": "SAVEEDITPOS",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "574a8fbe09d1d4b2f0eecf79d5798428d2d4deea"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Load",
+						"t": "bool (const char *)",
+						"i": "IdeQtfDes::Load(const char*)",
+						"r": "bool Load(const char *_filename)",
+						"s": "",
+						"u": "LOAD",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "790a548b239051fd9162857ef2f712b16ed1a4e1"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Save",
+						"t": "void ()",
+						"i": "IdeQtfDes::Save()",
+						"r": "void Save()",
+						"s": "",
+						"u": "SAVE",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e16918ef268a44fcf96a25b536bbfc6d8b7499c3"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "EditMenu",
+						"t": "void (Bar &)",
+						"i": "IdeQtfDes::EditMenu(Bar&)",
+						"r": "void EditMenu(Bar& menu)",
+						"s": "",
+						"u": "EDITMENU",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6d5eda1ee50348bca9de2326849d59a3de0bf6f1"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &)",
+						"i": "IdeQtfDes::Serialize(Stream&)",
+						"r": "void Serialize(Stream& s)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "84adaca41afa0e972039fb11c9a7dd58c63a4b6e"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SerializeQtfDesPos",
+						"t": "void (Stream &)",
+						"i": "SerializeQtfDesPos(Stream&)",
+						"r": "void SerializeQtfDesPos(Stream& s)",
+						"s": "",
+						"u": "SERIALIZEQTFDESPOS",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fa4e61911c3a1ac07fe301753bdd26ec280eebb5"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsQtfFile",
+						"t": "bool (const char *)",
+						"i": "IsQtfFile(const char*)",
+						"r": "bool IsQtfFile(const char *path)",
+						"s": "",
+						"u": "ISQTFFILE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0987f49260107d0972c7b79763beec0b4e445f1d"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "QtfDesModule",
+						"t": "QtfDesModule",
+						"i": "QtfDesModule",
+						"r": "QtfDesModule : public IdeModule",
+						"s": "",
+						"u": "QTFDESMODULE",
+						"q": "QtfDesModule",
+						"w": "QTFDESMODULE",
+						"y": "IdeModule",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "012bbbb1660fdf69741ea1499b6da888ad44cfbc"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetID",
+						"t": "String ()",
+						"i": "QtfDesModule::GetID()",
+						"r": "String GetID()",
+						"s": "",
+						"u": "GETID",
+						"q": "QtfDesModule",
+						"w": "QTFDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e41133bf1b8d3f9000f56c856ab0f25e77a2131e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "FileIcon",
+						"t": "Image (const char *)",
+						"i": "QtfDesModule::FileIcon(const char*)",
+						"r": "Image FileIcon(const char *path)",
+						"s": "",
+						"u": "FILEICON",
+						"q": "QtfDesModule",
+						"w": "QTFDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e3f147127fdf9cce976b01b58df7b0320857f50a"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "CreateDesigner",
+						"t": "IdeDesigner *(const char *, byte)",
+						"i": "QtfDesModule::CreateDesigner(const char*,byte)",
+						"r": "IdeDesigner *CreateDesigner(const char *path, byte)",
+						"s": "",
+						"u": "CREATEDESIGNER",
+						"q": "QtfDesModule",
+						"w": "QTFDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b7fe056d77770ceb86e309858c8892cc1a94ac49"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &)",
+						"i": "QtfDesModule::Serialize(Stream&)",
+						"r": "void Serialize(Stream& s)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "QtfDesModule",
+						"w": "QTFDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9d21753add0c0c92aef8d0b05f3135ff399e969e"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Qtf__initializer_fn",
+						"t": "void ()",
+						"i": "Qtf__initializer_fn()",
+						"r": "void Qtf__initializer_fn()",
+						"s": "",
+						"u": "QTF__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e9bd3631e6c190a10692e36a530201f508b2ea20"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Qtf__initializer",
+						"t": "void ()",
+						"i": "Qtf__initializer()",
+						"r": "void Qtf__initializer()",
+						"s": "",
+						"u": "QTF__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8d6aaad2db2b6624acacae49ed244f44e634613a"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "HexView.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "FileIsBinary",
+						"t": "bool (const char *)",
+						"i": "FileIsBinary(const char*)",
+						"r": "bool FileIsBinary(const char *path)",
+						"s": "",
+						"u": "FILEISBINARY",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e468921828b32493c2d1b7be88ebfd1279258ad6"
+							}
+						]
+					},
+					{
+						"k": 9,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "pos",
+						"t": "VectorMap<String, Tuple2<int64, int64>>",
+						"i": "FileHexView::pos",
+						"r": "VectorMap<String, Tuple2<int64, int64>> pos",
+						"s": "",
+						"u": "POS",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "21b35dc83215893baa3f9e0e9aaff2aa306aeea3"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "RestoreEditPos",
+						"t": "void ()",
+						"i": "FileHexView::RestoreEditPos()",
+						"r": "void RestoreEditPos()",
+						"s": "",
+						"u": "RESTOREEDITPOS",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "78eb9a1c4efc895b5b1786c2c4ab35d6fafbecc6"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "SaveEditPos",
+						"t": "void ()",
+						"i": "FileHexView::SaveEditPos()",
+						"r": "void SaveEditPos()",
+						"s": "",
+						"u": "SAVEEDITPOS",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c5daa089c008572c3bc431d2bb7c6b614549ddae"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Key",
+						"t": "int64 () const",
+						"i": "FileHexView::Key()const",
+						"r": "int64 Key() const",
+						"s": "",
+						"u": "KEY",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3ea4afcec8e94842a1a1c7f148da617b387f7024"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Make",
+						"t": "int (String &) const",
+						"i": "FileHexView::Make(String&)const",
+						"r": "int Make(String& object) const",
+						"s": "",
+						"u": "MAKE",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "120cd7b4f1e63714cc6d541bb6f928c4e332b8db"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Byte",
+						"t": "int (int64)",
+						"i": "FileHexView::Byte(int64)",
+						"r": "int Byte(int64 addr)",
+						"s": "",
+						"u": "BYTE",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "14e030d78388871eb5504b109222d5755804b0d5"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Open",
+						"t": "void (const char *)",
+						"i": "FileHexView::Open(const char*)",
+						"r": "void Open(const char *path)",
+						"s": "",
+						"u": "OPEN",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "dcca6326e6e82d791c02a94c30960c279fda429c"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "FileHexView",
+						"t": "void ()",
+						"i": "FileHexView::FileHexView()",
+						"r": "FileHexView()",
+						"s": "",
+						"u": "FILEHEXVIEW",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "28b1587b192b1c6b34e5630a86dacb13d52d8481"
+							}
+						]
+					},
+					{
+						"k": 25,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "~FileHexView",
+						"t": "void () noexcept",
+						"i": "FileHexView::~()",
+						"r": "~FileHexView()",
+						"s": "",
+						"u": "~FILEHEXVIEW",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "987486aa175ebaf964e80cd8d6316569c2074f88"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "HexView__initializer_fn",
+						"t": "void ()",
+						"i": "HexView__initializer_fn()",
+						"r": "void HexView__initializer_fn()",
+						"s": "",
+						"u": "HEXVIEW__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "33fe3b99b5259cdb46797d9a5fee4489ee6d85f3"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "HexView__initializer",
+						"t": "void ()",
+						"i": "HexView__initializer()",
+						"r": "void HexView__initializer()",
+						"s": "",
+						"u": "HEXVIEW__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bc9f64ab71054120d0f0812837a0d4e4721bb2ae"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "HexView__initializer_fn",
+						"t": "void ()",
+						"i": "HexView__initializer_fn()",
+						"r": "void HexView__initializer_fn()",
+						"s": "",
+						"u": "HEXVIEW__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bc9f64ab71054120d0f0812837a0d4e4721bb2ae"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "TreeDes.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Save",
+						"t": "void (Time, TreeCtrl &)",
+						"i": "TreeDesPos::Save(Time,TreeCtrl&)",
+						"r": "void Save(Time afiletime, TreeCtrl& tree)",
+						"s": "",
+						"u": "SAVE",
+						"q": "TreeDesPos",
+						"w": "TREEDESPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e844bfcfee3ee23dd804cec5c54c82d158c76ef4"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Restore",
+						"t": "void (Time, TreeCtrl &)",
+						"i": "TreeDesPos::Restore(Time,TreeCtrl&)",
+						"r": "void Restore(Time afiletime, TreeCtrl& tree)",
+						"s": "",
+						"u": "RESTORE",
+						"q": "TreeDesPos",
+						"w": "TREEDESPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "66d6f5bd341995b7ebb3e38a6e80179be04a644e"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &, ArrayMap<String, TreeDesPos> &)",
+						"i": "Serialize(Stream&,ArrayMap&)",
+						"r": "void Serialize(Stream& s, ArrayMap<String, TreeDesPos>& pos)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "749db9c66cee6852b2d69fb3892562aa239a1777"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "TreeViewDes",
+						"t": "void ()",
+						"i": "TreeViewDes::TreeViewDes()",
+						"r": "TreeViewDes()",
+						"s": "",
+						"u": "TREEVIEWDES",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6c21b2f917de8784ded45a87f7c0f96da0feedba"
+							}
+						]
+					},
+					{
+						"k": 9,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "pos",
+						"t": "ArrayMap<String, TreeDesPos>",
+						"i": "TreeViewDes::pos",
+						"r": "ArrayMap<String, TreeDesPos> pos",
+						"s": "",
+						"u": "POS",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5db9fc1a341fbba418bcd850192de1fb23daabf7"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Load",
+						"t": "bool (const String &)",
+						"i": "TreeViewDes::Load(const String&)",
+						"r": "bool Load(const String& fn)",
+						"s": "",
+						"u": "LOAD",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "008a7b349e4d1a81cb6492718d7435f8b44a12f5"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "EditMenu",
+						"t": "void (Bar &)",
+						"i": "TreeViewDes::EditMenu(Bar&)",
+						"r": "void EditMenu(Bar& menu)",
+						"s": "",
+						"u": "EDITMENU",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "835830d109955996138775fd17a5cae6608f635e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "RestoreEditPos",
+						"t": "void ()",
+						"i": "TreeViewDes::RestoreEditPos()",
+						"r": "void RestoreEditPos()",
+						"s": "",
+						"u": "RESTOREEDITPOS",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "934397e69cf48d387a2f79362aee3d206d5822b9"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "SaveEditPos",
+						"t": "void ()",
+						"i": "TreeViewDes::SaveEditPos()",
+						"r": "void SaveEditPos()",
+						"s": "",
+						"u": "SAVEEDITPOS",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b6c6727180a3cb48a39e9d9e9edbdea34e38ac62"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "TreeViewDes__initializer_fn",
+						"t": "void ()",
+						"i": "TreeViewDes__initializer_fn()",
+						"r": "void TreeViewDes__initializer_fn()",
+						"s": "",
+						"u": "TREEVIEWDES__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bfd1809f44cce44b5d04ceb12815429b38bf7d4a"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "TreeViewDes__initializer",
+						"t": "void ()",
+						"i": "TreeViewDes__initializer()",
+						"r": "void TreeViewDes__initializer()",
+						"s": "",
+						"u": "TREEVIEWDES__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1519be8fe044307ad0e669b3ce1e61bea585bd59"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "TreeViewDes__initializer_fn",
+						"t": "void ()",
+						"i": "TreeViewDes__initializer_fn()",
+						"r": "void TreeViewDes__initializer_fn()",
+						"s": "",
+						"u": "TREEVIEWDES__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1519be8fe044307ad0e669b3ce1e61bea585bd59"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "Xml.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "CopyPath",
+						"t": "void ()",
+						"i": "XmlViewDes::CopyPath()",
+						"r": "void CopyPath()",
+						"s": "",
+						"u": "COPYPATH",
+						"q": "XmlViewDes",
+						"w": "XMLVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e60dd469e7e1c00a4a3a1d3a64fbd0159d2c22a0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Load0",
+						"t": "String (const String &)",
+						"i": "XmlViewDes::Load0(const String&)",
+						"r": "String Load0(const String& data)",
+						"s": "",
+						"u": "LOAD0",
+						"q": "XmlViewDes",
+						"w": "XMLVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f26b60ecf581e8bf6094df95923b520334b24a65"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Load0",
+						"t": "void (int, XmlParser &)",
+						"i": "XmlViewDes::Load0(int,XmlParser&)",
+						"r": "void Load0(int parent, XmlParser& p)",
+						"s": "",
+						"u": "LOAD0",
+						"q": "XmlViewDes",
+						"w": "XMLVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fb967e83be5c9e795f9ce7da3107585e00dd95d1"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "XmlDesModule",
+						"t": "XmlDesModule",
+						"i": "XmlDesModule",
+						"r": "XmlDesModule : public IdeModule",
+						"s": "",
+						"u": "XMLDESMODULE",
+						"q": "XmlDesModule",
+						"w": "XMLDESMODULE",
+						"y": "IdeModule",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a6611c7ad4c35f58bebce33cc20be919941d6a48"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetID",
+						"t": "String ()",
+						"i": "XmlDesModule::GetID()",
+						"r": "String GetID()",
+						"s": "",
+						"u": "GETID",
+						"q": "XmlDesModule",
+						"w": "XMLDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9bbfd0c219c3f3f8dc2bd60a0f63ae0fafecedbb"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "AcceptsFile",
+						"t": "bool (const char *)",
+						"i": "XmlDesModule::AcceptsFile(const char*)",
+						"r": "bool AcceptsFile(const char *path)",
+						"s": "",
+						"u": "ACCEPTSFILE",
+						"q": "XmlDesModule",
+						"w": "XMLDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "621634b2cc2b5b1e43df40fc1fc5b87414ee53af"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "CreateDesigner",
+						"t": "IdeDesigner *(const char *, byte)",
+						"i": "XmlDesModule::CreateDesigner(const char*,byte)",
+						"r": "IdeDesigner *CreateDesigner(const char *path, byte)",
+						"s": "",
+						"u": "CREATEDESIGNER",
+						"q": "XmlDesModule",
+						"w": "XMLDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3d2121fcd19a86fd0c0b41f5f4ba8d9c4b4b192d"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "XmlViewDes__initializer_fn",
+						"t": "void ()",
+						"i": "XmlViewDes__initializer_fn()",
+						"r": "void XmlViewDes__initializer_fn()",
+						"s": "",
+						"u": "XMLVIEWDES__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "864edcadc2b5d37ba1c780f61b5bc31def8c2d4f"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "XmlViewDes__initializer",
+						"t": "void ()",
+						"i": "XmlViewDes__initializer()",
+						"r": "void XmlViewDes__initializer()",
+						"s": "",
+						"u": "XMLVIEWDES__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "55ff5dcaeeafee1355094a4b3dae44429eec5787"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "Json.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "JsonViewDes",
+						"t": "void ()",
+						"i": "JsonViewDes::JsonViewDes()",
+						"r": "JsonViewDes()",
+						"s": "",
+						"u": "JSONVIEWDES",
+						"q": "JsonViewDes",
+						"w": "JSONVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0e27d765f6fcdf1cba9c4ee87b82e9b395026089"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "CopyPath",
+						"t": "void ()",
+						"i": "JsonViewDes::CopyPath()",
+						"r": "void CopyPath()",
+						"s": "",
+						"u": "COPYPATH",
+						"q": "JsonViewDes",
+						"w": "JSONVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "99719830d52df3c4d7b12031204bd93c70118afd"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Load0",
+						"t": "String (const String &)",
+						"i": "JsonViewDes::Load0(const String&)",
+						"r": "String Load0(const String& json)",
+						"s": "",
+						"u": "LOAD0",
+						"q": "JsonViewDes",
+						"w": "JSONVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e6e5716ca08b3894217868aa2f1b9f8d9bb45029"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "AddNode",
+						"t": "int (int, const Value &, const String &, const Value &)",
+						"i": "JsonViewDes::AddNode(int,const Value&,const String&,const Value&)",
+						"r": "int AddNode(int parent_id, const Value& id, const String& name, const Value& v)",
+						"s": "",
+						"u": "ADDNODE",
+						"q": "JsonViewDes",
+						"w": "JSONVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3d0afba4cf76af451d3cd8aa3612c9a825cf3383"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "JsonDesModule",
+						"t": "JsonDesModule",
+						"i": "JsonDesModule",
+						"r": "JsonDesModule : public IdeModule",
+						"s": "",
+						"u": "JSONDESMODULE",
+						"q": "JsonDesModule",
+						"w": "JSONDESMODULE",
+						"y": "IdeModule",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9e032718dbd37dd3f33b9063b3c8b202816713e9"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetID",
+						"t": "String ()",
+						"i": "JsonDesModule::GetID()",
+						"r": "String GetID()",
+						"s": "",
+						"u": "GETID",
+						"q": "JsonDesModule",
+						"w": "JSONDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2dbf07e7fbf2c7c8795467d273bf08a8eaa4337d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "AcceptsFile",
+						"t": "bool (const char *)",
+						"i": "JsonDesModule::AcceptsFile(const char*)",
+						"r": "bool AcceptsFile(const char *path)",
+						"s": "",
+						"u": "ACCEPTSFILE",
+						"q": "JsonDesModule",
+						"w": "JSONDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ef0d4baba3ce137a3a072783f8c349a7d8711261"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "CreateDesigner",
+						"t": "IdeDesigner *(const char *, byte)",
+						"i": "JsonDesModule::CreateDesigner(const char*,byte)",
+						"r": "IdeDesigner *CreateDesigner(const char *path, byte)",
+						"s": "",
+						"u": "CREATEDESIGNER",
+						"q": "JsonDesModule",
+						"w": "JSONDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "eef1c5baae4e29e53a343621a65ef32eeaac8903"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "JsonViewDes__initializer_fn",
+						"t": "void ()",
+						"i": "JsonViewDes__initializer_fn()",
+						"r": "void JsonViewDes__initializer_fn()",
+						"s": "",
+						"u": "JSONVIEWDES__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1af2032d8e579f3ce54c293972a8effef54e49c7"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "JsonViewDes__initializer",
+						"t": "void ()",
+						"i": "JsonViewDes__initializer()",
+						"r": "void JsonViewDes__initializer()",
+						"s": "",
+						"u": "JSONVIEWDES__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e7538712e5c868873b0e95dd9bf492423ae23434"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "JsonViewDes__initializer_fn",
+						"t": "void ()",
+						"i": "JsonViewDes__initializer_fn()",
+						"r": "void JsonViewDes__initializer_fn()",
+						"s": "",
+						"u": "JSONVIEWDES__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e7538712e5c868873b0e95dd9bf492423ae23434"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "md.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeMDEditPos",
+						"t": "IdeMDEditPos",
+						"i": "IdeMDEditPos",
+						"r": "IdeMDEditPos : Moveable<IdeMDEditPos>",
+						"s": "",
+						"u": "IDEMDEDITPOS",
+						"q": "IdeMDEditPos",
+						"w": "IDEMDEDITPOS",
+						"y": "Upp::Moveable",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e74eafd7596396a9a8ba1b8cc8c42e0694a7e177"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "filetime",
+						"t": "Time",
+						"i": "IdeMDEditPos::filetime",
+						"r": "Time filetime",
+						"s": "",
+						"u": "FILETIME",
+						"q": "IdeMDEditPos",
+						"w": "IDEMDEDITPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1a246b975fb1fdb9e970a6679c4731cb6e08ff36"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "editpos",
+						"t": "LineEdit::EditPos",
+						"i": "IdeMDEditPos::editpos",
+						"r": "LineEdit::EditPos editpos",
+						"s": "",
+						"u": "EDITPOS",
+						"q": "IdeMDEditPos",
+						"w": "IDEMDEDITPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "77742c094dee5f56708a3c26c51b306f6634af33"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "undodata",
+						"t": "LineEdit::UndoData",
+						"i": "IdeMDEditPos::undodata",
+						"r": "LineEdit::UndoData undodata",
+						"s": "",
+						"u": "UNDODATA",
+						"q": "IdeMDEditPos",
+						"w": "IDEMDEDITPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "90428d48132cb53df9196cee5744c4f7754572c9"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "sEPmd",
+						"t": "VectorMap<String, IdeMDEditPos> &()",
+						"i": "sEPmd()",
+						"r": "static VectorMap<String, IdeMDEditPos>& sEPmd()",
+						"s": "",
+						"u": "SEPMD",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bd451b55a8bd5576863aec26bec2c6be8037a8da"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeMDDes",
+						"t": "void ()",
+						"i": "IdeMDDes::IdeMDDes()",
+						"r": "IdeMDDes()",
+						"s": "",
+						"u": "IDEMDDES",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "42703364ee05dc1555d34aee9e3c8806cf22390e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Preview",
+						"t": "void ()",
+						"i": "IdeMDDes::Preview()",
+						"r": "void Preview()",
+						"s": "",
+						"u": "PREVIEW",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "07e26028b37459383b4f6dbe720b74f9eeb7098d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "SaveEditPos",
+						"t": "void ()",
+						"i": "IdeMDDes::SaveEditPos()",
+						"r": "void SaveEditPos()",
+						"s": "",
+						"u": "SAVEEDITPOS",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a3aa68017dbda585e1b751d06ed6b7849fe88f2a"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Load",
+						"t": "bool (const char *)",
+						"i": "IdeMDDes::Load(const char*)",
+						"r": "bool Load(const char *filename_)",
+						"s": "",
+						"u": "LOAD",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2201ec336c7c15285c2ebfbdd7f4fc60387289b1"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Save",
+						"t": "void ()",
+						"i": "IdeMDDes::Save()",
+						"r": "void Save()",
+						"s": "",
+						"u": "SAVE",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0fe0d3c295c5a35c5200831f5f03aedaa73ea159"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "EditMenu",
+						"t": "void (Bar &)",
+						"i": "IdeMDDes::EditMenu(Bar&)",
+						"r": "void EditMenu(Bar& menu)",
+						"s": "",
+						"u": "EDITMENU",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4f1bebd716ff17e0a48b9c0d5cd6c05edd250b99"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GotFocus",
+						"t": "void ()",
+						"i": "IdeMDDes::GotFocus()",
+						"r": "void GotFocus()",
+						"s": "",
+						"u": "GOTFOCUS",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3b61595879fb200c2404ccea4c3174306478f57c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &)",
+						"i": "IdeMDDes::Serialize(Stream&)",
+						"r": "void Serialize(Stream& s)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3b9db7c91e5e25fb85c464de2ed7494865b8a963"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SerializeMDDesPos",
+						"t": "void (Stream &)",
+						"i": "SerializeMDDesPos(Stream&)",
+						"r": "void SerializeMDDesPos(Stream& s)",
+						"s": "",
+						"u": "SERIALIZEMDDESPOS",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8f3ed7287a07ec1dbb52193114487b36cdf49443"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsMDFile",
+						"t": "bool (const char *)",
+						"i": "IsMDFile(const char*)",
+						"r": "bool IsMDFile(const char *path)",
+						"s": "",
+						"u": "ISMDFILE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "def5f76b509fae493625d5156a145278ead24495"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MDDesModule",
+						"t": "MDDesModule",
+						"i": "MDDesModule",
+						"r": "MDDesModule : public IdeModule",
+						"s": "",
+						"u": "MDDESMODULE",
+						"q": "MDDesModule",
+						"w": "MDDESMODULE",
+						"y": "IdeModule",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f1ea5274adba6d542e25826c451b9f440428478d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetID",
+						"t": "String ()",
+						"i": "MDDesModule::GetID()",
+						"r": "String GetID()",
+						"s": "",
+						"u": "GETID",
+						"q": "MDDesModule",
+						"w": "MDDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "da9039364ac5a1f7325ff9903d89062df392a434"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "FileIcon",
+						"t": "Image (const char *)",
+						"i": "MDDesModule::FileIcon(const char*)",
+						"r": "Image FileIcon(const char *path)",
+						"s": "",
+						"u": "FILEICON",
+						"q": "MDDesModule",
+						"w": "MDDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e8456e6c62d22b20cf9614df3eb54c6b64e7e3d4"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "CreateDesigner",
+						"t": "IdeDesigner *(const char *, byte)",
+						"i": "MDDesModule::CreateDesigner(const char*,byte)",
+						"r": "IdeDesigner *CreateDesigner(const char *path, byte)",
+						"s": "",
+						"u": "CREATEDESIGNER",
+						"q": "MDDesModule",
+						"w": "MDDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5652aa56b98d2b96e7926cd09ab7fb3caf24d73d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &)",
+						"i": "MDDesModule::Serialize(Stream&)",
+						"r": "void Serialize(Stream& s)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "MDDesModule",
+						"w": "MDDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4b6bf3da36cf1407baa54bf8af27bb0454a85b7c"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MD__initializer_fn",
+						"t": "void ()",
+						"i": "MD__initializer_fn()",
+						"r": "void MD__initializer_fn()",
+						"s": "",
+						"u": "MD__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e4969d9c11b07675387f2bc5ab96c8bd6918f73e"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MD__initializer",
+						"t": "void ()",
+						"i": "MD__initializer()",
+						"r": "void MD__initializer()",
+						"s": "",
+						"u": "MD__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "aedbb58de0a924fe82efbde6d8c96a352fd98fd8"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "MD__initializer_fn",
+						"t": "void ()",
+						"i": "MD__initializer_fn()",
+						"r": "void MD__initializer_fn()",
+						"s": "",
+						"u": "MD__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "aedbb58de0a924fe82efbde6d8c96a352fd98fd8"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "AI.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeAIEditPos",
+						"t": "IdeAIEditPos",
+						"i": "IdeAIEditPos",
+						"r": "IdeAIEditPos : Moveable<IdeAIEditPos>",
+						"s": "",
+						"u": "IDEAIEDITPOS",
+						"q": "IdeAIEditPos",
+						"w": "IDEAIEDITPOS",
+						"y": "Upp::Moveable",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7b144e5193414e7642dcea50f1cd195398910abd"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "filetime",
+						"t": "Time",
+						"i": "IdeAIEditPos::filetime",
+						"r": "Time filetime",
+						"s": "",
+						"u": "FILETIME",
+						"q": "IdeAIEditPos",
+						"w": "IDEAIEDITPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "329e9a73b8fdc0f3e0ce64130507ba0ef45798cb"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "editpos",
+						"t": "LineEdit::EditPos",
+						"i": "IdeAIEditPos::editpos",
+						"r": "LineEdit::EditPos editpos",
+						"s": "",
+						"u": "EDITPOS",
+						"q": "IdeAIEditPos",
+						"w": "IDEAIEDITPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "29889a82f139453e46207b28f3e09bc61a66cc7d"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "undodata",
+						"t": "LineEdit::UndoData",
+						"i": "IdeAIEditPos::undodata",
+						"r": "LineEdit::UndoData undodata",
+						"s": "",
+						"u": "UNDODATA",
+						"q": "IdeAIEditPos",
+						"w": "IDEAIEDITPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "90428d48132cb53df9196cee5744c4f7754572c9"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "sEPai",
+						"t": "VectorMap<String, IdeAIEditPos> &()",
+						"i": "sEPai()",
+						"r": "static VectorMap<String, IdeAIEditPos>& sEPai()",
+						"s": "",
+						"u": "SEPAI",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "dad2495e96a37fe4516d69d213e897c8ec495fb5"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeAIDes",
+						"t": "void ()",
+						"i": "IdeAIDes::IdeAIDes()",
+						"r": "IdeAIDes()",
+						"s": "",
+						"u": "IDEAIDES",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0d2f3eaaa1e653a11734c19f8c02da238cce3b9a"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Preview",
+						"t": "void ()",
+						"i": "IdeAIDes::Preview()",
+						"r": "void Preview()",
+						"s": "",
+						"u": "PREVIEW",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3934e8187686a2a6f23d110a80f4c757f2a213a9"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "SaveEditPos",
+						"t": "void ()",
+						"i": "IdeAIDes::SaveEditPos()",
+						"r": "void SaveEditPos()",
+						"s": "",
+						"u": "SAVEEDITPOS",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ee031dacdfec03fc8a25b2002aa59850fad2e31f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Load",
+						"t": "bool (const String &, const String &)",
+						"i": "IdeAIDes::Load(const String&,const String&)",
+						"r": "bool Load(const String& includes, const String& filename_)",
+						"s": "",
+						"u": "LOAD",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "af0e5cea66ff577b8914d76526b5cd36aea0196c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Save",
+						"t": "void ()",
+						"i": "IdeAIDes::Save()",
+						"r": "void Save()",
+						"s": "",
+						"u": "SAVE",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c191f26fd5a8c8d31ff825c40af9ee6baef3d51b"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "EditMenu",
+						"t": "void (Bar &)",
+						"i": "IdeAIDes::EditMenu(Bar&)",
+						"r": "void EditMenu(Bar& menu)",
+						"s": "",
+						"u": "EDITMENU",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b7d4915aa48ff54b08b7df966e8e67029a46a8c2"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GotFocus",
+						"t": "void ()",
+						"i": "IdeAIDes::GotFocus()",
+						"r": "void GotFocus()",
+						"s": "",
+						"u": "GOTFOCUS",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "62de8ec83d6d3bc65c75ff1e95d23fc814f7683d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &)",
+						"i": "IdeAIDes::Serialize(Stream&)",
+						"r": "void Serialize(Stream& s)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1b4f59265769e876cc95e6e1bfc0423f07d34f06"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SerializeAIDesPos",
+						"t": "void (Stream &)",
+						"i": "SerializeAIDesPos(Stream&)",
+						"r": "void SerializeAIDesPos(Stream& s)",
+						"s": "",
+						"u": "SERIALIZEAIDESPOS",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9410be74ead6fb5641d1b1aae4bb81fc634c7cbb"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsAIFile",
+						"t": "bool (const char *)",
+						"i": "IsAIFile(const char*)",
+						"r": "bool IsAIFile(const char *path)",
+						"s": "",
+						"u": "ISAIFILE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9addde204f06a0f403a4bf36084cb38e61d4b4dd"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "AIDesModule",
+						"t": "AIDesModule",
+						"i": "AIDesModule",
+						"r": "AIDesModule : public IdeModule",
+						"s": "",
+						"u": "AIDESMODULE",
+						"q": "AIDesModule",
+						"w": "AIDESMODULE",
+						"y": "IdeModule",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a9d95b60ce2a0927028fc73525b307cf808398ee"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetID",
+						"t": "String ()",
+						"i": "AIDesModule::GetID()",
+						"r": "String GetID()",
+						"s": "",
+						"u": "GETID",
+						"q": "AIDesModule",
+						"w": "AIDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c8a97908d00c42dbe143001cdfd1171a72cbecae"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "FileIcon",
+						"t": "Image (const char *)",
+						"i": "AIDesModule::FileIcon(const char*)",
+						"r": "Image FileIcon(const char *path)",
+						"s": "",
+						"u": "FILEICON",
+						"q": "AIDesModule",
+						"w": "AIDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6bd7075a8e3a976ef75194a286a4d56f628e3d3b"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "AcceptsFile",
+						"t": "bool (const char *)",
+						"i": "AIDesModule::AcceptsFile(const char*)",
+						"r": "bool AcceptsFile(const char *path)",
+						"s": "",
+						"u": "ACCEPTSFILE",
+						"q": "AIDesModule",
+						"w": "AIDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d5459b90aef8d8db89815d618266d2bcd0e73329"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "CreateSolver",
+						"t": "IdeDesigner *(Ide *, const char *, byte)",
+						"i": "AIDesModule::CreateSolver(Ide*,const char*,byte)",
+						"r": "IdeDesigner *CreateSolver(Ide *ide, const char *path, byte charset)",
+						"s": "",
+						"u": "CREATESOLVER",
+						"q": "AIDesModule",
+						"w": "AIDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9c851f2e97ead504a29816caeceee0b34e1cd35f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "CreateSolver",
+						"t": "IdeDesigner *(const char *, byte)",
+						"i": "AIDesModule::CreateSolver(const char*,byte)",
+						"r": "IdeDesigner *CreateSolver(const char *path, byte)",
+						"s": "",
+						"u": "CREATESOLVER",
+						"q": "AIDesModule",
+						"w": "AIDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fac0da208ca56609dfde21c401ccd818deeddf96"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &)",
+						"i": "AIDesModule::Serialize(Stream&)",
+						"r": "void Serialize(Stream& s)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "AIDesModule",
+						"w": "AIDESMODULE",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9d5523b09948001d43eccde9cdec0b431da8b66c"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeAIDes__initializer_fn",
+						"t": "void ()",
+						"i": "IdeAIDes__initializer_fn()",
+						"r": "void IdeAIDes__initializer_fn()",
+						"s": "",
+						"u": "IDEAIDES__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bc1990a78d856f9adadc2631bb43f6c80d827de6"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeAIDes__initializer",
+						"t": "void ()",
+						"i": "IdeAIDes__initializer()",
+						"r": "void IdeAIDes__initializer()",
+						"s": "",
+						"u": "IDEAIDES__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5bbf31cb1fe410293309d3c6bfe9a50ae932261c"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "IdeAIDes__initializer_fn",
+						"t": "void ()",
+						"i": "IdeAIDes__initializer_fn()",
+						"r": "void IdeAIDes__initializer_fn()",
+						"s": "",
+						"u": "IDEAIDES__INITIALIZER_FN",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5bbf31cb1fe410293309d3c6bfe9a50ae932261c"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "Png.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Save",
+						"t": "void ()",
+						"i": "IdePngDes::Save()",
+						"r": "void Save()",
+						"s": "",
+						"u": "SAVE",
+						"q": "IdePngDes",
+						"w": "IDEPNGDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ad43d595b468814c7cd79a7dcfbf01fae4f50ab5"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Load",
+						"t": "void (const char *)",
+						"i": "IdePngDes::Load(const char*)",
+						"r": "void Load(const char *_filename)",
+						"s": "",
+						"u": "LOAD",
+						"q": "IdePngDes",
+						"w": "IDEPNGDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8ec7d8ab6dd9e80b3920305078a39af65e5592be"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Create",
+						"t": "void (const char *)",
+						"i": "IdePngDes::Create(const char*)",
+						"r": "void Create(const char *_filename)",
+						"s": "",
+						"u": "CREATE",
+						"q": "IdePngDes",
+						"w": "IDEPNGDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e1141f861f800eff3fe2f070d7ac3e26b6ab3066"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "Designers.h",
+			"value": {
+				"items": [
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "_ide_Designers_Designers_h_",
+						"t": "",
+						"i": "_ide_Designers_Designers_h_",
+						"r": "_ide_Designers_Designers_h_",
+						"s": "",
+						"u": "_IDE_DESIGNERS_DESIGNERS_H_",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bdbb720323d34a63ff665fc0a4d81ef7159eec15"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeImgView",
+						"t": "IdeImgView",
+						"i": "IdeImgView",
+						"r": "IdeImgView : IdeDesigner, Ctrl",
+						"s": "",
+						"u": "IDEIMGVIEW",
+						"q": "IdeImgView",
+						"w": "IDEIMGVIEW",
+						"y": "IdeDesigner;Upp::Ctrl",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "051f81fb3da66f7efd27830fa9c4fdec23295fc6"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "img_sz",
+						"t": "Size",
+						"i": "IdeImgView::img_sz",
+						"r": "Size img_sz",
+						"s": "",
+						"u": "IMG_SZ",
+						"q": "IdeImgView",
+						"w": "IDEIMGVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "197edd3dfaf3ff605dc0d8cf23922fb019afe22d"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "img",
+						"t": "Image",
+						"i": "IdeImgView::img",
+						"r": "Image img",
+						"s": "",
+						"u": "IMG",
+						"q": "IdeImgView",
+						"w": "IDEIMGVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8523120b3d86fc4e21d4dfe2df20bfae9470a099"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "filename",
+						"t": "String",
+						"i": "IdeImgView::filename",
+						"r": "String filename",
+						"s": "",
+						"u": "FILENAME",
+						"q": "IdeImgView",
+						"w": "IDEIMGVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1a8a07713cddb660225f137c22e82b03b566af2a"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Paint",
+						"t": "void (Draw &)",
+						"i": "IdeImgView::Paint(Draw&)",
+						"r": "void Paint(Draw& w)",
+						"s": "",
+						"u": "PAINT",
+						"q": "IdeImgView",
+						"w": "IDEIMGVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "aabba20a75fec856e6aa1596b6ff4238fa723af6"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetFileName",
+						"t": "String () const",
+						"i": "IdeImgView::GetFileName()const",
+						"r": "String GetFileName() const",
+						"s": "",
+						"u": "GETFILENAME",
+						"q": "IdeImgView",
+						"w": "IDEIMGVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9585fccfe6ba379a30580aa4bea8ee2d3217708c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "EditMenu",
+						"t": "void (Bar &)",
+						"i": "IdeImgView::EditMenu(Bar&)",
+						"r": "void EditMenu(Bar& menu)",
+						"s": "",
+						"u": "EDITMENU",
+						"q": "IdeImgView",
+						"w": "IDEIMGVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4a6ea9230c3ccd1fd4a02bced47905142862629e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Save",
+						"t": "void ()",
+						"i": "IdeImgView::Save()",
+						"r": "void Save()",
+						"s": "",
+						"u": "SAVE",
+						"q": "IdeImgView",
+						"w": "IDEIMGVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "72de9bfdc32738a7c4b103d4a698a87a9ba0ffd2"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "DesignerCtrl",
+						"t": "Ctrl &()",
+						"i": "IdeImgView::DesignerCtrl()",
+						"r": "Ctrl& DesignerCtrl()",
+						"s": "",
+						"u": "DESIGNERCTRL",
+						"q": "IdeImgView",
+						"w": "IDEIMGVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "094e12feb87f4eab3f2915642b44a124e1157477"
+							}
+						]
+					},
+					{
+						"k": 20,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "CLASSNAME",
+						"t": "IdeImgView::CLASSNAME",
+						"i": "IdeImgView::CLASSNAME",
+						"r": "typedef IdeImgView CLASSNAME",
+						"s": "",
+						"u": "CLASSNAME",
+						"q": "IdeImgView",
+						"w": "IDEIMGVIEW",
+						"y": "IdeImgView",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4fd46302b8660d357e13125ccbd1a9d5d4209bf1"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdePngDes",
+						"t": "IdePngDes",
+						"i": "IdePngDes",
+						"r": "IdePngDes : IconDes",
+						"s": "",
+						"u": "IDEPNGDES",
+						"q": "IdePngDes",
+						"w": "IDEPNGDES",
+						"y": "IconDes",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2c97042fe565199fc6bb585b1bce1d533ffc71f1"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Save",
+						"t": "void ()",
+						"i": "IdePngDes::Save()",
+						"r": "void Save()",
+						"s": "",
+						"u": "SAVE",
+						"q": "IdePngDes",
+						"w": "IDEPNGDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "add42fa69217e08fb5e97cf29886205b8617c20d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Load",
+						"t": "void (const char *)",
+						"i": "IdePngDes::Load(const char*)",
+						"r": "void Load(const char *filename)",
+						"s": "",
+						"u": "LOAD",
+						"q": "IdePngDes",
+						"w": "IDEPNGDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "30862ebf7bc060c1d13793c14ccb95ac17acf3b2"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Create",
+						"t": "void (const char *)",
+						"i": "IdePngDes::Create(const char*)",
+						"r": "void Create(const char *filename)",
+						"s": "",
+						"u": "CREATE",
+						"q": "IdePngDes",
+						"w": "IDEPNGDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "512d10f5e4bd684e522b8207c9d57ccf1e60d9bc"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Img__initialize_struct",
+						"t": "Img__initialize_struct",
+						"i": "Img__initialize_struct",
+						"r": "Img__initialize_struct",
+						"s": "",
+						"u": "IMG__INITIALIZE_STRUCT",
+						"q": "Img__initialize_struct",
+						"w": "IMG__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e9f450da418f38ee481c805d40441588ffea1668"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Img__initialize_struct",
+						"t": "void ()",
+						"i": "Img__initialize_struct::Img__initialize_struct()",
+						"r": "Img__initialize_struct()",
+						"s": "",
+						"u": "IMG__INITIALIZE_STRUCT",
+						"q": "Img__initialize_struct",
+						"w": "IMG__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e9f450da418f38ee481c805d40441588ffea1668"
+							}
+						]
+					},
+					{
+						"k": 9,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "Img__initialize_dummy",
+						"t": "struct Img__initialize_struct",
+						"i": "Img__initialize_dummy",
+						"r": "static Img__initialize_struct Img__initialize_dummy",
+						"s": "",
+						"u": "IMG__INITIALIZE_DUMMY",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e9f450da418f38ee481c805d40441588ffea1668"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Img__initializer",
+						"t": "void ()",
+						"i": "Img__initializer()",
+						"r": "void Img__initializer()",
+						"s": "",
+						"u": "IMG__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e9f450da418f38ee481c805d40441588ffea1668"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Img__initialize_struct",
+						"t": "void ()",
+						"i": "Img__initialize_struct::Img__initialize_struct()",
+						"r": "Img__initialize_struct()",
+						"s": "",
+						"u": "IMG__INITIALIZE_STRUCT",
+						"q": "Img__initialize_struct",
+						"w": "IMG__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e9f450da418f38ee481c805d40441588ffea1668"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "FileHexView",
+						"t": "FileHexView",
+						"i": "FileHexView",
+						"r": "FileHexView : public IdeDesigner, public HexView, private LRUCache<String, int64>::Maker",
+						"s": "",
+						"u": "FILEHEXVIEW",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "IdeDesigner;Upp::HexView;Upp::LRUCache::Maker",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c19abc3ef1f2b3a82581e890f03ff7b77448b14f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Key",
+						"t": "bool (dword, int)",
+						"i": "FileHexView::Key(dword,int)",
+						"r": "bool Key(dword key, int count)",
+						"s": "",
+						"u": "KEY",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6ee691bd8aa9b5d314eb54ffd11ab71c8cb9c2ed"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Byte",
+						"t": "int (int64)",
+						"i": "FileHexView::Byte(int64)",
+						"r": "int Byte(int64 addr)",
+						"s": "",
+						"u": "BYTE",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "48540817d269a67b1eb979e045d697021b7cbd12"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Key",
+						"t": "int64 () const",
+						"i": "FileHexView::Key()const",
+						"r": "int64 Key() const",
+						"s": "",
+						"u": "KEY",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6bb34be7e36115fb6f2d477580d44f7a0fea0b68"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Make",
+						"t": "int (String &) const",
+						"i": "FileHexView::Make(String&)const",
+						"r": "int Make(String& object) const",
+						"s": "",
+						"u": "MAKE",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6117ee6f5a035182545a51be8abd2a50e87b1dae"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetFileName",
+						"t": "String () const",
+						"i": "FileHexView::GetFileName()const",
+						"r": "String GetFileName() const",
+						"s": "",
+						"u": "GETFILENAME",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9585fccfe6ba379a30580aa4bea8ee2d3217708c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Save",
+						"t": "void ()",
+						"i": "FileHexView::Save()",
+						"r": "void Save()",
+						"s": "",
+						"u": "SAVE",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "72de9bfdc32738a7c4b103d4a698a87a9ba0ffd2"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "EditMenu",
+						"t": "void (Bar &)",
+						"i": "FileHexView::EditMenu(Bar&)",
+						"r": "void EditMenu(Bar& menu)",
+						"s": "",
+						"u": "EDITMENU",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7d726f7890a216e9bf69c87b7fe687704e179328"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "DesignerCtrl",
+						"t": "Ctrl &()",
+						"i": "FileHexView::DesignerCtrl()",
+						"r": "Ctrl& DesignerCtrl()",
+						"s": "",
+						"u": "DESIGNERCTRL",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "094e12feb87f4eab3f2915642b44a124e1157477"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "RestoreEditPos",
+						"t": "void ()",
+						"i": "FileHexView::RestoreEditPos()",
+						"r": "void RestoreEditPos()",
+						"s": "",
+						"u": "RESTOREEDITPOS",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ee17f7fd2931ebe7b6ec717068dff9711f945dc9"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "SaveEditPos",
+						"t": "void ()",
+						"i": "FileHexView::SaveEditPos()",
+						"r": "void SaveEditPos()",
+						"s": "",
+						"u": "SAVEEDITPOS",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b34fa6a1ce805de537a7c708a6ea14cc2991e052"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "filename",
+						"t": "String",
+						"i": "FileHexView::filename",
+						"r": "String filename",
+						"s": "",
+						"u": "FILENAME",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d644e7c100b3820241d1a2a8279f047d9f033beb"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "file",
+						"t": "FileIn",
+						"i": "FileHexView::file",
+						"r": "FileIn file",
+						"s": "",
+						"u": "FILE",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "dbb8ae6a2106f5365d882f1e5cff21916d02d8ce"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "blk",
+						"t": "int64",
+						"i": "FileHexView::blk",
+						"r": "int64 blk",
+						"s": "",
+						"u": "BLK",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ad5c16b90caa8f8a5e9ac1e117f0b0921852c3cd"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "cache",
+						"t": "LRUCache<String, int64>",
+						"i": "FileHexView::cache",
+						"r": "LRUCache<String, int64> cache",
+						"s": "",
+						"u": "CACHE",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "90ffa5c4098364ee37426faf18c1ed6b4fa90fa2"
+							}
+						]
+					},
+					{
+						"k": 9,
+						"d": false,
+						"iv": false,
+						"is": true,
+						"n": "pos",
+						"t": "VectorMap<String, Tuple2<int64, int64>>",
+						"i": "FileHexView::pos",
+						"r": "static VectorMap<String, Tuple2<int64, int64>> pos",
+						"s": "",
+						"u": "POS",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0a9ca5c70dfb97112495d67792b209726e5eac5c"
+							}
+						]
+					},
+					{
+						"k": 5,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "(unnamed enum at C:\\Users\\sblo\\ai-upp\\uppsrc\\ide\\Designers\\Designers.h:55:2)",
+						"t": "FileHexView::(unnamed enum at C:\\Users\\sblo\\ai-upp\\uppsrc\\ide\\Designers\\Designers.h:55:2)",
+						"i": "FileHexView::(unnamed at C:\\Users\\sblo\\ai-upp\\uppsrc\\ide\\Designers\\Designers.)",
+						"r": "enum",
+						"s": "",
+						"u": "(UNNAMED ENUM AT C:\\USERS\\SBLO\\AI-UPP\\UPPSRC\\IDE\\DESIGNERS\\DESIGNERS.H:55:2)",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "30bef09d348e6d54c5e8e25134237f06a69c8722"
+							}
+						]
+					},
+					{
+						"k": 7,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "BLKSHIFT",
+						"t": "FileHexView::(unnamed enum at C:\\Users\\sblo\\ai-upp\\uppsrc\\ide\\Designers\\Designers.h:55:2)",
+						"i": "FileHexView::BLKSHIFT",
+						"r": "BLKSHIFT",
+						"s": "",
+						"u": "BLKSHIFT",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "282fb873c124ee48ed150ccf0129d2c89dc5ed68"
+							}
+						]
+					},
+					{
+						"k": 7,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "BLKSIZE",
+						"t": "FileHexView::(unnamed enum at C:\\Users\\sblo\\ai-upp\\uppsrc\\ide\\Designers\\Designers.h:55:2)",
+						"i": "FileHexView::BLKSIZE",
+						"r": "BLKSIZE",
+						"s": "",
+						"u": "BLKSIZE",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4e5a2f17ec2dd2b201528bee1981322195039e84"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &)",
+						"i": "FileHexView::Serialize(Stream&)",
+						"r": "void Serialize(Stream& s)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b733cf1d0e833ee6a8237441cb43f07fd22cf150"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Open",
+						"t": "void (const char *)",
+						"i": "FileHexView::Open(const char*)",
+						"r": "void Open(const char *path)",
+						"s": "",
+						"u": "OPEN",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5efd4bbcf9e05c2fa76937b015e637e64ddb73ca"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "FileHexView",
+						"t": "void ()",
+						"i": "FileHexView::FileHexView()",
+						"r": "FileHexView()",
+						"s": "",
+						"u": "FILEHEXVIEW",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f746057096e2bf45f30c3ccc164c19ebb22bbbe1"
+							}
+						]
+					},
+					{
+						"k": 25,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "~FileHexView",
+						"t": "void () noexcept",
+						"i": "FileHexView::~()",
+						"r": "~FileHexView()",
+						"s": "",
+						"u": "~FILEHEXVIEW",
+						"q": "FileHexView",
+						"w": "FILEHEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3f78f9f0f1f0fbf8d464c3a4b50e09acff7764df"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "HexView__initialize_struct",
+						"t": "HexView__initialize_struct",
+						"i": "HexView__initialize_struct",
+						"r": "HexView__initialize_struct",
+						"s": "",
+						"u": "HEXVIEW__INITIALIZE_STRUCT",
+						"q": "HexView__initialize_struct",
+						"w": "HEXVIEW__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a2cafc82becaf67cd6e7ec1b8561bc8363ce71d4"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "HexView__initialize_struct",
+						"t": "void ()",
+						"i": "HexView__initialize_struct::HexView__initialize_struct()",
+						"r": "HexView__initialize_struct()",
+						"s": "",
+						"u": "HEXVIEW__INITIALIZE_STRUCT",
+						"q": "HexView__initialize_struct",
+						"w": "HEXVIEW__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a2cafc82becaf67cd6e7ec1b8561bc8363ce71d4"
+							}
+						]
+					},
+					{
+						"k": 9,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "HexView__initialize_dummy",
+						"t": "struct HexView__initialize_struct",
+						"i": "HexView__initialize_dummy",
+						"r": "static HexView__initialize_struct HexView__initialize_dummy",
+						"s": "",
+						"u": "HEXVIEW__INITIALIZE_DUMMY",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a2cafc82becaf67cd6e7ec1b8561bc8363ce71d4"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "HexView__initialize_struct",
+						"t": "void ()",
+						"i": "HexView__initialize_struct::HexView__initialize_struct()",
+						"r": "HexView__initialize_struct()",
+						"s": "",
+						"u": "HEXVIEW__INITIALIZE_STRUCT",
+						"q": "HexView__initialize_struct",
+						"w": "HEXVIEW__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a2cafc82becaf67cd6e7ec1b8561bc8363ce71d4"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "HexView__initializer",
+						"t": "void ()",
+						"i": "HexView__initializer()",
+						"r": "void HexView__initializer()",
+						"s": "",
+						"u": "HEXVIEW__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a2cafc82becaf67cd6e7ec1b8561bc8363ce71d4"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeQtfDes",
+						"t": "IdeQtfDes",
+						"i": "IdeQtfDes",
+						"r": "IdeQtfDes : IdeDesigner, RichEditWithToolBar",
+						"s": "",
+						"u": "IDEQTFDES",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "IdeDesigner;Upp::RichEditWithToolBar",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bd2be0aa16167a88f1bdc473d3fade9cac393a55"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "filename",
+						"t": "String",
+						"i": "IdeQtfDes::filename",
+						"r": "String filename",
+						"s": "",
+						"u": "FILENAME",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1a8a07713cddb660225f137c22e82b03b566af2a"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetFileName",
+						"t": "String () const",
+						"i": "IdeQtfDes::GetFileName()const",
+						"r": "String GetFileName() const",
+						"s": "",
+						"u": "GETFILENAME",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9585fccfe6ba379a30580aa4bea8ee2d3217708c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Save",
+						"t": "void ()",
+						"i": "IdeQtfDes::Save()",
+						"r": "void Save()",
+						"s": "",
+						"u": "SAVE",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "add42fa69217e08fb5e97cf29886205b8617c20d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "SaveEditPos",
+						"t": "void ()",
+						"i": "IdeQtfDes::SaveEditPos()",
+						"r": "void SaveEditPos()",
+						"s": "",
+						"u": "SAVEEDITPOS",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b34fa6a1ce805de537a7c708a6ea14cc2991e052"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "EditMenu",
+						"t": "void (Bar &)",
+						"i": "IdeQtfDes::EditMenu(Bar&)",
+						"r": "void EditMenu(Bar& menu)",
+						"s": "",
+						"u": "EDITMENU",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4a6ea9230c3ccd1fd4a02bced47905142862629e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "DesignerCtrl",
+						"t": "Ctrl &()",
+						"i": "IdeQtfDes::DesignerCtrl()",
+						"r": "Ctrl& DesignerCtrl()",
+						"s": "",
+						"u": "DESIGNERCTRL",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "094e12feb87f4eab3f2915642b44a124e1157477"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &)",
+						"i": "IdeQtfDes::Serialize(Stream&)",
+						"r": "void Serialize(Stream& s)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b3db12231ead8158d7797081be532bbfe57981f0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Load",
+						"t": "bool (const char *)",
+						"i": "IdeQtfDes::Load(const char*)",
+						"r": "bool Load(const char *filename)",
+						"s": "",
+						"u": "LOAD",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c8227cc0e14a6a150e2dcd125a750820088d800c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "FileProperties",
+						"t": "void ()",
+						"i": "IdeQtfDes::FileProperties()",
+						"r": "void FileProperties()",
+						"s": "",
+						"u": "FILEPROPERTIES",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "58adb15e1c16b2d901a5304ac4a01d34d9a20b17"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "CopyId",
+						"t": "void (const String &)",
+						"i": "IdeQtfDes::CopyId(const String&)",
+						"r": "void CopyId(const String& n)",
+						"s": "",
+						"u": "COPYID",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3cda4bfd25d3fff1b1875ff48b975f81fd145922"
+							}
+						]
+					},
+					{
+						"k": 20,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "CLASSNAME",
+						"t": "IdeQtfDes::CLASSNAME",
+						"i": "IdeQtfDes::CLASSNAME",
+						"r": "typedef IdeQtfDes CLASSNAME",
+						"s": "",
+						"u": "CLASSNAME",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "IdeQtfDes",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "252b28b67b889030b82e19db1f670b7da3572f05"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeQtfDes",
+						"t": "void ()",
+						"i": "IdeQtfDes::IdeQtfDes()",
+						"r": "IdeQtfDes()",
+						"s": "",
+						"u": "IDEQTFDES",
+						"q": "IdeQtfDes",
+						"w": "IDEQTFDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "94ef8261006e04ddce0985f64ef680fc7483e528"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Qtf__initialize_struct",
+						"t": "Qtf__initialize_struct",
+						"i": "Qtf__initialize_struct",
+						"r": "Qtf__initialize_struct",
+						"s": "",
+						"u": "QTF__INITIALIZE_STRUCT",
+						"q": "Qtf__initialize_struct",
+						"w": "QTF__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bad21bd7f2bc626a0be5354f0ba4e32c3e9cacfa"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Qtf__initialize_struct",
+						"t": "void ()",
+						"i": "Qtf__initialize_struct::Qtf__initialize_struct()",
+						"r": "Qtf__initialize_struct()",
+						"s": "",
+						"u": "QTF__INITIALIZE_STRUCT",
+						"q": "Qtf__initialize_struct",
+						"w": "QTF__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bad21bd7f2bc626a0be5354f0ba4e32c3e9cacfa"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Qtf__initializer",
+						"t": "void ()",
+						"i": "Qtf__initializer()",
+						"r": "void Qtf__initializer()",
+						"s": "",
+						"u": "QTF__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bad21bd7f2bc626a0be5354f0ba4e32c3e9cacfa"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Qtf__initialize_struct",
+						"t": "Qtf__initialize_struct",
+						"i": "Qtf__initialize_struct",
+						"r": "Qtf__initialize_struct",
+						"s": "",
+						"u": "QTF__INITIALIZE_STRUCT",
+						"q": "Qtf__initialize_struct",
+						"w": "QTF__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bad21bd7f2bc626a0be5354f0ba4e32c3e9cacfa"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Qtf__initialize_struct",
+						"t": "void ()",
+						"i": "Qtf__initialize_struct::Qtf__initialize_struct()",
+						"r": "Qtf__initialize_struct()",
+						"s": "",
+						"u": "QTF__INITIALIZE_STRUCT",
+						"q": "Qtf__initialize_struct",
+						"w": "QTF__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bad21bd7f2bc626a0be5354f0ba4e32c3e9cacfa"
+							}
+						]
+					},
+					{
+						"k": 9,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "Qtf__initialize_dummy",
+						"t": "struct Qtf__initialize_struct",
+						"i": "Qtf__initialize_dummy",
+						"r": "static Qtf__initialize_struct Qtf__initialize_dummy",
+						"s": "",
+						"u": "QTF__INITIALIZE_DUMMY",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bad21bd7f2bc626a0be5354f0ba4e32c3e9cacfa"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeMDDes",
+						"t": "IdeMDDes",
+						"i": "IdeMDDes",
+						"r": "IdeMDDes : IdeDesigner, ParentCtrl",
+						"s": "",
+						"u": "IDEMDDES",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "IdeDesigner;Upp::ParentCtrl",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c4c9a89d2b4cf88f9d6b47c9d99b3e2f4091b49a"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "filename",
+						"t": "String",
+						"i": "IdeMDDes::filename",
+						"r": "String filename",
+						"s": "",
+						"u": "FILENAME",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bc5a6f60836aa0446652d18c4ffbb83c660485de"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "editor",
+						"t": "DocEdit",
+						"i": "IdeMDDes::editor",
+						"r": "DocEdit editor",
+						"s": "",
+						"u": "EDITOR",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0a5d210efc1acfd77bfda6843f97e5c9401b144f"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "preview",
+						"t": "RichTextView",
+						"i": "IdeMDDes::preview",
+						"r": "RichTextView preview",
+						"s": "",
+						"u": "PREVIEW",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "45689efdcf5577e65f38840dc7f2ce84db093dff"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "splitter",
+						"t": "Splitter",
+						"i": "IdeMDDes::splitter",
+						"r": "Splitter splitter",
+						"s": "",
+						"u": "SPLITTER",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f156001cf1e9f7a106ecd08443cf789b42f3696b"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "delay",
+						"t": "TimeCallback",
+						"i": "IdeMDDes::delay",
+						"r": "TimeCallback delay",
+						"s": "",
+						"u": "DELAY",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c179b91f3def15f84efe8a476d0d4b15b2748a02"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "GotFocus",
+						"t": "void ()",
+						"i": "IdeMDDes::GotFocus()",
+						"r": "void GotFocus()",
+						"s": "",
+						"u": "GOTFOCUS",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "346a199f3c1330be54ff66aa5d6d51198535fd49"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetFileName",
+						"t": "String () const",
+						"i": "IdeMDDes::GetFileName()const",
+						"r": "String GetFileName() const",
+						"s": "",
+						"u": "GETFILENAME",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9585fccfe6ba379a30580aa4bea8ee2d3217708c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Save",
+						"t": "void ()",
+						"i": "IdeMDDes::Save()",
+						"r": "void Save()",
+						"s": "",
+						"u": "SAVE",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "add42fa69217e08fb5e97cf29886205b8617c20d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "SaveEditPos",
+						"t": "void ()",
+						"i": "IdeMDDes::SaveEditPos()",
+						"r": "void SaveEditPos()",
+						"s": "",
+						"u": "SAVEEDITPOS",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b34fa6a1ce805de537a7c708a6ea14cc2991e052"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "EditMenu",
+						"t": "void (Bar &)",
+						"i": "IdeMDDes::EditMenu(Bar&)",
+						"r": "void EditMenu(Bar& menu)",
+						"s": "",
+						"u": "EDITMENU",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4a6ea9230c3ccd1fd4a02bced47905142862629e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "DesignerCtrl",
+						"t": "Ctrl &()",
+						"i": "IdeMDDes::DesignerCtrl()",
+						"r": "Ctrl& DesignerCtrl()",
+						"s": "",
+						"u": "DESIGNERCTRL",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "094e12feb87f4eab3f2915642b44a124e1157477"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &)",
+						"i": "IdeMDDes::Serialize(Stream&)",
+						"r": "void Serialize(Stream& s)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b3db12231ead8158d7797081be532bbfe57981f0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Preview",
+						"t": "void ()",
+						"i": "IdeMDDes::Preview()",
+						"r": "void Preview()",
+						"s": "",
+						"u": "PREVIEW",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c9ddbcd1bd147692c9114ce4cde47300c408069e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Load",
+						"t": "bool (const char *)",
+						"i": "IdeMDDes::Load(const char*)",
+						"r": "bool Load(const char *filename)",
+						"s": "",
+						"u": "LOAD",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c8227cc0e14a6a150e2dcd125a750820088d800c"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "IdeMDDes",
+						"t": "void ()",
+						"i": "IdeMDDes::IdeMDDes()",
+						"r": "IdeMDDes()",
+						"s": "",
+						"u": "IDEMDDES",
+						"q": "IdeMDDes",
+						"w": "IDEMDDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6a6629ca6fe5a16a31d55fefba954ec06554fe11"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MD__initialize_struct",
+						"t": "MD__initialize_struct",
+						"i": "MD__initialize_struct",
+						"r": "MD__initialize_struct",
+						"s": "",
+						"u": "MD__INITIALIZE_STRUCT",
+						"q": "MD__initialize_struct",
+						"w": "MD__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fd0a227122b8e5a5e738cdc7a846eb4303ee56ae"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MD__initialize_struct",
+						"t": "void ()",
+						"i": "MD__initialize_struct::MD__initialize_struct()",
+						"r": "MD__initialize_struct()",
+						"s": "",
+						"u": "MD__INITIALIZE_STRUCT",
+						"q": "MD__initialize_struct",
+						"w": "MD__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fd0a227122b8e5a5e738cdc7a846eb4303ee56ae"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MD__initialize_struct",
+						"t": "MD__initialize_struct",
+						"i": "MD__initialize_struct",
+						"r": "MD__initialize_struct",
+						"s": "",
+						"u": "MD__INITIALIZE_STRUCT",
+						"q": "MD__initialize_struct",
+						"w": "MD__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fd0a227122b8e5a5e738cdc7a846eb4303ee56ae"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "MD__initializer",
+						"t": "void ()",
+						"i": "MD__initializer()",
+						"r": "void MD__initializer()",
+						"s": "",
+						"u": "MD__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fd0a227122b8e5a5e738cdc7a846eb4303ee56ae"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MD__initialize_struct",
+						"t": "void ()",
+						"i": "MD__initialize_struct::MD__initialize_struct()",
+						"r": "MD__initialize_struct()",
+						"s": "",
+						"u": "MD__INITIALIZE_STRUCT",
+						"q": "MD__initialize_struct",
+						"w": "MD__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fd0a227122b8e5a5e738cdc7a846eb4303ee56ae"
+							}
+						]
+					},
+					{
+						"k": 9,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "MD__initialize_dummy",
+						"t": "struct MD__initialize_struct",
+						"i": "MD__initialize_dummy",
+						"r": "static MD__initialize_struct MD__initialize_dummy",
+						"s": "",
+						"u": "MD__INITIALIZE_DUMMY",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fd0a227122b8e5a5e738cdc7a846eb4303ee56ae"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "FileIsBinary",
+						"t": "bool (const char *)",
+						"i": "FileIsBinary(const char*)",
+						"r": "bool FileIsBinary(const char *path)",
+						"s": "",
+						"u": "FILEISBINARY",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "663cf13c75e72e5b757f9fa09017c3435e5a7647"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "TreeDesPos",
+						"t": "TreeDesPos",
+						"i": "TreeDesPos",
+						"r": "TreeDesPos",
+						"s": "",
+						"u": "TREEDESPOS",
+						"q": "TreeDesPos",
+						"w": "TREEDESPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "65283b88da4c661160558dde4a66dc656e67b5d6"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "filetime",
+						"t": "Time",
+						"i": "TreeDesPos::filetime",
+						"r": "Time filetime",
+						"s": "",
+						"u": "FILETIME",
+						"q": "TreeDesPos",
+						"w": "TREEDESPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1a246b975fb1fdb9e970a6679c4731cb6e08ff36"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "openid",
+						"t": "Vector<int>",
+						"i": "TreeDesPos::openid",
+						"r": "Vector<int> openid",
+						"s": "",
+						"u": "OPENID",
+						"q": "TreeDesPos",
+						"w": "TREEDESPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "58ffe68d58361423e8b10b22867c2c55814d52f2"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "cursor",
+						"t": "int",
+						"i": "TreeDesPos::cursor",
+						"r": "int cursor",
+						"s": "",
+						"u": "CURSOR",
+						"q": "TreeDesPos",
+						"w": "TREEDESPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "66259337c4dc976427489e8e999020ce39c6a1ed"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "scroll",
+						"t": "Point",
+						"i": "TreeDesPos::scroll",
+						"r": "Point scroll",
+						"s": "",
+						"u": "SCROLL",
+						"q": "TreeDesPos",
+						"w": "TREEDESPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4d2d7801d4b989dc16706e4f0d9b74108fe4cdab"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &)",
+						"i": "TreeDesPos::Serialize(Stream&)",
+						"r": "void Serialize(Stream& s)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "TreeDesPos",
+						"w": "TREEDESPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d25ae91722a528efe45c2d4e36191919e55022f6"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Save",
+						"t": "void (Time, TreeCtrl &)",
+						"i": "TreeDesPos::Save(Time,TreeCtrl&)",
+						"r": "void Save(Time filetime, TreeCtrl& tree)",
+						"s": "",
+						"u": "SAVE",
+						"q": "TreeDesPos",
+						"w": "TREEDESPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "35a10229a80205e408941d42f995cf3e7fa9a768"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Restore",
+						"t": "void (Time, TreeCtrl &)",
+						"i": "TreeDesPos::Restore(Time,TreeCtrl&)",
+						"r": "void Restore(Time filetime, TreeCtrl& tree)",
+						"s": "",
+						"u": "RESTORE",
+						"q": "TreeDesPos",
+						"w": "TREEDESPOS",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4333a712d96e6835c94c5ded10fcc8bd669d74d0"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Save",
+						"t": "void (ArrayMap<String, TreeDesPos> &, const String &, Time, TreeCtrl &)",
+						"i": "Save(ArrayMap&,const String&,Time,TreeCtrl&)",
+						"r": "void Save(ArrayMap<String, TreeDesPos>& pos, const String& filename, Time filetime, TreeCtrl& tree)",
+						"s": "",
+						"u": "SAVE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d079b1b6a7264e7345e922871f4b3b308ef7f77c"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Restore",
+						"t": "void (ArrayMap<String, TreeDesPos> &, const String &, Time, TreeCtrl &)",
+						"i": "Restore(ArrayMap&,const String&,Time,TreeCtrl&)",
+						"r": "void Restore(ArrayMap<String, TreeDesPos>& pos, const String& filename, Time filetime, TreeCtrl& tree)",
+						"s": "",
+						"u": "RESTORE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "29346d19480b59ae5ee300a7e5b770335ded8ee9"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &, ArrayMap<String, TreeDesPos> &)",
+						"i": "Serialize(Stream&,ArrayMap&)",
+						"r": "void Serialize(Stream& s, ArrayMap<String, TreeDesPos>& pos)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d6eb5e737e414e1bf6d87ed4db3f898a0635b2e5"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "TreeViewDes",
+						"t": "TreeViewDes",
+						"i": "TreeViewDes",
+						"r": "TreeViewDes : IdeDesigner, Ctrl",
+						"s": "",
+						"u": "TREEVIEWDES",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "IdeDesigner;Upp::Ctrl",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4ec8684a151d8470336ac96624f7c4bd10dfc93f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetFileName",
+						"t": "String () const",
+						"i": "TreeViewDes::GetFileName()const",
+						"r": "String GetFileName() const",
+						"s": "",
+						"u": "GETFILENAME",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9585fccfe6ba379a30580aa4bea8ee2d3217708c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Save",
+						"t": "void ()",
+						"i": "TreeViewDes::Save()",
+						"r": "void Save()",
+						"s": "",
+						"u": "SAVE",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "72de9bfdc32738a7c4b103d4a698a87a9ba0ffd2"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "EditMenu",
+						"t": "void (Bar &)",
+						"i": "TreeViewDes::EditMenu(Bar&)",
+						"r": "void EditMenu(Bar& menu)",
+						"s": "",
+						"u": "EDITMENU",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4a6ea9230c3ccd1fd4a02bced47905142862629e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "DesignerCtrl",
+						"t": "Ctrl &()",
+						"i": "TreeViewDes::DesignerCtrl()",
+						"r": "Ctrl& DesignerCtrl()",
+						"s": "",
+						"u": "DESIGNERCTRL",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "094e12feb87f4eab3f2915642b44a124e1157477"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "RestoreEditPos",
+						"t": "void ()",
+						"i": "TreeViewDes::RestoreEditPos()",
+						"r": "void RestoreEditPos()",
+						"s": "",
+						"u": "RESTOREEDITPOS",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ee17f7fd2931ebe7b6ec717068dff9711f945dc9"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "SaveEditPos",
+						"t": "void ()",
+						"i": "TreeViewDes::SaveEditPos()",
+						"r": "void SaveEditPos()",
+						"s": "",
+						"u": "SAVEEDITPOS",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b34fa6a1ce805de537a7c708a6ea14cc2991e052"
+							}
+						]
+					},
+					{
+						"k": 9,
+						"d": false,
+						"iv": false,
+						"is": true,
+						"n": "pos",
+						"t": "ArrayMap<String, TreeDesPos>",
+						"i": "TreeViewDes::pos",
+						"r": "static ArrayMap<String, TreeDesPos> pos",
+						"s": "",
+						"u": "POS",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "38dd5d53f7e593c8033b8dda7cafab0908a822bb"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "filename",
+						"t": "String",
+						"i": "TreeViewDes::filename",
+						"r": "String filename",
+						"s": "",
+						"u": "FILENAME",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9a70cc45a9c94456c92e27476dfa250e048b60f3"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "filetime",
+						"t": "Time",
+						"i": "TreeViewDes::filetime",
+						"r": "Time filetime",
+						"s": "",
+						"u": "FILETIME",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e8bb691f2d807ee6b2aacd86de67a1d08bc17a3d"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "tree",
+						"t": "TreeCtrl",
+						"i": "TreeViewDes::tree",
+						"r": "TreeCtrl tree",
+						"s": "",
+						"u": "TREE",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9515b9c3f82f989f5de9fd8e471bf552cb3f4a5e"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "errorbg",
+						"t": "FrameTop<StaticRect>",
+						"i": "TreeViewDes::errorbg",
+						"r": "FrameTop<StaticRect> errorbg",
+						"s": "",
+						"u": "ERRORBG",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2224eb92e61ae971709c84454800ff9efcaba91a"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "error",
+						"t": "Label",
+						"i": "TreeViewDes::error",
+						"r": "Label error",
+						"s": "",
+						"u": "ERROR",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "384bab196555c3204534a58df5ab98c7e828109a"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "data",
+						"t": "ParentCtrl",
+						"i": "TreeViewDes::data",
+						"r": "ParentCtrl data",
+						"s": "",
+						"u": "DATA",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1b19da419fe3656912c52f6878a4f1a0fcd1bd6a"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "TreeViewDes",
+						"t": "void ()",
+						"i": "TreeViewDes::TreeViewDes()",
+						"r": "TreeViewDes()",
+						"s": "",
+						"u": "TREEVIEWDES",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0362ecc6d5423bbf53aa048b3cb1baaebae9e75a"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Error",
+						"t": "void (const char *)",
+						"i": "TreeViewDes::Error(const char*)",
+						"r": "void Error(const char *e)",
+						"s": "",
+						"u": "ERROR",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "95f9d087b1e68cf0c03cd21b6562ec5f12097e0f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Load",
+						"t": "bool (const String &)",
+						"i": "TreeViewDes::Load(const String&)",
+						"r": "bool Load(const String& txt)",
+						"s": "",
+						"u": "LOAD",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b8de73caf758c617eae35af67ffa3d1e341e3613"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "GetId",
+						"t": "String ()",
+						"i": "TreeViewDes::GetId()",
+						"r": "String GetId()",
+						"s": "",
+						"u": "GETID",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "75924f670855b676c6f30f12f52a19b9338e2426"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "CopyPath",
+						"t": "void ()",
+						"i": "TreeViewDes::CopyPath()",
+						"r": "void CopyPath()",
+						"s": "",
+						"u": "COPYPATH",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "76e2a6b746773a66bc0d628f1131d1f0901ac889"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Load0",
+						"t": "String (const String &)",
+						"i": "TreeViewDes::Load0(const String&)",
+						"r": "String Load0(const String& data)",
+						"s": "",
+						"u": "LOAD0",
+						"q": "TreeViewDes",
+						"w": "TREEVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "67c6d43673bd193082342e680c088daaa43fd841"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "TreeViewDes__initialize_struct",
+						"t": "TreeViewDes__initialize_struct",
+						"i": "TreeViewDes__initialize_struct",
+						"r": "TreeViewDes__initialize_struct",
+						"s": "",
+						"u": "TREEVIEWDES__INITIALIZE_STRUCT",
+						"q": "TreeViewDes__initialize_struct",
+						"w": "TREEVIEWDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b862c520d7a3578ab1174d1499e658d1eea0a363"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "TreeViewDes__initialize_struct",
+						"t": "void ()",
+						"i": "TreeViewDes__initialize_struct::TreeViewDes__initialize_struct()",
+						"r": "TreeViewDes__initialize_struct()",
+						"s": "",
+						"u": "TREEVIEWDES__INITIALIZE_STRUCT",
+						"q": "TreeViewDes__initialize_struct",
+						"w": "TREEVIEWDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b862c520d7a3578ab1174d1499e658d1eea0a363"
+							}
+						]
+					},
+					{
+						"k": 9,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "TreeViewDes__initialize_dummy",
+						"t": "struct TreeViewDes__initialize_struct",
+						"i": "TreeViewDes__initialize_dummy",
+						"r": "static TreeViewDes__initialize_struct TreeViewDes__initialize_dummy",
+						"s": "",
+						"u": "TREEVIEWDES__INITIALIZE_DUMMY",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b862c520d7a3578ab1174d1499e658d1eea0a363"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "TreeViewDes__initializer",
+						"t": "void ()",
+						"i": "TreeViewDes__initializer()",
+						"r": "void TreeViewDes__initializer()",
+						"s": "",
+						"u": "TREEVIEWDES__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b862c520d7a3578ab1174d1499e658d1eea0a363"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "TreeViewDes__initialize_struct",
+						"t": "void ()",
+						"i": "TreeViewDes__initialize_struct::TreeViewDes__initialize_struct()",
+						"r": "TreeViewDes__initialize_struct()",
+						"s": "",
+						"u": "TREEVIEWDES__INITIALIZE_STRUCT",
+						"q": "TreeViewDes__initialize_struct",
+						"w": "TREEVIEWDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b862c520d7a3578ab1174d1499e658d1eea0a363"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "XmlViewDes",
+						"t": "XmlViewDes",
+						"i": "XmlViewDes",
+						"r": "XmlViewDes : TreeViewDes",
+						"s": "",
+						"u": "XMLVIEWDES",
+						"q": "XmlViewDes",
+						"w": "XMLVIEWDES",
+						"y": "TreeViewDes",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f35b5159fd6d3ba66698fcac3cdaad5ade2876b7"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetId",
+						"t": "String ()",
+						"i": "XmlViewDes::GetId()",
+						"r": "String GetId()",
+						"s": "",
+						"u": "GETID",
+						"q": "XmlViewDes",
+						"w": "XMLVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3b3f9877c2d0dc0a819e8b633ad77447efea25a2"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "CopyPath",
+						"t": "void ()",
+						"i": "XmlViewDes::CopyPath()",
+						"r": "void CopyPath()",
+						"s": "",
+						"u": "COPYPATH",
+						"q": "XmlViewDes",
+						"w": "XMLVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4a731d4ad28ce6d65cad9732a738440995d3044c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Load0",
+						"t": "String (const String &)",
+						"i": "XmlViewDes::Load0(const String&)",
+						"r": "String Load0(const String& data)",
+						"s": "",
+						"u": "LOAD0",
+						"q": "XmlViewDes",
+						"w": "XMLVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "64fbf1ca36dd351d7df0af4cbda53c0a8b4eccdc"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Load0",
+						"t": "void (int, XmlParser &)",
+						"i": "XmlViewDes::Load0(int,XmlParser&)",
+						"r": "void Load0(int parent, XmlParser& p)",
+						"s": "",
+						"u": "LOAD0",
+						"q": "XmlViewDes",
+						"w": "XMLVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f1d345a4551ce686e600990b3f63c0ee5a66ca69"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "XmlViewDes__initialize_struct",
+						"t": "void ()",
+						"i": "XmlViewDes__initialize_struct::XmlViewDes__initialize_struct()",
+						"r": "XmlViewDes__initialize_struct()",
+						"s": "",
+						"u": "XMLVIEWDES__INITIALIZE_STRUCT",
+						"q": "XmlViewDes__initialize_struct",
+						"w": "XMLVIEWDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "df7d174359112478dd70ae54405cfad130197d21"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "XmlViewDes__initialize_struct",
+						"t": "XmlViewDes__initialize_struct",
+						"i": "XmlViewDes__initialize_struct",
+						"r": "XmlViewDes__initialize_struct",
+						"s": "",
+						"u": "XMLVIEWDES__INITIALIZE_STRUCT",
+						"q": "XmlViewDes__initialize_struct",
+						"w": "XMLVIEWDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "df7d174359112478dd70ae54405cfad130197d21"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "XmlViewDes__initializer",
+						"t": "void ()",
+						"i": "XmlViewDes__initializer()",
+						"r": "void XmlViewDes__initializer()",
+						"s": "",
+						"u": "XMLVIEWDES__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "df7d174359112478dd70ae54405cfad130197d21"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "XmlViewDes__initialize_struct",
+						"t": "void ()",
+						"i": "XmlViewDes__initialize_struct::XmlViewDes__initialize_struct()",
+						"r": "XmlViewDes__initialize_struct()",
+						"s": "",
+						"u": "XMLVIEWDES__INITIALIZE_STRUCT",
+						"q": "XmlViewDes__initialize_struct",
+						"w": "XMLVIEWDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "df7d174359112478dd70ae54405cfad130197d21"
+							}
+						]
+					},
+					{
+						"k": 9,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "XmlViewDes__initialize_dummy",
+						"t": "struct XmlViewDes__initialize_struct",
+						"i": "XmlViewDes__initialize_dummy",
+						"r": "static XmlViewDes__initialize_struct XmlViewDes__initialize_dummy",
+						"s": "",
+						"u": "XMLVIEWDES__INITIALIZE_DUMMY",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "df7d174359112478dd70ae54405cfad130197d21"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "XmlViewDes__initialize_struct",
+						"t": "XmlViewDes__initialize_struct",
+						"i": "XmlViewDes__initialize_struct",
+						"r": "XmlViewDes__initialize_struct",
+						"s": "",
+						"u": "XMLVIEWDES__INITIALIZE_STRUCT",
+						"q": "XmlViewDes__initialize_struct",
+						"w": "XMLVIEWDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "df7d174359112478dd70ae54405cfad130197d21"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "JsonViewDes",
+						"t": "JsonViewDes",
+						"i": "JsonViewDes",
+						"r": "JsonViewDes : TreeViewDes",
+						"s": "",
+						"u": "JSONVIEWDES",
+						"q": "JsonViewDes",
+						"w": "JSONVIEWDES",
+						"y": "TreeViewDes",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4b9354329b15e8789c3a2d7247497f64800060de"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetId",
+						"t": "String ()",
+						"i": "JsonViewDes::GetId()",
+						"r": "String GetId()",
+						"s": "",
+						"u": "GETID",
+						"q": "JsonViewDes",
+						"w": "JSONVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e023bcfc5d2f0f9d856b84f0ed876bbcab0d703a"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Load0",
+						"t": "String (const String &)",
+						"i": "JsonViewDes::Load0(const String&)",
+						"r": "String Load0(const String& json)",
+						"s": "",
+						"u": "LOAD0",
+						"q": "JsonViewDes",
+						"w": "JSONVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7645da1a729f34908bbfad7e16f33049dd2646e8"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "CopyPath",
+						"t": "void ()",
+						"i": "JsonViewDes::CopyPath()",
+						"r": "void CopyPath()",
+						"s": "",
+						"u": "COPYPATH",
+						"q": "JsonViewDes",
+						"w": "JSONVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4a731d4ad28ce6d65cad9732a738440995d3044c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "AddNode",
+						"t": "int (int, const Value &, const String &, const Value &)",
+						"i": "JsonViewDes::AddNode(int,const Value&,const String&,const Value&)",
+						"r": "int AddNode(int parent_id, const Value& id, const String& name, const Value& v)",
+						"s": "",
+						"u": "ADDNODE",
+						"q": "JsonViewDes",
+						"w": "JSONVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "45411111337fd2f664cbbabe7612db91e89b7772"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "JsonViewDes",
+						"t": "void ()",
+						"i": "JsonViewDes::JsonViewDes()",
+						"r": "JsonViewDes()",
+						"s": "",
+						"u": "JSONVIEWDES",
+						"q": "JsonViewDes",
+						"w": "JSONVIEWDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d7f4bba3d4a48a46c411f24f4f35b6aa863faf1b"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "JsonViewDes__initialize_struct",
+						"t": "void ()",
+						"i": "JsonViewDes__initialize_struct::JsonViewDes__initialize_struct()",
+						"r": "JsonViewDes__initialize_struct()",
+						"s": "",
+						"u": "JSONVIEWDES__INITIALIZE_STRUCT",
+						"q": "JsonViewDes__initialize_struct",
+						"w": "JSONVIEWDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "17518b26d6ccd10c54c2459a66c1eaab5526129e"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "JsonViewDes__initialize_struct",
+						"t": "JsonViewDes__initialize_struct",
+						"i": "JsonViewDes__initialize_struct",
+						"r": "JsonViewDes__initialize_struct",
+						"s": "",
+						"u": "JSONVIEWDES__INITIALIZE_STRUCT",
+						"q": "JsonViewDes__initialize_struct",
+						"w": "JSONVIEWDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "17518b26d6ccd10c54c2459a66c1eaab5526129e"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "JsonViewDes__initializer",
+						"t": "void ()",
+						"i": "JsonViewDes__initializer()",
+						"r": "void JsonViewDes__initializer()",
+						"s": "",
+						"u": "JSONVIEWDES__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "17518b26d6ccd10c54c2459a66c1eaab5526129e"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "JsonViewDes__initialize_struct",
+						"t": "void ()",
+						"i": "JsonViewDes__initialize_struct::JsonViewDes__initialize_struct()",
+						"r": "JsonViewDes__initialize_struct()",
+						"s": "",
+						"u": "JSONVIEWDES__INITIALIZE_STRUCT",
+						"q": "JsonViewDes__initialize_struct",
+						"w": "JSONVIEWDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "17518b26d6ccd10c54c2459a66c1eaab5526129e"
+							}
+						]
+					},
+					{
+						"k": 9,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "JsonViewDes__initialize_dummy",
+						"t": "struct JsonViewDes__initialize_struct",
+						"i": "JsonViewDes__initialize_dummy",
+						"r": "static JsonViewDes__initialize_struct JsonViewDes__initialize_dummy",
+						"s": "",
+						"u": "JSONVIEWDES__INITIALIZE_DUMMY",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "17518b26d6ccd10c54c2459a66c1eaab5526129e"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "JsonViewDes__initialize_struct",
+						"t": "JsonViewDes__initialize_struct",
+						"i": "JsonViewDes__initialize_struct",
+						"r": "JsonViewDes__initialize_struct",
+						"s": "",
+						"u": "JSONVIEWDES__INITIALIZE_STRUCT",
+						"q": "JsonViewDes__initialize_struct",
+						"w": "JSONVIEWDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "17518b26d6ccd10c54c2459a66c1eaab5526129e"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeAIDes",
+						"t": "IdeAIDes",
+						"i": "IdeAIDes",
+						"r": "IdeAIDes : IdeDesigner, ParentCtrl",
+						"s": "",
+						"u": "IDEAIDES",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "IdeDesigner;Upp::ParentCtrl",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c5bcf3de6c0a31201cc9c5c3bf175826cebde7c2"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ide",
+						"t": "Ide *",
+						"i": "IdeAIDes::ide",
+						"r": "Ide *ide",
+						"s": "",
+						"u": "IDE",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b732be569135296a2f373371e8033fab312d291f"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "filename",
+						"t": "String",
+						"i": "IdeAIDes::filename",
+						"r": "String filename",
+						"s": "",
+						"u": "FILENAME",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "45cdfa78633b718bb88247f351eeb953c18029d1"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "code",
+						"t": "AICodeCtrl",
+						"i": "IdeAIDes::code",
+						"r": "AICodeCtrl code",
+						"s": "",
+						"u": "CODE",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1b192e4481ab9634b6621f0059cba8dd9ed16d9d"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "delay",
+						"t": "TimeCallback",
+						"i": "IdeAIDes::delay",
+						"r": "TimeCallback delay",
+						"s": "",
+						"u": "DELAY",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "93ec830a24084799ffead9386edb3dc4abcb12e6"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "GotFocus",
+						"t": "void ()",
+						"i": "IdeAIDes::GotFocus()",
+						"r": "void GotFocus()",
+						"s": "",
+						"u": "GOTFOCUS",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "346a199f3c1330be54ff66aa5d6d51198535fd49"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetFileName",
+						"t": "String () const",
+						"i": "IdeAIDes::GetFileName()const",
+						"r": "String GetFileName() const",
+						"s": "",
+						"u": "GETFILENAME",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9585fccfe6ba379a30580aa4bea8ee2d3217708c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Save",
+						"t": "void ()",
+						"i": "IdeAIDes::Save()",
+						"r": "void Save()",
+						"s": "",
+						"u": "SAVE",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "add42fa69217e08fb5e97cf29886205b8617c20d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "SaveEditPos",
+						"t": "void ()",
+						"i": "IdeAIDes::SaveEditPos()",
+						"r": "void SaveEditPos()",
+						"s": "",
+						"u": "SAVEEDITPOS",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b34fa6a1ce805de537a7c708a6ea14cc2991e052"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "EditMenu",
+						"t": "void (Bar &)",
+						"i": "IdeAIDes::EditMenu(Bar&)",
+						"r": "void EditMenu(Bar& menu)",
+						"s": "",
+						"u": "EDITMENU",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4a6ea9230c3ccd1fd4a02bced47905142862629e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "DesignerCtrl",
+						"t": "Ctrl &()",
+						"i": "IdeAIDes::DesignerCtrl()",
+						"r": "Ctrl& DesignerCtrl()",
+						"s": "",
+						"u": "DESIGNERCTRL",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "094e12feb87f4eab3f2915642b44a124e1157477"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Serialize",
+						"t": "void (Stream &)",
+						"i": "IdeAIDes::Serialize(Stream&)",
+						"r": "void Serialize(Stream& s)",
+						"s": "",
+						"u": "SERIALIZE",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b3db12231ead8158d7797081be532bbfe57981f0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Preview",
+						"t": "void ()",
+						"i": "IdeAIDes::Preview()",
+						"r": "void Preview()",
+						"s": "",
+						"u": "PREVIEW",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c9ddbcd1bd147692c9114ce4cde47300c408069e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Load",
+						"t": "bool (const String &, const String &)",
+						"i": "IdeAIDes::Load(const String&,const String&)",
+						"r": "bool Load(const String& includes, const String& filename)",
+						"s": "",
+						"u": "LOAD",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3ae75735b6a06fc93d33a2603d4ee9752e620968"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "IdeAIDes",
+						"t": "void ()",
+						"i": "IdeAIDes::IdeAIDes()",
+						"r": "IdeAIDes()",
+						"s": "",
+						"u": "IDEAIDES",
+						"q": "IdeAIDes",
+						"w": "IDEAIDES",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "44007792494dde6d91309628561c978f6e30a2d9"
+							}
+						]
+					},
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeAIDes__initialize_struct",
+						"t": "IdeAIDes__initialize_struct",
+						"i": "IdeAIDes__initialize_struct",
+						"r": "IdeAIDes__initialize_struct",
+						"s": "",
+						"u": "IDEAIDES__INITIALIZE_STRUCT",
+						"q": "IdeAIDes__initialize_struct",
+						"w": "IDEAIDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "240f7967b07641b2aa918ea975662221de92e5f1"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeAIDes__initialize_struct",
+						"t": "void ()",
+						"i": "IdeAIDes__initialize_struct::IdeAIDes__initialize_struct()",
+						"r": "IdeAIDes__initialize_struct()",
+						"s": "",
+						"u": "IDEAIDES__INITIALIZE_STRUCT",
+						"q": "IdeAIDes__initialize_struct",
+						"w": "IDEAIDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "240f7967b07641b2aa918ea975662221de92e5f1"
+							}
+						]
+					},
+					{
+						"k": 9,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "IdeAIDes__initialize_dummy",
+						"t": "struct IdeAIDes__initialize_struct",
+						"i": "IdeAIDes__initialize_dummy",
+						"r": "static IdeAIDes__initialize_struct IdeAIDes__initialize_dummy",
+						"s": "",
+						"u": "IDEAIDES__INITIALIZE_DUMMY",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "240f7967b07641b2aa918ea975662221de92e5f1"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "IdeAIDes__initializer",
+						"t": "void ()",
+						"i": "IdeAIDes__initializer()",
+						"r": "void IdeAIDes__initializer()",
+						"s": "",
+						"u": "IDEAIDES__INITIALIZER",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "240f7967b07641b2aa918ea975662221de92e5f1"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IdeAIDes__initialize_struct",
+						"t": "void ()",
+						"i": "IdeAIDes__initialize_struct::IdeAIDes__initialize_struct()",
+						"r": "IdeAIDes__initialize_struct()",
+						"s": "",
+						"u": "IDEAIDES__INITIALIZE_STRUCT",
+						"q": "IdeAIDes__initialize_struct",
+						"w": "IDEAIDES__INITIALIZE_STRUCT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "240f7967b07641b2aa918ea975662221de92e5f1"
+							}
+						]
+					}
+				]
+			}
+		}
+	]
+}

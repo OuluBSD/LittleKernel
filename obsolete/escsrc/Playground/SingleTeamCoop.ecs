@@ -1,0 +1,57 @@
+{
+	"id": 10,
+	"hash": "-1793033956050569595",
+	"highest_seen_serial": 285269,
+	"seen_types": [
+
+	],
+	"root": {
+		"kind": 22,
+		"id": "",
+		"type": "",
+		"(int64&)type_hash": 0,
+		"begin": {
+			"x": null,
+			"y": null
+		},
+		"end": {
+			"x": null,
+			"y": null
+		},
+		"(int64&)filepos_hash": 0,
+		"file": 10,
+		"is_ref": false,
+		"is_definition": false,
+		"is_disabled": false,
+		"(int64&)serial": 285269,
+		"value": null,
+		"has_ext": false,
+		"sub": [
+			{
+				"kind": 1006,
+				"id": "SingleTeamCoop",
+				"type": "",
+				"(int64&)type_hash": 0,
+				"begin": {
+					"x": null,
+					"y": null
+				},
+				"end": {
+					"x": null,
+					"y": null
+				},
+				"(int64&)filepos_hash": 0,
+				"file": 10,
+				"is_ref": false,
+				"is_definition": false,
+				"is_disabled": false,
+				"(int64&)serial": 285237,
+				"value": null,
+				"has_ext": false,
+				"sub": [
+
+				]
+			}
+		]
+	}
+}

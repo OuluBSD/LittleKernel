@@ -1,0 +1,58 @@
+main() {
+	val = TestStage01("Bill Gates", "Entrepreneur", "Some guy who invented Microsoft");
+	Print(to_string(val));
+	val = TestStage01("Mikko Alatalo", "Musician/Politican", "Some Finnish guy");
+	Print(to_string(val));
+	val = TestStage01("Elon Musk", "Entrepreneur/Politican", "Some American guy");
+	Print(to_string(val));
+}
+
+
+#pragma model o3
+#pragma body
+{
+    "query": {
+        "__comment__": {
+            "incomplete list of types of public figures": [
+	            "Actress",
+				"Athlete",
+				"Author",
+				"Chef",
+				"Comedian",
+				"Influencer",
+				"Journalist",
+				"Model",
+				"Musician",
+				"Politician"
+			],
+			"incomplete list of genres for actresses": [
+				"Drama",
+				"Romance",
+				"Comedy",
+				"Thriller",
+				"Science Fiction"
+			]
+		},
+		"person": {
+			"name": "Donald Trump",
+			"type": "Politician",
+			"description": "Donald Trump is a divisive businessman, reality TV star, and former President of the United States known for his controversial policies and rhetoric.",
+			"__comment__": "Analyze this person and write genres"
+		}
+	},
+	"response": {
+		"genres" : ["Business", "Politics", "Reality Television"]
+	}
+}
+#define TestStage01("/query/person/name", "/query/person/type", "/query/person/description") -> "/response/genres"
+{
+    "query": {
+        "person": {
+            "name": "",
+            "type": "",
+            "description": "",
+            "__comment__": "get response"
+        }
+    }
+}
+

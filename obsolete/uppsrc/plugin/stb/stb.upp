@@ -1,0 +1,10 @@
+description "\3770,128,128";
+
+file
+	stb_image.h,
+	stb_image_write.h,
+	stb_truetype.h,
+	stb_textedit.h,
+	impl.cpp,
+	stb_vorbis.c;
+

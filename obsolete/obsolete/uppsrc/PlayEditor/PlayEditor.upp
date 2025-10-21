@@ -1,0 +1,25 @@
+uses
+	LocalCtrl,
+	Geometry,
+	plugin/jpg;
+
+file
+	main.cpp,
+	PlayEditor.h,
+	App.h,
+	App.cpp,
+	App.lay,
+	Export.h,
+	Export.cpp,
+	Renderer.h,
+	Renderer.cpp,
+	FileFormat.h,
+	FileFormat.cpp,
+	"../../share/screenplay/fi/Teppo ja Tytti.play" highlight cpp,
+	../../share/screenplay/fi/DummyTester.play highlight cpp,
+	Backgrounds readonly separator,
+	BgLiquidBokeh.cpp;
+
+mainconfig
+	"" = "GUI";
+

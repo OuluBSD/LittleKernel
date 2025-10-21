@@ -1,0 +1,12 @@
+description "Refreshing the UI periodically (time callback)\377";
+
+uses
+	CtrlLib;
+
+file
+	myapp.lay,
+	main.cpp;
+
+mainconfig
+	"" = "GUI";
+

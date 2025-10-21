@@ -1,0 +1,12 @@
+uses
+	Core,
+	Core/SSL;
+
+file
+	P7S.cpp,
+	private.pem,
+	public.pem;
+
+mainconfig
+	"" = "";
+

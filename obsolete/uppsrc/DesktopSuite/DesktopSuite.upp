@@ -1,0 +1,24 @@
+description "\377B0,0,255";
+
+uses
+	CtrlLib,
+	CtrlLib2;
+
+uses(VIRTUALGUI) VirtualGuiAtom;
+
+file
+	DesktopSuite.h,
+	Factory.h,
+	Factory.cpp,
+	TaskBar.h,
+	TaskBar.cpp,
+	Explorer.h,
+	Explorer.cpp,
+	ControlPanel.h,
+	ControlPanel.cpp,
+	Debug readonly separator,
+	Events.h,
+	Events.cpp,
+	Tester.h,
+	Tester.cpp;
+

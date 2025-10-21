@@ -1,0 +1,7 @@
+LAYOUT(ConverterPaneLayout, 280, 76)
+	ITEM(Upp::LabelBox, title, LeftPosZ(8, 268).TopPosZ(4, 64))
+	ITEM(Upp::EditDoubleSpin, value, LeftPosZ(16, 144).TopPosZ(20, 19))
+	ITEM(Upp::SliderCtrl, slider, LeftPosZ(16, 252).TopPosZ(40, 20))
+	ITEM(Upp::DropList, unit, LeftPosZ(164, 104).TopPosZ(20, 19))
+END_LAYOUT
+

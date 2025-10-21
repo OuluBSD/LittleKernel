@@ -1,0 +1,220 @@
+#ifndef _Core_EcsEngine_Verifier_h_
+#define _Core_EcsEngine_Verifier_h_
+
+
+struct ParallelTypeCls;
+class DefaultExchangePoint;
+class Engine;
+class AtomBase;
+class PacketIO;
+class PacketForwarder;
+class FwdScope;
+class System;
+class ValueFormat;
+struct PacketValue;
+
+using Packet = SharedRecycler<PacketValue>;
+
+namespace Eon {
+class ScriptLoader;
+class ScriptLoopLoader;
+}
+
+typedef enum {
+	UNASSIGNED,
+	IN_BEGINNING,
+	WAITING_CHILDREN,
+	WAITING_OTHER_LOOPS,
+	SEARCH_SEGMENT,
+	PRUNE_SEGMENT_GOALS,
+	WAITING_PARENT_SIDE_LINKS,
+	MAKE_OPTION_LINK_VECTOR,
+	PRUNE_OPTION_LINKS,
+	LINK_PLANNER,
+	LINKER,
+	FAILED,
+	READY
+} ScriptStatus;
+
+struct VerifierAtom {
+	VerifierAtom* src = 0;
+	TypeCls type;
+	One<ValueFormat> sink_fmt;
+	One<ValueFormat> src_fmt;
+	
+	
+	void SetSourceFormat(const ValueFormat& fmt);
+	void SetSinkFormat(const ValueFormat& fmt);
+	void LinkTo(VerifierAtom& comp);
+	
+	
+	VerifierAtom& operator<<(VerifierAtom& c) {
+		LinkTo(c);
+		return c;
+	}
+	
+};
+
+struct VerifierEntity {
+	Array<VerifierAtom> ext;
+	
+	
+	VerifierAtom& AddAtomWith(TypeCls t);
+	//template <class T> VerifierAtom& AddAtomWith(ValDevCls vd) {return AddAtomWith(AsParallelTypeCls<T>(vd));}
+	
+};
+
+struct VerifierLoop {
+	ArrayMap<String, VerifierLoop> pools;
+	Array<VerifierEntity> ents;
+	
+	
+	VerifierEntity& AddEntity() {return ents.Add();}
+	VerifierLoop& AddLoop(String key) {ASSERT(pools.Find(key) < 0); return pools.Add(key);}
+	VerifierLoop& GetAddLoop(String key) {return pools.GetAdd(key);}
+	
+};
+
+struct VerifierSystem {
+	TypeCls			type;
+	//ParallelTypeCls	ecs_type;
+	
+};
+
+class MachineVerifier {
+	Engine* mach = 0;
+	VerifierLoop root;
+	Array<VerifierSystem> sys;
+	
+	
+protected:
+	typedef enum {
+		ROOT,
+		UPDATE,
+		SYSTEM_UPDATE,
+		ONCE_FORWARD,
+		EXTCOMP_FORWARD,
+		FWDSCOPE_FORWARD,
+		PROCESS_PACKETS,
+		CREATE_EMPTY_PACKET,
+		VALEXPT_FWD,
+		SCRIPT_LOAD,
+		TERMINAL_TEST,
+		LOOPLOADER_FORWARD_BEGINNING,
+		LOOPLOADER_FORWARD_RETRY,
+		LOOPLOADER_SEARCH_NEW_SEGMENT,
+		LOOPLOADER_FORWARD_SIDES,
+	} Type;
+	
+	struct ExpectedAction : Moveable<ExpectedAction> {
+		Type type;
+	};
+	
+	struct Scope : Moveable<Scope> {
+		Vector<ExpectedAction> enter;
+		Type type;
+		bool may_leave = false;
+		
+		ExpectedAction& AddEnter(Type t) {auto& a = enter.Add(); a.type = t;  return a;}
+		void MayLeave(bool b) {may_leave = b;}
+		bool CanEnter(Type t) const;
+	};
+	
+	struct PacketData {
+		int count;
+		int bytes;
+		int ch_samples;
+		
+		void Clear() {count = 0; bytes = 0; ch_samples = 0;}
+		void Add(Packet& p);
+	};
+	
+	Vector<Scope> stack;
+	PacketData cur_pk;
+	AtomBase* c;
+	DefaultExchangePoint* vep;
+	
+	void SetDefaultExpected();
+	void Enter(Type t);
+	void Leave(Type t);
+	void MayLeaveTop();
+	
+protected:
+	
+	struct LoopAtomSideData {
+		ValDevCls			vd;
+		bool				has_link = false;
+		bool				is_required = false;
+	};
+	
+	struct LoopAtomData {
+		AtomTypeCls			type;
+		Array<LoopAtomSideData>	src_sides, sink_sides;
+		
+	};
+	
+	struct LoopLoaderData {
+		Eon::ScriptLoopLoader*	ll;
+		ScriptStatus		status0 = UNASSIGNED;
+		ScriptStatus		status1 = UNASSIGNED;
+		Array<LoopAtomData>	atoms;
+		
+		bool MayCreateAtoms() const;
+	};
+	ArrayMap<size_t, LoopLoaderData>		loop_loaders;
+	
+public:
+	typedef MachineVerifier CLASSNAME;
+	MachineVerifier();
+	
+	
+	void Attach(Engine& mach);
+	void Attach(Eon::ScriptLoader& sl);
+	void Clear();
+	
+	void OnEnterUpdate();
+	void OnEnterSystemUpdate(System& base);
+	void OnEnterOnceForward(PacketForwarder*);
+	void OnEnterAtomForward(AtomBase* c);
+	void OnEnterFwdScopeForward(FwdScope& c);
+	void OnEnterProcessPackets(AtomBase&, PacketIO& p);
+	void OnEnterCreatedEmptyPacket(Packet& p);
+	void OnEnterValExPtForward(DefaultExchangePoint& p);
+	void OnEnterScriptLoad(System& base);
+	void OnEnterTerminalTest(size_t call_id);
+	void OnEnterSearchNewSegment(size_t call_id);
+	void OnEnterScriptLoopLoaderForwardBeginning(size_t call_id);
+	void OnEnterScriptLoopLoaderForwardRetry(size_t call_id);
+	void OnEnterScriptLoopLoaderForwardSides(size_t call_id);
+	
+	void OnLeaveUpdate();
+	void OnLeaveSystemUpdate();
+	void OnLeaveOnceForward();
+	void OnLeaveAtomForward();
+	void OnLeaveFwdScopeForward();
+	void OnLeaveProcessPackets(AtomBase&, PacketIO& p);
+	void OnLeaveCreatedEmptyPacket();
+	void OnLeaveValExPtForward();
+	void OnLeaveScriptLoad();
+	void OnLeaveTerminalTest(size_t call_id);
+	void OnLeaveSearchNewSegment(size_t call_id);
+	void OnLeaveScriptLoopLoaderForwardBeginning(size_t call_id);
+	void OnLeaveScriptLoopLoaderForwardRetry(size_t call_id);
+	void OnLeaveScriptLoopLoaderForwardSides(size_t call_id);
+	
+	void OnLoopLoader_Status(Eon::ScriptLoopLoader* ll);
+	void OnLoopLoader_RealizeAtoms(Eon::ScriptLoopLoader* ll);
+	void OnLoopLoader_AtomLinked(Eon::ScriptLoopLoader* ll);
+	void OnLoopLoader_SearchNewSegment(Eon::ScriptLoopLoader* ll);
+	
+	void UpdateLoopData(Eon::ScriptLoopLoader* ll);
+	
+	VerifierLoop& GetRoot() {return root;}
+	
+	VerifierSystem& AddSystem(TypeCls t, const ParallelTypeCls& et);
+	//template<class T> VerifierSystem& AddSystem() {return AddSystem(AsTypeCls<T>(), AsParallelTypeCls<T>(VD(CENTER,ORDER)));}
+	
+};
+
+
+#endif

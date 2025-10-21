@@ -1,0 +1,15 @@
+uses
+	CtrlLib,
+	RichEdit,
+	plugin/DroidFonts,
+	VirtualGui,
+	SDL2GUI;
+
+file
+	main.cpp,
+	test.qtf,
+	help.txt;
+
+mainconfig
+	"" = "GUI VIRTUALGUI";
+

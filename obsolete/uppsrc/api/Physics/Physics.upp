@@ -1,0 +1,35 @@
+description "\377B0,128,0";
+
+library(ODE & DEBUG & WIN32) ode_doubled;
+
+library(ODE & !DEBUG & WIN32) ode_double;
+
+library(ODE & !WIN32 & !EMSCRIPTEN) ode;
+
+file
+	Physics.h,
+	Enums.h,
+	Types.h,
+	Functions.inl highlight cpp,
+	Tos.cpp,
+	Ode.cpp,
+	FysClasses.h,
+	Templates readonly separator,
+	TNode.h,
+	TNode.cpp,
+	TObject.h,
+	TObject.cpp,
+	TJoint.h,
+	TJoint.cpp,
+	TSpace.h,
+	TSpace.cpp,
+	TSystem.h,
+	TSystem.cpp,
+	TPrefab.h,
+	TPrefab.cpp,
+	"Open Dynamics Engine" readonly separator,
+	OdeSystem.h,
+	OdeSystem.cpp,
+	OdePrefab.h,
+	OdePrefab.cpp;
+

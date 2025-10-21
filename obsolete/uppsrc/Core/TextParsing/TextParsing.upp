@@ -1,0 +1,19 @@
+description "Text utilities, tokenizers, and simple parsers\377B128,0,0";
+
+uses
+	Core,
+	Core/MetaTraits;
+
+file
+	AGENTS.md,
+	TextParsing.h,
+	String.h,
+	Tokenizer.h,
+	Tokenizer.cpp,
+	TokenParser.h,
+	TokenParser.cpp,
+	Html.h,
+	Html.cpp,
+	Url.h,
+	Url.cpp;
+

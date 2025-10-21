@@ -1,0 +1,27 @@
+description "A custom drop-down console. Useful for management.\37728,0,200";
+
+uses
+	CtrlLib,
+	CodeEditor,
+	TabBar,
+	Esc,
+	RichEdit,
+	PdfDraw,
+	plugin/jpg,
+	PtyProcess,
+	RichText,
+	Intranet;
+
+file
+	AGENTS.md,
+	DropTerm.h,
+	DropTerm.cpp,
+	X11.cpp,
+	DropTerm.iml,
+	DropTerm.key,
+	DropTerm.icpp,
+	DropTerm.t,
+	Word.h,
+	Word.cpp,
+	Copying;
+

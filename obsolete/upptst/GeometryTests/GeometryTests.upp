@@ -1,0 +1,14 @@
+noblitz;
+
+uses
+	Geometry;
+
+file
+	main.cpp,
+	glm.cpp;
+
+mainconfig
+	"RHS" = "",
+	"" = "RHS_PZ",
+	"" = "LHS";
+

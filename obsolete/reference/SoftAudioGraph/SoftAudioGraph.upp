@@ -1,0 +1,14 @@
+description "\3770,0,128";
+
+uses
+	SoftAudio,
+	RichText,
+	CtrlLib;
+
+file
+	main.cpp;
+
+mainconfig
+	"" = "GUI",
+	"" = "GUI USEMALLOC";
+

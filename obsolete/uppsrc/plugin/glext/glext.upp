@@ -1,0 +1,15 @@
+description "\3770,128,128";
+
+options(BUILDER_OPTION) NOWARNINGS;
+
+file
+	glext.h,
+	glext.cpp,
+	loader.cpp,
+	glcorearb.h,
+	glcorearb.cpp,
+	wglext.h,
+	wglext.cpp,
+	maindef.h,
+	resource.h;
+

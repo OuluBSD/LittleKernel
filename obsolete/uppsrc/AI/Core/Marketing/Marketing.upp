@@ -1,0 +1,19 @@
+description "AI/Core/Marketing\377128,0,0";
+
+uses
+	AI/Core/Base,
+	Esc,
+	AI/Core/Core,
+	AI/Core/Content,
+	AI/Core/Social;
+
+file
+	AGENTS.md,
+	Marketing.h,
+	Audience.h,
+	Audience.cpp,
+	Consumer.h,
+	Consumer.cpp,
+	Owner.h,
+	Owner.cpp;
+

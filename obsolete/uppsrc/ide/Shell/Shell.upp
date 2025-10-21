@@ -1,0 +1,27 @@
+description "\377B";
+
+uses
+	AI/Ctrl;
+
+file
+	AGENTS.md,
+	Shell.h,
+	Shell.cpp,
+	Shell.lay,
+	Shell.key,
+	Console.h,
+	Console.cpp,
+	Widget.h,
+	Widget.cpp,
+	IdeShell.h,
+	IdeShell.cpp,
+	IdeShellHost.cpp,
+	EscCmds.h,
+	EscCmds.cpp,
+	Widgets readonly separator,
+	SmallWidgets.h,
+	SmallWidgets.cpp,
+	Agent readonly separator,
+	Agent.h,
+	Agent.cpp;
+

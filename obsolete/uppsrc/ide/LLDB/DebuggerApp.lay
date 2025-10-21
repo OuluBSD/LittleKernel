@@ -1,0 +1,12 @@
+LAYOUT(ConsoleLayout, 248, 128)
+	ITEM(Upp::ArrayCtrl, cons, HSizePosZ(0, 0).VSizePosZ(0, 28))
+	ITEM(Upp::EditString, cmd, HSizePosZ(0, 104).BottomPosZ(1, 23))
+	ITEM(Upp::Button, submit, SetLabel(t_("Submit")).RightPosZ(4, 96).BottomPosZ(0, 24))
+END_LAYOUT
+
+LAYOUT(ThreadsLayout, 400, 200)
+	ITEM(Upp::Label, dv___0, SetLabel(t_("Threads:")).SetAlign(Upp::ALIGN_RIGHT).LeftPosZ(0, 64).TopPosZ(4, 19))
+	ITEM(Upp::DropList, threads, HSizePosZ(68, 0).TopPosZ(0, 24))
+	ITEM(Upp::ColumnList, list, HSizePosZ(0, 0).VSizePosZ(28, 0))
+END_LAYOUT
+

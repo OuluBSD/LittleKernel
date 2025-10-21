@@ -1,0 +1,10 @@
+uses
+	Core,
+	Core/SSL;
+
+file
+	CheckDownloads.cpp;
+
+mainconfig
+	"" = "";
+

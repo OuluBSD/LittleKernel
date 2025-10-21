@@ -1,0 +1,23 @@
+description "AI/Core/Runtime\377128,0,0";
+
+uses
+	AI/Core/Base,
+	Esc,
+	AI/Core/Core;
+
+file
+	AGENTS.md,
+	Runtime.h,
+	ProcessBase.h,
+	ProcessBase.cpp,
+	ProcessFramework.h,
+	ProcessFramework.cpp,
+	CodeProcess.h,
+	CodeProcess.cpp,
+	Omni.h,
+	Omni.cpp,
+	Prompt.h,
+	Prompt.cpp,
+	Agent.h,
+	Agent.cpp;
+

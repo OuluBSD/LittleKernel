@@ -1,0 +1,10 @@
+uses
+	Vfs;
+
+file
+	BackendTests.h,
+	main.cpp;
+
+mainconfig
+	"" = "";
+

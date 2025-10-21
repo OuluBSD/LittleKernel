@@ -1,0 +1,14 @@
+What:
+	The user listens to a radio show with a host who takes calls. The user can add their own opinion to the conversation in between.
+Assertions:
+	The radio host has a fixed list of beliefs that he never compromises.
+	He usually has a strong point of contrast:
+		He strongly believes in some common illusions, and refuses to even joke about breaking some of them.
+			e.g. 1.	A theistic conspiracy theorist who refuses to entertain the idea that the pyramids
+					were easily created from ancient concrete, because it would violate the Bible-based scientific-ish chronology.
+				 2.	A nationalist from one powerful party who analyzes the enemy's strategy a lot,
+					but refuses to address the other party's arguments about the strategy for pursuing that party's agenda.
+				 3. A scientific progressivist who supports all progressivism that involves
+				    loans from financiers, but not that which involves the well-being of citizens through individual empowerment.
+				 4. A representative of a species of animal who agrees to talk only about the domination of lower species 
+					and lower internal classes, but not about the existence of animals dominating over his species.

@@ -1,0 +1,10 @@
+uses
+	CtrlLib;
+
+file
+	dark.iml,
+	main.cpp;
+
+mainconfig
+	"" = "GUI";
+

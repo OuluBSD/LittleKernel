@@ -1,0 +1,14 @@
+uses
+	Geometry;
+
+library
+	gsl;
+
+file
+	PointcloudTests.cpp,
+	CalcLens.cpp;
+
+mainconfig
+	"" = "",
+	"" = "USEMALLOC";
+

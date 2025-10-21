@@ -1,0 +1,44 @@
+description "\377B0,128,0";
+
+uses
+	Eon;
+
+library(FFMPEG) "swscale avcodec avformat avutil swresample avdevice avfilter";
+
+library(OPENCV POSIX) v4l2;
+
+library(OPENCV POSIX) "opencv_core opencv_imgproc opencv_highgui opencv_videoio opencv_shape";
+
+library(OPENCV WIN32 MSC) "opencv_calib3d4 opencv_core4 opencv_dnn4 opencv_features2d4 opencv_flann4 opencv_highgui4 opencv_imgcodecs4 opencv_imgproc4 opencv_ml4 opencv_objdetect4 opencv_photo4 opencv_stitching4 opencv_video4 opencv_videoio4";
+
+library(OPENCV WIN32 MSC DEBUG) "opencv_calib3d4d opencv_core4d opencv_dnn4d opencv_features2d4d opencv_flann4d opencv_highgui4d opencv_imgcodecs4d opencv_imgproc4d opencv_ml4d opencv_objdetect4d opencv_photo4d opencv_stitching4d opencv_video4d opencv_videoio4d";
+
+library(OPENCV WIN32 (CLANG | GCC)) "libopencv_core.dll.a libopencv_imgproc.dll.a libopencv_highgui.dll.a libopencv_videoio.dll.a libopencv_shape.dll.a";
+
+file
+	Media.h,
+	Types.h,
+	Types.cpp,
+	MediaAtomBase.h,
+	MediaAtomBase.cpp,
+	FileIn.h,
+	FileIn.cpp,
+	Audio.h,
+	Audio.cpp,
+	Video.h,
+	Video.cpp,
+	MediaStream.h,
+	MediaStream.cpp,
+	"Support classes" readonly separator,
+	DeviceManager_V4L2.h,
+	DeviceManager_V4L2.cpp,
+	DeviceManager_Win32.h,
+	DeviceManager_Win32.cpp,
+	Capture_DShow.h,
+	Capture_DShow.cpp,
+	Capture_OpenCV.h,
+	Capture_OpenCV.cpp,
+	Capture_V4L2.h,
+	Capture_V4L2.cpp,
+	_ readonly separator;
+

@@ -1,0 +1,111 @@
+description "U++ compatible Non-GUI code. Streams, NTL containers, concrete types, Value, XML, C parsing etc...\377B194,0,0";
+
+noblitz;
+
+options(BUILDER_OPTION) NOWARNINGS;
+
+uses
+	plugin/bz2lib,
+	RTTI,
+	SharedCore,
+	plugin/md5;
+
+uses(GCC WIN32) plugin/MingwThreads;
+
+library(WIN32) "shlwapi comdlg32";
+
+library(WIN32) Ws2_32;
+
+library(POSIX & !EMSCRIPTEN) "pthread crypto bz2";
+
+library(WIN32 & (CLANG|GCC)) crypto;
+
+library(WIN32 & (CLANG|GCC) & MSYS2) "bz2 z iconv";
+
+library(WIN32 & MSC & !DEBUG & UPPLIB) "libcryptoMT libsslMT Advapi32 User32";
+
+library(WIN32 & MSC & DEBUG & UPPLIB) "libcryptoMTd libsslMTd Advapi32 User32";
+
+library(WIN32) "Userenv Shell32";
+
+library(WIN32 & MSC) "libcrypto libssl Advapi32 User32";
+
+file
+	srcdoc.tpp,
+	src.tpp,
+	TODO.txt,
+	Core.h options(BUILDER_OPTION) PCH,
+	Core.cpp,
+	Core0.h,
+	config.h,
+	Defs.h,
+	Macros.h,
+	Fn.h,
+	Cpu.cpp,
+	Ops.h,
+	Atomic.h,
+	Mt.h,
+	Mt.cpp,
+	Heap.h,
+	String_.h,
+	StringInline.cpp highlight cpp,
+	StringTmpl.cpp highlight cpp,
+	String.cpp,
+	StrUtil.h,
+	StrUtil.cpp,
+	SplitMerge.h,
+	SplitMerge.cpp,
+	CharSet.h,
+	CharSet.cpp,
+	Path.h,
+	Path.cpp,
+	App.h,
+	Tuple.h,
+	Stream.h,
+	Stream.cpp,
+	Util.h,
+	Util.cpp,
+	Sort.h,
+	LocalProcess.h,
+	t_.h,
+	Containers readonly separator,
+	Algo.h,
+	Topt.h,
+	Vcont.h,
+	Vcont.cpp,
+	Function readonly separator,
+	Function.h,
+	Callback.h,
+	CallbackN.i highlight cpp,
+	CallbackNP.i highlight cpp,
+	CallbackR.i highlight cpp,
+	Callback.cpp,
+	Gate.h,
+	Values readonly separator,
+	TimeDate.h,
+	TimeDate.cpp,
+	Complex.h,
+	Color.h,
+	Color.cpp,
+	Value.h,
+	Value.cpp,
+	Gtypes.h,
+	Gtypes.cpp,
+	Language readonly separator,
+	i18n.h,
+	i18n.cpp,
+	"Other files" readonly separator,
+	Parser.h,
+	Parser.cpp,
+	Uuid.h,
+	Uuid.cpp,
+	Hash.h,
+	Ptr.h,
+	JSON.h,
+	JSON.cpp,
+	Web readonly separator,
+	Inet.h,
+	Socket.cpp,
+	Http.h,
+	Http.cpp;
+

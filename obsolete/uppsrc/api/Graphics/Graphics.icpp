@@ -1,0 +1,13 @@
+#include "Graphics.h"
+
+
+NAMESPACE_UPP
+
+
+INITBLOCK_(IGraphics) {
+	GfxProgramLibrary::template AddProgramClass<EcsViewProg>("ecs_view_program");
+	GfxProgramLibrary::template AddProgramClass<ObjViewProg>("obj_view_program");
+}
+
+
+END_UPP_NAMESPACE

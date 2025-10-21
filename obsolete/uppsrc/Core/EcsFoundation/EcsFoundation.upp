@@ -1,0 +1,19 @@
+description "ECS metadata and registration helpers\377B128,0,0";
+
+uses
+	Core,
+	Core/MetaTraits,
+	Core/DataStructures,
+	Core/ProcessUtil;
+
+file
+	AGENTS.md,
+	CURRENT_TASK.md,
+	EcsFoundation.h,
+	EcsDefs.h,
+	Keys.h,
+	AtomType.h,
+	AtomType.cpp,
+	LinkType.h,
+	LinkType.cpp;
+

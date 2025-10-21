@@ -1,0 +1,25 @@
+description "\377B85,42,255";
+
+uses
+	Geometry,
+	Esc,
+	CtrlLib;
+
+file
+	EscAnim.h,
+	EscAnim.cpp,
+	Common.h,
+	Player.h,
+	Player.cpp,
+	Animation.h,
+	Animation.cpp,
+	Scene.h,
+	Scene.cpp,
+	Object.h,
+	Object.cpp,
+	AnimContext.h,
+	AnimContext.cpp,
+	AnimLib.cpp,
+	AnimProgram.h,
+	AnimProgram.cpp;
+

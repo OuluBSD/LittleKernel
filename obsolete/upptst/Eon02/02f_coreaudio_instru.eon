@@ -1,0 +1,14 @@
+machine midi.app:
+	chain program:
+		loop event:
+			center.customer
+			midi.file.reader[][loop == "input"]:
+				filepath = "midi/short_piano.mid"
+				close_machine = true
+		
+		loop input:
+			center.customer
+			coresynth.pipe[loop == "event"]:
+				instrument = "rhodey"
+				verbose = false
+			center.audio.sink.hw

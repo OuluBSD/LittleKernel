@@ -1,0 +1,11 @@
+uses
+	CtrlLib;
+
+file
+	AGENTS.md,
+	ProtoGui.h,
+	MakingCtrl.cpp;
+
+mainconfig
+	"" = "";
+

@@ -1,0 +1,45 @@
+description "AI/Core/Content\377128,0,0";
+
+uses
+	AI/Core/Base,
+	Esc,
+	AI/Core/Core,
+	AI/Core/Runtime,
+	AI/Core/Prompting;
+
+file
+	AGENTS.md,
+	Content.h,
+	Artist.h,
+	Artist.cpp,
+	Biography.h,
+	Biography.cpp,
+	BiographySummary.h,
+	BiographySummary.cpp,
+	ImageBiography.h,
+	ImageBiography.cpp,
+	ImageBiographySummary.h,
+	ImageBiographySummary.cpp,
+	Composition.h,
+	Composition.cpp,
+	Lyrical.h,
+	Lyrical.cpp,
+	LyricsSolver.h,
+	LyricsSolver.cpp,
+	LyricStructSolver.h,
+	LyricStructSolver.cpp,
+	ScriptText.h,
+	ScriptText.cpp,
+	SourceText.h,
+	SourceText.cpp,
+	Song.h,
+	Song.cpp,
+	Transcript.h,
+	Transcript.cpp,
+	Notepad.h,
+	Notepad.cpp,
+	Factory.h,
+	Factory.cpp,
+	Reasoning.h,
+	Reasoning.cpp;
+

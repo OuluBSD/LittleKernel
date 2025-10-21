@@ -1,0 +1,13 @@
+uses
+	CtrlLib,
+	Gtk,
+	RichEdit,
+	Skeleton;
+
+file
+	main.cpp;
+
+mainconfig
+	"" = "GUI GTK",
+	"" = "GUI";
+

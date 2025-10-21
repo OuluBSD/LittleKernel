@@ -1,0 +1,46 @@
+description "\377B0,0,255";
+
+uses
+	Eon/Lib;
+
+file
+	Ctrl.h,
+	Ctrl.icpp,
+	Parts.h,
+	Parts.cpp,
+	ComponentCtrl.h,
+	ComponentCtrl.cpp,
+	EntityCtrl.h,
+	EntityCtrl.cpp,
+	InterfaceCtrl.h,
+	InterfaceCtrl.cpp,
+	InterfaceSystemCtrl.h,
+	InterfaceSystemCtrl.cpp,
+	InterfaceConnectionCtrl.h,
+	InterfaceConnectionCtrl.cpp,
+	DesktopSystem.h,
+	DesktopSystem.cpp,
+	GraphLib readonly separator,
+	GraphLib.h,
+	Graph.h,
+	Graph.cpp,
+	Renderer.h,
+	Renderer.cpp,
+	"GraphLib - Layout" readonly separator,
+	Layout.h,
+	Layout.cpp,
+	OrderedTree.h,
+	OrderedTree.cpp,
+	Spring.h,
+	Spring.cpp,
+	TournamentTree.h,
+	TournamentTree.cpp,
+	"GraphLib - Algorithm" readonly separator,
+	Dijkstra.h,
+	Dijkstra.cpp,
+	TopologicalSort.h,
+	TopologicalSort.cpp,
+	BinaryHeapMap.h,
+	BinaryHeapMap.cpp,
+	_ readonly separator;
+

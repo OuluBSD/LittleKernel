@@ -1,0 +1,12 @@
+LAYOUT(TimerLayout, 412, 136)
+	ITEM(Upp::Label, dv___0, SetLabel(t_("Hours")).SetAlign(Upp::ALIGN_CENTER).HCenterPosZ(96, -150).VCenterPosZ(19, -38))
+	ITEM(Upp::EditIntSpin, hours, Min(0).Max(100).HCenterPosZ(96, -150).VCenterPosZ(19, -14))
+	ITEM(Upp::Label, dv___2, SetLabel(t_("Minutes")).SetAlign(Upp::ALIGN_CENTER).HCenterPosZ(96, -50).VCenterPosZ(19, -38))
+	ITEM(Upp::EditIntSpin, mins, Min(0).Max(60).HCenterPosZ(96, -50).VCenterPosZ(19, -14))
+	ITEM(Upp::Label, dv___4, SetLabel(t_("Seconds")).SetAlign(Upp::ALIGN_CENTER).HCenterPosZ(96, 50).VCenterPosZ(19, -38))
+	ITEM(Upp::EditIntSpin, secs, Min(0).Max(60).HCenterPosZ(96, 50).VCenterPosZ(19, -14))
+	ITEM(Upp::Button, start, SetLabel(t_("Start")).HCenterPosZ(96, 150).VCenterPosZ(19, -14))
+	ITEM(Upp::LabelBox, dv___7, SetLabel(t_("Timer")).HCenterPosZ(404, 0).VCenterPosZ(96, -16))
+	ITEM(Upp::Label, remaining, SetLabel(t_("Timer is not running")).SetAlign(Upp::ALIGN_CENTER).SetFont(Upp::StdFont().Bold()).HCenterPosZ(296, -50).VCenterPosZ(28, 14))
+END_LAYOUT
+

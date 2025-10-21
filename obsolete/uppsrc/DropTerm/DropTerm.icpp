@@ -1,0 +1,4 @@
+#include "DropTerm.h"
+
+#define  TFILE <DropTerm/DropTerm.t>
+#include <Core/t.h>

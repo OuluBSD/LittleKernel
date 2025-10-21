@@ -1,0 +1,19 @@
+description "Numerical helpers and analytics primitives\377B128,0,0";
+
+uses
+	Core,
+	Core/MetaTraits;
+
+file
+	AGENTS.md,
+	MathNumeric.h,
+	Math.h,
+	Math.cpp,
+	FastMath.cpp,
+	Random.h,
+	Random.cpp,
+	CKMeans.h,
+	CKMeans.cpp,
+	DCT.h,
+	DCT.cpp;
+

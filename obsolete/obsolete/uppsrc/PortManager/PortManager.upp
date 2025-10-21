@@ -1,0 +1,12 @@
+uses
+	Local;
+
+file
+	ports.json,
+	PortManager.h,
+	PortManager.cpp;
+
+mainconfig
+	"" = "",
+	"" = "ALTCORE";
+

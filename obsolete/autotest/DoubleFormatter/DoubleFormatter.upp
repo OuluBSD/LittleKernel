@@ -1,0 +1,11 @@
+uses
+	Core;
+
+file
+	MacEtalon.log,
+	Etalon.log,
+	DoubleFormatter.cpp;
+
+mainconfig
+	"" = "";
+

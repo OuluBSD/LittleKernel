@@ -1,0 +1,12 @@
+description "#WAIT:50\377";
+
+uses
+	Core,
+	Draw;
+
+file
+	StreamBigIssue.cpp;
+
+mainconfig
+	"" = "";
+

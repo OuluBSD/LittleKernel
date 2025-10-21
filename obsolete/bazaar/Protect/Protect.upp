@@ -1,0 +1,10 @@
+uses
+	Cypher,
+	Xed;
+
+file
+	Protect.h,
+	Protect.cpp,
+	Doc readonly separator,
+	srcdoc.tpp;
+
