@@ -1,0 +1,2 @@
+What:
+	User writes one's biographical facts etc. and AI is used to resolve "political issues" and what "counter-evidence" must be created to proceed.

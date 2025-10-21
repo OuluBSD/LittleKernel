@@ -1,0 +1,10 @@
+uses
+	"I - Ultimate",
+	"II - Topside";
+
+file
+    ../AGENTS.md,
+    ../CURRENT_TASK.md;
+
+mainconfig
+	"" = "";

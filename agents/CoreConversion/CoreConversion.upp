@@ -1,0 +1,23 @@
+uses
+	Core;
+
+file
+	AGENTS.md,
+	Main.cpp,
+	1 readonly separator,
+	Upp01.cpp,
+	Std01.cpp,
+	Qt01.cpp,
+	Wx01.cpp,
+	Juce01.cpp,
+	Mfc01.cpp,
+	Wtl01.cpp,
+	WinRT01.cpp;
+
+mainconfig
+	"" = "",
+	"" = "MFC USEMALLOC",
+	"" = "WTL",
+	"" = "WINRT USEMALLOC",
+	"" = "";
+

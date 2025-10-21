@@ -1,0 +1,14 @@
+description "TheIDE - Java spport module\377B";
+
+uses
+	ide/Core;
+
+file
+	AGENTS.md,
+	Java.h,
+	JavaVersion.cpp,
+	Java.cpp,
+	Jdk.cpp,
+	Info readonly separator,
+	Copying;
+

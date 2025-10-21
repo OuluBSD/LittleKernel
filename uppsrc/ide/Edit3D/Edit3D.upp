@@ -1,0 +1,39 @@
+description "\377B";
+
+uses
+	CtrlLib,
+	Geometry,
+	ComputerVision,
+	plugin/jpg,
+	plugin/enet;
+
+file
+	AGENTS.md,
+	Edit3D.h,
+	main.cpp,
+	Editor.h,
+	Editor.cpp,
+	GeomProjectCtrl.cpp,
+	Geom.h,
+	Geom.cpp,
+	Renderer.h,
+	Renderer.cpp,
+	VideoImporter.h,
+	VideoImporter.cpp,
+	StagedVideoImporter.h,
+	StagedVideoImporter.cpp,
+	VideoImportCtrl.h,
+	VideoImportCtrl.cpp,
+	Images.iml,
+	Trash readonly separator,
+	SoftRendCtrl.h,
+	SoftRendCtrl.cpp,
+	EditClientService.h,
+	EditClientService.cpp,
+	Remote.h,
+	Remote.cpp,
+	RemoteCtrl.cpp;
+
+mainconfig
+	"" = "GUI";
+

@@ -1,0 +1,24 @@
+description "\377B0,128,0";
+
+uses
+	api/Graphics;
+
+library(SDL2 & (!WIN32 | MSC)) "SDL2 SDL2_ttf SDL2_image";
+
+library(UWP&DX12) "D3D11 DXGI D2d1 Dwrite";
+
+library(SDL2 & WIN32 & !MSC) "SDL2main SDL2 SDL2_image SDL2_ttf glew32 freetype harfbuzz Dwrite SetupAPI jpeg jxl png tiff webp Imm32 Version OleAut32 hwy brotlidec brotlicommon graphite2 Rpcrt4  jbig deflate lzma zstd Lerc sharpyuv z";
+
+library(SDL2 & WIN32) Ole32;
+
+library(SDL2 WIN32 (GCC | CLANG)) "glew32 libglew32.dll.a OpenGL32 iconv";
+
+file
+	Hal.h,
+	Sdl.cpp,
+	Holo.cpp,
+	IfaceFuncs.inl highlight cpp;
+
+mainconfig
+	"" = "";
+

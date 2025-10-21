@@ -1,0 +1,11 @@
+description "Counting button clicks\377";
+
+uses
+	CtrlLib;
+
+file
+	Button.cpp;
+
+mainconfig
+	"" = "GUI";
+

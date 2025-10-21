@@ -1,0 +1,16 @@
+Notes:
+- purpose:
+	use this to review your own home and how different people view it
+- notes:
+	I'm really curious about this myself. My own friends are too biased to rate this
+	apartment, and don't give honest feedback, or even try to represent the general public.
+	Besides, I have a sexier group of people in mind, for whom I would like to film my
+	apartment on YouTube.
+- internals:
+	Map your home's architecture, items, paintings, furniture, etc. into the program's memory.
+	Let different types of people visit your apartment.
+	Let different types of people change your apartment "for the better" and create a feedback loop for yourself where you evaluate the changes.
+- usage examples:
+	Improve your home with it
+	Make short video reels of your home
+

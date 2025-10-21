@@ -1,0 +1,16 @@
+description "AI Ctrl Agent\3770,0,255";
+
+uses
+	AI/Ctrl/Base;
+
+file
+	AGENTS.md,
+	Agent.h,
+	Agent.lay,
+	Ai.h,
+	Ai.cpp,
+	AgentPrompt.h,
+	AgentPrompt.cpp,
+	DialogueBuilder.h,
+	DialogueBuilder.cpp;
+

@@ -1,0 +1,2964 @@
+{
+	"saved_hash": "14f56ff82f135afe1764e66557b3b623fe64f44a",
+	"files": [
+		{
+			"key": "HexView.h",
+			"value": {
+				"items": [
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "_HexView_HexView_h",
+						"t": "",
+						"i": "_HexView_HexView_h",
+						"r": "_HexView_HexView_h",
+						"s": "",
+						"u": "_HEXVIEW_HEXVIEW_H",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6d5013a9568d8a1772951c2359ad36ae1ad6025a"
+							}
+						]
+					},
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "LAYOUTFILE",
+						"t": "",
+						"i": "LAYOUTFILE",
+						"r": "LAYOUTFILE",
+						"s": "",
+						"u": "LAYOUTFILE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "049af25795ce8f48ea3ac3b894c079dac94e5e67"
+							}
+						]
+					},
+					{
+						"k": 4,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "HexViewInfo",
+						"t": "Upp::HexViewInfo",
+						"i": "Upp::HexViewInfo",
+						"r": "HexViewInfo : public FrameBottom<Ctrl>",
+						"s": "Upp",
+						"u": "HEXVIEWINFO",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "Upp::FrameBottom",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "cd611531f245b8ffc2782ab2b1202d0ee34542d5"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Paint",
+						"t": "void (Draw &)",
+						"i": "Upp::HexViewInfo::Paint(Draw&)",
+						"r": "void Paint(Draw& w)",
+						"s": "Upp",
+						"u": "PAINT",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9c9be88c349374579412e6279affd8f2a6600e2f"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "font",
+						"t": "Font",
+						"i": "Upp::HexViewInfo::font",
+						"r": "Font font",
+						"s": "Upp",
+						"u": "FONT",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "222e68cd04b1816f0d1fae088e99aee8f5dc813b"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "pos",
+						"t": "int64",
+						"i": "Upp::HexViewInfo::pos",
+						"r": "int64 pos",
+						"s": "Upp",
+						"u": "POS",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b356afff66d1dc408213dd901cf839caf6584026"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "data",
+						"t": "int[80]",
+						"i": "Upp::HexViewInfo::data",
+						"r": "int data[80]",
+						"s": "Upp",
+						"u": "DATA",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d85e6345478c681a7949c3300637c73376e4868e"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "mode",
+						"t": "int",
+						"i": "Upp::HexViewInfo::mode",
+						"r": "int mode",
+						"s": "Upp",
+						"u": "MODE",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c10cc40fddd75bcaa6a2404e81f61bf6f6a6b3c0"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "longmode",
+						"t": "bool",
+						"i": "Upp::HexViewInfo::longmode",
+						"r": "bool longmode",
+						"s": "Upp",
+						"u": "LONGMODE",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e957b482c4d354c6734b37801cb069d83c13686a"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "empty",
+						"t": "bool",
+						"i": "Upp::HexViewInfo::empty",
+						"r": "bool empty",
+						"s": "Upp",
+						"u": "EMPTY",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b4d9d834b20ba7cb46681124694b1a95dbbcec5e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "PrintValue",
+						"t": "void (Draw &, int, int, int, bool)",
+						"i": "Upp::HexViewInfo::PrintValue(Draw&,int,int,int,bool)",
+						"r": "void PrintValue(Draw& w, int x, int y, int bytes, bool be)",
+						"s": "Upp",
+						"u": "PRINTVALUE",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9632846abae0463d7222c602cfdc49588336e3d8"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetEmpty",
+						"t": "void ()",
+						"i": "Upp::HexViewInfo::SetEmpty()",
+						"r": "void SetEmpty()",
+						"s": "Upp",
+						"u": "SETEMPTY",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8405f66e2b711a70563353487b2fe8e75236d763"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetPos",
+						"t": "void (int64, bool)",
+						"i": "Upp::HexViewInfo::SetPos(int64,bool)",
+						"r": "void SetPos(int64 p, bool lm)",
+						"s": "Upp",
+						"u": "SETPOS",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "88cc90faf59b891bcaace7c074f90e838aee4c62"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Set",
+						"t": "void (int, int)",
+						"i": "Upp::HexViewInfo::Set(int,int)",
+						"r": "void Set(int i, int d)",
+						"s": "Upp",
+						"u": "SET",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0dab854686f6106d3b2e34c5136190e3260e218f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetMode",
+						"t": "void (int)",
+						"i": "Upp::HexViewInfo::SetMode(int)",
+						"r": "void SetMode(int m)",
+						"s": "Upp",
+						"u": "SETMODE",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3d7cd894893d7aafe3190b7499a73b9d20d8b17c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetMode",
+						"t": "int () const",
+						"i": "Upp::HexViewInfo::GetMode()const",
+						"r": "int GetMode() const",
+						"s": "Upp",
+						"u": "GETMODE",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "70a689fff41cea5e2c4e7c54574be06c0117ed7f"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "HexViewInfo",
+						"t": "void ()",
+						"i": "Upp::HexViewInfo::HexViewInfo()",
+						"r": "HexViewInfo()",
+						"s": "Upp",
+						"u": "HEXVIEWINFO",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "80bba53c05a9b65c59bee73555664ed48dfb3e6e"
+							}
+						]
+					},
+					{
+						"k": 4,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "HexView",
+						"t": "Upp::HexView",
+						"i": "Upp::HexView",
+						"r": "HexView : public Ctrl",
+						"s": "Upp",
+						"u": "HEXVIEW",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "Upp::Ctrl",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "208cd1d66f6befec3f9c921338cd0dcfbd2078b1"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Paint",
+						"t": "void (Draw &)",
+						"i": "Upp::HexView::Paint(Draw&)",
+						"r": "void Paint(Draw& w)",
+						"s": "Upp",
+						"u": "PAINT",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9c9be88c349374579412e6279affd8f2a6600e2f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Layout",
+						"t": "void ()",
+						"i": "Upp::HexView::Layout()",
+						"r": "void Layout()",
+						"s": "Upp",
+						"u": "LAYOUT",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "87fb29386f1073e97787ea82a9d9eee940ba4258"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "LeftDown",
+						"t": "void (Point, dword)",
+						"i": "Upp::HexView::LeftDown(Point,dword)",
+						"r": "void LeftDown(Point p, dword)",
+						"s": "Upp",
+						"u": "LEFTDOWN",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "012b7356e80d59caba053df2e46ae8a006f00502"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Key",
+						"t": "bool (dword, int)",
+						"i": "Upp::HexView::Key(dword,int)",
+						"r": "bool Key(dword key, int)",
+						"s": "Upp",
+						"u": "KEY",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d14db4a703d94e17f74b0ebb0144277d15b4f4ba"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "MouseWheel",
+						"t": "void (Point, int, dword)",
+						"i": "Upp::HexView::MouseWheel(Point,int,dword)",
+						"r": "void MouseWheel(Point, int zdelta, dword)",
+						"s": "Upp",
+						"u": "MOUSEWHEEL",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d8bf7c34296d7d107b9d9aa3c160b101a295c03f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "RightDown",
+						"t": "void (Point, dword)",
+						"i": "Upp::HexView::RightDown(Point,dword)",
+						"r": "void RightDown(Point, dword)",
+						"s": "Upp",
+						"u": "RIGHTDOWN",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6fcf7c74c14107ca1fbc8d491141c51ecf671b67"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "font",
+						"t": "Font",
+						"i": "Upp::HexView::font",
+						"r": "Font font",
+						"s": "Upp",
+						"u": "FONT",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "60358abdcf04b614714fb46f2f45aae5dec512d1"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "fcx3",
+						"t": "int",
+						"i": "Upp::HexView::fcx3",
+						"r": "int fcx3",
+						"s": "Upp",
+						"u": "FCX3",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8bce62ecad549b245c283cabc285a8208278a978"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "fsz",
+						"t": "Size",
+						"i": "Upp::HexView::fsz",
+						"r": "Size fsz",
+						"s": "Upp",
+						"u": "FSZ",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6dc9df21c7114795e10cbfeb4b08be364feabbbd"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "fixed",
+						"t": "int",
+						"i": "Upp::HexView::fixed",
+						"r": "int fixed",
+						"s": "Upp",
+						"u": "FIXED",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8dabbff6775fb6f16b8ea9644b2c5acd9195c710"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "columns",
+						"t": "int",
+						"i": "Upp::HexView::columns",
+						"r": "int columns",
+						"s": "Upp",
+						"u": "COLUMNS",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "01c6506fc3bb8c2ec40aa8ce1f613f592c5c0ae0"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "rows",
+						"t": "int",
+						"i": "Upp::HexView::rows",
+						"r": "int rows",
+						"s": "Upp",
+						"u": "ROWS",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "61e3f4cdae43850fc99bc1f1a131df371f80b4c6"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "bytes",
+						"t": "int",
+						"i": "Upp::HexView::bytes",
+						"r": "int bytes",
+						"s": "Upp",
+						"u": "BYTES",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f8632b4cf4bc01bb160dc37f5d818241a8d15045"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "sbm",
+						"t": "int",
+						"i": "Upp::HexView::sbm",
+						"r": "int sbm",
+						"s": "Upp",
+						"u": "SBM",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a1c40ed62fc657a1bce1dd4e02a6c769417afbf9"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "sc",
+						"t": "uint64",
+						"i": "Upp::HexView::sc",
+						"r": "uint64 sc",
+						"s": "Upp",
+						"u": "SC",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fd30c71e2bf45ae6a5ac317d40b24527682e0286"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "cursor",
+						"t": "uint64",
+						"i": "Upp::HexView::cursor",
+						"r": "uint64 cursor",
+						"s": "Upp",
+						"u": "CURSOR",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8c15d0afe99d36901028cd64a60bd2e6ca979ead"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "total",
+						"t": "uint64",
+						"i": "Upp::HexView::total",
+						"r": "uint64 total",
+						"s": "Upp",
+						"u": "TOTAL",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1b5d48bc138ba09d19dadee666fd772d71afbb8c"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "start",
+						"t": "uint64",
+						"i": "Upp::HexView::start",
+						"r": "uint64 start",
+						"s": "Upp",
+						"u": "START",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "75598eac3b5326ada6a8373164548d55e8135d8b"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "charset",
+						"t": "byte",
+						"i": "Upp::HexView::charset",
+						"r": "byte charset",
+						"s": "Upp",
+						"u": "CHARSET",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a1fb5828c556be49be0f49df33a71f344fd175b3"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "sb",
+						"t": "ScrollBar",
+						"i": "Upp::HexView::sb",
+						"r": "ScrollBar sb",
+						"s": "Upp",
+						"u": "SB",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d136a80e25592d513ac9ea28fac23e10668d0056"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "info",
+						"t": "HexViewInfo",
+						"i": "Upp::HexView::info",
+						"r": "HexViewInfo info",
+						"s": "Upp",
+						"u": "INFO",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bb599ef15cbeb94b157b6cd1fb561573fb1a22f9"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "go",
+						"t": "WithHexGotoLayout<TopWindow>",
+						"i": "Upp::HexView::go",
+						"r": "WithHexGotoLayout<TopWindow> go",
+						"s": "Upp",
+						"u": "GO",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "59f16036a0ab2dfd7990f08ca4edd5df3ab1ed17"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetSb",
+						"t": "void ()",
+						"i": "Upp::HexView::SetSb()",
+						"r": "void SetSb()",
+						"s": "Upp",
+						"u": "SETSB",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b8b626818599b0a3a5f75f3a4c0e4ef43a9eb56e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Scroll",
+						"t": "void ()",
+						"i": "Upp::HexView::Scroll()",
+						"r": "void Scroll()",
+						"s": "Upp",
+						"u": "SCROLL",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3bd3078450b9f587cd8461c0c52ad33a3129df2b"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetCharset",
+						"t": "void (int)",
+						"i": "Upp::HexView::SetCharset(int)",
+						"r": "void SetCharset(int chr)",
+						"s": "Upp",
+						"u": "SETCHARSET",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8dae9f00aee023e42da8059860c6c8d9d8d2c99d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetColumns",
+						"t": "void (int)",
+						"i": "Upp::HexView::SetColumns(int)",
+						"r": "void SetColumns(int x)",
+						"s": "Upp",
+						"u": "SETCOLUMNS",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f25261cf34852423f0339691a1cdc5c04b5acae0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetInfo",
+						"t": "void (int)",
+						"i": "Upp::HexView::SetInfo(int)",
+						"r": "void SetInfo(int m)",
+						"s": "Upp",
+						"u": "SETINFO",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "770ae262becb841a4089a1cccd8273f6546cfcce"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Goto",
+						"t": "void ()",
+						"i": "Upp::HexView::Goto()",
+						"r": "void Goto()",
+						"s": "Upp",
+						"u": "GOTO",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2a7a49959b9606137ab2671c5fc4520686ae58fc"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "RefreshInfo",
+						"t": "void ()",
+						"i": "Upp::HexView::RefreshInfo()",
+						"r": "void RefreshInfo()",
+						"s": "Upp",
+						"u": "REFRESHINFO",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7944c4b75543d20430aa2200aa5170e8ef7a7376"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Byte",
+						"t": "int (int64)",
+						"i": "Upp::HexView::Byte(int64)",
+						"r": "int Byte(int64 adr)",
+						"s": "Upp",
+						"u": "BYTE",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "87f2a05ed68b5b14e1bb64fa048b5eae455b828b"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "WhenBar",
+						"t": "Event<Bar &>",
+						"i": "Upp::HexView::WhenBar",
+						"r": "Event<Bar&> WhenBar",
+						"s": "Upp",
+						"u": "WHENBAR",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "acab1c231fa2db7e994aa41aa143a60aff14b4ac"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "WhenGoto",
+						"t": "Event<const String &>",
+						"i": "Upp::HexView::WhenGoto",
+						"r": "Event<const String&> WhenGoto",
+						"s": "Upp",
+						"u": "WHENGOTO",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "94c9b980d696716017f98cb2c20005230f6527f0"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "WhenGotoDlg",
+						"t": "Event<>",
+						"i": "Upp::HexView::WhenGotoDlg",
+						"r": "Event<> WhenGotoDlg",
+						"s": "Upp",
+						"u": "WHENGOTODLG",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "61f7ad571f261f98ff4b7f98883f94d348f1eb36"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "ColumnsMenu",
+						"t": "void (Bar &)",
+						"i": "Upp::HexView::ColumnsMenu(Bar&)",
+						"r": "void ColumnsMenu(Bar& bar)",
+						"s": "Upp",
+						"u": "COLUMNSMENU",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "12310ebc88417d884a96fde3e4d7a137fb7aa268"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "CharsetMenu",
+						"t": "void (Bar &)",
+						"i": "Upp::HexView::CharsetMenu(Bar&)",
+						"r": "void CharsetMenu(Bar& bar)",
+						"s": "Upp",
+						"u": "CHARSETMENU",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6e4bfc3308cc65ff7cb8b56bd659ca0343425dec"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "InfoMenu",
+						"t": "void (Bar &)",
+						"i": "Upp::HexView::InfoMenu(Bar&)",
+						"r": "void InfoMenu(Bar& bar)",
+						"s": "Upp",
+						"u": "INFOMENU",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0de16a909bf3f08b2b45766ef12b7707df95b057"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "StdMenu",
+						"t": "void (Bar &)",
+						"i": "Upp::HexView::StdMenu(Bar&)",
+						"r": "void StdMenu(Bar& bar)",
+						"s": "Upp",
+						"u": "STDMENU",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e7216648e37ac884b048dc0bd37f6f1bae1c44f7"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "StdGoto",
+						"t": "void (const String &)",
+						"i": "Upp::HexView::StdGoto(const String&)",
+						"r": "void StdGoto(const String& text)",
+						"s": "Upp",
+						"u": "STDGOTO",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b82d916bd8e7e72b75af05267bdeef327c35e1fd"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GotoAddHistory",
+						"t": "void ()",
+						"i": "Upp::HexView::GotoAddHistory()",
+						"r": "void GotoAddHistory()",
+						"s": "Upp",
+						"u": "GOTOADDHISTORY",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c62818ed35847ab9e83bac0ed6712c501bc87e6c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsLongMode",
+						"t": "bool () const",
+						"i": "Upp::HexView::IsLongMode()const",
+						"r": "bool IsLongMode() const",
+						"s": "Upp",
+						"u": "ISLONGMODE",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3769dc4ba7030e303cba9e045403adaebd206a4f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetStart",
+						"t": "void (uint64)",
+						"i": "Upp::HexView::SetStart(uint64)",
+						"r": "void SetStart(uint64 start)",
+						"s": "Upp",
+						"u": "SETSTART",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d7a03dafa231602adf7e23db5abf588f81d695bd"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetTotal",
+						"t": "void (uint64)",
+						"i": "Upp::HexView::SetTotal(uint64)",
+						"r": "void SetTotal(uint64 _total)",
+						"s": "Upp",
+						"u": "SETTOTAL",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "664f53affc87d2c57a0d649e364bd5e46aa9c3e3"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetSc",
+						"t": "void (uint64)",
+						"i": "Upp::HexView::SetSc(uint64)",
+						"r": "void SetSc(uint64 address)",
+						"s": "Upp",
+						"u": "SETSC",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "83f9f0bd82496ef934ceade21a31980b2807753c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetSc",
+						"t": "int64 () const",
+						"i": "Upp::HexView::GetSc()const",
+						"r": "int64 GetSc() const",
+						"s": "Upp",
+						"u": "GETSC",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "682a36ad04d19a7b555c1ebe9d71ee687f93abc5"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetCursor",
+						"t": "void (uint64)",
+						"i": "Upp::HexView::SetCursor(uint64)",
+						"r": "void SetCursor(uint64 address)",
+						"s": "Upp",
+						"u": "SETCURSOR",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a15dedbcad218520dcb94d99328386eccb35ab55"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetCursor",
+						"t": "int64 () const",
+						"i": "Upp::HexView::GetCursor()const",
+						"r": "int64 GetCursor() const",
+						"s": "Upp",
+						"u": "GETCURSOR",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bc2c4819a496f3192f8451adcebd5431d28b6dec"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SerializeSettings",
+						"t": "void (Stream &)",
+						"i": "Upp::HexView::SerializeSettings(Stream&)",
+						"r": "void SerializeSettings(Stream& s)",
+						"s": "Upp",
+						"u": "SERIALIZESETTINGS",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fdb7fd83d5e8e04ded2b0198cceec5e1d526dc6b"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetFont",
+						"t": "HexView &(Font)",
+						"i": "Upp::HexView::SetFont(Font)",
+						"r": "HexView& SetFont(Font fnt)",
+						"s": "Upp",
+						"u": "SETFONT",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "92db3c58568c9297c630d5b34f636b8185087818"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Charset",
+						"t": "HexView &(byte)",
+						"i": "Upp::HexView::Charset(byte)",
+						"r": "HexView& Charset(byte chrset)",
+						"s": "Upp",
+						"u": "CHARSET",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fab962e785050a56984f497efb430452ee468773"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "FixedColumns",
+						"t": "HexView &(int)",
+						"i": "Upp::HexView::FixedColumns(int)",
+						"r": "HexView& FixedColumns(int c = 0)",
+						"s": "Upp",
+						"u": "FIXEDCOLUMNS",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ecdcaed82535c3d1cb935071e1c31cdf0bdfce36"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "InfoMode",
+						"t": "HexView &(int)",
+						"i": "Upp::HexView::InfoMode(int)",
+						"r": "HexView& InfoMode(int m = 1)",
+						"s": "Upp",
+						"u": "INFOMODE",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "aa4798887f1f466ab92d3b156e9789465b7bd19c"
+							}
+						]
+					},
+					{
+						"k": 20,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "CLASSNAME",
+						"t": "Upp::HexView::CLASSNAME",
+						"i": "Upp::HexView::CLASSNAME",
+						"r": "typedef HexView CLASSNAME",
+						"s": "Upp",
+						"u": "CLASSNAME",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "Upp::HexView",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "502e091dbbd74d9e01f6d5e49be7feacc9120d49"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "HexView",
+						"t": "void ()",
+						"i": "Upp::HexView::HexView()",
+						"r": "HexView()",
+						"s": "Upp",
+						"u": "HEXVIEW",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "54060a214c312f8e9c96ca68aa4ebdbedc224922"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "HexView.lay",
+			"value": {
+				"items": [
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "HexGotoLayout__layid",
+						"t": "Upp::HexGotoLayout__layid",
+						"i": "Upp::HexGotoLayout__layid",
+						"r": "HexGotoLayout__layid",
+						"s": "Upp",
+						"u": "HEXGOTOLAYOUT__LAYID",
+						"q": "Upp::HexGotoLayout__layid",
+						"w": "UPP::HEXGOTOLAYOUT__LAYID",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "60e1b93e4e8a7027acc0d0f33d384c402d7c9c0c"
+							}
+						]
+					},
+					{
+						"k": 30,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "InitLayout",
+						"t": "void (Upp::Ctrl &, L &, D &, HexGotoLayout__layid &)",
+						"i": "Upp::InitLayout(Upp::Ctrl&,L&,D&,HexGotoLayout__layid&)",
+						"r": "template <class L, class D> void InitLayout(Upp::Ctrl& parent, L& layout, D& uts, HexGotoLayout__layid&)",
+						"s": "Upp",
+						"u": "INITLAYOUT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "60e1b93e4e8a7027acc0d0f33d384c402d7c9c0c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": true,
+						"n": "GetLayoutSize",
+						"t": "Upp::Size ()",
+						"i": "Upp::WithHexGotoLayout::GetLayoutSize()",
+						"r": "static Upp::Size GetLayoutSize()",
+						"s": "Upp",
+						"u": "GETLAYOUTSIZE",
+						"q": "Upp::WithHexGotoLayout",
+						"w": "UPP::WITHHEXGOTOLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "60e1b93e4e8a7027acc0d0f33d384c402d7c9c0c"
+							}
+						]
+					},
+					{
+						"k": 30,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetLayout_HexGotoLayout",
+						"t": "void (T &, D &, bool, bool)",
+						"i": "Upp::SetLayout_HexGotoLayout(T&,D&,bool,bool)",
+						"r": "template <class T, class D> void SetLayout_HexGotoLayout(T& ctrl, D& parent, bool add = false, bool show = false)",
+						"s": "Upp",
+						"u": "SETLAYOUT_HEXGOTOLAYOUT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "60e1b93e4e8a7027acc0d0f33d384c402d7c9c0c"
+							}
+						]
+					},
+					{
+						"k": 30,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetLayout_HexGotoLayout",
+						"t": "void (T &, bool, bool)",
+						"i": "Upp::SetLayout_HexGotoLayout(T&,bool,bool)",
+						"r": "template <class T> void SetLayout_HexGotoLayout(T& parent, bool add = false, bool show = false)",
+						"s": "Upp",
+						"u": "SETLAYOUT_HEXGOTOLAYOUT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "60e1b93e4e8a7027acc0d0f33d384c402d7c9c0c"
+							}
+						]
+					},
+					{
+						"k": 31,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "WithHexGotoLayout",
+						"t": "",
+						"i": "Upp::WithHexGotoLayout",
+						"r": "template <class T> WithHexGotoLayout : public T, public HexGotoLayout__layid",
+						"s": "Upp",
+						"u": "WITHHEXGOTOLAYOUT",
+						"q": "Upp::WithHexGotoLayout",
+						"w": "UPP::WITHHEXGOTOLAYOUT",
+						"y": "Upp::HexGotoLayout__layid",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7a8a2d3510403e02b9a67c6cb8adfddc4306f7d6"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "dv___0",
+						"t": "Upp::Label",
+						"i": "Upp::WithHexGotoLayout::dv___0",
+						"r": "Upp::Label dv___0",
+						"s": "Upp",
+						"u": "DV___0",
+						"q": "Upp::WithHexGotoLayout",
+						"w": "UPP::WITHHEXGOTOLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "text",
+						"t": "Upp::WithDropChoice<Upp::EditString>",
+						"i": "Upp::WithHexGotoLayout::text",
+						"r": "Upp::WithDropChoice<Upp::EditString> text",
+						"s": "Upp",
+						"u": "TEXT",
+						"q": "Upp::WithHexGotoLayout",
+						"w": "UPP::WITHHEXGOTOLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ok",
+						"t": "Upp::Button",
+						"i": "Upp::WithHexGotoLayout::ok",
+						"r": "Upp::Button ok",
+						"s": "Upp",
+						"u": "OK",
+						"q": "Upp::WithHexGotoLayout",
+						"w": "UPP::WITHHEXGOTOLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "cancel",
+						"t": "Upp::Button",
+						"i": "Upp::WithHexGotoLayout::cancel",
+						"r": "Upp::Button cancel",
+						"s": "Upp",
+						"u": "CANCEL",
+						"q": "Upp::WithHexGotoLayout",
+						"w": "UPP::WITHHEXGOTOLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "HexView.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "FormatHexDigit",
+						"t": "int (int)",
+						"i": "Upp::FormatHexDigit(int)",
+						"r": "int FormatHexDigit(int c)",
+						"s": "Upp",
+						"u": "FORMATHEXDIGIT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "46a45e81454b94b23f0cebb9b383fa7697689f30"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "FormatHex",
+						"t": "void (char *, int64, int)",
+						"i": "Upp::FormatHex(char*,int64,int)",
+						"r": "void FormatHex(char *buffer, int64 number, int n)",
+						"s": "Upp",
+						"u": "FORMATHEX",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "21ad52062694e22d9d71a2f66877e2d94a2ae81d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "PrintValue",
+						"t": "void (Draw &, int, int, int, bool)",
+						"i": "Upp::HexViewInfo::PrintValue(Draw&,int,int,int,bool)",
+						"r": "void PrintValue(Draw& w, int x, int y, int bytes, bool be)",
+						"s": "Upp",
+						"u": "PRINTVALUE",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "684e1bc8fd6d7c6d43832a3f372095992c1f4f7d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Paint",
+						"t": "void (Draw &)",
+						"i": "Upp::HexViewInfo::Paint(Draw&)",
+						"r": "void Paint(Draw& w)",
+						"s": "Upp",
+						"u": "PAINT",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0f55b7eefe44eae195e575e3bbc2aba83982a8f8"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetMode",
+						"t": "void (int)",
+						"i": "Upp::HexViewInfo::SetMode(int)",
+						"r": "void SetMode(int _mode)",
+						"s": "Upp",
+						"u": "SETMODE",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3a0635ed914a0836531525c6ee6cf48e8614a1d1"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "HexViewInfo",
+						"t": "void ()",
+						"i": "Upp::HexViewInfo::HexViewInfo()",
+						"r": "HexViewInfo()",
+						"s": "Upp",
+						"u": "HEXVIEWINFO",
+						"q": "Upp::HexViewInfo",
+						"w": "UPP::HEXVIEWINFO",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c0fc1300f6d34fb681c2cdf2bb3d969441156cd1"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Byte",
+						"t": "int (int64)",
+						"i": "Upp::HexView::Byte(int64)",
+						"r": "int Byte(int64 adr)",
+						"s": "Upp",
+						"u": "BYTE",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "686e31d44e220b5a6b174063b2894f036b09dc42"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Paint",
+						"t": "void (Draw &)",
+						"i": "Upp::HexView::Paint(Draw&)",
+						"r": "void Paint(Draw& w)",
+						"s": "Upp",
+						"u": "PAINT",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "563ca607824f0df84a764e589fdf6ab031dc5712"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "MouseWheel",
+						"t": "void (Point, int, dword)",
+						"i": "Upp::HexView::MouseWheel(Point,int,dword)",
+						"r": "void MouseWheel(Point, int zdelta, dword)",
+						"s": "Upp",
+						"u": "MOUSEWHEEL",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1e389a6f95fc7dfb2c81ac6c596228bba816e060"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetSb",
+						"t": "void ()",
+						"i": "Upp::HexView::SetSb()",
+						"r": "void SetSb()",
+						"s": "Upp",
+						"u": "SETSB",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bd7fd43f7eef72db691cf3f25891aa48357e8e27"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Layout",
+						"t": "void ()",
+						"i": "Upp::HexView::Layout()",
+						"r": "void Layout()",
+						"s": "Upp",
+						"u": "LAYOUT",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ab9064dec2d31369d184af9a972e109544342def"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetStart",
+						"t": "void (uint64)",
+						"i": "Upp::HexView::SetStart(uint64)",
+						"r": "void SetStart(uint64 start_)",
+						"s": "Upp",
+						"u": "SETSTART",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "93319cb2fc14de8a475f87ef9aa36dc218803e37"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetTotal",
+						"t": "void (uint64)",
+						"i": "Upp::HexView::SetTotal(uint64)",
+						"r": "void SetTotal(uint64 _total)",
+						"s": "Upp",
+						"u": "SETTOTAL",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "016ae9986daaea9fefbb71710f434f6e2d7df821"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetSc",
+						"t": "void (uint64)",
+						"i": "Upp::HexView::SetSc(uint64)",
+						"r": "void SetSc(uint64 address)",
+						"s": "Upp",
+						"u": "SETSC",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8523f7fb6e0839a322a3be9eb0bcda723ae67299"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Scroll",
+						"t": "void ()",
+						"i": "Upp::HexView::Scroll()",
+						"r": "void Scroll()",
+						"s": "Upp",
+						"u": "SCROLL",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "89000348c81b2eb980df864e1d5ef4e44d9e6dc9"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "RefreshInfo",
+						"t": "void ()",
+						"i": "Upp::HexView::RefreshInfo()",
+						"r": "void RefreshInfo()",
+						"s": "Upp",
+						"u": "REFRESHINFO",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d22a50db1a728aa84906ef4f6b0d6d99a470b156"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetCursor",
+						"t": "void (uint64)",
+						"i": "Upp::HexView::SetCursor(uint64)",
+						"r": "void SetCursor(uint64 _cursor)",
+						"s": "Upp",
+						"u": "SETCURSOR",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "73464080e24e425f6855300bb0c22cd3207bf56a"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "LeftDown",
+						"t": "void (Point, dword)",
+						"i": "Upp::HexView::LeftDown(Point,dword)",
+						"r": "void LeftDown(Point p, dword)",
+						"s": "Upp",
+						"u": "LEFTDOWN",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3ff35c51fa8e20eb17e57e0df2897411f66fded4"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Key",
+						"t": "bool (dword, int)",
+						"i": "Upp::HexView::Key(dword,int)",
+						"r": "bool Key(dword key, int)",
+						"s": "Upp",
+						"u": "KEY",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a96c96cd93bfe09a7493232af6dc52501d47e3f6"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetColumns",
+						"t": "void (int)",
+						"i": "Upp::HexView::SetColumns(int)",
+						"r": "void SetColumns(int x)",
+						"s": "Upp",
+						"u": "SETCOLUMNS",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6192293f56fafce7da3d3fd3abcd41dfacf9072e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetCharset",
+						"t": "void (int)",
+						"i": "Upp::HexView::SetCharset(int)",
+						"r": "void SetCharset(int chr)",
+						"s": "Upp",
+						"u": "SETCHARSET",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2902436e7dd1c4cc2cbd6581a5c4e4fff0be6bca"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "StdGoto",
+						"t": "void (const String &)",
+						"i": "Upp::HexView::StdGoto(const String&)",
+						"r": "void StdGoto(const String& s)",
+						"s": "Upp",
+						"u": "STDGOTO",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d10cc6dbe996c5b999adfffb79af10b16d2763c7"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Goto",
+						"t": "void ()",
+						"i": "Upp::HexView::Goto()",
+						"r": "void Goto()",
+						"s": "Upp",
+						"u": "GOTO",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "39da4e71551e06a2f19aa8b383a156a23e69c4da"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ColumnsMenu",
+						"t": "void (Bar &)",
+						"i": "Upp::HexView::ColumnsMenu(Bar&)",
+						"r": "void ColumnsMenu(Bar& bar)",
+						"s": "Upp",
+						"u": "COLUMNSMENU",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "95956065b3dc9a9f5ecfffad19f8d6b6097d2cc3"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetInfo",
+						"t": "void (int)",
+						"i": "Upp::HexView::SetInfo(int)",
+						"r": "void SetInfo(int m)",
+						"s": "Upp",
+						"u": "SETINFO",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "cc3d48b0750b3e3b904ff924be3d5f5edee65327"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "InfoMenu",
+						"t": "void (Bar &)",
+						"i": "Upp::HexView::InfoMenu(Bar&)",
+						"r": "void InfoMenu(Bar& bar)",
+						"s": "Upp",
+						"u": "INFOMENU",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bfdcc40c34497422b7311735065ff780a746f8ac"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "CharsetMenu",
+						"t": "void (Bar &)",
+						"i": "Upp::HexView::CharsetMenu(Bar&)",
+						"r": "void CharsetMenu(Bar& bar)",
+						"s": "Upp",
+						"u": "CHARSETMENU",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f3e5afcf38d2f3426d6e5a5e1479a9eb9cf67fb0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "StdMenu",
+						"t": "void (Bar &)",
+						"i": "Upp::HexView::StdMenu(Bar&)",
+						"r": "void StdMenu(Bar& bar)",
+						"s": "Upp",
+						"u": "STDMENU",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "382a85fc4a46831048f323b590dbfa66714ae94d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "RightDown",
+						"t": "void (Point, dword)",
+						"i": "Upp::HexView::RightDown(Point,dword)",
+						"r": "void RightDown(Point p, dword w)",
+						"s": "Upp",
+						"u": "RIGHTDOWN",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ece7ab21d141c7ca8487dad7c6981970d3e6ecb4"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetFont",
+						"t": "HexView &(Font)",
+						"i": "Upp::HexView::SetFont(Font)",
+						"r": "HexView& SetFont(Font fnt)",
+						"s": "Upp",
+						"u": "SETFONT",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9157288db6b931a2218e426a84959cd0ffef715d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SerializeSettings",
+						"t": "void (Stream &)",
+						"i": "Upp::HexView::SerializeSettings(Stream&)",
+						"r": "void SerializeSettings(Stream& s)",
+						"s": "Upp",
+						"u": "SERIALIZESETTINGS",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "333066fdc1f2a183e72dee9d8da188748ac70729"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "HexView",
+						"t": "void ()",
+						"i": "Upp::HexView::HexView()",
+						"r": "HexView()",
+						"s": "Upp",
+						"u": "HEXVIEW",
+						"q": "Upp::HexView",
+						"w": "UPP::HEXVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "14506ba833cba41b415b826ce5df3aa79ca6366d"
+							}
+						]
+					}
+				]
+			}
+		}
+	]
+}

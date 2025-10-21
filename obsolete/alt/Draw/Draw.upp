@@ -1,0 +1,30 @@
+description "\377B157,86,255";
+
+uses
+	Core;
+
+file
+	Draw.h,
+	DrawClasses.h,
+	DrawClasses.cpp,
+	Display.h,
+	Font readonly separator,
+	Font.h,
+	Font.cpp,
+	Draw.cpp,
+	Image readonly separator,
+	Image.h,
+	Image.cpp,
+	ImageOp.h,
+	ImageOp.cpp,
+	iml_header.h,
+	iml_source.h,
+	SDraw readonly separator,
+	SDraw.h,
+	SDraw.cpp,
+	SImageDraw.cpp,
+	Chameleon readonly separator,
+	Cham.h,
+	Cham.cpp,
+	SColors.cpp;
+

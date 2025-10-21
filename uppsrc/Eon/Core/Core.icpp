@@ -1,0 +1,26 @@
+#include "Core.h"
+
+NAMESPACE_UPP
+
+INITBLOCK {
+	// Typed string hashers used across core/links
+	TYPED_STRING_HASHER(Machine);
+	TYPED_STRING_HASHER(Engine);
+	TYPED_STRING_HASHER(Entity);
+	TYPED_STRING_HASHER(Loop);
+
+	// Link type names for VFS/factory visibility
+	TYPED_STRING_HASHER(CustomerLink);
+	TYPED_STRING_HASHER(PipeLink);
+	TYPED_STRING_HASHER(PipeOptSideLink);
+	TYPED_STRING_HASHER(IntervalPipeLink);
+	TYPED_STRING_HASHER(PollerLink);
+	TYPED_STRING_HASHER(ExternalPipeLink);
+	TYPED_STRING_HASHER(DriverLink);
+	TYPED_STRING_HASHER(MergerLink);
+	TYPED_STRING_HASHER(JoinerLink);
+	TYPED_STRING_HASHER(SplitterLink);
+}
+
+END_UPP_NAMESPACE
+

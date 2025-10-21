@@ -1,0 +1,10 @@
+uses
+	Core,
+	Protect;
+
+file
+	ProtectEncrypt.cpp;
+
+mainconfig
+	"" = "";
+

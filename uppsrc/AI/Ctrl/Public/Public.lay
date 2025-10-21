@@ -1,0 +1,12 @@
+LAYOUT(SnapshotInfo, 672, 320)
+	ITEM(Upp::LabelBox, dv___0, SetLabel(t_("Release")).LeftPosZ(4, 664).TopPosZ(4, 308))
+	ITEM(Upp::Label, dv___1, SetLabel(t_("Title:")).SetAlign(Upp::ALIGN_RIGHT).LeftPosZ(12, 120).TopPosZ(20, 20))
+	ITEM(Upp::EditString, title, LeftPosZ(136, 252).TopPosZ(20, 20))
+	ITEM(Upp::Label, dv___3, SetLabel(t_("Date:")).SetAlign(Upp::ALIGN_RIGHT).LeftPosZ(12, 120).TopPosZ(44, 20))
+	ITEM(Upp::EditDate, album_date, LeftPosZ(136, 252).TopPosZ(44, 19))
+	ITEM(Upp::Label, dv___5, SetLabel(t_("Year of content:")).SetAlign(Upp::ALIGN_RIGHT).LeftPosZ(12, 120).TopPosZ(68, 20))
+	ITEM(Upp::Label, dv___6, SetLabel(t_("Cover image:")).SetAlign(Upp::ALIGN_RIGHT).LeftPosZ(12, 120).TopPosZ(92, 20))
+	ITEM(Upp::EditInt, year_of_content, Min(1900).Max(2200).NotNull(true).LeftPosZ(136, 252).TopPosZ(68, 19))
+	ITEM(Ctrl, cover_image, LeftPosZ(136, 252).TopPosZ(92, 196))
+END_LAYOUT
+

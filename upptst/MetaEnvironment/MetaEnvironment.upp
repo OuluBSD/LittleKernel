@@ -1,0 +1,19 @@
+description "Stub tests for MetaEnvironment integration paths\377";
+
+uses
+	Vfs/Core,
+	Vfs/Overlay,
+	ide/Vfs,
+	ide/Builders,
+	CtrlLib,
+	ide/AI,
+	ide;
+
+file
+	AGENTS.md,
+	CURRENT_TASK.md,
+	main.cpp;
+
+mainconfig
+	"" = "GUI";
+

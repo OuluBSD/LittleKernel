@@ -1,0 +1,13 @@
+description "GuboCore 3D GUI demo";
+
+uses
+	GuboCore,
+	GuboLib,
+	Eon;
+
+file
+	AGENTS.md,
+	GuboCoreDemo.h,
+	main.cpp,
+	_ readonly separator;
+

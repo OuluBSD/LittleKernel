@@ -1,0 +1,3661 @@
+{
+	"saved_hash": "fef8c099f5a7ad56aa5e68c10d5d9cc206609960",
+	"files": [
+		{
+			"key": "MacroManager.h",
+			"value": {
+				"items": [
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "_MacroManager_MacroManager_h_",
+						"t": "",
+						"i": "_MacroManager_MacroManager_h_",
+						"r": "_MacroManager_MacroManager_h_",
+						"s": "",
+						"u": "_MACROMANAGER_MACROMANAGER_H_",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "af0e79b9dc7ad56747a4e64fbc5ba6dbad08b6eb"
+							}
+						]
+					},
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "LAYOUTFILE",
+						"t": "",
+						"i": "LAYOUTFILE",
+						"r": "LAYOUTFILE",
+						"s": "",
+						"u": "LAYOUTFILE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "795e4a9690ffbb4fb5387547014ad0d81821c68b"
+							}
+						]
+					},
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "IMAGECLASS",
+						"t": "",
+						"i": "IMAGECLASS",
+						"r": "IMAGECLASS",
+						"s": "",
+						"u": "IMAGECLASS",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0e38f2cec733774bdb509fdf7333a9421524d216"
+							}
+						]
+					},
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "IMAGEFILE",
+						"t": "",
+						"i": "IMAGEFILE",
+						"r": "IMAGEFILE",
+						"s": "",
+						"u": "IMAGEFILE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d26ce20bcfe7f8c43cd0a286edd3d27a46ed7a8d"
+							}
+						]
+					},
+					{
+						"k": 4,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MacroElement",
+						"t": "Upp::MacroElement",
+						"i": "Upp::MacroElement",
+						"r": "final MacroElement final",
+						"s": "Upp",
+						"u": "MACROELEMENT",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c9007d3b30184b7e8558366aa6f06302953d2aee"
+							}
+						]
+					},
+					{
+						"k": 5,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Type",
+						"t": "Upp::MacroElement::Type",
+						"i": "Upp::MacroElement::Type",
+						"r": "enum Type : int",
+						"s": "Upp",
+						"u": "TYPE",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "638bc75796cc36deab8d8b58ab9c2cd4b7590e33"
+							}
+						]
+					},
+					{
+						"k": 7,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MACRO",
+						"t": "Upp::MacroElement::Type",
+						"i": "Upp::MacroElement::MACRO",
+						"r": "MACRO",
+						"s": "Upp",
+						"u": "MACRO",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c1554ff81244065e7900a157ac67fb2d5175ae14"
+							}
+						]
+					},
+					{
+						"k": 7,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "FUNCTION",
+						"t": "Upp::MacroElement::Type",
+						"i": "Upp::MacroElement::FUNCTION",
+						"r": "FUNCTION",
+						"s": "Upp",
+						"u": "FUNCTION",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "63425456f14a800f08b688a005e2e85f84241751"
+							}
+						]
+					},
+					{
+						"k": 7,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "UNKNOWN",
+						"t": "Upp::MacroElement::Type",
+						"i": "Upp::MacroElement::UNKNOWN",
+						"r": "UNKNOWN",
+						"s": "Upp",
+						"u": "UNKNOWN",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "25ba44ec3b391ba4ce5fbbd2979635e254775e7d"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "MacroElement",
+						"t": "void (Type, const String &, int, const String &)",
+						"i": "Upp::MacroElement::MacroElement(Type,const String&,int,const String&)",
+						"r": "MacroElement(Type type, const String& fileName, int line, const String& comment)",
+						"s": "Upp",
+						"u": "MACROELEMENT",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "368007f266a548789bb4ad7c1ffcb775b0158413"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "GetImage",
+						"t": "Image () const",
+						"i": "Upp::MacroElement::GetImage()const",
+						"r": "Image GetImage() const",
+						"s": "Upp",
+						"u": "GETIMAGE",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "381d2273f9a8bf8c8177bbf5f1f13ea2b95ea724"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "GetContent",
+						"t": "String () const",
+						"i": "Upp::MacroElement::GetContent()const",
+						"r": "String GetContent() const",
+						"s": "Upp",
+						"u": "GETCONTENT",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "40f7b6a6209770f8ecfcfcd73e9d74e219bfd432"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "type",
+						"t": "Type",
+						"i": "Upp::MacroElement::type",
+						"r": "Type type",
+						"s": "Upp",
+						"u": "TYPE",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f3a5771193c751fa6c9719d70ef1710f5dca0002"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "comment",
+						"t": "String",
+						"i": "Upp::MacroElement::comment",
+						"r": "String comment",
+						"s": "Upp",
+						"u": "COMMENT",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bc11257fd0cf00154d155c13298cdf0702512860"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "name",
+						"t": "String",
+						"i": "Upp::MacroElement::name",
+						"r": "String name",
+						"s": "Upp",
+						"u": "NAME",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5233278cb3ddd461efca2b742dc40bb7e9dfde0f"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "prototype",
+						"t": "String",
+						"i": "Upp::MacroElement::prototype",
+						"r": "String prototype",
+						"s": "Upp",
+						"u": "PROTOTYPE",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b01498f5dd18e0026a2961a299cd9e6cb8a582cf"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "args",
+						"t": "String",
+						"i": "Upp::MacroElement::args",
+						"r": "String args",
+						"s": "Upp",
+						"u": "ARGS",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "02c63ac06b420d193a9aae2b655b3437e68ec6db"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "code",
+						"t": "String",
+						"i": "Upp::MacroElement::code",
+						"r": "String code",
+						"s": "Upp",
+						"u": "CODE",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1bde8c74a8940f960cdbb29b3b1a88751d409972"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "fileName",
+						"t": "String",
+						"i": "Upp::MacroElement::fileName",
+						"r": "String fileName",
+						"s": "Upp",
+						"u": "FILENAME",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6e3d74d1562791bdc1b4125bae961635cac466cf"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "line",
+						"t": "int",
+						"i": "Upp::MacroElement::line",
+						"r": "int line",
+						"s": "Upp",
+						"u": "LINE",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6fcb3f33a5d7a02cd355215b3a1aa45b81eea671"
+							}
+						]
+					},
+					{
+						"k": 4,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "UscFileParser",
+						"t": "Upp::UscFileParser",
+						"i": "Upp::UscFileParser",
+						"r": "final UscFileParser final",
+						"s": "Upp",
+						"u": "USCFILEPARSER",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6eea78cbfb5dec0c111429eae3f9f747a6eb1560"
+							}
+						]
+					},
+					{
+						"k": 36,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MacroList",
+						"t": "Upp::UscFileParser::MacroList",
+						"i": "Upp::UscFileParser::MacroList",
+						"r": "using MacroList",
+						"s": "Upp",
+						"u": "MACROLIST",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7c2515de12a44fa6f7a34b64b614013a8cb2cbbe"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "UscFileParser",
+						"t": "void (const String &)",
+						"i": "Upp::UscFileParser::UscFileParser(const String&)",
+						"r": "UscFileParser(const String& filePath)",
+						"s": "Upp",
+						"u": "USCFILEPARSER",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0729f163db35f1e820896f1e6c6f741266e2abbd"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Parse",
+						"t": "MacroList ()",
+						"i": "Upp::UscFileParser::Parse()",
+						"r": "MacroList Parse()",
+						"s": "Upp",
+						"u": "PARSE",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "adb9aa7373835936309a4ab5158c12adfa674827"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "IsValid",
+						"t": "bool ()",
+						"i": "Upp::UscFileParser::IsValid()",
+						"r": "bool IsValid()",
+						"s": "Upp",
+						"u": "ISVALID",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7d022182355118fc717875780bdd1ce08636324d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "ReadFunction",
+						"t": "void (CParser &, const String &, const char *, MacroList &)",
+						"i": "Upp::UscFileParser::ReadFunction(CParser&,const String&,const char*,MacroList&)",
+						"r": "void ReadFunction(CParser& parser, const String& comment, const char *prototypeBegin, MacroList& list)",
+						"s": "Upp",
+						"u": "READFUNCTION",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bb5255d4cc1a73524bb6112a49424c2c2eb5932c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "ReadMacro",
+						"t": "void (CParser &, const String &, const char *, MacroList &)",
+						"i": "Upp::UscFileParser::ReadMacro(CParser&,const String&,const char*,MacroList&)",
+						"r": "void ReadMacro(CParser& parser, const String& comment, const char *prototypeBegin, MacroList& list)",
+						"s": "Upp",
+						"u": "READMACRO",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "15b5a76e765584d0e1a2a98352a403b1d93928ee"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "FinishRead",
+						"t": "void (CParser &, const char *, MacroElement &, MacroList &)",
+						"i": "Upp::UscFileParser::FinishRead(CParser&,const char*,MacroElement&,MacroList&)",
+						"r": "void FinishRead(CParser& parser, const char *prototypeBegin, MacroElement& element, MacroList& list)",
+						"s": "Upp",
+						"u": "FINISHREAD",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "890bd1950771913b752e424ee41bc8cee975ea09"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": true,
+						"n": "FindNextElement",
+						"t": "void (CParser &)",
+						"i": "Upp::UscFileParser::FindNextElement(CParser&)",
+						"r": "static void FindNextElement(CParser& parser)",
+						"s": "Upp",
+						"u": "FINDNEXTELEMENT",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a76d08ac42c263d0a4f328a20668b5dd39838ff0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": true,
+						"n": "ReadArgs",
+						"t": "String (CParser &)",
+						"i": "Upp::UscFileParser::ReadArgs(CParser&)",
+						"r": "static String ReadArgs(CParser& parser)",
+						"s": "Upp",
+						"u": "READARGS",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d369dd9b52ae9cd3ad30fd13547380dfdf5ecc83"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": true,
+						"n": "ReadKeyDesc",
+						"t": "String (CParser &)",
+						"i": "Upp::UscFileParser::ReadKeyDesc(CParser&)",
+						"r": "static String ReadKeyDesc(CParser& parser)",
+						"s": "Upp",
+						"u": "READKEYDESC",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "df67fcd3d04e4b62773bcf2e61a488bbf9cebb90"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "filePath",
+						"t": "String",
+						"i": "Upp::UscFileParser::filePath",
+						"r": "String filePath",
+						"s": "Upp",
+						"u": "FILEPATH",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c0b1b12bdcea960ea47b1c5fd1351b98fe5b31ae"
+							}
+						]
+					},
+					{
+						"k": 4,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MacroManagerWindow",
+						"t": "Upp::MacroManagerWindow",
+						"i": "Upp::MacroManagerWindow",
+						"r": "final MacroManagerWindow final : public WithMacroManagerLayout<TopWindow>",
+						"s": "Upp",
+						"u": "MACROMANAGERWINDOW",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "Upp::WithMacroManagerLayout",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "07e99942465d4504df29aa9e0362ec36c68ca836"
+							}
+						]
+					},
+					{
+						"k": 36,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MacroStore",
+						"t": "Upp::MacroManagerWindow::MacroStore",
+						"i": "Upp::MacroManagerWindow::MacroStore",
+						"r": "using MacroStore",
+						"s": "Upp",
+						"u": "MACROSTORE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d8cbe223570a93dffdc71712492e8049c63b65d7"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "MacroManagerWindow",
+						"t": "void (const Workspace &, const String &)",
+						"i": "Upp::MacroManagerWindow::MacroManagerWindow(const Workspace&,const String&)",
+						"r": "MacroManagerWindow(const Workspace& wspc, const String& hlStyles)",
+						"s": "Upp",
+						"u": "MACROMANAGERWINDOW",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7d8e5e9c1ec2685718776fa780c0d4dc87bcb998"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsGlobalMacrosChanged",
+						"t": "bool () const",
+						"i": "Upp::MacroManagerWindow::IsGlobalMacrosChanged()const",
+						"r": "bool IsGlobalMacrosChanged() const",
+						"s": "Upp",
+						"u": "ISGLOBALMACROSCHANGED",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3cf159775b04350e3c9cc1fb82faf92f28e9927b"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Layout",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::Layout()",
+						"r": "void Layout()",
+						"s": "Upp",
+						"u": "LAYOUT",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e9ea6155fc44dc1fbadb2aacdcab0910ac610f0b"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "WhenEdit",
+						"t": "Event<String, int>",
+						"i": "Upp::MacroManagerWindow::WhenEdit",
+						"r": "Event<String, int> WhenEdit",
+						"s": "Upp",
+						"u": "WHENEDIT",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9206889d3e2c428e38ff2bf5107b22b1e7dfecda"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "InitButtons",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::InitButtons()",
+						"r": "void InitButtons()",
+						"s": "Upp",
+						"u": "INITBUTTONS",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a073448fceadd9727f31cf15d32383c3f9c2c174"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "InitEvents",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::InitEvents()",
+						"r": "void InitEvents()",
+						"s": "Upp",
+						"u": "INITEVENTS",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9cac76aa4c35d4acb480465f38d7a766a97146c4"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "InitToolBar",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::InitToolBar()",
+						"r": "void InitToolBar()",
+						"s": "Upp",
+						"u": "INITTOOLBAR",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "635d354dc26934327ee6891dc50834c39bffb572"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "InitToolButton",
+						"t": "void (ToolButton &, const String &, const Image &)",
+						"i": "Upp::MacroManagerWindow::InitToolButton(ToolButton&,const String&,const Image&)",
+						"r": "void InitToolButton(ToolButton& toolButton, const String& label, const Image& image)",
+						"s": "Upp",
+						"u": "INITTOOLBUTTON",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8ea7edb8f9448c7aa29536d0251e82ef0b18c426"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "LoadUscDir",
+						"t": "void (const String &)",
+						"i": "Upp::MacroManagerWindow::LoadUscDir(const String&)",
+						"r": "void LoadUscDir(const String& dir)",
+						"s": "Upp",
+						"u": "LOADUSCDIR",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5b6c424591a0d5fbdcdfb8f575d0d6ba461baaec"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "LoadMacros",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::LoadMacros()",
+						"r": "void LoadMacros()",
+						"s": "Upp",
+						"u": "LOADMACROS",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b77c27ab9494105bba52fcd5929692ffab627b70"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "ReloadGlobalMacros",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::ReloadGlobalMacros()",
+						"r": "void ReloadGlobalMacros()",
+						"s": "Upp",
+						"u": "RELOADGLOBALMACROS",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e60a066ad1f571d6424ed68689659267970b100f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "ReloadLocalMacros",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::ReloadLocalMacros()",
+						"r": "void ReloadLocalMacros()",
+						"s": "Upp",
+						"u": "RELOADLOCALMACROS",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "60ef49f762bda186e7bad3f871b205c417981643"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "OnMacroBar",
+						"t": "void (Bar &)",
+						"i": "Upp::MacroManagerWindow::OnMacroBar(Bar&)",
+						"r": "void OnMacroBar(Bar& bar)",
+						"s": "Upp",
+						"u": "ONMACROBAR",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "708a6182b46540407a6f67c8eb25b23263f168f0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "OnTreeSel",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnTreeSel()",
+						"r": "void OnTreeSel()",
+						"s": "Upp",
+						"u": "ONTREESEL",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6647fd939c821002f3050e630d5913230eeb92fe"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "OnTabSet",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnTabSet()",
+						"r": "void OnTabSet()",
+						"s": "Upp",
+						"u": "ONTABSET",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1a62edef221a875f76c6aa249e5ad55e5d07b4d6"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "OnImport",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnImport()",
+						"r": "void OnImport()",
+						"s": "Upp",
+						"u": "ONIMPORT",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ca8751a02d3850e98608b5d35e29e4bf1760a397"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "OnExport",
+						"t": "void (int)",
+						"i": "Upp::MacroManagerWindow::OnExport(int)",
+						"r": "void OnExport(int id)",
+						"s": "Upp",
+						"u": "ONEXPORT",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "aaf6a60990adc78f7868af7dbc0fe2525b880029"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "OnEditFile",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnEditFile()",
+						"r": "void OnEditFile()",
+						"s": "Upp",
+						"u": "ONEDITFILE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f75a61585886f3bfc706b8e2358e6818b0fa1ebe"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "OnNewMacroFile",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnNewMacroFile()",
+						"r": "void OnNewMacroFile()",
+						"s": "Upp",
+						"u": "ONNEWMACROFILE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1b4e299c1cf505b6934eef4dae9c793a2046e5d1"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "OnDeleteMacroFile",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnDeleteMacroFile()",
+						"r": "void OnDeleteMacroFile()",
+						"s": "Upp",
+						"u": "ONDELETEMACROFILE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e214f52f2114c6882f6f7081846a217a242b6c03"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "OnGlobalMacrosChanged",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnGlobalMacrosChanged()",
+						"r": "void OnGlobalMacrosChanged()",
+						"s": "Upp",
+						"u": "ONGLOBALMACROSCHANGED",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f7170277231f09264e4822ce7781417b59646dbf"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "ExportFiles",
+						"t": "void (Index<String> &, const String &)",
+						"i": "Upp::MacroManagerWindow::ExportFiles(Index&,const String&)",
+						"r": "void ExportFiles(Index<String>& files, const String& dir)",
+						"s": "Upp",
+						"u": "EXPORTFILES",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "cc384aa91f9c3c7864d5711bb315828a14591ab0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "FindNodeFiles",
+						"t": "void (int, Index<String> &)",
+						"i": "Upp::MacroManagerWindow::FindNodeFiles(int,Index&)",
+						"r": "void FindNodeFiles(int id, Index<String>& list)",
+						"s": "Upp",
+						"u": "FINDNODEFILES",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4af1ce2f5f659deb0f3d8dbd71ea38be8a5ed2b6"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": true,
+						"n": "GenFileOverrideMessage",
+						"t": "String (const String &)",
+						"i": "Upp::MacroManagerWindow::GenFileOverrideMessage(const String&)",
+						"r": "static String GenFileOverrideMessage(const String& fileName)",
+						"s": "Upp",
+						"u": "GENFILEOVERRIDEMESSAGE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "07595ba6cebccfb15e80a69c033f4a5e11566add"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsGlobalFile",
+						"t": "bool () const",
+						"i": "Upp::MacroManagerWindow::IsGlobalFile()const",
+						"r": "bool IsGlobalFile() const",
+						"s": "Upp",
+						"u": "ISGLOBALFILE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "917e109643a94fb46da3c062d664d24fb323c9c6"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsFile",
+						"t": "bool () const",
+						"i": "Upp::MacroManagerWindow::IsFile()const",
+						"r": "bool IsFile() const",
+						"s": "Upp",
+						"u": "ISFILE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "09d7a97e4f966d625bc704482a89298d2a6e84cb"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsFile",
+						"t": "bool (int) const",
+						"i": "Upp::MacroManagerWindow::IsFile(int)const",
+						"r": "bool IsFile(int id) const",
+						"s": "Upp",
+						"u": "ISFILE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "cad75cb9602638aad0f9855e8fb0354e969ab5a0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsMacro",
+						"t": "bool () const",
+						"i": "Upp::MacroManagerWindow::IsMacro()const",
+						"r": "bool IsMacro() const",
+						"s": "Upp",
+						"u": "ISMACRO",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1df5e5fd25ccdf71e0653b25052b71595e70d851"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsEditPossible",
+						"t": "bool () const",
+						"i": "Upp::MacroManagerWindow::IsEditPossible()const",
+						"r": "bool IsEditPossible() const",
+						"s": "Upp",
+						"u": "ISEDITPOSSIBLE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "550b70942d0eef12b1e3e080ee0a1ecf8ba3549b"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsGlobalTab",
+						"t": "bool () const",
+						"i": "Upp::MacroManagerWindow::IsGlobalTab()const",
+						"r": "bool IsGlobalTab() const",
+						"s": "Upp",
+						"u": "ISGLOBALTAB",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "aa9a1d8ac6511525fffbdc4c262ee45be840e244"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetCurrentTree",
+						"t": "const TreeCtrl &() const",
+						"i": "Upp::MacroManagerWindow::GetCurrentTree()const",
+						"r": "const TreeCtrl& GetCurrentTree() const",
+						"s": "Upp",
+						"u": "GETCURRENTTREE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f4e6a4309a9c3394178be8be3511305409627476"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "wspc",
+						"t": "const Workspace &",
+						"i": "Upp::MacroManagerWindow::wspc",
+						"r": "const Workspace& wspc",
+						"s": "Upp",
+						"u": "WSPC",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "70b56b776a784009f15b2f21e53354d89c174db2"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "editLabel",
+						"t": "ToolButton",
+						"i": "Upp::MacroManagerWindow::editLabel",
+						"r": "ToolButton editLabel",
+						"s": "Upp",
+						"u": "EDITLABEL",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "13e10c7e9c5074bfcfa6c06685ddd5c9d731ffbf"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "exportLabel",
+						"t": "ToolButton",
+						"i": "Upp::MacroManagerWindow::exportLabel",
+						"r": "ToolButton exportLabel",
+						"s": "Upp",
+						"u": "EXPORTLABEL",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9371d8ac5f88a46a2c1a2ffec123e0ba06a7c6b8"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "newGlobalLabel",
+						"t": "ToolButton",
+						"i": "Upp::MacroManagerWindow::newGlobalLabel",
+						"r": "ToolButton newGlobalLabel",
+						"s": "Upp",
+						"u": "NEWGLOBALLABEL",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0676f05c3888faec09fdb934e302decf283e0960"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "importGlobalsLabel",
+						"t": "ToolButton",
+						"i": "Upp::MacroManagerWindow::importGlobalsLabel",
+						"r": "ToolButton importGlobalsLabel",
+						"s": "Upp",
+						"u": "IMPORTGLOBALSLABEL",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e2b9b8b020d3e01dd7fc92ce1b602683eae8ebe7"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "exportGlobalsLabel",
+						"t": "ToolButton",
+						"i": "Upp::MacroManagerWindow::exportGlobalsLabel",
+						"r": "ToolButton exportGlobalsLabel",
+						"s": "Upp",
+						"u": "EXPORTGLOBALSLABEL",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "92b34b97d30229b958bad525accb02700d1b4a91"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "tab",
+						"t": "TabCtrl",
+						"i": "Upp::MacroManagerWindow::tab",
+						"r": "TabCtrl tab",
+						"s": "Upp",
+						"u": "TAB",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9306abab7b9387594a9cfc3b3aceee3ee77baedd"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "globalTree",
+						"t": "TreeCtrl",
+						"i": "Upp::MacroManagerWindow::globalTree",
+						"r": "TreeCtrl globalTree",
+						"s": "Upp",
+						"u": "GLOBALTREE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8736aeb4f89246f661157928a843aee5528de7f5"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "localTree",
+						"t": "TreeCtrl",
+						"i": "Upp::MacroManagerWindow::localTree",
+						"r": "TreeCtrl localTree",
+						"s": "Upp",
+						"u": "LOCALTREE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "70677280fcbb350f70456f789b157fe2915b7f2f"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "splitter",
+						"t": "SplitterFrame",
+						"i": "Upp::MacroManagerWindow::splitter",
+						"r": "SplitterFrame splitter",
+						"s": "Upp",
+						"u": "SPLITTER",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "432905937e6b7674ea3f90feee29e5b76595ffe6"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "editor",
+						"t": "CodeEditor",
+						"i": "Upp::MacroManagerWindow::editor",
+						"r": "CodeEditor editor",
+						"s": "Upp",
+						"u": "EDITOR",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ccc5988c216ff2464c0bc567213c9e0eb2845eb7"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "globalMacrosChanged",
+						"t": "bool",
+						"i": "Upp::MacroManagerWindow::globalMacrosChanged",
+						"r": "bool globalMacrosChanged",
+						"s": "Upp",
+						"u": "GLOBALMACROSCHANGED",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ecc37d1aa16c9b52dd1302693cd7b77009a6c686"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "MacroManager.lay",
+			"value": {
+				"items": [
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MacroManagerLayout__layid",
+						"t": "Upp::MacroManagerLayout__layid",
+						"i": "Upp::MacroManagerLayout__layid",
+						"r": "MacroManagerLayout__layid",
+						"s": "Upp",
+						"u": "MACROMANAGERLAYOUT__LAYID",
+						"q": "Upp::MacroManagerLayout__layid",
+						"w": "UPP::MACROMANAGERLAYOUT__LAYID",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5b611623dd8745001557d57b119061074aa49e33"
+							}
+						]
+					},
+					{
+						"k": 30,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "InitLayout",
+						"t": "void (Upp::Ctrl &, L &, D &, MacroManagerLayout__layid &)",
+						"i": "Upp::InitLayout(Upp::Ctrl&,L&,D&,MacroManagerLayout__layid&)",
+						"r": "template <class L, class D> void InitLayout(Upp::Ctrl& parent, L& layout, D& uts, MacroManagerLayout__layid&)",
+						"s": "Upp",
+						"u": "INITLAYOUT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2380a80976d6ecceec25be0abd78d697e256a992"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "GetLayoutSize",
+						"t": "Upp::Size ()",
+						"i": "Upp::WithMacroManagerLayout::GetLayoutSize()",
+						"r": "static Upp::Size GetLayoutSize()",
+						"s": "Upp",
+						"u": "GETLAYOUTSIZE",
+						"q": "Upp::WithMacroManagerLayout",
+						"w": "UPP::WITHMACROMANAGERLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5b611623dd8745001557d57b119061074aa49e33"
+							}
+						]
+					},
+					{
+						"k": 30,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetLayout_MacroManagerLayout",
+						"t": "void (T &, D &, bool, bool)",
+						"i": "Upp::SetLayout_MacroManagerLayout(T&,D&,bool,bool)",
+						"r": "template <class T, class D> void SetLayout_MacroManagerLayout(T& ctrl, D& parent, bool add = false, bool show = false)",
+						"s": "Upp",
+						"u": "SETLAYOUT_MACROMANAGERLAYOUT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5b611623dd8745001557d57b119061074aa49e33"
+							}
+						]
+					},
+					{
+						"k": 30,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetLayout_MacroManagerLayout",
+						"t": "void (T &, bool, bool)",
+						"i": "Upp::SetLayout_MacroManagerLayout(T&,bool,bool)",
+						"r": "template <class T> void SetLayout_MacroManagerLayout(T& parent, bool add = false, bool show = false)",
+						"s": "Upp",
+						"u": "SETLAYOUT_MACROMANAGERLAYOUT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5b611623dd8745001557d57b119061074aa49e33"
+							}
+						]
+					},
+					{
+						"k": 31,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "WithMacroManagerLayout",
+						"t": "",
+						"i": "Upp::WithMacroManagerLayout",
+						"r": "template <class T> WithMacroManagerLayout : public T, public MacroManagerLayout__layid",
+						"s": "Upp",
+						"u": "WITHMACROMANAGERLAYOUT",
+						"q": "Upp::WithMacroManagerLayout",
+						"w": "UPP::WITHMACROMANAGERLAYOUT",
+						"y": "Upp::MacroManagerLayout__layid",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2380a80976d6ecceec25be0abd78d697e256a992"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "parent",
+						"t": "Upp::ParentCtrl",
+						"i": "Upp::WithMacroManagerLayout::parent",
+						"r": "Upp::ParentCtrl parent",
+						"s": "Upp",
+						"u": "PARENT",
+						"q": "Upp::WithMacroManagerLayout",
+						"w": "UPP::WITHMACROMANAGERLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "close",
+						"t": "Upp::Button",
+						"i": "Upp::WithMacroManagerLayout::close",
+						"r": "Upp::Button close",
+						"s": "Upp",
+						"u": "CLOSE",
+						"q": "Upp::WithMacroManagerLayout",
+						"w": "UPP::WITHMACROMANAGERLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "tool",
+						"t": "ToolBar",
+						"i": "Upp::WithMacroManagerLayout::tool",
+						"r": "ToolBar tool",
+						"s": "Upp",
+						"u": "TOOL",
+						"q": "Upp::WithMacroManagerLayout",
+						"w": "UPP::WITHMACROMANAGERLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "dv___3",
+						"t": "Ctrl",
+						"i": "Upp::WithMacroManagerLayout::dv___3",
+						"r": "Ctrl dv___3",
+						"s": "Upp",
+						"u": "DV___3",
+						"q": "Upp::WithMacroManagerLayout",
+						"w": "UPP::WITHMACROMANAGERLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "help",
+						"t": "Upp::Button",
+						"i": "Upp::WithMacroManagerLayout::help",
+						"r": "Upp::Button help",
+						"s": "Upp",
+						"u": "HELP",
+						"q": "Upp::WithMacroManagerLayout",
+						"w": "UPP::WITHMACROMANAGERLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "MacroManager.iml",
+			"value": {
+				"items": [
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "Macro",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::Macro()",
+						"r": "static Upp::Image Macro()",
+						"s": "Upp",
+						"u": "MACRO",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "213384acaa8d5f4cf9eb12ec9601c89d876e0d57"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "Macro__DARK",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::Macro__DARK()",
+						"r": "static Upp::Image Macro__DARK()",
+						"s": "Upp",
+						"u": "MACRO__DARK",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2c109ec6f8ca0fae345fc7d3d2a2cf9894164939"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "Fn",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::Fn()",
+						"r": "static Upp::Image Fn()",
+						"s": "Upp",
+						"u": "FN",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4f7ed350d5e61b90c94cdbdd3bbe7c19d2d6a60d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "Fn__DARK",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::Fn__DARK()",
+						"r": "static Upp::Image Fn__DARK()",
+						"s": "Upp",
+						"u": "FN__DARK",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9322180c5a34f3853c01074931b546d29686888f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "ArrowRight",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::ArrowRight()",
+						"r": "static Upp::Image ArrowRight()",
+						"s": "Upp",
+						"u": "ARROWRIGHT",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ecb888527ffa278b61a310ca9af8824ab80f59d5"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "PluginGo",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::PluginGo()",
+						"r": "static Upp::Image PluginGo()",
+						"s": "Upp",
+						"u": "PLUGINGO",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d6dac7f612f65d700a22c5efbe8c143d794c88d6"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "PluginError",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::PluginError()",
+						"r": "static Upp::Image PluginError()",
+						"s": "Upp",
+						"u": "PLUGINERROR",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f461e8258f2270bbf95ac646613aeb54c7721d8f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "PluginLink",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::PluginLink()",
+						"r": "static Upp::Image PluginLink()",
+						"s": "Upp",
+						"u": "PLUGINLINK",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "779bbb57d2a6a8caef513aea723f38607aef923d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "PluginEdit",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::PluginEdit()",
+						"r": "static Upp::Image PluginEdit()",
+						"s": "Upp",
+						"u": "PLUGINEDIT",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "875d63fc500197faa184c523f04412d3ffc5b71b"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "PluginDisabled",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::PluginDisabled()",
+						"r": "static Upp::Image PluginDisabled()",
+						"s": "Upp",
+						"u": "PLUGINDISABLED",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0e3854ede0717b8f97ebf823df05c862ae54b09b"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "PluginDelete",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::PluginDelete()",
+						"r": "static Upp::Image PluginDelete()",
+						"s": "Upp",
+						"u": "PLUGINDELETE",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "da88b02ada94e434a2fa3fe17fb93be68d8f946d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "PluginAdd",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::PluginAdd()",
+						"r": "static Upp::Image PluginAdd()",
+						"s": "Upp",
+						"u": "PLUGINADD",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "810e568cc921a24a9f7c40d0f4d5bbb32fbe760f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": true,
+						"n": "Plugin",
+						"t": "Upp::Image ()",
+						"i": "Upp::MacroManagerImg::Plugin()",
+						"r": "static Upp::Image Plugin()",
+						"s": "Upp",
+						"u": "PLUGIN",
+						"q": "Upp::MacroManagerImg",
+						"w": "UPP::MACROMANAGERIMG",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a5176dcfcd0d379a9511c7b4a4e3a1b3af182d1c"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "MacroManager.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "IMAGECLASS",
+						"t": "",
+						"i": "IMAGECLASS",
+						"r": "IMAGECLASS",
+						"s": "",
+						"u": "IMAGECLASS",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0e38f2cec733774bdb509fdf7333a9421524d216"
+							}
+						]
+					},
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "IMAGEFILE",
+						"t": "",
+						"i": "IMAGEFILE",
+						"r": "IMAGEFILE",
+						"s": "",
+						"u": "IMAGEFILE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d26ce20bcfe7f8c43cd0a286edd3d27a46ed7a8d"
+							}
+						]
+					},
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "METHOD_NAME",
+						"t": "",
+						"i": "METHOD_NAME",
+						"r": "METHOD_NAME",
+						"s": "",
+						"u": "METHOD_NAME",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "36c84fc1742bad3163091e80784d6feda06d4bea"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MacroManagerWindow",
+						"t": "void (const Workspace &, const String &)",
+						"i": "Upp::MacroManagerWindow::MacroManagerWindow(const Workspace&,const String&)",
+						"r": "MacroManagerWindow(const Workspace& wspc, const String& hlStyles)",
+						"s": "Upp",
+						"u": "MACROMANAGERWINDOW",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5ceb7d0135a76c05a92cba485878fb4446b9d40c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "InitToolBar",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::InitToolBar()",
+						"r": "void InitToolBar()",
+						"s": "Upp",
+						"u": "INITTOOLBAR",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "45d0573a5634d50df967dcf36d0723aeae1d7485"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "InitToolButton",
+						"t": "void (ToolButton &, const String &, const Image &)",
+						"i": "Upp::MacroManagerWindow::InitToolButton(ToolButton&,const String&,const Image&)",
+						"r": "void InitToolButton(ToolButton& toolButton, const String& label, const Image& image)",
+						"s": "Upp",
+						"u": "INITTOOLBUTTON",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "376f343a9e463bbce68db1d060830ecdf33126e6"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "InitButtons",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::InitButtons()",
+						"r": "void InitButtons()",
+						"s": "Upp",
+						"u": "INITBUTTONS",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "62f624131140f5170dc2c59dd3d2fa4a535a7eb1"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "InitEvents",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::InitEvents()",
+						"r": "void InitEvents()",
+						"s": "Upp",
+						"u": "INITEVENTS",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b54ed81ba10a79f020a059b7cd6c6d896cce0516"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "OnMacroBar",
+						"t": "void (Bar &)",
+						"i": "Upp::MacroManagerWindow::OnMacroBar(Bar&)",
+						"r": "void OnMacroBar(Bar& bar)",
+						"s": "Upp",
+						"u": "ONMACROBAR",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7b09585c1b423700e0ac63196aeeee789c1eed46"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Layout",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::Layout()",
+						"r": "void Layout()",
+						"s": "Upp",
+						"u": "LAYOUT",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "aea6f4ee4ef67b0dd83470dfff81df0be6c539b0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "OnTreeSel",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnTreeSel()",
+						"r": "void OnTreeSel()",
+						"s": "Upp",
+						"u": "ONTREESEL",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "15aed19154a8855e6ca8141f023930de2f6adb41"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "OnTabSet",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnTabSet()",
+						"r": "void OnTabSet()",
+						"s": "Upp",
+						"u": "ONTABSET",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b8c2ee01e3eadf1ef529889cae383123c5251dba"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "OnImport",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnImport()",
+						"r": "void OnImport()",
+						"s": "Upp",
+						"u": "ONIMPORT",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8c78fff875d70b2f13cdf76c81182a92b8121011"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ExportFiles",
+						"t": "void (Index<String> &, const String &)",
+						"i": "Upp::MacroManagerWindow::ExportFiles(Index&,const String&)",
+						"r": "void ExportFiles(Index<String>& files, const String& dir)",
+						"s": "Upp",
+						"u": "EXPORTFILES",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7159b65246cb179417be82ab893ecc32ed99c7cb"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "FindNodeFiles",
+						"t": "void (int, Index<String> &)",
+						"i": "Upp::MacroManagerWindow::FindNodeFiles(int,Index&)",
+						"r": "void FindNodeFiles(int id, Index<String>& list)",
+						"s": "Upp",
+						"u": "FINDNODEFILES",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "be124794cdf61f1ed25e72188b440cc9d57fe9ec"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "OnExport",
+						"t": "void (int)",
+						"i": "Upp::MacroManagerWindow::OnExport(int)",
+						"r": "void OnExport(int id)",
+						"s": "Upp",
+						"u": "ONEXPORT",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0e9238067f4fa1fa844c6a57181f83f23b2b37eb"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "OnEditFile",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnEditFile()",
+						"r": "void OnEditFile()",
+						"s": "Upp",
+						"u": "ONEDITFILE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "cfaa4c691c67b3ec7253a9bc20c5018a83278fdd"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "OnNewMacroFile",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnNewMacroFile()",
+						"r": "void OnNewMacroFile()",
+						"s": "Upp",
+						"u": "ONNEWMACROFILE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6030169b7840c368a10e6a6c79edb82778ba4842"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "OnDeleteMacroFile",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnDeleteMacroFile()",
+						"r": "void OnDeleteMacroFile()",
+						"s": "Upp",
+						"u": "ONDELETEMACROFILE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "46d42b52f1fa1680c305ea0e174175f566cd3bc8"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "OnGlobalMacrosChanged",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::OnGlobalMacrosChanged()",
+						"r": "void OnGlobalMacrosChanged()",
+						"s": "Upp",
+						"u": "ONGLOBALMACROSCHANGED",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7153c809777fa12be4c64076c6c3c423983cda55"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GenFileOverrideMessage",
+						"t": "String (const String &)",
+						"i": "Upp::MacroManagerWindow::GenFileOverrideMessage(const String&)",
+						"r": "String GenFileOverrideMessage(const String& fileName)",
+						"s": "Upp",
+						"u": "GENFILEOVERRIDEMESSAGE",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "727dfed173b2e655283501472576ef4fc249e74c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "LoadUscDir",
+						"t": "void (const String &)",
+						"i": "Upp::MacroManagerWindow::LoadUscDir(const String&)",
+						"r": "void LoadUscDir(const String& dir)",
+						"s": "Upp",
+						"u": "LOADUSCDIR",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "85c2b665046d2c09e01e2a8e0c061c4c07f54643"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "LoadMacros",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::LoadMacros()",
+						"r": "void LoadMacros()",
+						"s": "Upp",
+						"u": "LOADMACROS",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "628d3061644c7f6bccf458f7475876527e7886c7"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ReloadGlobalMacros",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::ReloadGlobalMacros()",
+						"r": "void ReloadGlobalMacros()",
+						"s": "Upp",
+						"u": "RELOADGLOBALMACROS",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "107902a7b547a739d86f8a30cf45171c47c6d5e8"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ReloadLocalMacros",
+						"t": "void ()",
+						"i": "Upp::MacroManagerWindow::ReloadLocalMacros()",
+						"r": "void ReloadLocalMacros()",
+						"s": "Upp",
+						"u": "RELOADLOCALMACROS",
+						"q": "Upp::MacroManagerWindow",
+						"w": "UPP::MACROMANAGERWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "27f865611af13703c7169f1fee7d7bccebae5cf3"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "UscFileParser.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "METHOD_NAME",
+						"t": "",
+						"i": "METHOD_NAME",
+						"r": "METHOD_NAME",
+						"s": "",
+						"u": "METHOD_NAME",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "cfe82cadc74ed012cfb90bae933b55b96b97fdb0"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "UscFileParser",
+						"t": "void (const String &)",
+						"i": "Upp::UscFileParser::UscFileParser(const String&)",
+						"r": "UscFileParser(const String& filePath)",
+						"s": "Upp",
+						"u": "USCFILEPARSER",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d9404ec91467ea679278f5a42c5ad8f000920892"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Parse",
+						"t": "UscFileParser::MacroList ()",
+						"i": "Upp::UscFileParser::Parse()",
+						"r": "UscFileParser::MacroList Parse()",
+						"s": "Upp",
+						"u": "PARSE",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8c926f4429ea615e4c2207e6d0a87292722d6da7"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "IsValid",
+						"t": "bool ()",
+						"i": "Upp::UscFileParser::IsValid()",
+						"r": "bool IsValid()",
+						"s": "Upp",
+						"u": "ISVALID",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4bda6841545a41dc1be6065302d99a6d0a50d601"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ReadFunction",
+						"t": "void (CParser &, const String &, const char *, MacroList &)",
+						"i": "Upp::UscFileParser::ReadFunction(CParser&,const String&,const char*,MacroList&)",
+						"r": "void ReadFunction(CParser& parser, const String& comment, const char *prototypeBegin, MacroList& list)",
+						"s": "Upp",
+						"u": "READFUNCTION",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "23718f7ec272dda1144b034464ab6129b3627a97"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ReadMacro",
+						"t": "void (CParser &, const String &, const char *, MacroList &)",
+						"i": "Upp::UscFileParser::ReadMacro(CParser&,const String&,const char*,MacroList&)",
+						"r": "void ReadMacro(CParser& parser, const String& comment, const char *prototypeBegin, MacroList& list)",
+						"s": "Upp",
+						"u": "READMACRO",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b1673896cbad2310a83087a580164c4f411f665e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "FinishRead",
+						"t": "void (CParser &, const char *, MacroElement &, MacroList &)",
+						"i": "Upp::UscFileParser::FinishRead(CParser&,const char*,MacroElement&,MacroList&)",
+						"r": "void FinishRead(CParser& parser, const char *prototypeBegin, MacroElement& element, MacroList& list)",
+						"s": "Upp",
+						"u": "FINISHREAD",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0533405384405ae097edb7c2d2bee6d8272b635b"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "FindNextElement",
+						"t": "void (CParser &)",
+						"i": "Upp::UscFileParser::FindNextElement(CParser&)",
+						"r": "void FindNextElement(CParser& parser)",
+						"s": "Upp",
+						"u": "FINDNEXTELEMENT",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "188ab7da08884d027ac6099dd614da1fb4ef34c1"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ReadArgs",
+						"t": "String (CParser &)",
+						"i": "Upp::UscFileParser::ReadArgs(CParser&)",
+						"r": "String ReadArgs(CParser& parser)",
+						"s": "Upp",
+						"u": "READARGS",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e28bd24244b67cb5e804975cf5d410a6e33ed767"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ReadKeyDesc",
+						"t": "String (CParser &)",
+						"i": "Upp::UscFileParser::ReadKeyDesc(CParser&)",
+						"r": "String ReadKeyDesc(CParser& parser)",
+						"s": "Upp",
+						"u": "READKEYDESC",
+						"q": "Upp::UscFileParser",
+						"w": "UPP::USCFILEPARSER",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "09bd2fbb1a3f173141aa2f90dbdd59ce8db80ed7"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "MacroElement.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "MacroElement",
+						"t": "void (Type, const String &, int, const String &)",
+						"i": "Upp::MacroElement::MacroElement(Type,const String&,int,const String&)",
+						"r": "MacroElement(Type type, const String& fileName, int line, const String& comment)",
+						"s": "Upp",
+						"u": "MACROELEMENT",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e6026a5ba1754ca00f12596146f941318dc3bdb4"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetImage",
+						"t": "Image () const",
+						"i": "Upp::MacroElement::GetImage()const",
+						"r": "Image GetImage() const",
+						"s": "Upp",
+						"u": "GETIMAGE",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "70470838f5b7e6bd0b04106b0d0b4b98ae3a7b78"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetContent",
+						"t": "String () const",
+						"i": "Upp::MacroElement::GetContent()const",
+						"r": "String GetContent() const",
+						"s": "Upp",
+						"u": "GETCONTENT",
+						"q": "Upp::MacroElement",
+						"w": "UPP::MACROELEMENT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "535b0c249e643fc787fece45a27b0b536aabbb64"
+							}
+						]
+					}
+				]
+			}
+		}
+	]
+}

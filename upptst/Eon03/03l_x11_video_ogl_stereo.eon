@@ -1,0 +1,23 @@
+machine glx.app:
+	
+	driver context:
+		x11.ogl.context
+	
+	chain program:
+		state event.register
+		
+		loop ogl.fbo:
+			ogl.customer
+			x11.ogl.fbo.program:
+				drawmem =				"false"
+				program =				"obj_view"
+				shader.default.vtx.path =	"shaders/tests/03f_vertex.glsl"
+				shader.default.frag.path =	"shaders/tests/03f_fragment.glsl"
+			
+			x11.ogl.fbo.sink:
+				close_machine =		true
+				sizeable =			true
+				env =				event.register
+				type =				stereo
+				fullscreen =		false
+				find.vr.screen =	false

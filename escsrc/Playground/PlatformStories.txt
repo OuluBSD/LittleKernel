@@ -1,0 +1,5 @@
+Notes:
+- purpose: to simulate a cooperating social group for text/script/song authoring purposes
+- usage examples:
+	- make short reel videos based on conversations, which discuss the topic you care in a way you care
+

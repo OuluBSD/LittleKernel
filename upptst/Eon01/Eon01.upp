@@ -1,0 +1,15 @@
+uses
+	Shell;
+
+file
+	Main.cpp,
+	01a_event_state.eon,
+	01b_midi_events.eon,
+	01c_meta_test.eon,
+	01d_meta_test.eon,
+	01e_meta_test.eon;
+
+mainconfig
+	"Release" = "AI SCREEN",
+	"Debug" = "AI SCREEN DEBUG_RT";
+

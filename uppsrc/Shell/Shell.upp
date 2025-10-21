@@ -1,0 +1,69 @@
+description "Topside main application\377B";
+
+uses
+	api/MidiFile,
+	api/MidiHw,
+	AI/Core,
+	api/AudioFileOut,
+	api/Camera,
+	api/Media,
+	api/Volumetric,
+	SoftPhys,
+	SoftAudio,
+	api/Physics,
+	Eon/Draw,
+	Eon/Lib;
+
+uses(LINUX & VR) SoftVR;
+
+uses(GUI & VIRTUALGUI) DesktopSuite;
+
+uses(GUI GUBO) GuboSuite;
+
+uses(DX12) Eon/Win;
+
+uses(GUI) Eon/Ctrl;
+
+uses(GUI | SCREEN) api/Graphics;
+
+uses(GUI | SCREEN) api/Hal;
+
+uses((GUI | SCREEN) & !EMSCRIPTEN) api/Screen;
+
+file
+	Shell.h,
+	Shell.cpp,
+	Prefabs.h,
+	_ readonly separator,
+	Defs.h,
+	EcsComplete.cpp;
+
+mainconfig
+	"Have everything (Linux)" = "AI GUI SCREEN SDL2 OGL FFMPEG OPENCV VR LOCALHMD FLUIDSYNTH BUILTIN_PORTAUDIO PORTMIDI",
+	"Have everything (FreeBSD)" = "AI GUI SCREEN SDL2 OGL FFMPEG OPENCV VR LOCALHMD FLUIDSYNTH BUILTIN_PORTAUDIO BUILTIN_ASSIMP PORTMIDI",
+	"Have everything (Windows)" = "AI GUI SCREEN SDL2 OGL VR FLUIDLITE BUILTIN_PORTAUDIO BUILTIN_ASSIMP",
+	"Have everything (Emscripten)" = "AI GUI SCREEN SDL2 EMSCRIPTEN",
+	"Have MSYS2 (Windows)" = "AI GUI SCREEN SDL2 DX11 VR OGL",
+	"Have Microsoft (Windows)" = "AI GUI SCREEN DX11 VR FLUIDLITE BUILTIN_PORTAUDIO BUILTIN_ASSIMP",
+	"Have Microsoft fenced (Windows UWP)" = "AI GUI SCREEN DX12 UWP VR",
+	"" = "",
+	"" = "AI SCREEN GUI",
+	"" = "SCREEN OGL BUILTIN_ASSIMP",
+	"" = "GUI SCREEN SDL2 OGL",
+	"" = "SCREEN SDL2 OGL FFMPEG",
+	"" = "DEBUG_RT",
+	"" = "DEBUG_RT SCREEN",
+	"" = "DEBUG_RT SCREEN OGL FFMPEG",
+	"" = "DEBUG_RT SCREEN SDL2",
+	"" = "DEBUG_RT SCREEN SDL2 OGL",
+	"" = "DEBUG_RT SCREEN SDL2 OGL FFMPEG",
+	"" = "DEBUG_RT SCREEN SDL2 OGL FFMPEG OPENCV FLUIDSYNTH",
+	"" = "DEBUG_RT FLUIDSYNTH BUILTIN_PORTAUDIO PORTMIDI",
+	"" = "SDL2",
+	"" = "FFMPEG",
+	"" = "BUILTIN_PORTAUDIO BUILTIN_PORTMIDI FLUIDLITE ",
+	"" = "BUILTIN_PORTAUDIO BUILTIN_PORTMIDI FLUIDLITE PACKETTIMING",
+	"" = "DEBUG_RT BUILTIN_PORTAUDIO BUILTIN_PORTMIDI FLUIDLITE",
+	"" = "DEBUG_RT GUI SCREEN OGL",
+	"Verbose Have Microsoft (Windows)" = "DEBUG_RT GUI SCREEN DX11 VR FLUIDLITE BUILTIN_PORTAUDIO BUILTIN_ASSIMP";
+

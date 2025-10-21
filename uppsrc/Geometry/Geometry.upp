@@ -1,0 +1,70 @@
+description "Classes for 2D/3D/etc operations.\377B128,0,54";
+
+uses
+	plugin/mikktspace,
+	Draw,
+	Draw/Extensions,
+	Core/MathNumeric;
+
+uses(!UWP) plugin/tiny_gltf;
+
+uses(!UWP & (BUILTIN_ASSIMP | LINUX)) plugin/assimp;
+
+library(!BUILTIN_ASSIMP POSIX !LINUX) assimp;
+
+library(!BUILTIN_ASSIMP WIN32 (CLANG | GCC) MSYS) libassimp.dll.a;
+
+file
+	AGENTS.md,
+	Geometry.h,
+	Common.h,
+	Matrix.h,
+	Matrix.cpp,
+	Matrix.inl highlight cpp,
+	Util.h,
+	Util.cpp,
+	GeomCommon.h,
+	Geom2D.h,
+	Geom2D.cpp,
+	Geom3D.h,
+	Geom3D.cpp,
+	GeomController.h,
+	Quadtree.h,
+	Quadtree.cpp,
+	Octree.h,
+	Octree.cpp,
+	GeomTypes.h,
+	GeomTypes.cpp,
+	BBox.cpp,
+	Material.h,
+	Material.cpp,
+	Mesh.h,
+	Mesh.cpp,
+	Model.h,
+	Model.cpp,
+	ModelBuilder.h,
+	ModelBuilder.cpp,
+	Draw.h,
+	Draw.cpp,
+	Frustum.h,
+	Frustum.cpp,
+	Compare.h,
+	Compare.cpp,
+	Camera.h,
+	Camera.cpp,
+	Pointcloud.h,
+	Pointcloud.cpp,
+	MeshTracker.h,
+	MeshTracker.cpp,
+	Uncamera.h,
+	Uncamera.cpp,
+	Vr.h,
+	Vr.cpp,
+	GeomEvent.h,
+	GeomEvent.cpp,
+	Trash readonly separator,
+	ModelPainter.h,
+	ModelPainter.cpp,
+	ModelDraw.h,
+	ModelDraw.cpp;
+

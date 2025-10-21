@@ -1,0 +1,19 @@
+description "Embed Gubo in Ctrl via GuboGLCtrl\377";
+
+uses
+	CtrlCore,
+	CtrlLib,
+	GuboCore,
+	GuboLib,
+	GuboCtrl,
+	Eon;
+
+file
+	AGENTS.md,
+	GuboGLCtrlDemo.h,
+	main.cpp,
+	_ readonly separator;
+
+mainconfig
+	"" = "GUI";
+

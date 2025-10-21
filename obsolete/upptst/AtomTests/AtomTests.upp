@@ -1,0 +1,13 @@
+uses
+	AtomNonGUI,
+	AtomLocal,
+	AtomComplete;
+
+file
+	AtomTests.h,
+	AtomTests.cpp;
+
+mainconfig
+	"" = "DEBUG_RT",
+	"" = "";
+

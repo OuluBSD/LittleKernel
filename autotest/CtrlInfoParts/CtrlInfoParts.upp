@@ -1,0 +1,11 @@
+uses
+	CtrlLib,
+	VirtualGui;
+
+file
+	Etalon.log,
+	main.cpp;
+
+mainconfig
+	"" = "GUI";
+

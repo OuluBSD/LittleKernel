@@ -1,0 +1,57 @@
+{
+	"id": 14,
+	"highest_seen_serial": 3982,
+	"seen_types": [
+
+	],
+	"root": {
+		".version": 3,
+		"id": "",
+		"type_hash": 0,
+		"serial": 3982,
+		"file": 14,
+		"is_ast": true,
+		"a.kind": 22,
+		"a.type": "",
+		"a.begin": {
+			"x": null,
+			"y": null
+		},
+		"a.end": {
+			"x": null,
+			"y": null
+		},
+		"a.filepos_hash": 0,
+		"a.is_ref": false,
+		"a.is_definition": false,
+		"a.is_disabled": false,
+		"sub": [
+			{
+				".version": 3,
+				"id": "Animation",
+				"type_hash": 0,
+				"serial": 3958,
+				"file": 14,
+				"is_ast": true,
+				"a.kind": 22,
+				"a.type": "",
+				"a.begin": {
+					"x": null,
+					"y": null
+				},
+				"a.end": {
+					"x": null,
+					"y": null
+				},
+				"a.filepos_hash": 0,
+				"a.is_ref": false,
+				"a.is_definition": false,
+				"a.is_disabled": false,
+				"sub": [
+
+				]
+			}
+		]
+	},
+	"hash": "6068894275547528965"
+}

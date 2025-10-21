@@ -1,0 +1,11 @@
+description "K-means clustering\377";
+
+uses
+	Core;
+
+file
+	main.cpp;
+
+mainconfig
+	"" = "";
+

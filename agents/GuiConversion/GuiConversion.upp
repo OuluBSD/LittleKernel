@@ -1,0 +1,27 @@
+uses
+	CtrlLib;
+
+file
+	AGENTS.md,
+	Main.cpp,
+	1 readonly separator,
+	Upp01.cpp,
+	Qt01.cpp,
+	Gtk01.cpp,
+	Gtkmm01.cpp,
+	Wx01.cpp,
+	Juce01.cpp,
+	Mfc01.cpp,
+	Wtl01.cpp,
+	WinRT01.cpp,
+	Cocoa01.mm,
+	Agar01.cpp,
+	Wt01.cpp,
+	Vst01.cpp;
+
+mainconfig
+	"" = "GUI UPP",
+	"" = "GUI WINRT USEMALLOC",
+	"" = "GUI MFC USEMALLOC",
+	"" = "GUI WTL USEMALLOC";
+

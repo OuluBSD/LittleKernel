@@ -1,0 +1,21 @@
+description "AI Ctrl Leads\3770,0,255";
+
+uses
+	AI/Ctrl/Base;
+
+file
+	AGENTS.md,
+	Leads.h,
+	Leads.lay,
+	LeadSourceCtrl.h,
+	LeadSourceCtrl.cpp,
+	LeadTemplateCtrl.h,
+	LeadTemplateCtrl.cpp,
+	LeadPublisherCtrl.h,
+	LeadPublisherCtrl.cpp,
+	Marketplace.cpp,
+	Factory.h,
+	Factory.cpp,
+	Consumer.h,
+	Consumer.cpp;
+

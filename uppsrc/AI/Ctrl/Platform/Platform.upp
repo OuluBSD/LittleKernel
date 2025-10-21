@@ -1,0 +1,12 @@
+description "AI Ctrl Platform\3770,0,255";
+
+uses
+	AI/Ctrl/Base;
+
+file
+	AGENTS.md,
+	Platform.h,
+	PlatformManager.h,
+	PlatformManager.cpp,
+	Platform.cpp;
+

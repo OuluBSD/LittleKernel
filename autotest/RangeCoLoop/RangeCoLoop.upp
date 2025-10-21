@@ -1,0 +1,11 @@
+description "#WAIT: 10\377";
+
+uses
+	Core;
+
+file
+	RangeCoLoop.cpp;
+
+mainconfig
+	"" = "MT";
+

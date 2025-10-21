@@ -1,0 +1,14 @@
+description "GLCtrl widget example\377";
+
+uses
+	GLCtrl,
+	CtrlLib;
+
+file
+	main.cpp;
+
+mainconfig
+	"" = "GUI",
+	"" = "GUI X11",
+	"" = "GUI ST";
+

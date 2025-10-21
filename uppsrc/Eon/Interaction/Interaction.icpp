@@ -1,0 +1,12 @@
+#include "Interaction.h"
+
+NAMESPACE_UPP
+
+INITBLOCK {
+	// Interaction and player body systems
+	REGISTER_SYSTEM_ECS(InteractionSystem, "interaction.system", "Ecs|Util");
+	REGISTER_SYSTEM_ECS(PlayerBodySystem,  "player.body.system", "Ecs|Util");
+}
+
+END_UPP_NAMESPACE
+

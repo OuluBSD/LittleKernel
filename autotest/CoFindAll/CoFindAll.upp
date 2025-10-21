@@ -1,0 +1,11 @@
+description "#WAIT: 5\377";
+
+uses
+	Core;
+
+file
+	CoFindAll.cpp;
+
+mainconfig
+	"" = "MT";
+

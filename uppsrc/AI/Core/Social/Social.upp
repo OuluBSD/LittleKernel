@@ -1,0 +1,22 @@
+description "AI/Core/Social\377128,0,0";
+
+uses
+	AI/Core/Base,
+	Esc,
+	AI/Core/Core,
+	AI/Core/Content;
+
+file
+	AGENTS.md,
+	Social.h,
+	BiographyPlatform.h,
+	BiographyPlatform.cpp,
+	SocialContent.cpp,
+	SocialHeader.cpp,
+	SocialMarketplace.cpp,
+	SocialNeeds.cpp,
+	Justice.h,
+	Justice.cpp,
+	Lobbying.h,
+	Lobbying.cpp;
+

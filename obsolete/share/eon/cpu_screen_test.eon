@@ -1,0 +1,24 @@
+
+machine sdl.app:
+	
+	driver context:
+		sdl.context
+	
+	chain program:
+		
+		state event.register
+		
+		loop center.events:
+			center.customer
+			sdl.event.pipe
+			state.event.pipe:
+				target = event.register
+		
+		loop center.stage0.image:
+			center.customer
+			sdl.video:
+				close_machine =			true
+				sizeable =				true
+				env =					event.register
+				shader.frag.name =		"simple_single"
+

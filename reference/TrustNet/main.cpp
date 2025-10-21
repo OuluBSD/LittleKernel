@@ -1,0 +1,19 @@
+#include <TrustLib/TrustLib.h>
+
+
+void GraphTest();
+void AppleSeedTest();
+void TrustNetTest();
+
+CONSOLE_APP_MAIN {
+	using namespace UPP;
+	using namespace Upp;
+	
+	SetCoutLog();
+	
+	
+	GraphTest();
+	AppleSeedTest();
+	TrustNetTest();
+}
+

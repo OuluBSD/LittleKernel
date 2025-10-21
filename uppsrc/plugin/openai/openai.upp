@@ -1,0 +1,10 @@
+description "\3770,128,128";
+
+uses
+	plugin/json;
+
+library(WIN32 & !MSC) "curl libcurl.dll.a";
+
+file
+	openai.h;
+

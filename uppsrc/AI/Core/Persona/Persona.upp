@@ -1,0 +1,19 @@
+description "AI/Core/Persona\377128,0,0";
+
+uses
+	AI/Core/Base,
+	Esc,
+	AI/Core/Core;
+
+file
+	AGENTS.md,
+	Persona.h,
+	Profile.h,
+	Profile.cpp,
+	Perspective.h,
+	Perspective.cpp,
+	Male.h,
+	Male.cpp,
+	Female.h,
+	Female.cpp;
+

@@ -1,0 +1,20 @@
+chain tester:
+	loop output0:
+		center.customer
+		center.audio.src.test
+		center.audio.side.src.center.user[][loop == "pipe"]
+	
+	loop output1:
+		center.customer
+		center.audio.src.test
+		center.audio.side.src.center.user[][loop == "input"]
+	
+	loop pipe:
+		center.customer
+		center.audio.side.sink.center.user[loop == "output0"]
+		center.audio.side.src.center.user[][loop == "input"]
+	
+	loop input:
+		center.customer
+		center.audio.side.sink2.center.user[loop == "pipe", loop == "output1"]
+		center.audio.sink.test.poller

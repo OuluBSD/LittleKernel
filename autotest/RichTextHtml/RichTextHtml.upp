@@ -1,0 +1,12 @@
+uses
+	Core,
+	RichText;
+
+file
+	Out.html,
+	Test.qtf,
+	RichTextHtml.cpp;
+
+mainconfig
+	"" = "";
+

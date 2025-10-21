@@ -1,0 +1,21 @@
+description "\377B";
+
+uses
+	MCP;
+
+file
+	AGENTS.md,
+	CURRENT_TASK.md,
+	mcp_client.sh highlight log,
+	MCP.h,
+	MCP.cpp,
+	Log.h,
+	Log.cpp,
+	Protocol.h,
+	Server.h,
+	Server.cpp,
+	Index.h,
+	Index.cpp,
+	WorkspaceBridge.h,
+	WorkspaceBridge.cpp;
+

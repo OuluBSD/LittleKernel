@@ -1,0 +1,20 @@
+file
+	AGENTS.md,
+	Main.cpp,
+	Upp01.cpp,
+	WUI01.cs highlight cs,
+	WF01.cs highlight cs,
+	WPF01.cs,
+	Wx01.py,
+	JFX01.java,
+	AWT01.java,
+	And01.java,
+	Jet01.kt highlight java,
+	SUI01.swift highlight cpp,
+	React01.ts,
+	Bab01.ts;
+
+mainconfig
+	"" = "",
+	"" = "";
+

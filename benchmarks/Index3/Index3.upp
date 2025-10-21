@@ -1,0 +1,12 @@
+uses
+	Core;
+
+file
+	Index.cpp,
+	info.txt;
+
+mainconfig
+	"" = "USEMALLOC",
+	"" = "",
+	"" = "HEAPLOG";
+

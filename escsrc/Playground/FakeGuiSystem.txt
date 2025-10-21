@@ -1,0 +1,10 @@
+Purpose:
+	- ai generates gui program on-demand and simulates the state of the system
+Internals:
+	- add User and System spaces (+ AgentInteractionSession + Entity(Agent))
+	- Agent: esc scripts, which call stages
+		- need ecs ctrl: AgentCtrl (so you can set esc script and stage etc.)
+	- user starts this UserAndSystem demo from button SO
+		- some dynamic gui, created with esc script?
+			- check bazaar project for dynamic gui (maybe it was scripted already!?!?)
+			- there is also a dynamic gui-ctrl updater, which works with esc script...

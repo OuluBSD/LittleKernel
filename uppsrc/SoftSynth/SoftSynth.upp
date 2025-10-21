@@ -1,0 +1,12 @@
+description "\3770,0,128";
+
+uses
+	MidiFile;
+
+file
+	Copying,
+	SoftSynth.h,
+	Common.h,
+	Fm.h,
+	Fm.cpp;
+

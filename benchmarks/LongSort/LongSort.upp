@@ -1,0 +1,14 @@
+description "Sorting non-SVO strings\377";
+
+optimize_speed;
+
+uses
+	Core;
+
+file
+	LongSort.cpp,
+	info.txt;
+
+mainconfig
+	"" = "";
+

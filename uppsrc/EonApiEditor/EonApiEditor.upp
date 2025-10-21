@@ -1,0 +1,25 @@
+description "Generate base classes for Atoms\377B141,0,255";
+
+file
+	main.cpp,
+	EonApiEditor.h,
+	EonApiEditor.cpp,
+	Eon readonly separator,
+	Interface.h,
+	Interface.cpp,
+	Headers.cpp,
+	Audio.cpp,
+	Hal.cpp,
+	Screen.cpp,
+	Volumetric.cpp,
+	Camera.cpp,
+	Holographic.cpp,
+	Synth.cpp,
+	Effect.cpp,
+	MidiHw.cpp,
+	AudioFileOut.cpp,
+	_ readonly separator;
+
+mainconfig
+	"" = "";
+

@@ -1,0 +1,15 @@
+uses
+	CtrlLib,
+	RichEdit,
+	SDL20GL,
+	plugin/DroidFonts;
+
+file
+	test.cpp,
+	main.cpp,
+	test.qtf,
+	help.txt;
+
+mainconfig
+	"" = "GUI SDL20GL";
+

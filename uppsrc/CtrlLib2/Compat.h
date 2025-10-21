@@ -1,0 +1,182 @@
+#ifndef _CtrlLib_Compat_h_
+#define _CtrlLib_Compat_h_
+
+
+NAMESPACE_UPP
+
+#if 0
+class CtrlGeomBase {
+	
+public:
+	typedef CtrlGeomBase CLASSNAME;
+	//RTTI_DECL0(CtrlGeomBase);
+	CtrlGeomBase() {}
+	
+	virtual Ctrl* GetCtrl() = 0;
+	
+	Rect GetFrameSize() const;
+	
+};
+
+class CtrlGeomProxy : public CtrlGeomBase {
+	Ctrl* p = 0;
+	Image img;
+	
+public:
+	typedef CtrlGeomProxy CLASSNAME;
+	//RTTI_DECL1(CtrlGeomProxy, CtrlGeomBase);
+	CtrlGeomProxy();
+	CtrlGeomProxy(Ctrl& o);
+	void SetTargetCtrl(Ctrl& o);
+	
+	template <class K> void LinkInvalidate(K& k) {
+		k.WhenInvalidate << THISBACK(OnInvalidate);
+	}
+	
+	void OnInvalidate();
+	bool IsFocusCtrl() const;
+	void Layout();
+	
+	virtual void Paint(Draw& d);
+	
+	bool Key(dword key, int count) override;
+	void MouseMove(Point pt, dword keyflags) override;
+	void MouseWheel(Point pt, int zdelta, dword keyflags) override;
+	void MouseLeave() override;
+	void LeftDown(Point pt, dword keyflags) override;
+	void LeftUp(Point pt, dword keyflags) override;
+	void RightDown(Point pt, dword keyflags) override;
+	void RightUp(Point pt, dword keyflags) override;
+	
+	
+	Ctrl* operator->();
+	Ctrl& operator*();
+	
+	Ctrl* GetCtrl() override;
+	
+	
+};
+
+template<class T>
+class CtrlGeom :
+	public CtrlGeomProxy
+{
+	T c;
+	
+public:
+	typedef CtrlGeom CLASSNAME;
+	//RTTI_DECL1(CtrlGeom, CtrlGeomBase);
+	CtrlGeom() : CtrlGeomProxy(c) {}
+	
+};
+
+template <class T> using CG = CtrlGeom<T>;
+
+#endif
+#if 0
+class CtrlInterfaceGeom :
+	public CtrlGeomProxy,
+	public Absolute2DProxy {
+	
+public:
+	//RTTI_DECL2(CtrlInterfaceGeom, CtrlGeomBase, Absolute2DProxy);
+	CtrlInterfaceGeom() {}
+	
+	
+	
+};
+
+
+
+class GuboGeomBase : public GeomInteraction3D {
+	
+public:
+	typedef GuboGeomBase CLASSNAME;
+	//RTTI_DECL1(GuboGeomBase, GeomInteraction3D);
+	GuboGeomBase() {}
+	
+	virtual Gubo* GetGubo() = 0;
+	
+};
+
+class GuboGeomProxy : public GuboGeomBase {
+	
+	
+public:
+	typedef GuboGeomProxy CLASSNAME;
+	//RTTI_DECL1(GuboGeomProxy, GuboGeomBase);
+	GuboGeomProxy() {}
+	
+	Gubo* GetGubo() override {TODO}
+	
+};
+
+#endif
+
+
+
+
+template <class T, class B=decltype(T::GetFrameSize)>
+inline B GetFrameSize(const T& o) {
+	return o.GetFrameSize();
+}
+
+template <>
+inline Size GetFrameSize<Ctrl,Size>(const Ctrl& c) {
+	return c.GetSize();
+}
+
+
+template <class T, class B>
+inline void SetFrameBox(T& o, const B& v) {
+	o.SetFrameBox(v);
+}
+
+template <>
+inline void SetFrameBox(Ctrl& o, const Rect& v) {
+	o.SetRect(v);
+}
+
+
+
+template <class T, class B=decltype(T::GetFrameBox)>
+inline B GetFrameBox(const T& o) {
+	return o.GetFrameBox();
+}
+
+template <>
+inline Rect GetFrameBox<Ctrl,Rect>(const Ctrl& c) {
+	return c.GetRect();
+}
+
+
+Image RenderTextBlended(Font font, String s, Color ink);
+
+
+END_UPP_NAMESPACE
+
+
+// U++ VirtualGui bug
+#if defined flagWIN32 && !defined GUI_APP_MAIN
+
+#define GUI_APP_MAIN \
+void GuiMainFn_();\
+\
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow) \
+{ \
+	UPP::AppInitEnvironment__(); \
+	GUI_APP_MAIN_HOOK \
+	UPP::Ctrl::InitWin32(hInstance); \
+	UPP::AppExecute__(GuiMainFn_); \
+	UPP::Ctrl::CloseTopCtrls(); \
+	UPP::Ctrl::ExitWin32(); \
+	UPP::Ctrl::ShutdownThreads(); \
+	UPP::AppExit__(); \
+	return UPP::GetExitCode(); \
+} \
+\
+void GuiMainFn_()
+
+#endif
+
+#endif

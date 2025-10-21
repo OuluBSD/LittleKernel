@@ -1,0 +1,15 @@
+description "Process, stream, and runtime helpers\377B128,0,0";
+
+uses
+	Core,
+	Core/MetaTraits;
+
+file
+	AGENTS.md,
+	ProcessUtil.h,
+	Process.h,
+	Process.cpp,
+	Util.h,
+	Util.cpp,
+	Chrono.h;
+

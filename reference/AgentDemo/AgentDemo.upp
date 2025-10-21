@@ -1,0 +1,19 @@
+description "Shows route planner, action planner, decision table, etc.\377";
+
+uses
+	AICore;
+
+file
+	AgentDemo.h,
+	Basic.cpp,
+	Integrated.cpp,
+	FileSystemDemo.cpp,
+	AstDemo.cpp,
+	PlanKeypointChain.cpp,
+	ConstraintSolver.cpp;
+
+mainconfig
+	"" = "AI",
+	"" = "AI BUILTIN_PORTAUDIO",
+	"" = "AI STATIC_PNG NOSOUND NOCURL";
+

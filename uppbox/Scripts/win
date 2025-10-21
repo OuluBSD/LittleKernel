@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+D=~/upp.src
+~/bin/umk $D/uppbox,$D/uppsrc MakeInstall7 CLANG -rsvb ~/makewindows
+~/makewindows

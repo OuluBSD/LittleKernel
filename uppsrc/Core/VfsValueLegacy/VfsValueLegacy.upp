@@ -1,0 +1,10 @@
+description "Transitional VfsValue definitions\377B128,0,0";
+
+uses
+	Core;
+
+file
+	AGENTS.md,
+	CURRENT_TASK.md,
+	VfsValueLegacy.h;
+

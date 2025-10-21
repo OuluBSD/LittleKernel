@@ -1,0 +1,10 @@
+uses
+	Shell;
+
+file
+	Main.cpp;
+
+mainconfig
+	"Release" = "AI DEBUG_VFS",
+	"Debug" = "AI DEBUG_RT DEBUG_VFS";
+

@@ -1,0 +1,11 @@
+description "Combined Slider and Progress example\377";
+
+uses
+	CtrlLib;
+
+file
+	main.cpp;
+
+mainconfig
+	"" = "GUI";
+

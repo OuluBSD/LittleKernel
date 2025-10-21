@@ -1,0 +1,35 @@
+description "\377B";
+
+uses
+	Vfs/Core,
+	Vfs/Overlay,
+	Vfs/Storage,
+	MetaCtrl;
+
+file
+	AGENTS.md,
+	Vfs.h,
+	Core readonly separator,
+	Vfs.cpp,
+	Ide.h,
+	ClangTypeResolver.h,
+	ClangTypeResolver.cpp,
+	CodeGenerator.h,
+	CodeGenerator.cpp,
+	Ctrl readonly separator,
+	MetaCodeCtrl.h,
+	MetaCodeCtrl.cpp,
+	MetaEnvTree.h,
+	MetaEnvTree.cpp,
+	MetaIndexerCtrl.h,
+	MetaIndexerCtrl.cpp,
+	MetaTempTask.h,
+	MetaTempTask.cpp,
+	EditorCtrl.h,
+	EditorCtrl.cpp,
+	EnvPrecedence.h,
+	Env.h,
+	Env.cpp,
+	EcsLang.h,
+	EcsLang.cpp;
+

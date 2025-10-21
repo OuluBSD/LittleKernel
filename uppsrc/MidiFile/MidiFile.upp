@@ -1,0 +1,21 @@
+description "\377128,0,0";
+
+uses
+	Core/ProcessUtil;
+
+file
+	Copying,
+	MidiFile.h,
+	Utils.h,
+	Utils.cpp,
+	Binasc.h,
+	Binasc.cpp,
+	Event.h,
+	Event.cpp,
+	EventList.h,
+	EventList.cpp,
+	Message.h,
+	Message.cpp,
+	File.h,
+	File.cpp;
+

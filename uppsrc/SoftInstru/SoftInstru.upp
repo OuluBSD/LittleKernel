@@ -1,0 +1,13 @@
+description "\3770,0,128";
+
+file
+	Copying,
+	SoftInstru.h,
+	Common.h,
+	Instrument.h,
+	Instrument.cpp,
+	Hydra.h,
+	Hydra.cpp,
+	Voice.h,
+	Voice.cpp;
+

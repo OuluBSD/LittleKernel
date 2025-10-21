@@ -1,0 +1,36 @@
+description "AI/Core Aggregate\377B128,0,0";
+
+uses
+	AI/Core/Base,
+	AI/Core/Core,
+	AI/Core/Runtime,
+	AI/Core/Prompting,
+	AI/Core/LLM,
+	AI/Core/Persona,
+	AI/Core/Publishing,
+	AI/Core/Marketing,
+	AI/Core/Content,
+	AI/Core/Media,
+	AI/Core/Tools,
+	AI/Core/DataModel,
+	AI/Core/Platform,
+	AI/Core/Social,
+	Esc,
+	plugin/jpg,
+	plugin/bz2,
+	AI/Core/Video;
+
+uses(CURL) plugin/openai;
+
+uses(AUDIO) Sound;
+
+library(CURL !MSC) curl;
+
+library(CURL MSC) libcurl.lib;
+
+file
+	AGENTS.md,
+	Core.h,
+	Internal.h,
+	AICore.icpp;
+

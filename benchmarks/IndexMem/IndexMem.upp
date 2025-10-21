@@ -1,0 +1,9 @@
+uses
+	Core;
+
+file
+	IndexMem.cpp;
+
+mainconfig
+	"" = "";
+

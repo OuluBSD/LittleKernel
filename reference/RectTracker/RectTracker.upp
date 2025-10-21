@@ -1,0 +1,12 @@
+description "Positioning loop example\377";
+
+uses
+	CtrlLib;
+
+file
+	main.cpp;
+
+mainconfig
+	"" = "GUI",
+	"" = "GUI X11";
+

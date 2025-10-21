@@ -1,0 +1,19 @@
+Suggested order of implementation:
+- Stage (because it's the partial base for action planner)
+- Blocks: Action Planner editor and the scientific course 101 example: blocks and robot hand
+- Filesystem
+- UserAndSystem
+- Songwriter ring (group of 3)
+- Tournament
+- Deathmatch
+- TeamDeathmatch
+- GameOfAdoration
+- Bank
+- Courtroom
+- Coop
+- TeamCoop
+- CouplesTherapy
+- HierCoop
+- Animation
+- Adventure
+- Music Composer

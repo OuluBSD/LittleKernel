@@ -1,0 +1,23 @@
+machine sdl.app:
+		
+	driver context:
+		sdl.context
+		
+	chain program:
+		state event.register
+		
+		loop center.events:
+			center.customer
+			sdl.event.pipe
+			state.event.pipe: target = event.register
+		
+		loop video:
+			center.customer
+			center.video.ecs.pipe:
+				drawmem =		"${DRAWMEM}"
+			sdl.video.pipe:
+				close_machine =		true
+				sizeable =			true
+				env =				event.register
+				shader.frag.name =	"${FRAGMENT}"
+				shader.vtx.name =	"${VERTEX}"

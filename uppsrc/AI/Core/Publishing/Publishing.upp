@@ -1,0 +1,17 @@
+description "AI/Core/Publishing\377128,0,0";
+
+uses
+	AI/Core/Base,
+	Esc,
+	AI/Core/Core,
+	AI/Core/Content,
+	AI/Core/Media;
+
+file
+	AGENTS.md,
+	Publishing.h,
+	Release.h,
+	Release.cpp,
+	ReleaseBriefing.h,
+	ReleaseBriefing.cpp;
+

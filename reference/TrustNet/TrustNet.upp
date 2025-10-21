@@ -1,0 +1,14 @@
+description "TrustLib usage\377";
+
+uses
+	TrustCore;
+
+file
+	main.cpp,
+	TrustNet.cpp,
+	GraphTest.cpp,
+	AppleSeedTest.cpp;
+
+mainconfig
+	"" = "STDEXC STDRTTI";
+

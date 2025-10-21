@@ -1,0 +1,23 @@
+description "\3770,0,128";
+
+options(BUILDER_OPTION) NOWARNINGS;
+
+file
+	AGENTS.md,
+	Graph.h,
+	Port.h,
+	ProcessContext.h,
+	Node.h,
+	Connection.h,
+	GraphCore.h,
+	GraphCore.cpp,
+	GraphPlayer.h,
+	GainNode.h,
+	GainNode.cpp,
+	MixerNode.h,
+	MixerNode.cpp,
+	RouterNode.h,
+	BypassNode.h,
+	BypassNode.cpp,
+	SplitterNode.h;
+

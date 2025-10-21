@@ -1,0 +1,24 @@
+description "Esc scripting language interpreter\377";
+
+uses
+	Core;
+
+file
+	AGENTS.md,
+	Esc.h options(BUILDER_OPTION) PCH,
+	EscValue.cpp,
+	EscArray.cpp,
+	EscMap.cpp,
+	Esc.cpp,
+	EscRun.cpp,
+	EscStdLib.cpp,
+	Value.cpp,
+	IR.h,
+	Bytecode.h,
+	Bytecode.cpp,
+	IrList.inl,
+	IrVM.cpp,
+	Info readonly separator,
+	srcdoc.tpp,
+	Copying;
+

@@ -1,0 +1,35 @@
+noblitz;
+
+uses
+	ide;
+
+library
+	"lldb glfw imgui GL GLEW";
+
+file
+	AGENTS.md,
+	Copying,
+	LLDB.h,
+	main.cpp,
+	DebuggerApp.lay,
+	DebuggerApp.h,
+	DebuggerApp.cpp,
+	Defer.h,
+	FileSystem.h,
+	FileSystem.cpp,
+	FileViewer.h,
+	FileViewer.cpp,
+	FPSTimer.h,
+	LLDBCommandLine.h,
+	LLDBCommandLine.cpp,
+	Log.h,
+	Log.cpp,
+	StreamBuffer.h,
+	StreamBuffer.cpp,
+	Timer.h,
+	Trash readonly separator,
+	Application.h,
+	Application.cpp;
+
+mainconfig
+	"" = "GUI LCLANG";

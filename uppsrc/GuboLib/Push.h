@@ -1,0 +1,49 @@
+#ifndef _GuboLib_Push_h_
+#define _GuboLib_Push_h_
+
+NAMESPACE_UPP
+
+#undef Button2
+#undef Button3
+
+class Button2 : public Surface {
+	Image img;
+	String label;
+	bool is_pressed = false;
+	
+	TimeCallback tc;
+	
+public:
+	//RTTI_DECL1(Button2, Surface)
+	typedef Button2 CLASSNAME;
+	Button2();
+	
+	void SetImage(Image& img);
+	
+	void Paint(Draw& d) override;
+	void LeftDown(Point p, dword keyflags) override;
+	void LeftUp(Point p, dword keyflags) override;
+	void MouseEnter(Point p, dword keyflags) override;
+	void MouseLeave() override;
+	void MouseMove(Point content_p, dword keyflags) override;
+	
+	void Refresh() override {Surface::Refresh();}
+	
+};
+
+class Button3 : public Gubo {
+	
+	
+public:
+	//RTTI_DECL1(Button3, Gubo)
+	
+	void Paint(Draw3& d) override;
+	
+	void SetImage(const Image&) {}
+	
+};
+
+
+END_UPP_NAMESPACE
+
+#endif

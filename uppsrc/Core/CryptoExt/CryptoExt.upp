@@ -1,0 +1,11 @@
+description "Core cryptography helpers\377B128,0,0";
+
+uses
+	Core;
+
+file
+	AGENTS.md,
+	CryptoExt.h,
+	Crypto.h,
+	Crypto.cpp;
+

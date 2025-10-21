@@ -1,0 +1,4591 @@
+{
+	"saved_hash": "f8ceec04a744cd424d151235f2c8c62c646754d9",
+	"files": [
+		{
+			"key": "Report.h",
+			"value": {
+				"items": [
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "_Report_Report_h",
+						"t": "",
+						"i": "_Report_Report_h",
+						"r": "_Report_Report_h",
+						"s": "",
+						"u": "_REPORT_REPORT_H",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5710fbcb600b8a25fc2dc8913b8816ce394a7168"
+							}
+						]
+					},
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "LAYOUTFILE",
+						"t": "",
+						"i": "LAYOUTFILE",
+						"r": "LAYOUTFILE",
+						"s": "",
+						"u": "LAYOUTFILE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ddc4179d2bd4528400598e755962cbbf7c6a25d6"
+							}
+						]
+					},
+					{
+						"k": 4,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Report",
+						"t": "Upp::Report",
+						"i": "Upp::Report",
+						"r": "Report : public DrawingDraw, public PageDraw",
+						"s": "Upp",
+						"u": "REPORT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "Upp::DrawingDraw;Upp::PageDraw",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "505622731fd8a76ff0e1a4bb126ad11e1230e347"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Page",
+						"t": "Draw &(int)",
+						"i": "Upp::Report::Page(int)",
+						"r": "Draw& Page(int i)",
+						"s": "Upp",
+						"u": "PAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "92133c8bf76eab180093b75f74585324539b5ffa"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "GetPageSize",
+						"t": "Size () const",
+						"i": "Upp::Report::GetPageSize()const",
+						"r": "Size GetPageSize() const",
+						"s": "Upp",
+						"u": "GETPAGESIZE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4fe9f1e67e86d7a627f57014d385c4b8c843b19f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "StartPage",
+						"t": "void ()",
+						"i": "Upp::Report::StartPage()",
+						"r": "void StartPage()",
+						"s": "Upp",
+						"u": "STARTPAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e859ffdfd210846425077a02ff1981e3bf28d3be"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "page",
+						"t": "Array<Drawing>",
+						"i": "Upp::Report::page",
+						"r": "Array<Drawing> page",
+						"s": "Upp",
+						"u": "PAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2274871b273d08d1dc954e02f33fc75101981a9d"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "pagei",
+						"t": "int",
+						"i": "Upp::Report::pagei",
+						"r": "int pagei",
+						"s": "Upp",
+						"u": "PAGEI",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bb92090ad4eb55dc16d979d6536dce2f97d42852"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "y",
+						"t": "int",
+						"i": "Upp::Report::y",
+						"r": "int y",
+						"s": "Upp",
+						"u": "Y",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8fdbc4b46d142c039fc79b790b9fdf8dce12531c"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "header",
+						"t": "String",
+						"i": "Upp::Report::header",
+						"r": "String header",
+						"s": "Upp",
+						"u": "HEADER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5bbb52c6eb656dc7e8c992266980caecc5320e3f"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "footer",
+						"t": "String",
+						"i": "Upp::Report::footer",
+						"r": "String footer",
+						"s": "Upp",
+						"u": "FOOTER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "08fef3203c0ef89ee5315916fb36c71897d84334"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "headercy",
+						"t": "int",
+						"i": "Upp::Report::headercy",
+						"r": "int headercy",
+						"s": "Upp",
+						"u": "HEADERCY",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "dde1fdb54783a599db2c81b1c1c431f28a775665"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "headerspc",
+						"t": "int",
+						"i": "Upp::Report::headerspc",
+						"r": "int headerspc",
+						"s": "Upp",
+						"u": "HEADERSPC",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5e8268af21ecbe49ee2c16af16eb73ac58123de3"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "footercy",
+						"t": "int",
+						"i": "Upp::Report::footercy",
+						"r": "int footercy",
+						"s": "Upp",
+						"u": "FOOTERCY",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7153ad4a99f4e810f240000d7d4ae28614ac6546"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "footerspc",
+						"t": "int",
+						"i": "Upp::Report::footerspc",
+						"r": "int footerspc",
+						"s": "Upp",
+						"u": "FOOTERSPC",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "abdeb6112c4ada1d00aacae653268025a809f5ee"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "mg",
+						"t": "Point",
+						"i": "Upp::Report::mg",
+						"r": "Point mg",
+						"s": "Upp",
+						"u": "MG",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "eb07428b2bf27d032fae4bf25a5b26ec6af8e2cd"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "printerjob",
+						"t": "One<PrinterJob>",
+						"i": "Upp::Report::printerjob",
+						"r": "One<PrinterJob> printerjob",
+						"s": "Upp",
+						"u": "PRINTERJOB",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2c50603a2d669c89f6667695217316a920391204"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Flush",
+						"t": "void ()",
+						"i": "Upp::Report::Flush()",
+						"r": "void Flush()",
+						"s": "Upp",
+						"u": "FLUSH",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7bd939b1982da8ba51c3003aebdeec8f7ae2e843"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "FormatHF",
+						"t": "String (const char *, int)",
+						"i": "Upp::Report::FormatHF(const char*,int)",
+						"r": "String FormatHF(const char *s, int pageno)",
+						"s": "Upp",
+						"u": "FORMATHF",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "94eaf0751b483c8be74792b42464e2109f633062"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "GetHeightHF",
+						"t": "int (const char *)",
+						"i": "Upp::Report::GetHeightHF(const char*)",
+						"r": "int GetHeightHF(const char *s)",
+						"s": "Upp",
+						"u": "GETHEIGHTHF",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "07c8a5f6cd13e861c0cc84ee667822b1034c5847"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "PaintHF",
+						"t": "void (Draw &, int, const char *, int)",
+						"i": "Upp::Report::PaintHF(Draw&,int,const char*,int)",
+						"r": "void PaintHF(Draw& w, int y, const char *qtf, int i)",
+						"s": "Upp",
+						"u": "PAINTHF",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "106e678bfafb18bc54748a373d79a51792176305"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "StartPage",
+						"t": "void (int)",
+						"i": "Upp::Report::StartPage(int)",
+						"r": "void StartPage(int i)",
+						"s": "Upp",
+						"u": "STARTPAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2a5f7e083e8ad7e9e4a783cd4ed2ede688c46319"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "RestartPage",
+						"t": "void ()",
+						"i": "Upp::Report::RestartPage()",
+						"r": "void RestartPage()",
+						"s": "Upp",
+						"u": "RESTARTPAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a839a98c86fbe08e2e012170e2fc85696032c33b"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "WhenPage",
+						"t": "Callback",
+						"i": "Upp::Report::WhenPage",
+						"r": "Callback WhenPage",
+						"s": "Upp",
+						"u": "WHENPAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "98497c6fa29f739f862718332e3552a06d0da073"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetCount",
+						"t": "int ()",
+						"i": "Upp::Report::GetCount()",
+						"r": "int GetCount()",
+						"s": "Upp",
+						"u": "GETCOUNT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "357642bc2ab37ec915f90c26c9f8c85068eba050"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetPage",
+						"t": "Drawing (int)",
+						"i": "Upp::Report::GetPage(int)",
+						"r": "Drawing GetPage(int i)",
+						"s": "Upp",
+						"u": "GETPAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "620325b70eb93a4e213ebd9671fbe1a041e47269"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "operator[]",
+						"t": "Drawing (int)",
+						"i": "Upp::Report::operator[](int)",
+						"r": "Drawing operator[](int i)",
+						"s": "Upp",
+						"u": "OPERATOR[]",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "83a97d1fbd78414a3084735d851f788fef4e9fc7"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetPages",
+						"t": "const Array<Drawing> &()",
+						"i": "Upp::Report::GetPages()",
+						"r": "const Array<Drawing>& GetPages()",
+						"s": "Upp",
+						"u": "GETPAGES",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1ec56aace2dc8d59f5ed6508f3385a5f3673310b"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Clear",
+						"t": "void ()",
+						"i": "Upp::Report::Clear()",
+						"r": "void Clear()",
+						"s": "Upp",
+						"u": "CLEAR",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3296c10daa7ebbf3c6c01ed4a338315321a6f0e8"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "GetPageRect",
+						"t": "Rect ()",
+						"i": "Upp::Report::GetPageRect()",
+						"r": "Rect GetPageRect()",
+						"s": "Upp",
+						"u": "GETPAGERECT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "54ec6b79a9c3c9d7f2815e4573337e89b97b6c6c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetPageSize",
+						"t": "Size ()",
+						"i": "Upp::Report::GetPageSize()",
+						"r": "Size GetPageSize()",
+						"s": "Upp",
+						"u": "GETPAGESIZE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "59f44978f38ef8c47b7ad3d472135c4db0c8f1d7"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetY",
+						"t": "void (int)",
+						"i": "Upp::Report::SetY(int)",
+						"r": "void SetY(int _y)",
+						"s": "Upp",
+						"u": "SETY",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "64dc2b3615c998a4d334de8a39e85ee3a2d5e8a8"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetY",
+						"t": "int () const",
+						"i": "Upp::Report::GetY()const",
+						"r": "int GetY() const",
+						"s": "Upp",
+						"u": "GETY",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6486ff899c7cd8278ba3342d0f666f029edc6c06"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "NewPage",
+						"t": "void ()",
+						"i": "Upp::Report::NewPage()",
+						"r": "void NewPage()",
+						"s": "Upp",
+						"u": "NEWPAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a3ce8cfd3cb7f0a5e44963d2fbabd8e157026417"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "RemoveLastPage",
+						"t": "void ()",
+						"i": "Upp::Report::RemoveLastPage()",
+						"r": "void RemoveLastPage()",
+						"s": "Upp",
+						"u": "REMOVELASTPAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c71f651841aaa27a6ee9f11e78be1b12bbdd3b32"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Put",
+						"t": "void (const RichText &, void *)",
+						"i": "Upp::Report::Put(const RichText&,void*)",
+						"r": "void Put(const RichText& txt, void *context = 0)",
+						"s": "Upp",
+						"u": "PUT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f3f0c1e2bd5ea34e86810df03275e512924f449e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Put",
+						"t": "void (const char *)",
+						"i": "Upp::Report::Put(const char*)",
+						"r": "void Put(const char *qtf)",
+						"s": "Upp",
+						"u": "PUT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "31036c354efa5bb60718854e2d4512c475e2671c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "operator<<",
+						"t": "Report &(const char *)",
+						"i": "Upp::Report::operator<<(const char*)",
+						"r": "Report& operator<<(const char *qtf)",
+						"s": "Upp",
+						"u": "OPERATOR<<",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "377c408b738eef65ce944a7ed9f3fa77fc698890"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetRichTextLayoutTracer",
+						"t": "void (RichTextLayoutTracer &)",
+						"i": "Upp::Report::SetRichTextLayoutTracer(RichTextLayoutTracer&)",
+						"r": "void SetRichTextLayoutTracer(RichTextLayoutTracer& l)",
+						"s": "Upp",
+						"u": "SETRICHTEXTLAYOUTTRACER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "449b13b9b45d315137d4f87ca388213c69f7ff2c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetMargins",
+						"t": "Point () const",
+						"i": "Upp::Report::GetMargins()const",
+						"r": "Point GetMargins() const",
+						"s": "Upp",
+						"u": "GETMARGINS",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bfba6bd463785414282f7148bf700e2c9f7ab8fc"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "ChoosePrinter",
+						"t": "bool (const char *)",
+						"i": "Upp::Report::ChoosePrinter(const char*)",
+						"r": "bool ChoosePrinter(const char *jobname = t_(\"Report\"))",
+						"s": "Upp",
+						"u": "CHOOSEPRINTER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1afde5749fb7b59d2b4fe9a24c2842dd9f4c7527"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "ChooseDefaultPrinter",
+						"t": "bool (const char *)",
+						"i": "Upp::Report::ChooseDefaultPrinter(const char*)",
+						"r": "bool ChooseDefaultPrinter(const char *jobname = t_(\"Report\"))",
+						"s": "Upp",
+						"u": "CHOOSEDEFAULTPRINTER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4432d82727f744303fc646458d65efe567158e63"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetPrinterJob",
+						"t": "PrinterJob *()",
+						"i": "Upp::Report::GetPrinterJob()",
+						"r": "PrinterJob *GetPrinterJob()",
+						"s": "Upp",
+						"u": "GETPRINTERJOB",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "95040ec13f349e69a0200b671ac388a899a0111e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetPageSize",
+						"t": "Report &(Size)",
+						"i": "Upp::Report::SetPageSize(Size)",
+						"r": "Report& SetPageSize(Size sz)",
+						"s": "Upp",
+						"u": "SETPAGESIZE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e95240806121d01f1dd28315e87c23efbd3bae6f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetPageSize",
+						"t": "Report &(int, int)",
+						"i": "Upp::Report::SetPageSize(int,int)",
+						"r": "Report& SetPageSize(int cx, int cy)",
+						"s": "Upp",
+						"u": "SETPAGESIZE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a91c40b0e0333ea68620a55af57ed3c7b9142650"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Landscape",
+						"t": "Report &()",
+						"i": "Upp::Report::Landscape()",
+						"r": "Report& Landscape()",
+						"s": "Upp",
+						"u": "LANDSCAPE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "01001e1444fec831e1489cf26de4c77088a5ea73"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Margins",
+						"t": "Report &(int, int)",
+						"i": "Upp::Report::Margins(int,int)",
+						"r": "Report& Margins(int top, int left)",
+						"s": "Upp",
+						"u": "MARGINS",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0efbe74f9bf1abc7bed9a9b75bd33552b6e8b623"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Margins",
+						"t": "Report &(int)",
+						"i": "Upp::Report::Margins(int)",
+						"r": "Report& Margins(int m)",
+						"s": "Upp",
+						"u": "MARGINS",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f64bb1531326516031b7334350b41956bd37fac7"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Header",
+						"t": "Report &(const char *, int)",
+						"i": "Upp::Report::Header(const char*,int)",
+						"r": "Report& Header(const char *qtf, int spc = 150)",
+						"s": "Upp",
+						"u": "HEADER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "28ba8ff81b5ee099cb6a901aa836f18a1eb409c8"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Footer",
+						"t": "Report &(const char *, int)",
+						"i": "Upp::Report::Footer(const char*,int)",
+						"r": "Report& Footer(const char *qtf, int spc = 150)",
+						"s": "Upp",
+						"u": "FOOTER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a13e60a6d72b24b22a11b572e860e6b31c8c5047"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "OnPage",
+						"t": "Report &(Callback)",
+						"i": "Upp::Report::OnPage(Callback)",
+						"r": "Report& OnPage(Callback whenpage)",
+						"s": "Upp",
+						"u": "ONPAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0e340061e3622ca2c1cf006a487349d21cf0ce71"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "NoHeader",
+						"t": "Report &()",
+						"i": "Upp::Report::NoHeader()",
+						"r": "Report& NoHeader()",
+						"s": "Upp",
+						"u": "NOHEADER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "299679b7581499ba4668930824414ea6f7107f2d"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "NoFooter",
+						"t": "Report &()",
+						"i": "Upp::Report::NoFooter()",
+						"r": "Report& NoFooter()",
+						"s": "Upp",
+						"u": "NOFOOTER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8d696e6aa375f459a606ed210686f06c735776d7"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Report",
+						"t": "void ()",
+						"i": "Upp::Report::Report()",
+						"r": "Report()",
+						"s": "Upp",
+						"u": "REPORT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9ae90f194694db20fad761f874e42c3bda408826"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Report",
+						"t": "void (int, int)",
+						"i": "Upp::Report::Report(int,int)",
+						"r": "Report(int cx, int cy)",
+						"s": "Upp",
+						"u": "REPORT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1449ae5e423c4e0a2cc213cdcc5024454c236b16"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Report",
+						"t": "void (const Size &)",
+						"i": "Upp::Report::Report(const Size&)",
+						"r": "Report(const Size& sz)",
+						"s": "Upp",
+						"u": "REPORT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bff29bea0a54201f25023ed028b2a452f7947081"
+							}
+						]
+					},
+					{
+						"k": 4,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ReportView",
+						"t": "Upp::ReportView",
+						"i": "Upp::ReportView",
+						"r": "ReportView : public Ctrl",
+						"s": "Upp",
+						"u": "REPORTVIEW",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "Upp::Ctrl",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4b9afe28af34b98ac32bbd19d087480e63983257"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Paint",
+						"t": "void (Draw &)",
+						"i": "Upp::ReportView::Paint(Draw&)",
+						"r": "void Paint(Draw& w)",
+						"s": "Upp",
+						"u": "PAINT",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9c9be88c349374579412e6279affd8f2a6600e2f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Layout",
+						"t": "void ()",
+						"i": "Upp::ReportView::Layout()",
+						"r": "void Layout()",
+						"s": "Upp",
+						"u": "LAYOUT",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "87fb29386f1073e97787ea82a9d9eee940ba4258"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "Key",
+						"t": "bool (dword, int)",
+						"i": "Upp::ReportView::Key(dword,int)",
+						"r": "bool Key(dword key, int)",
+						"s": "Upp",
+						"u": "KEY",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d14db4a703d94e17f74b0ebb0144277d15b4f4ba"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "LeftDown",
+						"t": "void (Point, dword)",
+						"i": "Upp::ReportView::LeftDown(Point,dword)",
+						"r": "void LeftDown(Point p, dword)",
+						"s": "Upp",
+						"u": "LEFTDOWN",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "012b7356e80d59caba053df2e46ae8a006f00502"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": true,
+						"is": false,
+						"n": "MouseWheel",
+						"t": "void (Point, int, dword)",
+						"i": "Upp::ReportView::MouseWheel(Point,int,dword)",
+						"r": "void MouseWheel(Point, int zdelta, dword)",
+						"s": "Upp",
+						"u": "MOUSEWHEEL",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d8bf7c34296d7d107b9d9aa3c160b101a295c03f"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "sb",
+						"t": "ScrollBar",
+						"i": "Upp::ReportView::sb",
+						"r": "ScrollBar sb",
+						"s": "Upp",
+						"u": "SB",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d136a80e25592d513ac9ea28fac23e10668d0056"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "report",
+						"t": "Report *",
+						"i": "Upp::ReportView::report",
+						"r": "Report *report",
+						"s": "Upp",
+						"u": "REPORT",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c1ba7a3d68e2b3a3324f786a800b9eac0fa64a0e"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "page",
+						"t": "Image[64]",
+						"i": "Upp::ReportView::page",
+						"r": "Image page[64]",
+						"s": "Upp",
+						"u": "PAGE",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8242b27cb8ed43dae2b1f3178391401fd9d50ead"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "pagei",
+						"t": "int[64]",
+						"i": "Upp::ReportView::pagei",
+						"r": "int pagei[64]",
+						"s": "Upp",
+						"u": "PAGEI",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3b080c7c3555e5bacb95eb6e541b62a33819c9f6"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "pagesize",
+						"t": "Size",
+						"i": "Upp::ReportView::pagesize",
+						"r": "Size pagesize",
+						"s": "Upp",
+						"u": "PAGESIZE",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "4c6d4563edd2726595111a7b03c9f0d5900e9bb1"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "vsize",
+						"t": "int",
+						"i": "Upp::ReportView::vsize",
+						"r": "int vsize",
+						"s": "Upp",
+						"u": "VSIZE",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "cd681208c2a62df3bf713d26270d926f4bdf8b6f"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "pm",
+						"t": "int",
+						"i": "Upp::ReportView::pm",
+						"r": "int pm",
+						"s": "Upp",
+						"u": "PM",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f20438958acabf99053c836ff9ad40710a19961f"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "pvn",
+						"t": "int",
+						"i": "Upp::ReportView::pvn",
+						"r": "int pvn",
+						"s": "Upp",
+						"u": "PVN",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "88bc67a3dda0d950d16b09075fe376a51a075f83"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "numbers",
+						"t": "bool",
+						"i": "Upp::ReportView::numbers",
+						"r": "bool numbers",
+						"s": "Upp",
+						"u": "NUMBERS",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "66f2dcc6edbf97713594126ddbd21b6a1b082100"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "pages",
+						"t": "int",
+						"i": "Upp::ReportView::pages",
+						"r": "int pages",
+						"s": "Upp",
+						"u": "PAGES",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "81de9c36368d1e76e1165554ab6afe5810526812"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "GetPage",
+						"t": "Image (int)",
+						"i": "Upp::ReportView::GetPage(int)",
+						"r": "Image GetPage(int i)",
+						"s": "Upp",
+						"u": "GETPAGE",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8b25c86e06b52ab13e28f58e4fa4a018b13e42ba"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Init",
+						"t": "void ()",
+						"i": "Upp::ReportView::Init()",
+						"r": "void Init()",
+						"s": "Upp",
+						"u": "INIT",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "18538e4dd8e61e89ab88c88e1759914919890684"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Sb",
+						"t": "void ()",
+						"i": "Upp::ReportView::Sb()",
+						"r": "void Sb()",
+						"s": "Upp",
+						"u": "SB",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1f8a104c07311583eb941630680cd256e0b76dda"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Numbers",
+						"t": "void ()",
+						"i": "Upp::ReportView::Numbers()",
+						"r": "void Numbers()",
+						"s": "Upp",
+						"u": "NUMBERS",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1b3bac79569afab0b9016dc58acf40d980df432c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "GetReportSize",
+						"t": "Size ()",
+						"i": "Upp::ReportView::GetReportSize()",
+						"r": "Size GetReportSize()",
+						"s": "Upp",
+						"u": "GETREPORTSIZE",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bd302094ce872fef63b5fceffb3efa5d5d408dec"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "WhenGoPage",
+						"t": "Callback",
+						"i": "Upp::ReportView::WhenGoPage",
+						"r": "Callback WhenGoPage",
+						"s": "Upp",
+						"u": "WHENGOPAGE",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "bbc67738e477a095227207f25da3ccb32a1c7510"
+							}
+						]
+					},
+					{
+						"k": 5,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Pages",
+						"t": "Upp::ReportView::Pages",
+						"i": "Upp::ReportView::Pages",
+						"r": "enum Pages",
+						"s": "Upp",
+						"u": "PAGES",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "329dae8c6499ec002917927a8a63cbc9e07d046b"
+							}
+						]
+					},
+					{
+						"k": 7,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "PG1",
+						"t": "Upp::ReportView::Pages",
+						"i": "Upp::ReportView::PG1",
+						"r": "PG1",
+						"s": "Upp",
+						"u": "PG1",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c636e65f326929c43c8f79f24b4369191ee13e63"
+							}
+						]
+					},
+					{
+						"k": 7,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "PG2",
+						"t": "Upp::ReportView::Pages",
+						"i": "Upp::ReportView::PG2",
+						"r": "PG2",
+						"s": "Upp",
+						"u": "PG2",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "80aa05e3349b75da0880acbbe467bde7515707dd"
+							}
+						]
+					},
+					{
+						"k": 7,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "PG4",
+						"t": "Upp::ReportView::Pages",
+						"i": "Upp::ReportView::PG4",
+						"r": "PG4",
+						"s": "Upp",
+						"u": "PG4",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3e0722add9f7c52e88c3bf4aaa601b93f7a55752"
+							}
+						]
+					},
+					{
+						"k": 7,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "PG16",
+						"t": "Upp::ReportView::Pages",
+						"i": "Upp::ReportView::PG16",
+						"r": "PG16",
+						"s": "Upp",
+						"u": "PG16",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "46023581d5e6e2502509a8ca0afe3e984eafd510"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Pages",
+						"t": "ReportView &(int)",
+						"i": "Upp::ReportView::Pages(int)",
+						"r": "ReportView& Pages(int pags)",
+						"s": "Upp",
+						"u": "PAGES",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8c0b1c9a7a24339fba59e82b9f6c51d1c23f5ba6"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Numbers",
+						"t": "ReportView &(bool)",
+						"i": "Upp::ReportView::Numbers(bool)",
+						"r": "ReportView& Numbers(bool nums)",
+						"s": "Upp",
+						"u": "NUMBERS",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "55cf7538bf3417e3340b3028ece3d7330f34d76e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Set",
+						"t": "void (Report &)",
+						"i": "Upp::ReportView::Set(Report&)",
+						"r": "void Set(Report& report)",
+						"s": "Upp",
+						"u": "SET",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "043994f55fad433b7878f84f2f689fade15bb504"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Get",
+						"t": "Report *()",
+						"i": "Upp::ReportView::Get()",
+						"r": "Report *Get()",
+						"s": "Upp",
+						"u": "GET",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "cab86bdb20315057fc3c63c8af4a4239de8394c3"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetFirst",
+						"t": "int () const",
+						"i": "Upp::ReportView::GetFirst()const",
+						"r": "int GetFirst() const",
+						"s": "Upp",
+						"u": "GETFIRST",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f90e400550b7af9237b779ca8950f508e21f929c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "ScrollInto",
+						"t": "void (int, int, int, int)",
+						"i": "Upp::ReportView::ScrollInto(int,int,int,int)",
+						"r": "void ScrollInto(int toppage, int top, int bottompage, int bottom)",
+						"s": "Upp",
+						"u": "SCROLLINTO",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c86113546c78842d1413cb8f0d33be0b35ea44e6"
+							}
+						]
+					},
+					{
+						"k": 20,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "CLASSNAME",
+						"t": "Upp::ReportView::CLASSNAME",
+						"i": "Upp::ReportView::CLASSNAME",
+						"r": "typedef ReportView CLASSNAME",
+						"s": "Upp",
+						"u": "CLASSNAME",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "Upp::ReportView",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "cf7c764ab5cb53465e6f61341a85834d315c9516"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "ReportView",
+						"t": "void ()",
+						"i": "Upp::ReportView::ReportView()",
+						"r": "ReportView()",
+						"s": "Upp",
+						"u": "REPORTVIEW",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5083e08e39ef13d2882f1dae7ebd7c97381177fc"
+							}
+						]
+					},
+					{
+						"k": 4,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ReportWindow",
+						"t": "Upp::ReportWindow",
+						"i": "Upp::ReportWindow",
+						"r": "ReportWindow : public WithReportWindowLayout<TopWindow>",
+						"s": "Upp",
+						"u": "REPORTWINDOW",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "Upp::WithReportWindowLayout",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "442f72510a2735a6723477ed660997c7f48dd195"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Pages",
+						"t": "void ()",
+						"i": "Upp::ReportWindow::Pages()",
+						"r": "void Pages()",
+						"s": "Upp",
+						"u": "PAGES",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6597d09826df7af191d13b15901b73647ca6bd42"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Numbers",
+						"t": "void ()",
+						"i": "Upp::ReportWindow::Numbers()",
+						"r": "void Numbers()",
+						"s": "Upp",
+						"u": "NUMBERS",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d2509baf07277f6db4d527edfcb4b03935c455dc"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GoPage",
+						"t": "void ()",
+						"i": "Upp::ReportWindow::GoPage()",
+						"r": "void GoPage()",
+						"s": "Upp",
+						"u": "GOPAGE",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "aa75fedbc259d37db2dd0352154fcda34d01aa4e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Pdf",
+						"t": "void ()",
+						"i": "Upp::ReportWindow::Pdf()",
+						"r": "void Pdf()",
+						"s": "Upp",
+						"u": "PDF",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3c16a5f2096191889ce7a734797737630d681c11"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "ShowPage",
+						"t": "void ()",
+						"i": "Upp::ReportWindow::ShowPage()",
+						"r": "void ShowPage()",
+						"s": "Upp",
+						"u": "SHOWPAGE",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "028248d8893735ab3a503f47d0ba71535462f40b"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "button",
+						"t": "Array<Button>",
+						"i": "Upp::ReportWindow::button",
+						"r": "Array<Button> button",
+						"s": "Upp",
+						"u": "BUTTON",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0ad208b52ebea02490fce2d961b3ea017f712807"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "report",
+						"t": "Report *",
+						"i": "Upp::ReportWindow::report",
+						"r": "Report *report",
+						"s": "Upp",
+						"u": "REPORT",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8137a82a5316b3fad9f02969a6ba3c747f8ed7bc"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "pg",
+						"t": "ReportView",
+						"i": "Upp::ReportWindow::pg",
+						"r": "ReportView pg",
+						"s": "Upp",
+						"u": "PG",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5741974a3a62077384248cc461cab46b348a3a42"
+							}
+						]
+					},
+					{
+						"k": 20,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "CLASSNAME",
+						"t": "Upp::ReportWindow::CLASSNAME",
+						"i": "Upp::ReportWindow::CLASSNAME",
+						"r": "typedef ReportWindow CLASSNAME",
+						"s": "Upp",
+						"u": "CLASSNAME",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "Upp::ReportWindow",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ec3fc18ff07babad2a903fd4f3221610e6db3125"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": true,
+						"n": "SetPdfRoutine",
+						"t": "void (String (*)(const Report &, int))",
+						"i": "Upp::ReportWindow::SetPdfRoutine(String(*)(const Report&,int))",
+						"r": "static void SetPdfRoutine(String (*pdf)(const Report&, int))",
+						"s": "Upp",
+						"u": "SETPDFROUTINE",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9bef0f5e431ee9dd065b5280c0f48a5b308bc3ce"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetButton",
+						"t": "void (int, const char *, int)",
+						"i": "Upp::ReportWindow::SetButton(int,const char*,int)",
+						"r": "void SetButton(int i, const char *label, int id)",
+						"s": "Upp",
+						"u": "SETBUTTON",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0a4ba803fa2bd5f1a518f4cda30e1d568ffdfbec"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Perform",
+						"t": "int (Report &, int, const char *)",
+						"i": "Upp::ReportWindow::Perform(Report&,int,const char*)",
+						"r": "int Perform(Report& report, int zoom = 100, const char *caption = t_(\"Report\"))",
+						"s": "Upp",
+						"u": "PERFORM",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "68b8f462cf761ca7c02d4efb755431dd6ba6974c"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "ReportWindow",
+						"t": "void ()",
+						"i": "Upp::ReportWindow::ReportWindow()",
+						"r": "ReportWindow()",
+						"s": "Upp",
+						"u": "REPORTWINDOW",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c3a8a74d06cf6707dd99e8234df3584e3d61fab3"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Pdf",
+						"t": "String (Report &, bool, const PdfSignatureInfo *)",
+						"i": "Upp::Pdf(Report&,bool,const PdfSignatureInfo*)",
+						"r": "String Pdf(Report& report, bool pdfa = false, const PdfSignatureInfo *sign = 0)",
+						"s": "Upp",
+						"u": "PDF",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "c1d9316adadef8db8d5f77fdec125c10c6bbdc1c"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Print",
+						"t": "void (Report &, PrinterJob &)",
+						"i": "Upp::Print(Report&,PrinterJob&)",
+						"r": "void Print(Report& r, PrinterJob& pd)",
+						"s": "Upp",
+						"u": "PRINT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "cdc025a8e0c38b43e5ae307f5199aa66472074d1"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "DefaultPrint",
+						"t": "bool (Report &, int, const char *)",
+						"i": "Upp::DefaultPrint(Report&,int,const char*)",
+						"r": "bool DefaultPrint(Report& r, int i, const char *_name = t_(\"Report\"))",
+						"s": "Upp",
+						"u": "DEFAULTPRINT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "7e2338b02c18079cbb008f38f03ee105c0ab2d0a"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Print",
+						"t": "bool (Report &, int, const char *)",
+						"i": "Upp::Print(Report&,int,const char*)",
+						"r": "bool Print(Report& r, int i, const char *name = t_(\"Report\"))",
+						"s": "Upp",
+						"u": "PRINT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "78f9c3f23d004d0f20f043483a7669496aa5752f"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "Perform",
+						"t": "bool (Report &, const char *)",
+						"i": "Upp::Perform(Report&,const char*)",
+						"r": "bool Perform(Report& r, const char *name = t_(\"Report\"))",
+						"s": "Upp",
+						"u": "PERFORM",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d396ad269431501545b24ede6a4d1fb26211647b"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "QtfReport",
+						"t": "bool (const String &, const char *, bool)",
+						"i": "Upp::QtfReport(const String&,const char*,bool)",
+						"r": "bool QtfReport(const String& qtf, const char *name = \"\", bool pagenumbers = false)",
+						"s": "Upp",
+						"u": "QTFREPORT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "83bd5cec9c97fad25a2f12fa18c192ee2bafc796"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "QtfReport",
+						"t": "bool (Size, const String &, const char *, bool)",
+						"i": "Upp::QtfReport(Size,const String&,const char*,bool)",
+						"r": "bool QtfReport(Size pagesize, const String& qtf, const char *name = \"\", bool pagenumbers = false)",
+						"s": "Upp",
+						"u": "QTFREPORT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a2c1bef5b07384af339da698a8887d0fcd8ebb5f"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "Report.lay",
+			"value": {
+				"items": [
+					{
+						"k": 2,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ReportWindowLayout__layid",
+						"t": "Upp::ReportWindowLayout__layid",
+						"i": "Upp::ReportWindowLayout__layid",
+						"r": "ReportWindowLayout__layid",
+						"s": "Upp",
+						"u": "REPORTWINDOWLAYOUT__LAYID",
+						"q": "Upp::ReportWindowLayout__layid",
+						"w": "UPP::REPORTWINDOWLAYOUT__LAYID",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "68d1b2eca79e90566ffd63c982a4e8a7d14dc1d1"
+							}
+						]
+					},
+					{
+						"k": 30,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "InitLayout",
+						"t": "void (Upp::Ctrl &, L &, D &, ReportWindowLayout__layid &)",
+						"i": "Upp::InitLayout(Upp::Ctrl&,L&,D&,ReportWindowLayout__layid&)",
+						"r": "template <class L, class D> void InitLayout(Upp::Ctrl& parent, L& layout, D& uts, ReportWindowLayout__layid&)",
+						"s": "Upp",
+						"u": "INITLAYOUT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "68d1b2eca79e90566ffd63c982a4e8a7d14dc1d1"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": false,
+						"iv": false,
+						"is": true,
+						"n": "GetLayoutSize",
+						"t": "Upp::Size ()",
+						"i": "Upp::WithReportWindowLayout::GetLayoutSize()",
+						"r": "static Upp::Size GetLayoutSize()",
+						"s": "Upp",
+						"u": "GETLAYOUTSIZE",
+						"q": "Upp::WithReportWindowLayout",
+						"w": "UPP::WITHREPORTWINDOWLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "68d1b2eca79e90566ffd63c982a4e8a7d14dc1d1"
+							}
+						]
+					},
+					{
+						"k": 30,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetLayout_ReportWindowLayout",
+						"t": "void (T &, D &, bool, bool)",
+						"i": "Upp::SetLayout_ReportWindowLayout(T&,D&,bool,bool)",
+						"r": "template <class T, class D> void SetLayout_ReportWindowLayout(T& ctrl, D& parent, bool add = false, bool show = false)",
+						"s": "Upp",
+						"u": "SETLAYOUT_REPORTWINDOWLAYOUT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "68d1b2eca79e90566ffd63c982a4e8a7d14dc1d1"
+							}
+						]
+					},
+					{
+						"k": 30,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "SetLayout_ReportWindowLayout",
+						"t": "void (T &, bool, bool)",
+						"i": "Upp::SetLayout_ReportWindowLayout(T&,bool,bool)",
+						"r": "template <class T> void SetLayout_ReportWindowLayout(T& parent, bool add = false, bool show = false)",
+						"s": "Upp",
+						"u": "SETLAYOUT_REPORTWINDOWLAYOUT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "68d1b2eca79e90566ffd63c982a4e8a7d14dc1d1"
+							}
+						]
+					},
+					{
+						"k": 31,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "WithReportWindowLayout",
+						"t": "",
+						"i": "Upp::WithReportWindowLayout",
+						"r": "template <class T> WithReportWindowLayout : public T, public ReportWindowLayout__layid",
+						"s": "Upp",
+						"u": "WITHREPORTWINDOWLAYOUT",
+						"q": "Upp::WithReportWindowLayout",
+						"w": "UPP::WITHREPORTWINDOWLAYOUT",
+						"y": "Upp::ReportWindowLayout__layid",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "38c6116edb511a473acabed4dd96a3b9928292ea"
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "dv___1",
+						"t": "Upp::LabelBox",
+						"i": "Upp::WithReportWindowLayout::dv___1",
+						"r": "Upp::LabelBox dv___1",
+						"s": "Upp",
+						"u": "DV___1",
+						"q": "Upp::WithReportWindowLayout",
+						"w": "UPP::WITHREPORTWINDOWLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "lbl",
+						"t": "Upp::Label",
+						"i": "Upp::WithReportWindowLayout::lbl",
+						"r": "Upp::Label lbl",
+						"s": "Upp",
+						"u": "LBL",
+						"q": "Upp::WithReportWindowLayout",
+						"w": "UPP::WITHREPORTWINDOWLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "dv___3",
+						"t": "Upp::LabelBox",
+						"i": "Upp::WithReportWindowLayout::dv___3",
+						"r": "Upp::LabelBox dv___3",
+						"s": "Upp",
+						"u": "DV___3",
+						"q": "Upp::WithReportWindowLayout",
+						"w": "UPP::WITHREPORTWINDOWLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "sw",
+						"t": "Upp::Switch",
+						"i": "Upp::WithReportWindowLayout::sw",
+						"r": "Upp::Switch sw",
+						"s": "Upp",
+						"u": "SW",
+						"q": "Upp::WithReportWindowLayout",
+						"w": "UPP::WITHREPORTWINDOWLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "numbers",
+						"t": "Upp::Option",
+						"i": "Upp::WithReportWindowLayout::numbers",
+						"r": "Upp::Option numbers",
+						"s": "Upp",
+						"u": "NUMBERS",
+						"q": "Upp::WithReportWindowLayout",
+						"w": "UPP::WITHREPORTWINDOWLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "pdf",
+						"t": "Upp::Button",
+						"i": "Upp::WithReportWindowLayout::pdf",
+						"r": "Upp::Button pdf",
+						"s": "Upp",
+						"u": "PDF",
+						"q": "Upp::WithReportWindowLayout",
+						"w": "UPP::WITHREPORTWINDOWLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					},
+					{
+						"k": 6,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "cancel",
+						"t": "Upp::Button",
+						"i": "Upp::WithReportWindowLayout::cancel",
+						"r": "Upp::Button cancel",
+						"s": "Upp",
+						"u": "CANCEL",
+						"q": "Upp::WithReportWindowLayout",
+						"w": "UPP::WITHREPORTWINDOWLAYOUT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": ""
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "ReportDlg.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "LLOG",
+						"t": "",
+						"i": "LLOG",
+						"r": "LLOG",
+						"s": "",
+						"u": "LLOG",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d83c43df219c111fa516fe33b765574dc658780b"
+							}
+						]
+					},
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "TFILE",
+						"t": "",
+						"i": "TFILE",
+						"r": "TFILE",
+						"s": "",
+						"u": "TFILE",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "de270817d7c6a6f726d469dbb32b5cc1699bb48b"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Print",
+						"t": "void (Report &, PrinterJob &)",
+						"i": "Upp::Print(Report&,PrinterJob&)",
+						"r": "void Print(Report& r, PrinterJob& pd)",
+						"s": "Upp",
+						"u": "PRINT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "1651008185903be95e0b800e3bc28f89c2cb94ab"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Print0",
+						"t": "bool (Report &, int, const char *, bool)",
+						"i": "Upp::Print0(Report&,int,const char*,bool)",
+						"r": "bool Print0(Report& r, int i, const char *_name, bool dodlg)",
+						"s": "Upp",
+						"u": "PRINT0",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "daf1b346b66d7ba307459bda186a2ada8a620d6c"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Print",
+						"t": "bool (Report &, int, const char *)",
+						"i": "Upp::Print(Report&,int,const char*)",
+						"r": "bool Print(Report& r, int i, const char *_name = t_(\"Report\"))",
+						"s": "Upp",
+						"u": "PRINT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3ca7a4dce080374e29070613fe97addfb2b014c9"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "DefaultPrint",
+						"t": "bool (Report &, int, const char *)",
+						"i": "Upp::DefaultPrint(Report&,int,const char*)",
+						"r": "bool DefaultPrint(Report& r, int i, const char *_name = t_(\"Report\"))",
+						"s": "Upp",
+						"u": "DEFAULTPRINT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "131e57a0836db236821a0c7d357a2a5aedbf0dcd"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "MouseWheel",
+						"t": "void (Point, int, dword)",
+						"i": "Upp::ReportView::MouseWheel(Point,int,dword)",
+						"r": "void MouseWheel(Point, int zdelta, dword)",
+						"s": "Upp",
+						"u": "MOUSEWHEEL",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "cd35e8fe9c13b2ca151710e6548e1546b5c7eabb"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ReportView",
+						"t": "void ()",
+						"i": "Upp::ReportView::ReportView()",
+						"r": "ReportView()",
+						"s": "Upp",
+						"u": "REPORTVIEW",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e923a6edcfbe0bd3031dfb7d1e3d80f9beae0da2"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Set",
+						"t": "void (Report &)",
+						"i": "Upp::ReportView::Set(Report&)",
+						"r": "void Set(Report& p)",
+						"s": "Upp",
+						"u": "SET",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b542356a10156e4d61d06f568771e714d3fcabb0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetReportSize",
+						"t": "Size ()",
+						"i": "Upp::ReportView::GetReportSize()",
+						"r": "Size GetReportSize()",
+						"s": "Upp",
+						"u": "GETREPORTSIZE",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9693060f9d6da36679ad1a7682ce417a9d49a47c"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Key",
+						"t": "bool (dword, int)",
+						"i": "Upp::ReportView::Key(dword,int)",
+						"r": "bool Key(dword key, int)",
+						"s": "Upp",
+						"u": "KEY",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f8163d02ec9f1246450f7b5cb73147804ae49827"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "LeftDown",
+						"t": "void (Point, dword)",
+						"i": "Upp::ReportView::LeftDown(Point,dword)",
+						"r": "void LeftDown(Point p, dword)",
+						"s": "Upp",
+						"u": "LEFTDOWN",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6b0e44458b664b4d82c22978ae1e4b3cedf3c6ee"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Sb",
+						"t": "void ()",
+						"i": "Upp::ReportView::Sb()",
+						"r": "void Sb()",
+						"s": "Upp",
+						"u": "SB",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3dc4c551c445ae61b062c77d4dae2b0316fb98f3"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Init",
+						"t": "void ()",
+						"i": "Upp::ReportView::Init()",
+						"r": "void Init()",
+						"s": "Upp",
+						"u": "INIT",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "11408fe8c2419e65a3039e5709990a146b83ad56"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Layout",
+						"t": "void ()",
+						"i": "Upp::ReportView::Layout()",
+						"r": "void Layout()",
+						"s": "Upp",
+						"u": "LAYOUT",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fa66ef6dc8fd0fa99a956249f7f50410fa0f0b08"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetPage",
+						"t": "Image (int)",
+						"i": "Upp::ReportView::GetPage(int)",
+						"r": "Image GetPage(int i)",
+						"s": "Upp",
+						"u": "GETPAGE",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "5dba295002dac94ff10260f52ab484e6c480cf92"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ScrollInto",
+						"t": "void (int, int, int, int)",
+						"i": "Upp::ReportView::ScrollInto(int,int,int,int)",
+						"r": "void ScrollInto(int toppage, int top, int bottompage, int bottom)",
+						"s": "Upp",
+						"u": "SCROLLINTO",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "8424f75493456de299c616364e21ca679317d876"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Paint",
+						"t": "void (Draw &)",
+						"i": "Upp::ReportView::Paint(Draw&)",
+						"r": "void Paint(Draw& w)",
+						"s": "Upp",
+						"u": "PAINT",
+						"q": "Upp::ReportView",
+						"w": "UPP::REPORTVIEW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "f9835ce911c53682cff0b9f50e4861822754b75e"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ReportWindow",
+						"t": "void ()",
+						"i": "Upp::ReportWindow::ReportWindow()",
+						"r": "ReportWindow()",
+						"s": "Upp",
+						"u": "REPORTWINDOW",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "39d1779978aae607bb6d8a7290bfe47ce5e23917"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Pdf",
+						"t": "String (Report &, bool, const PdfSignatureInfo *)",
+						"i": "Upp::Pdf(Report&,bool,const PdfSignatureInfo*)",
+						"r": "String Pdf(Report& report, bool pdfa = false, const PdfSignatureInfo *sgn = 0)",
+						"s": "Upp",
+						"u": "PDF",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a14c3f562100a770eb0d7f55245b640a9cfc7999"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Pdf",
+						"t": "void ()",
+						"i": "Upp::ReportWindow::Pdf()",
+						"r": "void Pdf()",
+						"s": "Upp",
+						"u": "PDF",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "26eb1006f8115ed17d2f41a3779a59f46e9ac8ce"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetButton",
+						"t": "void (int, const char *, int)",
+						"i": "Upp::ReportWindow::SetButton(int,const char*,int)",
+						"r": "void SetButton(int i, const char *label, int id)",
+						"s": "Upp",
+						"u": "SETBUTTON",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "ace58f9a49ffe19e10fd610ffd1caf84b5108d39"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ShowPage",
+						"t": "void ()",
+						"i": "Upp::ReportWindow::ShowPage()",
+						"r": "void ShowPage()",
+						"s": "Upp",
+						"u": "SHOWPAGE",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "724eaddb802181afe6fcb128999340f8bb1d89f1"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Perform",
+						"t": "int (Report &, int, const char *)",
+						"i": "Upp::ReportWindow::Perform(Report&,int,const char*)",
+						"r": "int Perform(Report& report, int zoom = 100, const char *caption = t_(\"Report\"))",
+						"s": "Upp",
+						"u": "PERFORM",
+						"q": "Upp::ReportWindow",
+						"w": "UPP::REPORTWINDOW",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "9e5eaacc28bc552e356731e0e680f919dffc2257"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Perform",
+						"t": "bool (Report &, const char *)",
+						"i": "Upp::Perform(Report&,const char*)",
+						"r": "bool Perform(Report& r, const char *caption = t_(\"Report\"))",
+						"s": "Upp",
+						"u": "PERFORM",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "e9840880ba0aa5a32c648dd63c9b27440c60f696"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "QtfReport0",
+						"t": "bool (const String &, const char *, bool, Size)",
+						"i": "Upp::QtfReport0(const String&,const char*,bool,Size)",
+						"r": "bool QtfReport0(const String& qtf, const char *name, bool pagenumbers, Size pagesize)",
+						"s": "Upp",
+						"u": "QTFREPORT0",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2b0708d1ca02dd2beead8dac964f5c74435144ff"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "QtfReport",
+						"t": "bool (const String &, const char *, bool)",
+						"i": "Upp::QtfReport(const String&,const char*,bool)",
+						"r": "bool QtfReport(const String& qtf, const char *name = \"\", bool pagenumbers = false)",
+						"s": "Upp",
+						"u": "QTFREPORT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "225f24fdf028d0d11e67877daf8431a025abe251"
+							}
+						]
+					},
+					{
+						"k": 8,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "QtfReport",
+						"t": "bool (Size, const String &, const char *, bool)",
+						"i": "Upp::QtfReport(Size,const String&,const char*,bool)",
+						"r": "bool QtfReport(Size pagesize, const String& qtf, const char *name = \"\", bool pagenumbers = false)",
+						"s": "Upp",
+						"u": "QTFREPORT",
+						"q": "Upp",
+						"w": "UPP",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "fa0217f957cf53e575bc027a4badd64ea3238bcc"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"key": "Report.t",
+			"value": {
+				"items": [
+
+				]
+			}
+		},
+		{
+			"key": "Report.cpp",
+			"value": {
+				"items": [
+					{
+						"k": 501,
+						"d": false,
+						"iv": false,
+						"is": false,
+						"n": "LLOG",
+						"t": "",
+						"i": "LLOG",
+						"r": "LLOG",
+						"s": "",
+						"u": "LLOG",
+						"q": "",
+						"w": "",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "d83c43df219c111fa516fe33b765574dc658780b"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Report",
+						"t": "void ()",
+						"i": "Upp::Report::Report()",
+						"r": "Report()",
+						"s": "Upp",
+						"u": "REPORT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "b17a239ed7eb53b9996dca13a00a23f5c6878dd3"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Report",
+						"t": "void (int, int)",
+						"i": "Upp::Report::Report(int,int)",
+						"r": "Report(int cx, int cy)",
+						"s": "Upp",
+						"u": "REPORT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "a9400f349fdd2ea816e4da9bb2f6dd69eaa4f81e"
+							}
+						]
+					},
+					{
+						"k": 24,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Report",
+						"t": "void (const Size &)",
+						"i": "Upp::Report::Report(const Size&)",
+						"r": "Report(const Size& sz)",
+						"s": "Upp",
+						"u": "REPORT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "33173ad962e1d3f08c94ed02f10ff6737a7325f4"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "SetPageSize",
+						"t": "Report &(Size)",
+						"i": "Upp::Report::SetPageSize(Size)",
+						"r": "Report& SetPageSize(Size sz)",
+						"s": "Upp",
+						"u": "SETPAGESIZE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6384f11d81f618c2e4d5453756bb997f2391387f"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Clear",
+						"t": "void ()",
+						"i": "Upp::Report::Clear()",
+						"r": "void Clear()",
+						"s": "Upp",
+						"u": "CLEAR",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2c993d634bec3cd0588bfa2402e90a72fa317689"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetPageRect",
+						"t": "Rect ()",
+						"i": "Upp::Report::GetPageRect()",
+						"r": "Rect GetPageRect()",
+						"s": "Upp",
+						"u": "GETPAGERECT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3baef9cb6d001e7322abc19c011b7d3885dcdd69"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "PaintHF",
+						"t": "void (Draw &, int, const char *, int)",
+						"i": "Upp::Report::PaintHF(Draw&,int,const char*,int)",
+						"r": "void PaintHF(Draw& w, int y, const char *qtf, int i)",
+						"s": "Upp",
+						"u": "PAINTHF",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "19c2f8d09085dff368515c08a1b405fe85908173"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Flush",
+						"t": "void ()",
+						"i": "Upp::Report::Flush()",
+						"r": "void Flush()",
+						"s": "Upp",
+						"u": "FLUSH",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "92ff63a4e9f476ae1799c2e7921ca4ae9a5ccd3b"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "StartPage",
+						"t": "void (int)",
+						"i": "Upp::Report::StartPage(int)",
+						"r": "void StartPage(int i)",
+						"s": "Upp",
+						"u": "STARTPAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "91581b0edda31e3c260c21307561c8418e9214e3"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": true,
+						"is": false,
+						"n": "Page",
+						"t": "Draw &(int)",
+						"i": "Upp::Report::Page(int)",
+						"r": "Draw& Page(int i)",
+						"s": "Upp",
+						"u": "PAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "2aa12e0c514992c7bb6dc91515f0e116b1cb158e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "FormatHF",
+						"t": "String (const char *, int)",
+						"i": "Upp::Report::FormatHF(const char*,int)",
+						"r": "String FormatHF(const char *s, int pageno)",
+						"s": "Upp",
+						"u": "FORMATHF",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0bd7040922d5f1c03126ad50f149e3c121b814f2"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "GetHeightHF",
+						"t": "int (const char *)",
+						"i": "Upp::Report::GetHeightHF(const char*)",
+						"r": "int GetHeightHF(const char *s)",
+						"s": "Upp",
+						"u": "GETHEIGHTHF",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "da4d326e28946e87d33bfb5d395a82f51f0071ea"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Header",
+						"t": "Report &(const char *, int)",
+						"i": "Upp::Report::Header(const char*,int)",
+						"r": "Report& Header(const char *qtf, int spc = 150)",
+						"s": "Upp",
+						"u": "HEADER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "39a0b7e672d00411b48bd1455184727ed998f0a4"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Footer",
+						"t": "Report &(const char *, int)",
+						"i": "Upp::Report::Footer(const char*,int)",
+						"r": "Report& Footer(const char *qtf, int spc = 150)",
+						"s": "Upp",
+						"u": "FOOTER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3f860fa335ddf34412ef9dfafa7d4c7c1dc0ec76"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "OnPage",
+						"t": "Report &(Callback)",
+						"i": "Upp::Report::OnPage(Callback)",
+						"r": "Report& OnPage(Callback whenpage)",
+						"s": "Upp",
+						"u": "ONPAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "febfacb0ebcd242c27b0aa22254f01c2afdca8a0"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "RestartPage",
+						"t": "void ()",
+						"i": "Upp::Report::RestartPage()",
+						"r": "void RestartPage()",
+						"s": "Upp",
+						"u": "RESTARTPAGE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3b6dd23639a89cefc596f04e6f87efa12492786e"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Landscape",
+						"t": "Report &()",
+						"i": "Upp::Report::Landscape()",
+						"r": "Report& Landscape()",
+						"s": "Upp",
+						"u": "LANDSCAPE",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "0fb18a063190a7c3ee04b88cc41fcc118d2d44a7"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Put",
+						"t": "void (const RichText &, void *)",
+						"i": "Upp::Report::Put(const RichText&,void*)",
+						"r": "void Put(const RichText& txt, void *context = 0)",
+						"s": "Upp",
+						"u": "PUT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "efe956bf95955905253631ac2f800457eb0c60a8"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "Put",
+						"t": "void (const char *)",
+						"i": "Upp::Report::Put(const char*)",
+						"r": "void Put(const char *qtf)",
+						"s": "Upp",
+						"u": "PUT",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "6379a8e7c5dcf64043aca13f3f4b93b77ed54c58"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ChoosePrinter",
+						"t": "bool (const char *)",
+						"i": "Upp::Report::ChoosePrinter(const char*)",
+						"r": "bool ChoosePrinter(const char *jobname = t_(\"Report\"))",
+						"s": "Upp",
+						"u": "CHOOSEPRINTER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "3252ec746b010a6b361a4915ec01793e37c276bb"
+							}
+						]
+					},
+					{
+						"k": 21,
+						"d": true,
+						"iv": false,
+						"is": false,
+						"n": "ChooseDefaultPrinter",
+						"t": "bool (const char *)",
+						"i": "Upp::Report::ChooseDefaultPrinter(const char*)",
+						"r": "bool ChooseDefaultPrinter(const char *jobname = t_(\"Report\"))",
+						"s": "Upp",
+						"u": "CHOOSEDEFAULTPRINTER",
+						"q": "Upp::Report",
+						"w": "UPP::REPORT",
+						"y": "",
+						"da": [
+
+						],
+						"sf": [
+							{
+								"items": [
+
+								],
+								"h": "988f05306c1ee728477609347f733e7d9973a497"
+							}
+						]
+					}
+				]
+			}
+		}
+	]
+}

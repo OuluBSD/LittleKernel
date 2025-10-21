@@ -1,0 +1,4 @@
+What:
+	Helps to study and to pass course exams.
+Examples:
+	Teaches the content of the coastal mariner course and creates exam questions to obtain certification.

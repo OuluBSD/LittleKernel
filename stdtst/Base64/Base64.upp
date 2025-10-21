@@ -1,0 +1,9 @@
+uses
+	Core;
+
+file
+	Base64.cpp;
+
+mainconfig
+	"" = "";
+

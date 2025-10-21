@@ -1,0 +1,13 @@
+description "Simple allocator benchmarks\377";
+
+uses
+	Core;
+
+file
+	SimpleAlloc.cpp,
+	info.txt;
+
+mainconfig
+	"" = "MT",
+	"" = "USEMALLOC MT";
+

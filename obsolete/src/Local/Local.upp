@@ -1,0 +1,37 @@
+description "Essential classes for Topside namespace.\377B128,0,0";
+
+uses
+	Core,
+	Draw,
+	Draw/Extensions;
+
+file
+	Local.h,
+	Before.h,
+	Compat.h,
+	Defs.h,
+	Visitor.h,
+	Visitor.cpp,
+	Ref.h,
+	Ref.cpp,
+	Interface.h,
+	RTuple.h,
+	CLI.h,
+	CLI.cpp,
+	Version.h,
+	Upp.h,
+	Upp.cpp,
+	UnitTest.h,
+	UnitTest.cpp,
+	Image.h,
+	Image.cpp,
+	Draw2D.h,
+	Draw3D.h,
+	Draw3D.cpp,
+	GeomInteraction.h,
+	GIBase.cpp,
+	GI2D.cpp,
+	GI3D.cpp,
+	Workspace.h,
+	Ether.h,
+	Ether.cpp;

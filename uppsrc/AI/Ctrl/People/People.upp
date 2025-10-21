@@ -1,0 +1,15 @@
+description "AI Ctrl People\3770,0,255";
+
+uses
+	AI/Ctrl/Base;
+
+file
+	AGENTS.md,
+	People.h,
+	Owner.h,
+	Owner.cpp,
+	Male.h,
+	Male.cpp,
+	Female.h,
+	Female.cpp;
+

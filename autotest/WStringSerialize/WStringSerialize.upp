@@ -1,0 +1,10 @@
+uses
+	Core;
+
+file
+	Etalon.log,
+	WStringSerialize.cpp;
+
+mainconfig
+	"" = "";
+

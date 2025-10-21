@@ -1,0 +1,12 @@
+description "Downloads www file directly to disc with GUI response (TcpSocket, HttpRequest demo)\377";
+
+uses
+	CtrlLib,
+	Core/SSL;
+
+file
+	main.cpp;
+
+mainconfig
+	"" = "GUI";
+

@@ -1,0 +1,12 @@
+description "CritBitIndex examples\377";
+
+uses
+	Core;
+
+file
+	CritBitIndex.cpp;
+
+mainconfig
+	"" = "",
+	"" = "ST";
+

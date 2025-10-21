@@ -1,0 +1,14 @@
+uses
+	Local,
+	High,
+	High,
+	Vfs;
+
+file
+	EonTests.h,
+	EonTests.cpp,
+	Test00.eon highlight cpp;
+
+mainconfig
+	"" = "STDEXC";
+

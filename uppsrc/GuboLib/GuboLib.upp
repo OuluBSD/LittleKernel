@@ -1,0 +1,38 @@
+description "\377B28,127,255";
+
+uses
+	GuboCore,
+	Geometry;
+
+uses(VIRTUALGUI) VirtualGui3D;
+
+file
+	GuboLib.h,
+	GuboLib.cpp,
+	CoordinateSystem.h,
+	CoordinateSystem.cpp,
+	StaticGubo.h,
+	StaticGubo.cpp,
+	TextEdit.h,
+	EditString.cpp,
+	Push.h,
+	Push.cpp,
+	"2D System" readonly separator,
+	HandleTypes.h,
+	HandleSystemT.h,
+	HandleSystemT.cpp,
+	ScopeT.h,
+	ScopeT.cpp,
+	HandleT.h,
+	HandleT.cpp,
+	Surface.cpp,
+	Gubo.cpp,
+	VirtualGui3D readonly separator,
+	Atom.h,
+	Atom.cpp,
+	Cursor.cpp,
+	Event.cpp,
+	Keys.cpp,
+	Draw.cpp,
+	_ readonly separator;
+
