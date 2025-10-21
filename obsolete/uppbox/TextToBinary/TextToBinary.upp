@@ -1,9 +1,0 @@
-uses
-	CtrlLib;
-
-file
-	TextToBinary.cpp;
-
-mainconfig
-	"" = "GUI";
-

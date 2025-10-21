@@ -1,2 +1,0 @@
-What:
-	Make a community for an artist, which talks and interracts with the artist and vice versa.

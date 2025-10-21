@@ -1,3 +1,0 @@
-Notes:
-	- like the first FakeGuiSystem (user + ai), but with 2 AIs (ai + ai)
-		- the ai simulates the user

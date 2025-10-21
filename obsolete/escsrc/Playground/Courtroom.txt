@@ -1,7 +1,0 @@
-Notes:
-- purpose: to simulate resolving of an issue using the classic US jury system case (to be studied later)
-- internals:
-	- jury selection is important when used as a personal exploration tool
-		- this might reveal something about yourself, that you never really thought about
-- usage examples:
-	- make short reel videos based on AI courtroom discussions

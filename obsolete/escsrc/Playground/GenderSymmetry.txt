@@ -1,9 +1,0 @@
-What:
-	This is more like a pipeline
-		1. Take input or a sample of discussion (like when someone comments an news article = article + comment)
-		2. Consider it both straight and with inversed genders (use AI for inversion)
-		3. Compare straight and inversed analysis
-			- anonymise them (strip to components without genders ---> get close to "pure logic")
-			- pick the logical truth: straight or inversed
-		3b. in case of inversed truth; try to explain the inversion in the larger context (why it might happen usually)
-		4. use previous information to generate "balanced answer" (put user's own fine-tuning request here)

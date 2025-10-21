@@ -1,9 +1,0 @@
-uses
-	Local;
-
-file
-	CleanCamelCase.cpp;
-
-mainconfig
-	"" = "";
-

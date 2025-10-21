@@ -1,5 +1,0 @@
-meta expr add(int x, int y):
-	x+y
-
-int main():
-    return $add(3,6)==9

@@ -1,3 +1,0 @@
-int main():
-    // simply testing we can return the correct value
-    return 1

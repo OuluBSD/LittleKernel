@@ -1,7 +1,0 @@
-#include "Meta.h"
-
-INITBLOCK {
-	using namespace Upp;
-	Value::Register<AstValue>("AstValue");
-}
-

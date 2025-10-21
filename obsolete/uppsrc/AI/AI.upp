@@ -1,9 +1,0 @@
-description "AI Meta-Package\377B128,0,255";
-
-uses
-	AI/Ctrl;
-
-file
-	AGENTS.md,
-	Common.cpp;
-

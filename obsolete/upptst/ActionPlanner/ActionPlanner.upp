@@ -1,9 +1,0 @@
-uses
-	AICore;
-
-file
-	ActionPlanner.cpp;
-
-mainconfig
-	"" = "";
-

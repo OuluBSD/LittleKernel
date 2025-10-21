@@ -1,9 +1,0 @@
-#include "Physics.h"
-
-NAMESPACE_UPP
-
-
-
-FYS_EXCPLICIT_INITIALIZE_CLASS(SystemT)
-
-END_UPP_NAMESPACE

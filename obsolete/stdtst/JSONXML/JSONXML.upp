@@ -1,9 +1,0 @@
-uses
-	Core;
-
-file
-	JSONXML.cpp;
-
-mainconfig
-	"" = "";
-

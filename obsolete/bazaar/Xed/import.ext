@@ -1,7 +1,0 @@
-files *.cpp *.c;
-
-exclude xed/src/ild/*.c
-
-includes *.h;
-
-include_path *;

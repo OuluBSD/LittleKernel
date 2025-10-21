@@ -1,9 +1,0 @@
-library
-	"glut GL GLU";
-
-file
-	main.cpp;
-
-mainconfig
-	"" = "";
-

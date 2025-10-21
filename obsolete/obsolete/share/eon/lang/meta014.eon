@@ -1,7 +1,0 @@
-int main():
-	int a.0 = 1
-	int a.1 = 2
-	meta int i = 0
-	meta int j = 1
-	a.$i = a.$j
-	return a.0 == 2

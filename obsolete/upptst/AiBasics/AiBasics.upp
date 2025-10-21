@@ -1,9 +1,0 @@
-description "Testing AI basics without U++ or std includes\377";
-
-file
-	AiBasics.cpp,
-	OtherFile.cpp;
-
-mainconfig
-	"" = "";
-
