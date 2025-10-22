@@ -4,16 +4,16 @@
 
 
 uint32 EndlessKMemoryAllocateAligned(uint32 sz) {
-	//MON.Write("EndlessKMemoryAllocateAligned: sz ").WriteDec(sz).Write(" placement_address ").WriteHex(global->placement_address).NewLine();
+	//GenericWrite("EndlessKMemoryAllocateAligned: sz ").WriteDec(sz).Write(" placement_address ").WriteHex(global->placement_address).NewLine();
 	
 	if (global->placement_address & 0x00000FFF) { // If the address is not already page-aligned
 		// Align it.
 		global->placement_address &= 0xFFFFF000;
 		global->placement_address += 0x1000;
-		//MON.Write("EndlessKMemoryAllocateAligned: aligned to ").WriteHex(global->placement_address).NewLine();
+		//GenericWrite("EndlessKMemoryAllocateAligned: aligned to ").WriteHex(global->placement_address).NewLine();
 	}
 	uint32 tmp = global->placement_address;
-	//MON.Write("EndlessKMemoryAllocateAligned: returning ").WriteHex(tmp).NewLine();
+	//GenericWrite("EndlessKMemoryAllocateAligned: returning ").WriteHex(tmp).NewLine();
 	global->placement_address += sz;
 	return tmp;
 }
@@ -43,7 +43,7 @@ uint32 EndlessKMemoryAllocateAlignedPhysical(uint32 sz, uint32 *phys) {
 }
 
 uint32 EndlessKMemoryAllocate(uint32 sz) {
-	//MON.Write("EndlessKMemoryAllocate: ").WriteDec(sz).NewLine();
+	//GenericWrite("EndlessKMemoryAllocate: ").WriteDec(sz).NewLine();
 	uint32 tmp = global->placement_address;
 	global->placement_address += sz;
 	return tmp;
@@ -121,7 +121,7 @@ uint32 FirstFrame() {
 // Function to allocate a frame.
 void AllocFrame(Page *page, int is_kernel, int is_writeable) {
 	#if 0
-	MON.Write("AllocFrame: page=").WriteHex(page)
+	GenericWrite("AllocFrame: page="); GenericWriteHex(page)
 		.Write(", is_kernel=").WriteDec(is_kernel)
 		.Write(", is_writeable=").WriteDec(is_writeable)
 		.NewLine();
@@ -189,7 +189,7 @@ void InitialisePaging() {
 	// to be created where necessary. We can't allocate frames yet because they
 	// they need to be identity mapped first below, and yet we can't increase
 	// placement_address between identity mapping and enabling the heap!
-	MON.Write("..Mapping pages").NewLine();
+	GenericWrite("..Mapping pages\n");
 	int i = 0;
 	for (i = KHEAP_START; i < KHEAP_START + KHEAP_INITIAL_SIZE; i += 0x1000)
 		GetPage(i, 1, global->kernel_directory, true);
@@ -203,7 +203,7 @@ void InitialisePaging() {
 	// inside the loop body we actually change placement_address
 	// by calling KMemoryAllocate(). A while loop causes this to be
 	// computed on-the-fly rather than once at the start.
-	MON.Write("..Allocating kernel program pages").NewLine();
+	GenericWrite("..Allocating kernel program pages", 1);
 	i = 0;
 	while (i < global->placement_address) {
 		// Kernel code is readable but not writeable from userspace.
@@ -213,22 +213,22 @@ void InitialisePaging() {
 	
 	
 	// Now allocate those pages we mapped earlier.
-	MON.Write("..Allocating kernel heap pages").NewLine();
+	GenericWrite("..Allocating kernel heap pages", 1);
 	for (i = KHEAP_START; i < KHEAP_START + KHEAP_INITIAL_SIZE; i += 0x1000)
 		AllocFrame(GetPage(i, 1, global->kernel_directory), 0, 0);
 		
 		
 	
 	// Before we enable paging, we must register our page fault handler.
-	MON.Write("..Registering interrupt handlers").NewLine();
+	GenericWrite("..Registering interrupt handlers", 1);
 	RegisterInterruptHandler(14, PageFault);
 	
 	// Now, enable paging!
-	MON.Write("..Switching page directory").NewLine();
+	GenericWrite("..Switching page directory", 1);
 	SwitchPageDirectory(global->kernel_directory);
 	
 	// Initialise the kernel heap.
-	MON.Write("..Initializing kernel heap").NewLine();
+	GenericWrite("..Initializing kernel heap", 1);
 	global->kheap.Create(KHEAP_START, KHEAP_START + KHEAP_INITIAL_SIZE, 0xCFFFF000, 0, 0);
 	
 }
@@ -236,13 +236,13 @@ void InitialisePaging() {
 void SwitchPageDirectory(PageDirectory *dir) {
 	ASSERT(dir != 0);
 	global->current_directory = dir;
-	//MON.Write("...SwitchPageDirectory: 0 ").WriteHex(&dir->tables_physical).NewLine();
+	//GenericWrite("...SwitchPageDirectory: 0 ").WriteHex(&dir->tables_physical).NewLine();
 	asm volatile("mov %0, %%cr3":: "r"(&dir->tables_physical));
 	uint32 cr0 = 0;
-	//MON.Write("...SwitchPageDirectory: 1\n");
+	//GenericWrite("...SwitchPageDirectory: 1\n");
 	asm volatile("mov %%cr0, %0": "=r"(cr0));
 	cr0 |= 0x80000000; // Enable paging!
-	//MON.Write("...SwitchPageDirectory: 2, ").WriteHex(cr0).NewLine();
+	//GenericWrite("...SwitchPageDirectory: 2, ").WriteHex(cr0).NewLine();
 	asm volatile("mov %0, %%cr0":: "r"(cr0));
 }
 
@@ -259,11 +259,11 @@ Page *GetPage(uint32 address, bool make, PageDirectory *dir, bool zero) {
 	
 	if (dir->tables[table_idx]) {
 		// If this table is already assigned
-		////MON.Write("  table already assigned: ").WriteDec(address).Write(" ").WriteDec(table_idx).NewLine();
+		////GenericWrite("  table already assigned: ").WriteDec(address).Write(" ").WriteDec(table_idx).NewLine();
 		return &dir->tables[table_idx]->pages[address%1024];
 	}
 	else if (make) {
-		////MON.Write("  assigning table: ").WriteDec(address).NewLine();
+		////GenericWrite("  assigning table: ").WriteDec(address).NewLine();
 		uint32 tmp;
 		dir->tables[table_idx] = (PageTable*)EndlessKMemoryAllocateAlignedPhysical(sizeof(PageTable), &tmp);
 		if (zero)
@@ -294,22 +294,22 @@ void PageFault(Registers regs) {
 	int id = regs.err_code & 0x10;          // Caused by an instruction fetch?
 	
 	// Output an error message.
-	MON.Write("Page fault! ( ");
+	GenericWrite("Page fault! ( ");
 	if (present) {
-		MON.Write("present ");
+		GenericWrite("present ");
 	}
 	if (rw) {
-		MON.Write("read-only ");
+		GenericWrite("read-only ");
 	}
 	if (us) {
-		MON.Write("user-mode ");
+		GenericWrite("user-mode ");
 	}
 	if (reserved) {
-		MON.Write("reserved ");
+		GenericWrite("reserved ");
 	}
-	MON.Write(") at 0x");
-	MON.WriteHex(faulting_address);
-	MON.Write("\n");
+	GenericWrite(") at 0x");
+	GenericWriteHex(faulting_address);
+	GenericWrite("\n");
 	PANIC("Page fault");
 	
 	while (1)
@@ -354,3 +354,8 @@ static PageTable *CloneTable(PageTable *src, uint32 *physAddr)
     return table;
 }
 
+
+PageDirectory* CloneDirectory(PageDirectory *src) {
+	PANIC("CloneDirectory not implemented");
+	return 0;
+}

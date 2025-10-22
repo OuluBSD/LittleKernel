@@ -146,13 +146,13 @@ void PanicAssert(const char *file, unsigned int line, const char *desc) {
     // An assertion failed, and we have to panic.
     asm volatile("cli"); // Disable interrupts.
 
-    MON.Write("ASSERTION-FAILED(");
-    MON.Write(desc);
-    MON.Write(") at ");
-    MON.Write(file);
-    MON.Write(":");
-    MON.WriteDec(line);
-    MON.Write("\n");
+    GenericWrite("ASSERTION-FAILED(");
+    GenericWrite(desc);
+    GenericWrite(") at ");
+    GenericWrite(file);
+    GenericWrite(":");
+    GenericWriteDec(line);
+    GenericWrite("\n");
     // Halt by going into an infinite loop.
     for(;;);
 }

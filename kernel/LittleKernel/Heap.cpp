@@ -7,13 +7,13 @@ Heap& Heap::Create(uint32 start, uint32 end_addr, uint32 max, uint8 supervisor, 
     ASSERT(start%0x1000 == 0);
     ASSERT(end_addr%0x1000 == 0);
     
-    MON.Write("Heap create:");
-    MON.Write("\n    start        = "); MON.WriteHex(start);
-    MON.Write("\n    end          = "); MON.WriteHex(end_addr);
-    MON.Write("\n    max          = "); MON.WriteHex(max);
-    MON.Write("\n    supervisor   = "); MON.WriteHex(supervisor);
-    MON.Write("\n    readonly     = "); MON.WriteDec(readonly);
-    MON.Put('\n');
+    GenericWrite("Heap create:");
+    GenericWrite("\n    start        = "); GenericWriteHex(start);
+    GenericWrite("\n    end          = "); GenericWriteHex(end_addr);
+    GenericWrite("\n    max          = "); GenericWriteHex(max);
+    GenericWrite("\n    supervisor   = "); GenericWriteHex(supervisor);
+    GenericWrite("\n    readonly     = "); GenericWriteDec(readonly);
+    GenericWrite("\n");
     
     // Initialise the index.
     index.Place( (void*)start, HEAP_INDEX_SIZE);
@@ -195,10 +195,10 @@ int32 Heap::FindSmallestHole(uint32 size, uint8 page_align) {
 
 void Heap::Expand(uint32 new_size) {
 	// Sanity check.
-	MON.Write("Heap expand:");
-    MON.Write("\n    start_address = "); MON.WriteHex(start_address);
-    MON.Write("\n    new_size      = "); MON.WriteHex(new_size);
-    MON.Write("\n    current_size  = "); MON.WriteHex(end_address - start_address);
+	GenericWrite("Heap expand:");
+    GenericWrite("\n    start_address = "); GenericWriteHex(start_address);
+    GenericWrite("\n    new_size      = "); GenericWriteHex(new_size);
+    GenericWrite("\n    current_size  = "); GenericWriteHex(end_address - start_address);
     
     ASSERT(new_size > end_address - start_address);
 
@@ -210,9 +210,9 @@ void Heap::Expand(uint32 new_size) {
     }
 
     // Make sure we are not overreaching ourselves.
-    MON.Write("\n    new_end       = "); MON.WriteHex(start_address+new_size);
-    MON.Write("\n    max_end       = "); MON.WriteHex(max_address);
-    MON.Put('\n');
+    GenericWrite("\n    new_end       = "); GenericWriteHex(start_address+new_size);
+    GenericWrite("\n    max_end       = "); GenericWriteHex(max_address);
+    GenericWrite("\n");
     ASSERT(start_address+new_size <= max_address);
 
     // This should always be on a page boundary.
@@ -354,7 +354,7 @@ void Heap::Free(void *p) {
 
 uint32 KMemoryAllocateBase(uint32 sz, int align, uint32 *phys)
 {
-	//MON.Write("KMemoryAllocateBase: ").WriteDec(sz).Write(", ").WriteDec(align).Write(", ").WriteHex(phys).NewLine();
+	//GenericWrite("KMemoryAllocateBase: ").WriteDec(sz).Write(", ").WriteDec(align).Write(", ").WriteHex(phys).NewLine();
 	
     //if (kheap != 0)
     //{

@@ -1,0 +1,5 @@
+timeout 1
+
+title	Jimix
+	root (fd0)
+	kernel /kernel

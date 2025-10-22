@@ -43,9 +43,9 @@ void Timer::Init(uint32 frequency)
 void Timer::InterruptCallback(Registers regs) {
 	if (++multiplier_tick >= multiplier) {
 		tick++;
-	    MON.Write("Tick: ");
-	    MON.WriteDec(tick);
-	    MON.Write("\n");
+	    GenericWrite("Tick: ");
+	    GenericWriteDec(tick);
+	    GenericWrite("\n");
 	    multiplier_tick = 0;
 	}
 }

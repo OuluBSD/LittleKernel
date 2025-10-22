@@ -2,6 +2,7 @@
 #define MONITOR_H
 
 #include "Common.h"
+#include "SerialDriver.h"
 
 
 struct Monitor {
@@ -22,14 +23,14 @@ struct Monitor {
 	Monitor& NewLine();
 };
 
-#define PANIC(x) MON.Write("\n --> "); \
-	MON.Write(__FILE__); MON.Write(":"); \
-	MON.WriteDec(__LINE__); MON.Write(" "); \
-	MON.Write(x); while(1);
+#define PANIC(x) GenericWrite("\n --> "); \
+	GenericWrite(__FILE__); GenericWrite(":"); \
+	GenericWriteDec(__LINE__); GenericWrite(" "); \
+	GenericWrite(x); while(1);
 
 #define MON global->monitor
 
-#define KDUMPI(x) MON.Write(#x ": ").WriteDec(x).Write("\n");
-#define KDUMPH(x) MON.Write(#x ": ").WriteHex((uint32)x).Write("\n");
+#define KDUMPI(x) GenericWrite(#x ": "); GenericWriteDec(x); GenericWrite("\n");
+#define KDUMPH(x) GenericWrite(#x ": "); GenericWriteHex((uint32)x); GenericWrite("\n");
 
 #endif

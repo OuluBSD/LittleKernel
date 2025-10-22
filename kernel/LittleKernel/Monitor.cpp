@@ -132,6 +132,19 @@ void Monitor::Clear() {
 	MoveCursor();
 }
 
+// C-style wrapper functions for monitor output
+extern "C" void monitor_write(const char* str) {
+    global->monitor.Write(str);
+}
+
+extern "C" void monitor_write_dec(int i) {
+    global->monitor.WriteDec(i);
+}
+
+extern "C" void monitor_write_hex(uint32 i) {
+    global->monitor.WriteHex(i);
+}
+
 
 // Outputs a null-terminated ASCII string to the MON.
 Monitor& Monitor::Write(const char *c) {

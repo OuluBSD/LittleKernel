@@ -31,10 +31,12 @@ void ResetInterruptHandlers() {
 
 // This gets called from our ASM interrupt handler stub.
 void isr_handler(Registers regs) {
-	MON.Write("recieved interrupt: ");
-	MON.WriteDec(regs.int_no);
-	MON.Write(" (").WriteDec(regs.err_code).Write(")");
-	MON.Put('\n');
+	GenericWrite("recieved interrupt: ");
+	GenericWriteDec(regs.int_no);
+	GenericWrite(" (");
+	GenericWriteDec(regs.err_code);
+	GenericWrite(")");
+	GenericWrite("\n");
 	
 	//if (regs.int_no == 6)
 	//	PANIC("id 6 is stuck");
@@ -42,7 +44,7 @@ void isr_handler(Registers regs) {
 	if (global->interrupt_handlers[regs.int_no].IsNull() == false) {
 		//isr_t handler = interrupt_handlers[regs.int_no];
 		//handler(regs);
-		//MON.WriteDec(regs.int_no); MON.Write(" interrupted\n");
+		//GenericWriteDec(regs.int_no); GenericWrite(" interrupted\n");
 		
 		global->interrupt_handlers[regs.int_no].Execute(regs);
 	}
@@ -50,8 +52,13 @@ void isr_handler(Registers regs) {
 
 // This gets called from our ASM interrupt handler stub.
 void irq_handler(Registers regs) {
-	if (regs.int_no != 32)
-		MON.Write("irq_handler: int_no=").WriteDec(regs.int_no).Write(", err_code=").WriteDec(regs.err_code).NewLine();
+	if (regs.int_no != 32) {
+		GenericWrite("irq_handler: int_no=");
+		GenericWriteDec(regs.int_no);
+		GenericWrite(", err_code=");
+		GenericWriteDec(regs.err_code);
+		GenericWrite("\n");
+	}
 	
 	// Send an EOI (end of interrupt) signal to the PICs.
 	// If this interrupt involved the slave.
@@ -66,7 +73,7 @@ void irq_handler(Registers regs) {
 	if (global->interrupt_handlers[regs.int_no].IsNull() == false) {
 		//isr_t handler = interrupt_handlers[regs.int_no];
 		//handler(regs);
-		//MON.WriteDec(regs.int_no); MON.Write(" interrupted\n");
+		//GenericWriteDec(regs.int_no); GenericWrite(" interrupted\n");
 		
 		global->interrupt_handlers[regs.int_no].Execute(regs);
 	}

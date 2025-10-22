@@ -1,8 +1,8 @@
 #include "Kernel.h"
+#include "GenericOutput.h"
 
 
 extern "C" {
-
 
 
 int multiboot_main(struct multiboot *mboot_ptr) {
@@ -17,6 +17,8 @@ int multiboot_main(struct multiboot *mboot_ptr) {
     MON.Init();
 	MON.Clear();
 	
+	// Initialize serial port
+	init_serial();
 	
 	// Find the location of our initial ramdisk.
 	uint32 initrd_location = 0;
@@ -30,19 +32,19 @@ int multiboot_main(struct multiboot *mboot_ptr) {
 	InitLinkerVariables(initrd_end);
 	
 	
-	MON.Write("Enabling interrupts\n");
+	GenericWrite("Enabling interrupts\n");
 	EnableInterrupts();
 	
-	MON.Write("Enabling paging\n");
+	GenericWrite("Enabling paging\n");
 	InitialisePaging();
 	
-	MON.Write("Initialising tasking\n");
+	GenericWrite("Initialising tasking\n");
 	InitialiseTasking();
 	
-	MON.Write("Initialising initrd\n");
+	GenericWrite("Initialising initrd\n");
 	fs_root = InitialiseInitrd(initrd_location);
 	
-	MON.Write("Initialising syscalls\n");
+	GenericWrite("Initialising syscalls\n");
 	InitialiseSyscalls();
 
 	SwitchToUserMode();
@@ -53,24 +55,24 @@ int multiboot_main(struct multiboot *mboot_ptr) {
 	uint32 a = KMemoryAllocate(4);
     uint32 b = KMemoryAllocate(8);
     uint32 c = KMemoryAllocate(8);
-    MON.Write("a: ");
-    MON.WriteHex(a);
-    MON.Write(", b: ");
-    MON.WriteHex(b);
-    MON.Write("\nc: ");
-    MON.WriteHex(c);
+    GenericWrite("a: ");
+    GenericWriteHex(a);
+    GenericWrite(", b: ");
+    GenericWriteHex(b);
+    GenericWrite("\nc: ");
+    GenericWriteHex(c);
 
     KFree((void*)c);
     KFree((void*)b);
     uint32 d = KMemoryAllocate(12);
-    MON.Write(", d: ");
-    MON.WriteHex(d).NewLine();
+    GenericWrite(", d: ");
+    GenericWriteHex(d).NewLine();
     
     
     a = KMemoryAllocate(1024*1024);
-    MON.Write("\nhuge a: ");
-    MON.WriteHex(a);
-    MON.Put('\n');
+    GenericWrite("\nhuge a: ");
+    GenericWriteHex(a);
+    GenericWrite("\n");
     
     global->timer.Init(1);
     #endif

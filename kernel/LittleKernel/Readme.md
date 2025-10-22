@@ -1,6 +1,8 @@
 # LittleKernel
 
 This kernel was started in 2015 (or 2014) by following a tutorial made by James O'Molloy (http://www.jamesmolloy.co.uk/tutorial_html/). It was imported to libtopside in 2022.
+I was further moved to separate repository at github.com/OuluBSD/LittleKernel.
+Old commits can be still retrieved if necessary.
 
 
 ## Issues

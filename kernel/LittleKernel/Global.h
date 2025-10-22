@@ -1,6 +1,7 @@
 #ifndef _LittleKernel_Global_h_
 #define _LittleKernel_Global_h_
 
+#include "GenericOutput.h"
 
 struct SVar {
 	DescriptorTable dt;

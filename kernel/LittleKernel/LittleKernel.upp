@@ -8,9 +8,6 @@ uses
 file
 	Readme.md,
 	"Shell scripts" readonly separator,
-	update_image.sh,
-	run_qemu.sh,
-	run_bochs.sh,
 	bochsrc.txt,
 	link.ld,
 	GCC_K32.bm,
@@ -51,6 +48,10 @@ file
 	Task.cpp,
 	Process.asm,
 	Global.h,
+	SerialDriver.h,
+	SerialDriver.cpp,
+	GenericOutput.h,
+	GenericOutput.cpp,
 	_ readonly separator;
 
 mainconfig
