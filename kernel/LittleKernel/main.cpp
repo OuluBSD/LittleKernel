@@ -1,11 +1,12 @@
 #include "Kernel.h"
 #include "GenericOutput.h"
+#include "LogStream.h"
 
 
 extern "C" {
 
-
-int multiboot_main(struct multiboot *mboot_ptr) {
+// DEPRECATED - to be removed during kernel rewrite
+int multiboot_main_old(struct multiboot *mboot_ptr) {
 	
     ResetInterruptHandlers();
     
@@ -28,23 +29,23 @@ int multiboot_main(struct multiboot *mboot_ptr) {
 		initrd_end = *(uint32*)(mboot_ptr->mods_addr+4);
 	}
 	
-	
+
 	InitLinkerVariables(initrd_end);
 	
-	
-	GenericWrite("Enabling interrupts\n");
+
+	LOG("Enabling interrupts");
 	EnableInterrupts();
 	
-	GenericWrite("Enabling paging\n");
+	LOG("Enabling paging");
 	InitialisePaging();
 	
-	GenericWrite("Initialising tasking\n");
+	LOG("Initialising tasking");
 	InitialiseTasking();
 	
-	GenericWrite("Initialising initrd\n");
+	LOG("Initialising initrd");
 	fs_root = InitialiseInitrd(initrd_location);
 	
-	GenericWrite("Initialising syscalls\n");
+	LOG("Initialising syscalls");
 	InitialiseSyscalls();
 
 	SwitchToUserMode();
@@ -55,29 +56,30 @@ int multiboot_main(struct multiboot *mboot_ptr) {
 	uint32 a = KMemoryAllocate(4);
     uint32 b = KMemoryAllocate(8);
     uint32 c = KMemoryAllocate(8);
-    GenericWrite("a: ");
-    GenericWriteHex(a);
-    GenericWrite(", b: ");
-    GenericWriteHex(b);
-    GenericWrite("\nc: ");
-    GenericWriteHex(c);
+    LOG("a: " << a);
+    LOG(", b: " << b);
+    LOG("\nc: " << c);
 
     KFree((void*)c);
     KFree((void*)b);
     uint32 d = KMemoryAllocate(12);
-    GenericWrite(", d: ");
-    GenericWriteHex(d).NewLine();
+    LOG(", d: " << d);
     
     
     a = KMemoryAllocate(1024*1024);
-    GenericWrite("\nhuge a: ");
-    GenericWriteHex(a);
-    GenericWrite("\n");
+    LOG("\nhuge a: " << a);
     
     global->timer.Init(1);
     #endif
     
 	return 0xDEADABBA;
+}
+
+// New main function placeholder (to be implemented)
+int multiboot_main(struct multiboot *mboot_ptr) {
+    LOG("New kernel main function - to be implemented");
+    // TODO: Implement new kernel initialization here
+    while(1); // For now, just hang until new implementation is ready
 }
 
 }

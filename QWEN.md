@@ -47,3 +47,30 @@ For comprehensive documentation, see the `docs/` directory:
 ## Analysis
 
 The project is well-structured for educational purposes, with clean separation of concerns between different kernel subsystems. The use of C++ templates and callback systems shows an attempt to create a more flexible and maintainable kernel architecture compared to pure C implementations.
+## Testing and Debugging
+
+When testing the kernel, use the following commands:
+
+1. To build the kernel: `./build.sh`
+2. To run the kernel with a timeout (useful for automated testing): `timeout 2 ./run.sh`
+3. To run the kernel in headless mode (no GUI window): `./run.sh --headless`
+4. To run the kernel with both headless and timeout: `timeout 2 ./run.sh --headless`
+
+The kernel includes debug output using DLOG and LOG macros. These output to both monitor and serial.
+
+### Logging Standards
+
+For all new code, use the following logging approach:
+- Use `LOG("message with value " << value)` for general logging (stream-like syntax)
+- Use `DLOG("debug message " << value)` for debug output (includes "[TASKING]" prefix)
+- The `LOG` macro automatically adds newlines
+- Do not use `GenericWrite` functions directly in new code
+
+### Run Script Options
+
+The run.sh script supports several options:
+- `--serial`: Enable serial console connection (enabled by default)
+- `--headless`: Run in headless mode (no GUI, useful for testing)
+- `--direct`: Run kernel directly with -kernel option
+- `-f, --floppy-user`: Update floppy image as user
+- `-s, --sudo`: Update floppy image with sudo

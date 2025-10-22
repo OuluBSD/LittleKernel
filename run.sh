@@ -12,12 +12,14 @@ show_help() {
     echo "  -f, --floppy-user       Update floppy image as user (default behavior)"
     echo "  -s, --sudo              Update floppy image with sudo (requires password)"
     echo "  --serial                Enable serial console connection"
+    echo "  --headless              Run in headless mode (no GUI, useful for testing)"
     echo ""
     echo "Examples:"
     echo "  $0                      # Run directly with serial (default)"
     echo "  $0 -f --serial        # Update floppy as user with serial"
     echo "  $0 -s                 # Update floppy with sudo"
     echo "  $0 -d --serial        # Run directly with serial"
+    echo "  $0 --headless         # Run in headless mode"
 }
 
 # Default options
@@ -25,6 +27,7 @@ DIRECT_RUN=1
 FLOPPY_USER=0
 FLOPPY_SUDO=0
 SERIAL_ENABLED=1
+HEADLESS_MODE=0
 
 # Parse command line options
 while [[ $# -gt 0 ]]; do
@@ -55,6 +58,10 @@ while [[ $# -gt 0 ]]; do
             SERIAL_ENABLED=1
             shift
             ;;
+        --headless)
+            HEADLESS_MODE=1
+            shift
+            ;;
         *)
             echo "Unknown option: $1"
             show_help
@@ -70,8 +77,17 @@ echo "Building kernel..."
 # Set up QEMU command based on options
 QEMU_CMD="qemu-system-i386 -m 256"
 
-if [ $SERIAL_ENABLED -eq 1 ]; then
-    QEMU_CMD="$QEMU_CMD -serial stdio"
+if [ $HEADLESS_MODE -eq 1 ]; then
+    QEMU_CMD="$QEMU_CMD -nographic"
+    # In headless mode, if serial is enabled, use monitor for serial output
+    if [ $SERIAL_ENABLED -eq 1 ]; then
+        QEMU_CMD="$QEMU_CMD -serial mon:stdio"
+    fi
+else
+    # Not in headless mode, regular serial output
+    if [ $SERIAL_ENABLED -eq 1 ]; then
+        QEMU_CMD="$QEMU_CMD -serial stdio"
+    fi
 fi
 
 if [ $DIRECT_RUN -eq 1 ]; then
