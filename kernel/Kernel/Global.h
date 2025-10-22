@@ -1,0 +1,39 @@
+#ifndef _Kernel_Global_h_
+#define _Kernel_Global_h_
+
+// Don't include other headers in this file - only the package header should include other headers
+
+// Forward declarations
+class Monitor;
+class Timer;
+class DescriptorTable;
+class MemoryManager;
+class ProcessManager;
+class FileSystem;
+class SyscallManager;
+
+// Global System Variables
+struct Global {
+    Monitor* monitor;
+    Timer* timer;
+    DescriptorTable* descriptor_table;
+    MemoryManager* memory_manager;
+    ProcessManager* process_manager;
+    FileSystem* file_system;
+    SyscallManager* syscall_manager;
+    
+    // Boot information
+    uint32 placement_address;        // Next free physical address
+    uint32 initial_esp;              // Initial stack pointer
+    
+    // System flags
+    bool initialized;
+    
+    // Initialize the global structure
+    void Initialize();
+};
+
+// Global variable declaration
+extern Global* global;
+
+#endif

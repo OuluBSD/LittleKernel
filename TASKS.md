@@ -1,21 +1,27 @@
 # Kernel Rewrite Tasks
 
+## Project Restructure Completed:
+- [x] Renamed old kernel directory to kernel_old (read-only)
+- [x] Created new kernel structure: kernel/{Kernel,Library}
+- [x] Created new U++ project files: kernel/Kernel/Kernel.upp and kernel/Library/Library.upp
+- [x] Put kernel_old in read-only state for reference only
+
 ## Phase 1: Analysis and Planning
-- [ ] Analyze current LittleKernel structure and identify core components
-- [ ] Design new kernel architecture combining Windows 98 features with modern OS concepts
-- [ ] Plan system call interface to be Linux-compatible
-- [ ] Design memory management system for both kernel and user space
-- [ ] Plan process/thread management with cooperative and preemptive options
-- [ ] Design device driver interface architecture
-- [ ] Plan file system architecture with FAT32/DOS compatibility
+- [x] Analyze current LittleKernel structure in kernel_old and identify core components
+- [x] Design new kernel architecture combining Windows 98 features with modern OS concepts
+- [x] Plan system call interface to be Linux-compatible
+- [x] Design memory management system for both kernel and user space
+- [x] Plan process/thread management with cooperative and preemptive options
+- [x] Design device driver interface architecture
+- [x] Plan file system architecture with FAT32/DOS compatibility
 
 ## Phase 2: Core Infrastructure
-- [ ] Set up new kernel project structure
-- [ ] Implement basic kernel entry point and initialization
-- [ ] Implement basic memory management (heap allocation)
-- [ ] Implement basic interrupt handling
-- [ ] Create placeholder system call interface
-- [ ] Implement logging infrastructure with LOG macro (stream-like syntax)
+- [x] Set up new kernel project structure in kernel/Kernel
+- [x] Implement basic kernel entry point and initialization
+- [x] Implement basic memory management (heap allocation)
+- [x] Implement basic interrupt handling
+- [x] Create placeholder system call interface
+- [x] Implement logging infrastructure with LOG macro (stream-like syntax)
 - [ ] Write kernel configuration system
 
 ## Phase 3: Process Management
@@ -90,7 +96,7 @@
 ## Phase 10: Legacy Code Migration
 - [ ] Rename multiboot_main to multiboot_main_old (with "deprecated - to be removed" comment)
 - [ ] Flag all existing code as deprecated using #if 0 ... #endif if problematic
-- [ ] Identify reusable components from old codebase
+- [ ] Identify reusable components from old codebase in kernel_old
 - [ ] Gradually replace old components with new implementations
 - [ ] Verify that new components work correctly with Ultimate++ framework
 - [ ] Remove old code once new implementations are stable

@@ -66,6 +66,28 @@ For all new code, use the following logging approach:
 - The `LOG` macro automatically adds newlines
 - Do not use `GenericWrite` functions directly in new code
 
+### Naming Conventions
+
+- Class names use PascalCase following Ultimate++ conventions (e.g., ProcessManager, ThreadScheduler, not process_manager or Process_Manager)
+- Function names follow Windows/Ultimate++ style (e.g., CreateProcess, CreateThread)
+- Variable names use lowercase with underscores (e.g., process_id, thread_state)
+- Interface classes use Base suffix instead of I prefix (e.g., SchedulerBase, ProcessBase, not IScheduler or IProcess)
+- Macros use UPPER_CASE (e.g., MAX_PROCESS_COUNT, KERNEL_STACK_SIZE)
+
+### File Organization
+- All files should be placed directly in the project directory (kernel/Kernel/, not kernel/Kernel/source/)
+- Header files (.h) and implementation files (.cpp) should be grouped together in U++ project files
+- For a class Abc, Abc.h should come before Abc.cpp in the project file
+- All C/C++ files must include only the package header, which has the same name as the directory and project file
+- Compiled files are managed by .upp project files
+
+### Header Inclusion Conventions
+- Only the package header (Kernel.h) should include other headers
+- Other header files should NOT include additional headers directly
+- Use forward declarations in headers when types are only referenced, not fully used
+- Defs.h should be included early for basic type definitions and preprocessor definitions
+- If using configuration macros, they should be in Config.h and included first
+
 ### Run Script Options
 
 The run.sh script supports several options:

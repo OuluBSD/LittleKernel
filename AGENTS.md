@@ -55,3 +55,5 @@ plantuml <diagram_file.puml>
 - **Virtual memory**: Paging-based memory management
 - **Interrupt-driven I/O**: Asynchronous hardware handling
 - **System calls**: Controlled interface to kernel services
+
+Please refer to QWEN.md for all development guidelines, conventions, and documentation.

@@ -1,0 +1,16 @@
+description "Library for New Kernel\377";
+
+noblitz;
+
+file
+	"Core utilities" separator,
+	LittleLibrary.h,
+	Memory.h,
+	Memory.cpp,
+	Callback.h,
+	Callback.cpp,
+	"System support" separator,
+	icxxabi.h,
+	icxxabi.cpp,
+	FixedArray.h;
+

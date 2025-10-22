@@ -1,0 +1,51 @@
+description "LittleKernel New\377";
+
+noblitz;
+
+uses
+	Library;
+
+file
+	Kernel.h separator,
+	"Configuration" separator,
+	Defs.h,
+	"Core utilities" separator,
+	Common.h,
+	Common.cpp,
+	"System management" separator,
+	Global.h,
+	Global.cpp,
+	"Hardware interfaces" separator,
+	Monitor.h,
+	Monitor.cpp,
+	Timer.h,
+	Timer.cpp,
+	Interrupts.h,
+	Interrupts.cpp,
+	DescriptorTable.h,
+	DescriptorTable.cpp,
+	DescriptorTable.asm,
+	"Memory management" separator,
+	MemoryManager.h,
+	MemoryManager.cpp,
+	"I/O and drivers" separator,
+	SerialDriver.h,
+	SerialDriver.cpp,
+	"Boot and low-level" separator,
+	Multiboot.h,
+	Initrd.h,
+	"System services" separator,
+	Syscall.h,
+	Syscall.cpp,
+	"Logging" separator,
+	Logging.h,
+	Logging.cpp,
+	"Kernel entry point" separator,
+	main.cpp;
+
+mainconfig
+	"" = "";
+
+custom() "asm",
+	"nasm -g -f elf32 -o $(OUTDIR)/$(TITLE)Asm.o $(PATH)",
+	"$(OUTDIR)/$(TITLE)Asm.o";
