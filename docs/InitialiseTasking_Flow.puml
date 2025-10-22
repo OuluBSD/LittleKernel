@@ -1,0 +1,35 @@
+@startuml InitialiseTasking_Flow
+
+title InitialiseTasking() Function Flow
+
+start
+
+:Disable interrupts;
+note right: asm volatile("cli")
+
+:Relocate the stack;
+note right: MoveStack((void*)0xE0000000, 0x2000)
+
+:Initialise the first task (kernel task);
+
+:Allocate memory for Task struct;
+note right: current_task = ready_queue = (Task*)KMemoryAllocate(sizeof(Task))
+
+:Set task ID;
+note right: current_task->id = global->next_pid++
+
+:Set initial registers;
+note right: current_task->esp = current_task->ebp = 0; current_task->eip = 0
+
+:Set page directory;
+note right: current_task->page_directory = global->current_directory
+
+:Allocate kernel stack;
+note right: current_task->kernel_stack = KMemoryAllocateAligned(KERNEL_STACK_SIZE)
+
+:Reenable interrupts;
+note right: asm volatile("sti")
+
+stop
+
+@enduml

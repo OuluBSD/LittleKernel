@@ -1,0 +1,48 @@
+@startuml Main_InitialiseTasking_Flow
+
+title Main Execution Flow - with InitialiseTasking Call
+
+participant "multiboot_main()" as main
+participant "ResetInterruptHandlers()" as reset
+participant "DescriptorTable::Init()" as dtinit
+participant "Monitor::Init()" as moninit
+participant "init_serial()" as serial
+participant "EnableInterrupts()" as enint
+participant "InitialisePaging()" as paging
+participant "InitialiseTasking()" as tasking
+participant "InitialiseInitrd()" as initrd
+participant "InitialiseSyscalls()" as syscalls
+participant "SwitchToUserMode()" as usermode
+
+main -> reset : calls
+main -> dtinit : calls global->dt.Init()
+main -> moninit : calls MON.Init()
+main -> serial : calls init_serial()
+main -> enint : calls EnableInterrupts()
+main -> paging : calls InitialisePaging()
+main -> tasking : calls InitialiseTasking()
+activate tasking
+
+note right of tasking
+  1. Disables interrupts (cli)
+  2. Moves stack to 0xE0000000
+  3. Allocates kernel task struct
+  4. Sets task ID, registers, page directory
+  5. Allocates kernel stack
+  6. Re-enables interrupts (sti)
+end note
+
+tasking -> tasking : disables interrupts
+tasking -> tasking : moves stack (MoveStack)
+tasking -> tasking : allocates task struct
+tasking -> tasking : sets task properties
+tasking -> tasking : allocates kernel stack
+tasking -> tasking : enables interrupts
+main <- tasking : returns
+deactivate tasking
+
+main -> initrd : calls InitialiseInitrd()
+main -> syscalls : calls InitialiseSyscalls()
+main -> usermode : calls SwitchToUserMode()
+
+@enduml

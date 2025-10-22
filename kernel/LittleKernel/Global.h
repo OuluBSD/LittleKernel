@@ -3,6 +3,7 @@
 
 #include "GenericOutput.h"
 
+// Global System Variables -> SVar
 struct SVar {
 	DescriptorTable dt;
 	Monitor monitor;

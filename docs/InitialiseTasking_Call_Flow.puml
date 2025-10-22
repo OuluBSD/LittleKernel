@@ -1,0 +1,38 @@
+@startuml InitialiseTasking_Call_Flow
+
+title InitialiseTasking() Call Flow
+
+participant "main()" as main
+participant "InitialiseTasking()" as init
+participant "MoveStack()" as move
+participant "KMemoryAllocate()" as kmalloc
+participant "KMemoryAllocateAligned()" as kmallocalign
+
+main -> init : calls
+activate init
+init -> move : calls MoveStack((void*)0xE0000000, 0x2000)
+activate move
+move -> init : returns
+deactivate move
+init -> kmalloc : calls for Task struct
+activate kmalloc
+kmalloc -> init : returns pointer
+deactivate kmalloc
+init -> kmallocalign : calls for kernel stack
+activate kmallocalign
+kmallocalign -> init : returns pointer
+deactivate kmallocalign
+
+note right of init
+  1. Disables interrupts with cli
+  2. Moves the kernel stack to 0xE0000000
+  3. Creates first task (kernel task)
+  4. Sets up task properties (ID, registers, page directory)
+  5. Reenables interrupts with sti
+end note
+
+init -> init : sets up task properties
+init -> init : enables interrupts
+deactivate init
+
+@enduml

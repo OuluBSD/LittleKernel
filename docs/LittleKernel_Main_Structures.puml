@@ -1,0 +1,126 @@
+@startuml LittleKernel_Main_Structures
+
+title LittleKernel Main Structures
+
+package "LittleKernel Core" {
+  class SVar {
+    - DescriptorTable dt
+    - Monitor monitor
+    - Timer timer
+    - Heap kheap
+    - uint32 *frames
+    - uint32 nframes
+    - PageDirectory* kernel_directory
+    - PageDirectory* current_directory
+    - uint32 placement_address
+    - FixedArray<Callback1<int>, 1> cbtestarr
+    - FixedArray<Callback1<Registers>, 256> interrupt_handlers
+    - InitrdHeader *initrd_header
+    - InitrdFileHeader *file_headers
+    - FsNode *initrd_root
+    - FsNode *initrd_dev
+    - FsNode *root_nodes
+    - int nroot_nodes
+    - DirectoryEntity dirent
+    - volatile Task *current_task
+    - volatile Task *ready_queue
+    - uint32 initial_esp
+    - uint32 next_pid
+    - void *syscalls[3]
+    - uint32 num_syscalls
+    + read_eip() : uint32
+  }
+
+  class Monitor {
+    - uint16 *video_memory
+    - uint8 cursor_x
+    - uint8 cursor_y
+    - uint16 cursorLocation
+    + Init() : int
+    + MoveCursor() : void
+    + Scroll() : void
+    + Put(char c) : void
+    + Clear() : void
+    + Write(const char *c) : Monitor&
+    + WriteDec(int i) : Monitor&
+    + WriteHex(void* p) : Monitor&
+    + WriteHex(uint32 i) : Monitor&
+    + NewLine() : Monitor&
+  }
+
+  class Task {
+    - int id
+    - uint32 esp
+    - uint32 ebp
+    - uint32 eip
+    - PageDirectory *page_directory
+    - uint32 kernel_stack
+    - Task *next
+  }
+}
+
+package "Memory Management" {
+  class Heap {
+    - OrderedArray<Header> index
+    - uint32 start_address
+    - uint32 end_address
+    - uint32 max_address
+    - uint8 supervisor
+    - uint8 readonly
+    + Create(uint32 start, uint32 end, uint32 max, uint8 supervisor, uint8 readonly) : Heap&
+    + Allocate(uint32 size, uint8 page_align) : void*
+    + Free(void *p) : void
+    - FindSmallestHole(uint32 size, uint8 page_align) : int32
+    - Expand(uint32 new_size) : void
+    - Contract(uint32 new_size) : uint32
+  }
+
+  class Header {
+    - uint32 magic
+    - uint8 is_hole
+    - uint32 size
+  }
+
+  class Footer {
+    - uint32 magic
+    - Header *header
+  }
+
+  class OrderedArray<T> {
+    - uint32 size
+    - uint32 max_size
+    - T** array
+    + Create(uint32 max_size) : OrderedArray&
+    + Place(void* addr, uint32 max_size) : OrderedArray&
+    + Destroy() : void
+    + Insert(T& item) : T&
+    + operator[](uint32 i) : T&
+    + Remove(uint32 i) : void
+    + GetSize() : uint32
+    - LessThan(T& a, T& b) : bool
+  }
+}
+
+package "Interrupt System" {
+  class Registers {
+    - uint32 ds
+    - uint32 edi, esi, ebp, esp, ebx, edx, ecx, eax
+    - uint32 int_no, err_code
+    - uint32 eip, cs, eflags, useresp, ss
+  }
+  
+  interface isr_t {
+    + operator()(Registers) : void
+  }
+}
+
+SVar ||--|| Monitor : contains
+SVar ||--|| Timer : contains
+SVar ||--|| Heap : contains
+SVar ||--|| DescriptorTable : contains
+
+Heap ||--o{ Header : manages
+Heap ||--o{ Footer : manages
+Heap ||--|| OrderedArray : uses
+
+@enduml

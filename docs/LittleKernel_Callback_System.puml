@@ -1,0 +1,75 @@
+@startuml LittleKernel_Callback_System
+
+title LittleKernel Callback System
+
+package "LittleLibrary Callback" {
+  abstract class CallbackBase {
+    + Execute() : void
+    + Clone() : CallbackBase*
+  }
+
+  class callback {
+    - void (*pFun)(void)
+    + Execute() : void
+    + Clone() : CallbackBase*
+    + callback(void (*pFunction)(void))
+  }
+
+  class CallbackClass1 {
+    - T* pObj
+    - void (T::*pFun)(ARG)
+    + Execute(ARG arg) : void
+    + Clone() : Callback1Base*
+    + CallbackClass1(T*pObject, void (T::*pFunction)(ARG))
+  }
+
+  class Callback1Base {
+    + Execute(ARG) : void
+    + Clone() : Callback1Base*
+  }
+
+  class Callback1 {
+    - void (*pFun)(ARG)
+    + Execute(ARG arg) : void
+    + Clone() : Callback1Base*
+    + operator = (Callback1& src) : Callback1&
+    + Copy(Callback1& src) : Callback1&
+    + IsNull() : bool
+    + Reset() : void
+  }
+
+  class CALLBACK {
+    - T* pObj
+    - void (T::*pFun)(void)
+    + Execute() : void
+    + Clone() : CallbackBase*
+    + CALLBACK(T* pObject, void (T::*pFunction)(void))
+  }
+
+  class CALLBACK1 {
+    - T* pObj
+    - void (T::*pFun)(OBJ)
+    - OBJ cbObj
+    + Execute() : void
+    + Clone() : CallbackBase*
+    + CALLBACK1(T* pObject, void (T::*pFunction)(OBJ), OBJ tcbObj)
+  }
+
+  class callback1 {
+    - void (*pFun)(OBJ)
+    - OBJ cbObj
+    + Execute() : void
+    + Clone() : CallbackBase*
+    + callback1(void (*pFunction)(OBJ), OBJ tcbObj)
+  }
+}
+
+CallbackBase <|-- callback
+CallbackBase <|-- CALLBACK
+CallbackBase <|-- CALLBACK1
+CallbackBase <|-- callback1
+
+Callback1Base <|-- CallbackClass1
+Callback1Base <|-- Callback1
+
+@enduml
