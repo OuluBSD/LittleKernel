@@ -8,9 +8,6 @@ uses
 file
 	Kernel.h separator,
 	boot.asm,
-	link.ld,
-	Process.asm,
-	CLANG_K32.bm,
 	Configuration separator,
 	Defs.h,
 	"Core utilities" separator,
@@ -50,14 +47,22 @@ file
 	KernelConfig.h,
 	KernelConfig.cpp,
 	"Process Management" separator,
-	ProcessControlBlock.h,
-	ProcessControlBlock.cpp,
+	"Synchronization" separator,
+	Synchronization.h,
+	Synchronization.cpp,
 	"Synchronization" separator,
 	Synchronization.h,
 	Synchronization.cpp,
 	"IPC" separator,
 	Ipc.h,
+	Ipc.cpp,
+	ProcessControlBlock.h,
+	ProcessControlBlock.cpp;
+	"IPC" separator,
+	Ipc.h,
 	Ipc.cpp;
+	ProcessControlBlock.h,
+	ProcessControlBlock.cpp;
 
 mainconfig
 	"" = "";
@@ -65,3 +70,4 @@ mainconfig
 custom() "asm",
 	"nasm -g -f elf32 -o $(OUTDIR)/$(TITLE)Asm.o $(PATH)",
 	"$(OUTDIR)/$(TITLE)Asm.o";
+

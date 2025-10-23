@@ -15,17 +15,25 @@
 #define SERIAL_LINE_STATUS(port)       (port + 5)
 
 class SerialDriver {
+private:
+    uint16 com_port;  // Store the COM port base address
+    
 public:
-    static void Initialize();
-    static bool IsTransmitEmpty();
-    static void WriteChar(char c);
-    static void WriteString(const char* str);
-    static bool IsReceiveEmpty();
-    static char ReadChar();
+    SerialDriver();  // Constructor
+    SerialDriver(uint16 port);  // Constructor with specific port
+    void Initialize();
+    bool IsTransmitEmpty();
+    void WriteChar(char c);
+    void WriteString(const char* str);
+    bool IsReceiveEmpty();
+    char ReadChar();
     
     // Higher level functions
-    static void WriteInteger(int32 value);
-    static void WriteHex(uint32 value);
+    void WriteInteger(int32 value);
+    void WriteHex(uint32 value);
+    
+    // Getter for the COM port
+    uint16 GetComPort() const { return com_port; }
 };
 
 #endif

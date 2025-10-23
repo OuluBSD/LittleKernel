@@ -45,8 +45,10 @@ struct ProcessControlBlock {
     uint32 last_run_time;         // Last time process was scheduled
     
     // Synchronization primitives
-    uint32* waiting_on_semaphore; // Semaphore this process is waiting on
+    ProcessControlBlock* waiting_on_semaphore; // Next process in semaphore wait queue
     uint32* event_flags;          // Event flags for this process
+    ProcessControlBlock* waiting_on_mutex;     // Next process in mutex wait queue
+    ProcessControlBlock* waiting_on_event;     // Next process in event wait queue
     
     // Inter-process communication
     uint32* message_queue;        // Messages waiting for this process
@@ -69,12 +71,20 @@ const uint32 KERNEL_PID = 0;      // PID for kernel process
 const uint32 MIN_PID = 1;         // Minimum user process PID
 const uint32 MAX_PID = 0xFFFF;    // Maximum process ID (keeping it reasonable)
 
+// Process scheduling modes
+enum SchedulingMode {
+    SCHEDULING_MODE_COOPERATIVE = 0,  // Processes yield control voluntarily
+    SCHEDULING_MODE_PREEMPTIVE,       // Scheduler forces context switches
+    SCHEDULING_MODE_ROUND_ROBIN       // Round-robin scheduling with time slices
+};
+
 // Process management functions
 class ProcessManager {
 private:
     ProcessControlBlock* current_process;
     ProcessControlBlock* process_list_head;
     uint32 next_pid;
+    SchedulingMode current_mode;  // Current scheduling mode
     
 public:
     ProcessManager();
@@ -98,6 +108,11 @@ public:
     ProcessControlBlock* ScheduleNextProcess();  // For scheduler to select next process
     bool AddToReadyQueue(ProcessControlBlock* pcb);
     ProcessControlBlock* RemoveFromReadyQueue();
+    
+    // Scheduling mode control
+    void SetSchedulingMode(SchedulingMode mode);
+    SchedulingMode GetSchedulingMode();
+    void Schedule();  // Main scheduler function called by timer interrupt
     
     // Process control
     bool YieldCurrentProcess();  // Allow current process to yield CPU

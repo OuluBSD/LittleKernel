@@ -23,7 +23,7 @@ void Timer::Initialize(uint32 freq) {
     outportb(0x40, low);   // Channel 0 data port (low byte)
     outportb(0x40, high);  // Channel 0 data port (high byte)
     
-    DLOG("Timer initialized with frequency: " << frequency << " Hz");
+    LOG("Timer initialized with frequency: " << frequency << " Hz");
 }
 
 void Timer::SetFrequency(uint32 freq) {
@@ -44,7 +44,8 @@ void Timer::Sleep(uint32 milliseconds) {
     
     while (tick_count < target_ticks) {
         // In a real implementation, this would yield to other processes
-        // For now, use a busy wait
+        // For now, use a busy wait - don't hold the lock during wait
+        // as that would block the timer tick from updating the count
     }
 }
 

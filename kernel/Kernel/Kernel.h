@@ -4,9 +4,6 @@
 // Package header for the New Kernel project
 // All .cpp files in this project should include only this header
 
-// System headers (if needed)
-#include <stdarg.h>
-
 // Core definitions
 #include "Defs.h"
 #include "Common.h"
@@ -32,6 +29,18 @@
 // Boot and low-level
 #include "Multiboot.h"
 #include "Initrd.h"
+
+// Configuration
+#include "KernelConfig.h"
+
+// Process Management
+#include "ProcessControlBlock.h"
+
+// Synchronization
+#include "Synchronization.h"
+
+// Inter-Process Communication
+#include "Ipc.h"
 
 // Logging
 #include "Logging.h"

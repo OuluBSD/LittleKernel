@@ -86,6 +86,11 @@ extern "C" void DisableInterrupts() {
 // Specific interrupt handlers
 void TimerIrqHandler(Registers regs) {
     global->timer->Tick();
+    
+    // Call the scheduler if it exists
+    if (process_manager) {
+        process_manager->Schedule();
+    }
 }
 
 void KeyboardIrqHandler(Registers regs) {
@@ -94,5 +99,5 @@ void KeyboardIrqHandler(Registers regs) {
     
     // In a real implementation, we would process the keyboard input
     // For now, just log it
-    DLOG("Keyboard scan code: " << (uint32)scan_code);
+    LOG("Keyboard scan code: " << (uint32)scan_code);
 }

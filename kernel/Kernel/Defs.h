@@ -13,8 +13,11 @@ typedef signed short int16;
 typedef signed int   int32;
 typedef signed long long int64;
 
-// Boolean type
-typedef unsigned char bool;
+// Define Boolean values as macros for compatibility
+#define TRUE 1
+#define FALSE 0
+#define True 1
+#define False 0
 #define true 1
 #define false 0
 
@@ -27,8 +30,8 @@ typedef unsigned char bool;
 
 // Memory layout
 #define KERNEL_VIRTUAL_BASE 0xC0000000
-#define KERNEL_HEAP_START 0xD0000000
-#define KERNEL_HEAP_SIZE 0x1000000  // 16MB
+#define DEFAULT_KERNEL_HEAP_START 0xD0000000
+#define DEFAULT_KERNEL_HEAP_SIZE 0x1000000  // 16MB
 
 // Useful macros
 #define HIGH_BYTE_OF_WORD(x) ((x & 0xFF00) >> 8)

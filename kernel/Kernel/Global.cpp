@@ -25,6 +25,10 @@ void Global::Initialize() {
     memory_manager = new MemoryManager();
     memory_manager->Initialize();
     
+    // Initialize SerialDriver
+    serial_driver = new SerialDriver();
+    serial_driver->Initialize();
+    
     // Set initialized flag
     initialized = true;
     

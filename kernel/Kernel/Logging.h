@@ -6,9 +6,19 @@
 // Forward declarations
 class Monitor;
 
-// Logging macros
-#define LOG(message) _log_message(__FILE__, __LINE__, message)
-#define DLOG(message) _debug_log_message(__FILE__, __LINE__, message)
+// Logging macros - use LOG for stream-like syntax
+// Example: LOG("Message with value " << value);
+#define LOG(message) do { \
+    LogStream ls; \
+    ls << message; \
+    ls.Flush("[LOG]"); \
+} while(0)
+
+#define DLOG(message) do { \
+    LogStream ls; \
+    ls << message; \
+    ls.Flush("[DEBUG]"); \
+} while(0)
 
 // Function prototypes
 void _log_message(const char* file, int line, const char* message);
@@ -35,11 +45,5 @@ public:
     LogStream& operator<<(char c);
     void Flush(const char* prefix);
 };
-
-#define LOG_STREAM(message) do { \
-    LogStream ls; \
-    ls << message; \
-    ls.Flush("[LOG]"); \
-} while(0)
 
 #endif

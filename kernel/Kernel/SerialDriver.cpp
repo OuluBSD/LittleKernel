@@ -1,23 +1,31 @@
 #include "Kernel.h"
 
+SerialDriver::SerialDriver() : com_port(SERIAL_COM1_BASE) {
+    // Default constructor uses COM1
+}
+
+SerialDriver::SerialDriver(uint16 port) : com_port(port) {
+    // Constructor with specific port
+}
+
 void SerialDriver::Initialize() {
-    outportb(SERIAL_LINE_COMMAND(SERIAL_COM1_BASE), 0x80);    // Enable DLAB (set baud rate divisor)
-    outportb(SERIAL_COM1_BASE, 0x03);                         // Set divisor to 3 (lo byte) 38400 baud
-    outportb(SERIAL_COM1_BASE + 1, 0x00);                     //                  (hi byte)
-    outportb(SERIAL_LINE_COMMAND(SERIAL_COM1_BASE), 0x03);    // 8 bits, no parity, one stop bit
-    outportb(SERIAL_FIFO_COMMAND(SERIAL_COM1_BASE), 0xC7);    // Enable FIFO, clear them, 14-byte threshold
-    outportb(SERIAL_MODEM_COMMAND(SERIAL_COM1_BASE), 0x0B);   // IRQs enabled, RTS/DSR set
+    outportb(SERIAL_LINE_COMMAND(com_port), 0x80);    // Enable DLAB (set baud rate divisor)
+    outportb(com_port, 0x03);                         // Set divisor to 3 (lo byte) 38400 baud
+    outportb(com_port + 1, 0x00);                     //                  (hi byte)
+    outportb(SERIAL_LINE_COMMAND(com_port), 0x03);    // 8 bits, no parity, one stop bit
+    outportb(SERIAL_FIFO_COMMAND(com_port), 0xC7);    // Enable FIFO, clear them, 14-byte threshold
+    outportb(SERIAL_MODEM_COMMAND(com_port), 0x0B);   // IRQs enabled, RTS/DSR set
 }
 
 bool SerialDriver::IsTransmitEmpty() {
-    return inportb(SERIAL_LINE_STATUS(SERIAL_COM1_BASE)) & 0x20;
+    return inportb(SERIAL_LINE_STATUS(com_port)) & 0x20;
 }
 
 void SerialDriver::WriteChar(char c) {
     while (!IsTransmitEmpty()) {
         // Wait for the serial port to be ready
     }
-    outportb(SERIAL_COM1_BASE, c);
+    outportb(com_port, c);
 }
 
 void SerialDriver::WriteString(const char* str) {
@@ -30,14 +38,14 @@ void SerialDriver::WriteString(const char* str) {
 }
 
 bool SerialDriver::IsReceiveEmpty() {
-    return inportb(SERIAL_LINE_STATUS(SERIAL_COM1_BASE)) & 1;
+    return inportb(SERIAL_LINE_STATUS(com_port)) & 1;
 }
 
 char SerialDriver::ReadChar() {
     while (IsReceiveEmpty()) {
         // Wait for data to be available
     }
-    return inportb(SERIAL_COM1_BASE);
+    return inportb(com_port);
 }
 
 void SerialDriver::WriteInteger(int32 value) {

@@ -48,46 +48,6 @@ static void WriteLogOutput(const char* msg) {
     }
 }
 
-void _log_message(const char* file, int line, const char* message) {
-    // Create a temporary buffer to format the message
-    char temp[512];
-    uint32 pos = 0;
-    
-    // Add prefix
-    const char* prefix = "[LOG] ";
-    for (int j = 0; prefix[j] != '\0'; j++) {
-        temp[pos++] = prefix[j];
-    }
-    
-    // Add the message
-    for (int j = 0; message[j] != '\0' && pos < 500; j++) {
-        temp[pos++] = message[j];
-    }
-    
-    temp[pos] = '\0';
-    WriteLogOutput(temp);
-}
-
-void _debug_log_message(const char* file, int line, const char* message) {
-    // Create a temporary buffer to format the message
-    char temp[512];
-    uint32 pos = 0;
-    
-    // Add prefix
-    const char* prefix = "[DEBUG] ";
-    for (int j = 0; prefix[j] != '\0'; j++) {
-        temp[pos++] = prefix[j];
-    }
-    
-    // Add the message
-    for (int j = 0; message[j] != '\0' && pos < 500; j++) {
-        temp[pos++] = message[j];
-    }
-    
-    temp[pos] = '\0';
-    WriteLogOutput(temp);
-}
-
 // LogStream implementation
 LogStream::LogStream() {
     pos = 0;

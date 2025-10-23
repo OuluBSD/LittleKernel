@@ -13,14 +13,41 @@ struct Registers {
 };
 
 // Function prototypes for common utility functions
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void* memcpy(void* dest, const void* src, uint32 len);
 void* memset(void* dest, char val, uint32 len);
 uint16* memsetw(uint16* dest, uint16 val, uint32 count);
 int strlen(const char* str);
-char* strcpy(char* dest, const char* src);
-char* strcat(char* dest, const char* src);
+char* strcpy_safe(char* dest, const char* src, uint32 dest_size);
+char* strcat_s(char* dest, const char* src, uint32 dest_size);
 int strcmp(const char* str1, const char* str2);
-char* strncpy(char* dest, const char* src, uint32 count);
+char* strncpy_s(char* dest, const char* src, uint32 count, uint32 dest_size);
+
+#ifdef __cplusplus
+}
+
+// C++ operator new and delete declarations for freestanding kernel
+void* operator new(uint32 size);
+void* operator new[](uint32 size);
+void operator delete(void* ptr);
+void operator delete[](void* ptr);
+void operator delete(void* ptr, uint32 size);
+void operator delete[](void* ptr, uint32 size);
+
+#endif
+
+// Spinlock implementation
+struct Spinlock {
+    volatile uint32 lock;
+    
+    void Initialize() { lock = 0; }
+    void Acquire();
+    void Release();
+    bool TryAcquire();
+};
 
 // Inline assembly functions
 static inline uint8 inportb(uint16 port) {
@@ -52,15 +79,5 @@ static inline uint32 inportl(uint16 port) {
 static inline void outportl(uint16 port, uint32 data) {
     __asm__ volatile("outl %1, %0" : : "dN" (port), "a" (data));
 }
-
-// Spinlock implementation
-struct Spinlock {
-    volatile uint32 lock;
-    
-    void Initialize() { lock = 0; }
-    void Acquire();
-    void Release();
-    bool TryAcquire();
-};
 
 #endif

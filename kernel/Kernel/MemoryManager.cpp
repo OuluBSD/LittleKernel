@@ -5,13 +5,13 @@ MemoryManager::MemoryManager() {
     first_block = nullptr;
     total_memory = 0;
     used_memory = 0;
-    max_memory = KERNEL_HEAP_SIZE;
+    max_memory = HEAP_SIZE;
     lock.Initialize();
 }
 
 void MemoryManager::Initialize() {
-    heap_start = (MemoryBlock*)KERNEL_HEAP_START;
-    heap_start->address = KERNEL_HEAP_START + sizeof(MemoryBlock);
+    heap_start = (MemoryBlock*)DEFAULT_KERNEL_HEAP_START;
+    heap_start->address = DEFAULT_KERNEL_HEAP_START + sizeof(MemoryBlock);
     heap_start->size = max_memory - sizeof(MemoryBlock);
     heap_start->is_free = true;
     heap_start->next = nullptr;
@@ -20,7 +20,7 @@ void MemoryManager::Initialize() {
     total_memory = max_memory;
     used_memory = sizeof(MemoryBlock);
     
-    DLOG("Memory manager initialized with " << max_memory << " bytes");
+    LOG("Memory manager initialized with " << max_memory << " bytes");
 }
 
 void* MemoryManager::Allocate(uint32 size) {

@@ -34,6 +34,9 @@ public:
     static uint32 SyscallWrite(uint32 fd, uint32 buf, uint32 count, uint32 arg4, uint32 arg5);
     static uint32 SyscallGetpid(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5);
     static uint32 SyscallFork(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5);
+    static uint32 SyscallExecve(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5);
+    static uint32 SyscallVfork(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5);
+    static uint32 SyscallYield(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5);
 };
 
 #endif
