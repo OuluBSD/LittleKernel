@@ -19,6 +19,9 @@
 
 // Memory management
 #include "MemoryManager.h"
+#include "Paging.h"
+#include "SharedMemory.h"
+#include "MemoryMappedFile.h"
 
 // I/O and drivers
 #include "SerialDriver.h"

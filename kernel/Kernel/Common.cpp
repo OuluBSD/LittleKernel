@@ -213,3 +213,24 @@ extern "C" {
         while(1); // Infinite loop - halt the system
     }
 }
+
+// Helper functions for address translation
+// In a real implementation, this would use the paging system to translate
+// For now, we'll assume identity mapping for simplicity where virtual=physical
+uint32 VirtualToPhysical(void* virtual_addr) {
+    if (global && global->paging_manager) {
+        // In a real implementation, this would traverse the page tables to find the physical address
+        // For now, return the virtual address value as physical
+        return (uint32)virtual_addr;
+    }
+    return (uint32)virtual_addr;
+}
+
+void* PhysicalToVirtual(void* physical_addr) {
+    if (global && global->paging_manager) {
+        // In a real implementation, this would use the paging system to translate
+        // For now, return the physical address value as virtual
+        return physical_addr;
+    }
+    return physical_addr;
+}

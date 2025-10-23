@@ -80,4 +80,8 @@ static inline void outportl(uint16 port, uint32 data) {
     __asm__ volatile("outl %1, %0" : : "dN" (port), "a" (data));
 }
 
+// Helper functions for address translation
+uint32 VirtualToPhysical(void* virtual_addr);
+void* PhysicalToVirtual(void* physical_addr);
+
 #endif

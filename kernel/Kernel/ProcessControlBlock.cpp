@@ -46,7 +46,11 @@ ProcessControlBlock* ProcessManager::CreateProcess(void* entry_point, const char
     new_pcb->priority = priority;
     
     // Initialize memory management fields
-    new_pcb->page_directory = nullptr;  // Will be set up later
+    if (global && global->paging_manager) {
+        new_pcb->page_directory = global->paging_manager->CreatePageDirectory();
+    } else {
+        new_pcb->page_directory = nullptr;
+    }
     new_pcb->heap_start = 0;
     new_pcb->heap_end = 0;
     new_pcb->stack_pointer = 0;
@@ -256,6 +260,12 @@ bool ProcessManager::YieldCurrentProcess() {
         if (next_process) {
             current_process = next_process;
             SetProcessState(current_process->pid, PROCESS_STATE_RUNNING);
+            
+            // Switch to the new process's page directory for memory protection
+            if (global && global->paging_manager && current_process->page_directory) {
+                global->paging_manager->SwitchPageDirectory(current_process->page_directory);
+            }
+            
             return true;
         }
         
@@ -272,6 +282,12 @@ bool ProcessManager::YieldCurrentProcess() {
         if (next_process) {
             current_process = next_process;
             SetProcessState(current_process->pid, PROCESS_STATE_RUNNING);
+            
+            // Switch to the new process's page directory for memory protection
+            if (global && global->paging_manager && current_process->page_directory) {
+                global->paging_manager->SwitchPageDirectory(current_process->page_directory);
+            }
+            
             return true;
         }
         
@@ -349,6 +365,11 @@ void ProcessManager::Schedule() {
                 
                 // Reset quantum for the scheduled process
                 current_process->ticks_remaining = g_kernel_config->scheduler_quantum_ms;
+                
+                // Switch to the new process's page directory for memory protection
+                if (global && global->paging_manager && current_process->page_directory) {
+                    global->paging_manager->SwitchPageDirectory(current_process->page_directory);
+                }
                 
                 // Log context switch for debugging
                 if (current_mode == SCHEDULING_MODE_PREEMPTIVE) {

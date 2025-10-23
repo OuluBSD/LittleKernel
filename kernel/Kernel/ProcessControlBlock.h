@@ -3,6 +3,7 @@
 
 #include "Defs.h"
 #include "KernelConfig.h"  // Include the kernel configuration
+#include "Paging.h"        // Include paging structures
 
 // Process states
 enum ProcessState {
@@ -26,7 +27,7 @@ struct ProcessControlBlock {
     uint32 priority;              // Process priority (lower number = higher priority)
     
     // Memory management
-    uint32* page_directory;       // Page directory for this process
+    PageDirectory* page_directory; // Page directory for this process
     uint32 heap_start;            // Start of heap memory
     uint32 heap_end;              // End of heap memory
     uint32 stack_pointer;         // Current stack pointer

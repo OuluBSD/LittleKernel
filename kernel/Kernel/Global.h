@@ -12,6 +12,9 @@ class ProcessManager;
 class FileSystem;
 class SyscallManager;
 class SerialDriver;
+class PagingManager;
+class SharedMemoryManager;
+class MemoryMappingManager;
 
 // Global System Variables
 struct Global {
@@ -23,6 +26,9 @@ struct Global {
     FileSystem* file_system;
     SyscallManager* syscall_manager;
     SerialDriver* serial_driver;  // Add SerialDriver to the global structure
+    PagingManager* paging_manager;  // Add PagingManager to the global structure
+    SharedMemoryManager* shared_memory_manager;  // Add SharedMemoryManager to the global structure
+    MemoryMappingManager* memory_mapping_manager;  // Add MemoryMappingManager to the global structure
     
     // Boot information
     uint32 placement_address;        // Next free physical address

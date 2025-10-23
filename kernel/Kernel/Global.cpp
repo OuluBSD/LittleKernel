@@ -29,6 +29,15 @@ void Global::Initialize() {
     serial_driver = new SerialDriver();
     serial_driver->Initialize();
     
+    // Initialize PagingManager
+    paging_manager = new PagingManager();
+    
+    // Initialize SharedMemoryManager
+    shared_memory_manager = new SharedMemoryManager();
+    
+    // Initialize MemoryMappingManager
+    memory_mapping_manager = new MemoryMappingManager();
+    
     // Set initialized flag
     initialized = true;
     

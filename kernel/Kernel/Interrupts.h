@@ -58,5 +58,6 @@ extern "C" {
 // Specific interrupt handlers
 void TimerIrqHandler(Registers regs);
 void KeyboardIrqHandler(Registers regs);
+void PageFaultHandler(Registers regs);
 
 #endif

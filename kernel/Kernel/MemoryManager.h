@@ -8,6 +8,7 @@ struct PageDirectory;
 
 // Include necessary headers
 #include "Common.h"
+#include "Paging.h"
 
 // Memory management structures
 struct MemoryBlock {

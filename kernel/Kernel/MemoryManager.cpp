@@ -163,10 +163,21 @@ void MemoryManager::MergeFreeBlocks() {
 
 // Page management
 bool MemoryManager::InitializePaging() {
-    // Initialize paging system - in a real implementation this would
-    // set up page tables and enable paging
-    DLOG("Paging initialized");
-    return true;
+    // Initialize the paging system
+    if (global && global->paging_manager) {
+        if (!global->paging_manager->Initialize()) {
+            LOG("Failed to initialize paging manager");
+            return false;
+        }
+        
+        // Enable paging
+        global->paging_manager->EnablePaging();
+        DLOG("Paging enabled successfully");
+        return true;
+    } else {
+        LOG("Global paging manager not available");
+        return false;
+    }
 }
 
 void* MemoryManager::AllocatePage() {

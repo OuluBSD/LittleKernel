@@ -64,15 +64,25 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
     global->timer->Initialize(g_kernel_config->timer_frequency);
     LOG("Timer initialized with frequency: " << g_kernel_config->timer_frequency << " Hz");
     
-    // Initialize paging before enabling interrupts (required for proper operation)
+    // Initialize paging manager before enabling interrupts (required for proper operation)
+    global->paging_manager->Initialize();
+    LOG("Paging manager initialized");
+    
+    // Initialize memory manager's paging functionality
     global->memory_manager->InitializePaging();
-    LOG("Paging initialized");
+    LOG("Paging enabled");
+    
+    // Set up timer interrupt handler BEFORE enabling interrupts
+    global->descriptor_table->interrupt_manager.SetHandler(IRQ0, TimerIrqHandler);
     
     // Set up timer interrupt handler BEFORE enabling interrupts
     global->descriptor_table->interrupt_manager.SetHandler(IRQ0, TimerIrqHandler);
     
     // Set up keyboard interrupt handler
     global->descriptor_table->interrupt_manager.SetHandler(IRQ1, KeyboardIrqHandler);
+    
+    // Set up page fault handler (interrupt 14) - this must be done after IDT is loaded
+    global->descriptor_table->interrupt_manager.SetHandler(14, PageFaultHandler);
     
     // Enable interrupts AFTER setting up handlers
     global->descriptor_table->interrupt_manager.Enable();
@@ -102,11 +112,16 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         LOG("Failed to create test pipe");
     }
     
-    SharedMemory* test_shm = ipc_manager->CreateSharedMemory(4096);  // 4KB shared memory
-    if (test_shm) {
-        LOG("Created test shared memory successfully");
+    // Create some shared memory regions for testing
+    if (global && global->shared_memory_manager) {
+        SharedMemoryRegion* test_shm = global->shared_memory_manager->CreateSharedMemory(4096);  // 4KB shared memory
+        if (test_shm) {
+            LOG("Created test shared memory region ID: " << test_shm->id);
+        } else {
+            LOG("Failed to create test shared memory region");
+        }
     } else {
-        LOG("Failed to create test shared memory");
+        LOG("Shared memory manager not available");
     }
     
     // Create some test processes
