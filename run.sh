@@ -13,6 +13,7 @@ show_help() {
     echo "  -s, --sudo              Update floppy image with sudo (requires password)"
     echo "  --serial                Enable serial console connection"
     echo "  --headless              Run in headless mode (no GUI, useful for testing)"
+    echo "  -n, --no-timeout        Disable timeout (default: timeout 10 seconds)"
     echo ""
     echo "Examples:"
     echo "  $0                      # Run directly with serial (default)"
@@ -20,6 +21,7 @@ show_help() {
     echo "  $0 -s                 # Update floppy with sudo"
     echo "  $0 -d --serial        # Run directly with serial"
     echo "  $0 --headless         # Run in headless mode"
+    echo "  $0 --no-timeout       # Run without timeout"
 }
 
 # Default options
@@ -28,6 +30,8 @@ FLOPPY_USER=0
 FLOPPY_SUDO=0
 SERIAL_ENABLED=1
 HEADLESS_MODE=0
+NO_TIMEOUT=0
+TIMEOUT_DURATION=10  # Default timeout of 10 seconds
 
 # Parse command line options
 while [[ $# -gt 0 ]]; do
@@ -62,6 +66,10 @@ while [[ $# -gt 0 ]]; do
             HEADLESS_MODE=1
             shift
             ;;
+        -n|--no-timeout)
+            NO_TIMEOUT=1
+            shift
+            ;;
         *)
             echo "Unknown option: $1"
             show_help
@@ -92,19 +100,32 @@ fi
 
 if [ $DIRECT_RUN -eq 1 ]; then
     # Default behavior: direct kernel run
-    echo "Running kernel directly with command: $QEMU_CMD -kernel ./build/kernel"
-    $QEMU_CMD -kernel ./build/kernel
+    if [ $NO_TIMEOUT -eq 1 ]; then
+        echo "Running kernel directly with command: $QEMU_CMD -kernel ./build/kernel (no timeout)"
+        $QEMU_CMD -kernel ./build/kernel
+    else
+        echo "Running kernel directly with command: timeout $TIMEOUT_DURATION $QEMU_CMD -kernel ./build/kernel"
+        timeout $TIMEOUT_DURATION $QEMU_CMD -kernel ./build/kernel
+    fi
 elif [ $FLOPPY_USER -eq 1 ]; then
     # Update floppy as user
     echo "Updating floppy image as user..."
     if [ -f "./rebuild_floppy_nonroot.sh" ]; then
         ./rebuild_floppy_nonroot.sh ./build/kernel
         echo "Running kernel from floppy image..."
-        $QEMU_CMD -fda build/kernel_floppy.img
+        if [ $NO_TIMEOUT -eq 1 ]; then
+            $QEMU_CMD -fda build/kernel_floppy.img
+        else
+            timeout $TIMEOUT_DURATION $QEMU_CMD -fda build/kernel_floppy.img
+        fi
     else
         echo "Error: rebuild_floppy_nonroot.sh not found"
         echo "Falling back to direct kernel run..."
-        $QEMU_CMD -kernel ./build/kernel
+        if [ $NO_TIMEOUT -eq 1 ]; then
+            $QEMU_CMD -kernel ./build/kernel
+        else
+            timeout $TIMEOUT_DURATION $QEMU_CMD -kernel ./build/kernel
+        fi
     fi
 elif [ $FLOPPY_SUDO -eq 1 ]; then
     # Update floppy with sudo
@@ -112,11 +133,19 @@ elif [ $FLOPPY_SUDO -eq 1 ]; then
         echo "Updating floppy image with sudo..."
         sudo ./rebuild_floppy.sh ./build/kernel
         echo "Running kernel from floppy image..."
-        $QEMU_CMD -fda build/kernel_floppy.img
+        if [ $NO_TIMEOUT -eq 1 ]; then
+            $QEMU_CMD -fda build/kernel_floppy.img
+        else
+            timeout $TIMEOUT_DURATION $QEMU_CMD -fda build/kernel_floppy.img
+        fi
     else
         echo "Error: sudo not available or rebuild_floppy.sh not found"
         echo "Falling back to direct kernel run..."
-        $QEMU_CMD -kernel ./build/kernel
+        if [ $NO_TIMEOUT -eq 1 ]; then
+            $QEMU_CMD -kernel ./build/kernel
+        else
+            timeout $TIMEOUT_DURATION $QEMU_CMD -kernel ./build/kernel
+        fi
     fi
 else
     # Default to user approach if no option specified
@@ -124,9 +153,17 @@ else
     if [ -f "./rebuild_floppy_nonroot.sh" ]; then
         ./rebuild_floppy_nonroot.sh ./build/kernel
         echo "Running kernel from floppy image..."
-        $QEMU_CMD -fda build/kernel_floppy.img
+        if [ $NO_TIMEOUT -eq 1 ]; then
+            $QEMU_CMD -fda build/kernel_floppy.img
+        else
+            timeout $TIMEOUT_DURATION $QEMU_CMD -fda build/kernel_floppy.img
+        fi
     else
         echo "Falling back to direct kernel run..."
-        $QEMU_CMD -kernel ./build/kernel
+        if [ $NO_TIMEOUT -eq 1 ]; then
+            $QEMU_CMD -kernel ./build/kernel
+        else
+            timeout $TIMEOUT_DURATION $QEMU_CMD -kernel ./build/kernel
+        fi
     fi
 fi

@@ -13,9 +13,21 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
     InitializeSerial();
     LOG("Serial port initialized");
     
-    // Initialize timer
+    // Load kernel configuration from multiboot info or use defaults
+    LoadKernelConfig(mboot_ptr);
+    
+    // Validate the loaded configuration
+    if (!ValidateKernelConfig()) {
+        LOG("Kernel configuration validation failed - using emergency defaults");
+        // If config validation fails, we can still try to continue with basic defaults
+    } else {
+        LOG("Kernel configuration loaded and validated");
+    }
+    
+    // Initialize timer with configured frequency
     global_timer = global->timer;
-    LOG("Timer initialized");
+    global->timer->Initialize(g_kernel_config->timer_frequency);
+    LOG("Timer initialized with frequency: " << g_kernel_config->timer_frequency << " Hz");
     
     // Initialize paging before enabling interrupts (required for proper operation)
     global->memory_manager->InitializePaging();

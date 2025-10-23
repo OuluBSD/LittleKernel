@@ -7,7 +7,11 @@ uses
 
 file
 	Kernel.h separator,
-	"Configuration" separator,
+	boot.asm,
+	link.ld,
+	Process.asm,
+	CLANG_K32.bm,
+	Configuration separator,
 	Defs.h,
 	"Core utilities" separator,
 	Common.h,
@@ -37,11 +41,14 @@ file
 	"System services" separator,
 	Syscall.h,
 	Syscall.cpp,
-	"Logging" separator,
+	Logging separator,
 	Logging.h,
 	Logging.cpp,
 	"Kernel entry point" separator,
-	main.cpp;
+	main.cpp,
+	"Configuration" separator,
+	KernelConfig.h,
+	KernelConfig.cpp;
 
 mainconfig
 	"" = "";
@@ -49,3 +56,4 @@ mainconfig
 custom() "asm",
 	"nasm -g -f elf32 -o $(OUTDIR)/$(TITLE)Asm.o $(PATH)",
 	"$(OUTDIR)/$(TITLE)Asm.o";
+

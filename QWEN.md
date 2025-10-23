@@ -52,13 +52,14 @@ The project is well-structured for educational purposes, with clean separation o
 When testing the kernel, use the following commands:
 
 1. To build the kernel: `./build.sh`
-2. To run the kernel: `./run.sh` (now uses -no-reboot flag to exit cleanly on reboot)
+2. To run the kernel: `./run.sh` (now uses -no-reboot flag to exit cleanly on reboot, defaults to 10s timeout)
 3. To run the kernel in headless mode (no GUI window): `./run.sh --headless`
 4. To run the kernel with serial output: `./run.sh --serial`
+5. To run the kernel without timeout: `./run.sh --no-timeout`
 
 The kernel includes debug output using DLOG and LOG macros. These output to both monitor and serial.
 
-Note: The run.sh script now uses the -no-reboot flag, which makes QEMU exit cleanly instead of continuously rebooting. This is useful for debugging since it shows exactly where issues occur without the confusion of multiple boot sequences.
+Note: The run.sh script now uses the -no-reboot flag, which makes QEMU exit cleanly instead of continuously rebooting. This is useful for debugging since it shows exactly where issues occur without the confusion of multiple boot sequences. By default, run.sh uses a 10-second timeout unless the --no-timeout flag is specified.
 
 ### Logging Standards
 
