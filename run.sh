@@ -92,19 +92,19 @@ fi
 
 if [ $DIRECT_RUN -eq 1 ]; then
     # Default behavior: direct kernel run
-    echo "Running kernel directly with command: $QEMU_CMD -kernel ./build/kernel"
-    $QEMU_CMD -kernel ./build/kernel
+    echo "Running kernel directly with command: timeout 2 $QEMU_CMD -kernel ./build/kernel"
+    timeout 2 $QEMU_CMD -kernel ./build/kernel
 elif [ $FLOPPY_USER -eq 1 ]; then
     # Update floppy as user
     echo "Updating floppy image as user..."
     if [ -f "./rebuild_floppy_nonroot.sh" ]; then
         ./rebuild_floppy_nonroot.sh ./build/kernel
         echo "Running kernel from floppy image..."
-        $QEMU_CMD -fda build/kernel_floppy.img
+        timeout 2 $QEMU_CMD -fda build/kernel_floppy.img
     else
         echo "Error: rebuild_floppy_nonroot.sh not found"
         echo "Falling back to direct kernel run..."
-        $QEMU_CMD -kernel ./build/kernel
+        timeout 2 $QEMU_CMD -kernel ./build/kernel
     fi
 elif [ $FLOPPY_SUDO -eq 1 ]; then
     # Update floppy with sudo
@@ -112,11 +112,11 @@ elif [ $FLOPPY_SUDO -eq 1 ]; then
         echo "Updating floppy image with sudo..."
         sudo ./rebuild_floppy.sh ./build/kernel
         echo "Running kernel from floppy image..."
-        $QEMU_CMD -fda build/kernel_floppy.img
+        timeout 2 $QEMU_CMD -fda build/kernel_floppy.img
     else
         echo "Error: sudo not available or rebuild_floppy.sh not found"
         echo "Falling back to direct kernel run..."
-        $QEMU_CMD -kernel ./build/kernel
+        timeout 2 $QEMU_CMD -kernel ./build/kernel
     fi
 else
     # Default to user approach if no option specified
@@ -124,9 +124,9 @@ else
     if [ -f "./rebuild_floppy_nonroot.sh" ]; then
         ./rebuild_floppy_nonroot.sh ./build/kernel
         echo "Running kernel from floppy image..."
-        $QEMU_CMD -fda build/kernel_floppy.img
+        timeout 2 $QEMU_CMD -fda build/kernel_floppy.img
     else
         echo "Falling back to direct kernel run..."
-        $QEMU_CMD -kernel ./build/kernel
+        timeout 2 $QEMU_CMD -kernel ./build/kernel
     fi
 fi
