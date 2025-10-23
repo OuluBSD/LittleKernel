@@ -5,7 +5,9 @@
 
 // Forward declarations
 struct PageDirectory;
-struct Spinlock;
+
+// Include necessary headers
+#include "Common.h"
 
 // Memory management structures
 struct MemoryBlock {
@@ -17,8 +19,8 @@ struct MemoryBlock {
 
 class MemoryManager {
 public:
-    static const uint32 KERNEL_HEAP_START = 0xD0000000;
-    static const uint32 KERNEL_HEAP_SIZE = 0x1000000; // 16MB
+    static const uint32 HEAP_START = 0xD0000000;
+    static const uint32 HEAP_SIZE = 0x1000000; // 16MB
 
 private:
     MemoryBlock* heap_start;

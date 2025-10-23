@@ -33,7 +33,7 @@ The kernel rapid reboot issue was caused by timer interrupts firing before inter
 
 ## Phase 3: Process Management
 - [ ] Implement process scheduler with both cooperative and preemptive modes
-- [ ] Create process control block (PCB) structures
+- [x] Create process control block (PCB) structures
 - [ ] Implement fork/exec/vfork system calls
 - [ ] Implement process synchronization primitives (semaphores, mutexes, events)
 - [ ] Implement inter-process communication (pipes, shared memory, signals)

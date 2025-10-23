@@ -43,6 +43,10 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
     global->descriptor_table->interrupt_manager.Enable();
     LOG("Interrupts enabled");
     
+    // Initialize process management
+    process_manager = new ProcessManager();
+    LOG("Process manager initialized");
+    
     // Initialize other subsystems as needed
     LOG("Kernel initialization complete");
     

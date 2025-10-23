@@ -48,7 +48,10 @@ file
 	main.cpp,
 	"Configuration" separator,
 	KernelConfig.h,
-	KernelConfig.cpp;
+	KernelConfig.cpp,
+	"Process Management" separator,
+	ProcessControlBlock.h,
+	ProcessControlBlock.cpp;
 
 mainconfig
 	"" = "";
