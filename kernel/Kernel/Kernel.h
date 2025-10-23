@@ -24,6 +24,7 @@
 #include "MemoryMappedFile.h"
 #include "MemoryTracker.h"
 #include "DriverFramework.h"
+#include "ConsoleDriver.h"
 
 // I/O and drivers
 #include "SerialDriver.h"

@@ -100,6 +100,18 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
     ipc_manager = new IpcManager();
     LOG("IPC manager initialized");
     
+    // Initialize and register console driver
+    ConsoleDriver* console_driver = new ConsoleDriver();
+    if (console_driver->Initialize()) {
+        if (global->driver_framework->RegisterDevice(console_driver->GetDevice())) {
+            LOG("Console driver registered successfully");
+        } else {
+            LOG("Failed to register console driver");
+        }
+    } else {
+        LOG("Failed to initialize console driver");
+    }
+    
     // Initialize driver framework
     if (global->driver_framework->InitializeAllDevices()) {
         LOG("Driver framework initialized and all devices initialized successfully");
