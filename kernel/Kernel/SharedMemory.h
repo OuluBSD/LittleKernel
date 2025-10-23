@@ -11,6 +11,7 @@ struct SharedMemoryRegion {
     uint32 physical_address;      // Physical address of the shared memory
     uint32 size;                  // Size of the shared memory region in bytes
     uint32 ref_count;             // Number of processes using this shared memory
+    uint32 attach_count;          // Number of attachments (can be different from ref_count if processes attach multiple times)
     bool is_deleted;              // Flag indicating if the region is marked for deletion
     
     // Process-specific mappings
@@ -63,6 +64,9 @@ public:
     
     // Get information about a shared memory region
     uint32 GetSharedMemorySize(uint32 id);
+    uint32 GetSharedMemoryRefCount(uint32 id);
+    uint32 GetSharedMemoryAttachCount(uint32 id);
+    bool IsSharedMemoryMarkedForDeletion(uint32 id);
     
 private:
     // Internal helper functions

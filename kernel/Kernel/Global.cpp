@@ -38,6 +38,9 @@ void Global::Initialize() {
     // Initialize MemoryMappingManager
     memory_mapping_manager = new MemoryMappingManager();
     
+    // Initialize MemoryTracker
+    memory_tracker = new MemoryTracker();
+    
     // Set initialized flag
     initialized = true;
     

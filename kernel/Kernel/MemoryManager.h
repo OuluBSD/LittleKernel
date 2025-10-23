@@ -31,6 +31,13 @@ private:
     uint32 max_memory;
     Spinlock lock;
     
+    // Page tracking for garbage collection
+    static const uint32 MAX_TRACKED_PAGES = 1024;  // Limit for tracked pages
+    void* tracked_pages[MAX_TRACKED_PAGES];         // Array of tracked page addresses
+    bool page_in_use[MAX_TRACKED_PAGES];            // Status of each tracked page
+    uint32 total_tracked_pages;                     // Total number of currently tracked pages
+    Spinlock page_lock;                             // Lock for page tracking
+    
 public:
     MemoryManager();
     void Initialize();
@@ -47,6 +54,12 @@ public:
     void FreePage(void* page);
     PageDirectory* CreatePageDirectory();
     void SwitchPageDirectory(PageDirectory* new_dir);
+    
+    // Garbage collection and memory optimization
+    void RunGarbageCollection();           // Free unused pages
+    uint32 GetFreePageCount();             // Get count of free pages
+    uint32 GetUsedPageCount();             // Get count of used pages
+    void DefragmentMemory();               // Defragment memory (if applicable)
     
 private:
     MemoryBlock* FindFreeBlock(uint32 size);

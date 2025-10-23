@@ -7,6 +7,14 @@ MemoryManager::MemoryManager() {
     used_memory = 0;
     max_memory = HEAP_SIZE;
     lock.Initialize();
+    
+    // Initialize page tracking
+    for (int i = 0; i < MAX_TRACKED_PAGES; i++) {
+        tracked_pages[i] = nullptr;
+        page_in_use[i] = false;
+    }
+    total_tracked_pages = 0;
+    page_lock.Initialize();
 }
 
 void MemoryManager::Initialize() {
@@ -178,6 +186,100 @@ bool MemoryManager::InitializePaging() {
         LOG("Global paging manager not available");
         return false;
     }
+}
+
+void* MemoryManager::AllocatePage() {
+    // For now, allocate a page using the basic memory allocator
+    // In a more complete implementation, we'd have a dedicated page management system
+    void* page = malloc(PAGE_SIZE);
+    if (page) {
+        // Track this page if we're in debug mode or tracking is enabled
+        page_lock.Acquire();
+        if (total_tracked_pages < MAX_TRACKED_PAGES) {
+            // Find an available slot
+            for (uint32 i = 0; i < MAX_TRACKED_PAGES; i++) {
+                if (!page_in_use[i]) {
+                    tracked_pages[i] = page;
+                    page_in_use[i] = true;
+                    total_tracked_pages++;
+                    break;
+                }
+            }
+        }
+        page_lock.Release();
+    }
+    return page;
+}
+
+void MemoryManager::FreePage(void* page) {
+    if (!page) return;
+    
+    // Untrack this page if it was tracked
+    page_lock.Acquire();
+    for (uint32 i = 0; i < MAX_TRACKED_PAGES; i++) {
+        if (tracked_pages[i] == page && page_in_use[i]) {
+            page_in_use[i] = false;
+            total_tracked_pages--;
+            break;
+        }
+    }
+    page_lock.Release();
+    
+    // Actually free the page
+    free(page);
+}
+
+void MemoryManager::RunGarbageCollection() {
+    // In a real implementation, this would identify and free unused pages
+    // that are allocated but no longer referenced by any process
+    
+    DLOG("Running garbage collection...");
+    
+    // For now, we'll just report the number of currently tracked pages
+    LOG("Tracked pages: " << total_tracked_pages << "/" << MAX_TRACKED_PAGES);
+    
+    // In a more complete implementation:
+    // 1. Mark all pages as potentially unused
+    // 2. Walk through all active data structures that reference pages
+    // 3. Mark pages that are referenced as used
+    // 4. Free all pages still marked as unused
+    
+    // For now, we'll check if we have any invalid tracked pages
+    page_lock.Acquire();
+    uint32 cleaned_pages = 0;
+    
+    // This is a simplified version - a real system would need to determine
+    // which pages are no longer in use by walking through page tables,
+    // shared memory regions, etc.
+    for (uint32 i = 0; i < MAX_TRACKED_PAGES; i++) {
+        if (page_in_use[i] && tracked_pages[i]) {
+            // In a real system, we'd check if this page is still referenced
+            // For now, we'll assume it's still in use
+        }
+    }
+    
+    page_lock.Release();
+    
+    DLOG("Garbage collection completed. Cleaned up " << cleaned_pages << " pages.");
+}
+
+uint32 MemoryManager::GetFreePageCount() {
+    // This is a simplification - in a real system, we'd have a proper
+    // free page tracking system
+    // For now, we'll return a placeholder value
+    return 0; // Placeholder - would need real implementation
+}
+
+uint32 MemoryManager::GetUsedPageCount() {
+    // Return the number of tracked pages
+    return total_tracked_pages;
+}
+
+void MemoryManager::DefragmentMemory() {
+    // In a real implementation, this would defragment memory
+    // to consolidate free space and reduce fragmentation
+    
+    LOG("Memory defragmentation not implemented in this version");
 }
 
 void* MemoryManager::AllocatePage() {

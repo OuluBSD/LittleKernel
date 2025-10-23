@@ -51,6 +51,7 @@ SharedMemoryRegion* SharedMemoryManager::CreateSharedMemory(uint32 size) {
     region->id = next_shmid++;
     region->size = size;
     region->ref_count = 0;
+    region->attach_count = 0;
     region->is_deleted = false;
     region->mappings = nullptr;
     region->next = nullptr;
@@ -126,6 +127,17 @@ void* SharedMemoryManager::MapSharedMemoryToProcess(SharedMemoryRegion* region,
         return nullptr;
     }
     
+    // Check if this process already has a mapping for this region
+    bool already_mapped = false;
+    SharedMemoryRegion::ProcessMapping* existing_mapping = region->mappings;
+    while (existing_mapping) {
+        if (existing_mapping->pid == pcb->pid) {
+            already_mapped = true;
+            break;
+        }
+        existing_mapping = existing_mapping->next;
+    }
+    
     // Add the process mapping to the region's mapping list
     if (!AddProcessMapping(region, pcb->pid, target_vaddr, pcb->page_directory)) {
         LOG("Failed to add process mapping for shared memory");
@@ -138,8 +150,13 @@ void* SharedMemoryManager::MapSharedMemoryToProcess(SharedMemoryRegion* region,
         return nullptr;
     }
     
-    // Increment reference count
-    region->ref_count++;
+    // Increment reference count only if this is a new process mapping (not just another attachment)
+    if (!already_mapped) {
+        region->ref_count++;
+    }
+    
+    // Increment attachment count for this mapping
+    region->attach_count++;
     
     DLOG("Mapped shared memory ID " << region->id << " to process " << pcb->pid 
           << " at virtual address: 0x" << (uint32)target_vaddr);
@@ -185,6 +202,11 @@ bool SharedMemoryManager::UnmapSharedMemoryFromProcess(SharedMemoryRegion* regio
         region->ref_count--;
     }
     
+    // Decrement attachment count
+    if (region->attach_count > 0) {
+        region->attach_count--;
+    }
+    
     // If ref count is 0 and the region is marked for deletion, delete it completely
     if (region->ref_count == 0 && region->is_deleted) {
         // Check if the region should be completely removed
@@ -213,13 +235,20 @@ void* SharedMemoryManager::AttachSharedMemory(uint32 id, ProcessControlBlock* pc
     while (mapping) {
         if (mapping->pid == pcb->pid) {
             // Already mapped, return the existing address
+            // Increment the attach count for this process
+            region->attach_count++;
             return mapping->process_vaddr;
         }
         mapping = mapping->next;
     }
     
     // Map the shared memory to this process
-    return MapSharedMemoryToProcess(region, pcb);
+    void* result = MapSharedMemoryToProcess(region, pcb);
+    if (result) {
+        // Increment attach count when successful
+        region->attach_count++;
+    }
+    return result;
 }
 
 bool SharedMemoryManager::DetachSharedMemory(uint32 id, ProcessControlBlock* pcb) {
@@ -229,7 +258,14 @@ bool SharedMemoryManager::DetachSharedMemory(uint32 id, ProcessControlBlock* pcb
         return false;
     }
     
-    return UnmapSharedMemoryFromProcess(region, pcb);
+    bool result = UnmapSharedMemoryFromProcess(region, pcb);
+    
+    // Decrement attach count if the detach was successful
+    if (result && region->attach_count > 0) {
+        region->attach_count--;
+    }
+    
+    return result;
 }
 
 bool SharedMemoryManager::DeleteSharedMemory(uint32 id) {
@@ -239,12 +275,19 @@ bool SharedMemoryManager::DeleteSharedMemory(uint32 id) {
         return false;
     }
     
+    // Check if there are still attachments to this region
+    if (region->attach_count > 0) {
+        LOG("Warning: Shared memory ID " << id << " still has " << region->attach_count 
+             << " attachments, but marked for deletion. Region will be deleted when all attachments are removed.");
+    }
+    
     // Mark the region for deletion
     region->is_deleted = true;
     
     DLOG("Marked shared memory ID " << id << " for deletion");
     
-    // If there are no references, we can completely remove it now
+    // If there are no references (processes), we can potentially remove it now
+    // But we'll wait for all attachments to be removed first
     if (region->ref_count == 0) {
         CleanupDeletedRegions();
     }
@@ -258,33 +301,36 @@ void SharedMemoryManager::CleanupDeletedRegions() {
     
     while (current) {
         if (current->is_deleted && current->ref_count == 0) {
-            SharedMemoryRegion* next = current->next;
-            
-            // Remove from the list
-            if (prev) {
-                prev->next = current->next;
-            } else {
-                region_list = current->next;
+            // Check if all attachments have been removed
+            if (current->attach_count == 0) {
+                SharedMemoryRegion* next = current->next;
+                
+                // Remove from the list
+                if (prev) {
+                    prev->next = current->next;
+                } else {
+                    region_list = current->next;
+                }
+                
+                // Free the actual shared memory
+                if (current->virtual_address) {
+                    free(current->virtual_address);
+                }
+                
+                // Free process mappings
+                SharedMemoryRegion::ProcessMapping* mapping = current->mappings;
+                while (mapping) {
+                    SharedMemoryRegion::ProcessMapping* next_mapping = mapping->next;
+                    free(mapping);
+                    mapping = next_mapping;
+                }
+                
+                // Free the region structure
+                free(current);
+                
+                current = next;
+                continue;  // Continue with the next item, don't update prev
             }
-            
-            // Free the actual shared memory
-            if (current->virtual_address) {
-                free(current->virtual_address);
-            }
-            
-            // Free process mappings
-            SharedMemoryRegion::ProcessMapping* mapping = current->mappings;
-            while (mapping) {
-                SharedMemoryRegion::ProcessMapping* next_mapping = mapping->next;
-                free(mapping);
-                mapping = next_mapping;
-            }
-            
-            // Free the region structure
-            free(current);
-            
-            current = next;
-            continue;  // Continue with the next item, don't update prev
         }
         
         prev = current;
@@ -295,6 +341,21 @@ void SharedMemoryManager::CleanupDeletedRegions() {
 uint32 SharedMemoryManager::GetSharedMemorySize(uint32 id) {
     SharedMemoryRegion* region = FindRegionById(id);
     return region ? region->size : 0;
+}
+
+uint32 SharedMemoryManager::GetSharedMemoryRefCount(uint32 id) {
+    SharedMemoryRegion* region = FindRegionById(id);
+    return region ? region->ref_count : 0;
+}
+
+uint32 SharedMemoryManager::GetSharedMemoryAttachCount(uint32 id) {
+    SharedMemoryRegion* region = FindRegionById(id);
+    return region ? region->attach_count : 0;
+}
+
+bool SharedMemoryManager::IsSharedMemoryMarkedForDeletion(uint32 id) {
+    SharedMemoryRegion* region = FindRegionById(id);
+    return region ? region->is_deleted : false;
 }
 
 // Private helper functions

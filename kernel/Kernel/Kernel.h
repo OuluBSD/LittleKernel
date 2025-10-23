@@ -22,6 +22,7 @@
 #include "Paging.h"
 #include "SharedMemory.h"
 #include "MemoryMappedFile.h"
+#include "MemoryTracker.h"
 
 // I/O and drivers
 #include "SerialDriver.h"
