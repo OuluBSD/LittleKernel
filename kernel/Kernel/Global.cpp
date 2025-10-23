@@ -41,6 +41,9 @@ void Global::Initialize() {
     // Initialize MemoryTracker
     memory_tracker = new MemoryTracker();
     
+    // Initialize DriverFramework
+    driver_framework = new DriverFramework();
+    
     // Set initialized flag
     initialized = true;
     

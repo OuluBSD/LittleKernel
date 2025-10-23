@@ -110,6 +110,111 @@ char* strncpy_safe(char* dest, const char* src, uint32 count, uint32 dest_size) 
     return dest;
 }
 
+int snprintf_s(char* buffer, uint32 buffer_size, const char* format, ...) {
+    if (!buffer || buffer_size == 0 || !format) {
+        return -1;
+    }
+    
+    va_list args;
+    va_start(args, format);
+    int result = vsnprintf(buffer, buffer_size, format, args);
+    va_end(args);
+    
+    // Make sure the string is null-terminated
+    if (result >= 0 && (uint32)result >= buffer_size) {
+        buffer[buffer_size - 1] = '\0';
+    }
+    
+    return result;
+}
+
+int vsnprintf(char* buffer, uint32 buffer_size, const char* format, va_list args) {
+    if (!buffer || buffer_size == 0 || !format) {
+        return -1;
+    }
+    
+    uint32 i = 0;
+    const char* format_ptr = format;
+    va_list temp_args;
+    va_copy(temp_args, args);
+    
+    while (*format_ptr && i < buffer_size - 1) {
+        if (*format_ptr == '%') {
+            format_ptr++; // Move past '%'
+            
+            if (*format_ptr == 'd') { // Integer
+                int value = va_arg(temp_args, int);
+                
+                // Convert integer to string (simple implementation)
+                char temp[12]; // Enough for 32-bit integer
+                int temp_idx = 0;
+                bool negative = false;
+                
+                if (value < 0) {
+                    negative = true;
+                    value = -value;
+                    if (i < buffer_size - 1) buffer[i++] = '-';
+                }
+                
+                if (value == 0) {
+                    temp[temp_idx++] = '0';
+                } else {
+                    while (value > 0 && temp_idx < 11) {
+                        temp[temp_idx++] = '0' + (value % 10);
+                        value /= 10;
+                    }
+                }
+                
+                // Reverse the digits
+                for (int j = temp_idx - 1; j >= 0 && i < buffer_size - 1; j--) {
+                    buffer[i++] = temp[j];
+                }
+            } else if (*format_ptr == 's') { // String
+                char* str = va_arg(temp_args, char*);
+                if (!str) str = "(null)";
+                
+                int j = 0;
+                while (str[j] && i < buffer_size - 1) {
+                    buffer[i++] = str[j++];
+                }
+            } else if (*format_ptr == 'x' || *format_ptr == 'X') { // Hexadecimal
+                unsigned int value = va_arg(temp_args, unsigned int);
+                
+                // Convert to hex string
+                char temp[9]; // Enough for 32-bit hex
+                int temp_idx = 0;
+                
+                if (value == 0) {
+                    temp[temp_idx++] = '0';
+                } else {
+                    while (value > 0 && temp_idx < 8) {
+                        int digit = value % 16;
+                        temp[temp_idx++] = digit < 10 ? '0' + digit : (*format_ptr == 'x' ? 'a' + digit - 10 : 'A' + digit - 10);
+                        value /= 16;
+                    }
+                }
+                
+                // Reverse the digits
+                for (int j = temp_idx - 1; j >= 0 && i < buffer_size - 1; j--) {
+                    buffer[i++] = temp[j];
+                }
+            } else {
+                // Unknown format specifier, just output as is
+                if (i < buffer_size - 1) buffer[i++] = '%';
+                if (i < buffer_size - 1) buffer[i++] = *format_ptr;
+            }
+        } else {
+            if (i < buffer_size - 1) buffer[i++] = *format_ptr;
+        }
+        format_ptr++;
+    }
+    
+    buffer[i] = '\0';
+    va_end(temp_args);
+    
+    return i; // Return number of characters written (excluding null terminator)
+}
+
 } // extern "C"
 
 void Spinlock::Acquire() {

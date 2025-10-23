@@ -16,6 +16,7 @@ class PagingManager;
 class SharedMemoryManager;
 class MemoryMappingManager;
 class MemoryTracker;
+class DriverFramework;
 
 // Global System Variables
 struct Global {
@@ -31,6 +32,7 @@ struct Global {
     SharedMemoryManager* shared_memory_manager;  // Add SharedMemoryManager to the global structure
     MemoryMappingManager* memory_mapping_manager;  // Add MemoryMappingManager to the global structure
     MemoryTracker* memory_tracker;                 // Add MemoryTracker to the global structure
+    DriverFramework* driver_framework;             // Add DriverFramework to the global structure
     
     // Boot information
     uint32 placement_address;        // Next free physical address

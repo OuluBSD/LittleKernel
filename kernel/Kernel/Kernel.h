@@ -23,6 +23,7 @@
 #include "SharedMemory.h"
 #include "MemoryMappedFile.h"
 #include "MemoryTracker.h"
+#include "DriverFramework.h"
 
 // I/O and drivers
 #include "SerialDriver.h"

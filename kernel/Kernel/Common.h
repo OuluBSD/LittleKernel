@@ -5,6 +5,9 @@
 
 // Common structures and functions following Ultimate++ conventions
 
+// Include stdarg for variable argument functions
+#include <stdarg.h>
+
 struct Registers {
     uint32 ds;                  // Data segment selector
     uint32 edi, esi, ebp, esp, ebx, edx, ecx, eax; // Pushed by pusha
@@ -25,6 +28,8 @@ char* strcpy_safe(char* dest, const char* src, uint32 dest_size);
 char* strcat_s(char* dest, const char* src, uint32 dest_size);
 int strcmp(const char* str1, const char* str2);
 char* strncpy_s(char* dest, const char* src, uint32 count, uint32 dest_size);
+int snprintf_s(char* buffer, uint32 buffer_size, const char* format, ...);
+int vsnprintf(char* buffer, uint32 buffer_size, const char* format, va_list args);
 
 #ifdef __cplusplus
 }

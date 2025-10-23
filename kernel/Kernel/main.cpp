@@ -100,6 +100,13 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
     ipc_manager = new IpcManager();
     LOG("IPC manager initialized");
     
+    // Initialize driver framework
+    if (global->driver_framework->InitializeAllDevices()) {
+        LOG("Driver framework initialized and all devices initialized successfully");
+    } else {
+        LOG("Driver framework initialized but some devices failed to initialize");
+    }
+    
     // Set scheduling mode to test both cooperative and preemptive
     LOG("Setting scheduling mode to PREEMPTIVE");
     process_manager->SetSchedulingMode(SCHEDULING_MODE_PREEMPTIVE);
