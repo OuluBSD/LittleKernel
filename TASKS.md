@@ -14,6 +14,10 @@
 - [x] Plan process/thread management with cooperative and preemptive options
 - [x] Design device driver interface architecture
 - [x] Plan file system architecture with FAT32/DOS compatibility
+- [x] Identify and resolve kernel rapid reboot issue in run.sh (interrupt handler setup order)
+
+## Solution Summary for Kernel Reboot Issue:
+The kernel rapid reboot issue was caused by timer interrupts firing before interrupt handlers were registered. The fix involved ensuring that all interrupt handlers were set up before enabling interrupts in the main.cpp initialization sequence. This prevents unhandled timer interrupts that were causing the system to reset approximately every 10ms.
 
 ## Phase 2: Core Infrastructure
 - [x] Set up new kernel project structure in kernel/Kernel
@@ -22,6 +26,9 @@
 - [x] Implement basic interrupt handling
 - [x] Create placeholder system call interface
 - [x] Implement logging infrastructure with LOG macro (stream-like syntax)
+- [x] Successfully build the kernel
+- [x] Fix kernel reboot issue (correct interrupt handler setup order)
+- [x] Implement proper initialization sequence (paging before interrupts)
 - [ ] Write kernel configuration system
 
 ## Phase 3: Process Management
