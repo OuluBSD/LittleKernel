@@ -99,3 +99,71 @@ The run.sh script supports several options:
 - `--direct`: Run kernel directly with -kernel option
 - `-f, --floppy-user`: Update floppy image as user
 - `-s, --sudo`: Update floppy image with sudo
+## Design Philosophy: Device-Centric Approach
+
+### Device-Centric Design Principles
+
+The kernel follows a device-centric design philosophy similar to Windows, where devices are first-class citizens in the system:
+
+1. **Device Visibility**: Devices are prominently displayed in the system (like "My Computer", "My Documents")
+2. **Drive Letters**: Primary storage devices use drive letters (C:, D:, etc.) similar to Windows
+3. **Device Identity**: Each device feels like "your own" component of the computer, not just an abstract filesystem entry
+4. **Hierarchical Organization**: Devices and storage are organized hierarchically rather than as a single unified filesystem tree (like Unix)
+5. **Container Integration**: Virtual containers and virtualized storage appear as devices with "My Computer"-like integration; they feel like real devices to the user even though they are virtualized, providing a consistent device-centric experience
+
+### Ultimate++ Framework for GUI
+
+The system will utilize the Ultimate++ framework for GUI development because:
+
+1. **Cross-Platform Compatibility**: Ultimate++ allows for native GUI applications across different platforms
+2. **Rich UI Components**: Provides sophisticated UI controls needed for device management interfaces
+3. **Integration Capabilities**: Works well with kernel-level information display and control
+4. **Development Efficiency**: Speeds up GUI development for system tools and monitoring applications
+
+While Ultimate++ may not be available in all Linux repositories, it can be easily installed through user-space scripts, making it accessible for building the GUI components of this kernel.
+
+### Device Management Philosophy
+
+- Primary hard drives are represented as C:, secondary drives as D:, etc.
+- Removable devices get letters later in the alphabet (E:, F:, etc.)
+- Network drives and mounted devices are accessible through the device manager
+- Virtual devices (containers, network shares) appear as "My Computer"-like devices in the system topology; they feel like real devices to users despite being virtualized
+- Users interact with "My Computer" and "My Documents" concepts as in Windows
+
+### Configuration System
+
+The kernel uses a Linux-style configuration system:
+- `.config` file to store kernel configuration options
+- `make menuconfig` for interactive configuration
+- Makefile for building with various configuration options
+- Configuration values are written as C++ defines to a header file that's included first in the kernel
+
+The build system maintains compatibility with:
+- Ultimate++ UPP project files
+- Traditional Makefile builds
+- Both systems are kept synchronized with new and deleted files
+
+### Registry System
+
+Instead of a Unix-like unified filesystem tree, the kernel implements a registry system similar to Windows:
+- Single central registry for system-wide configuration
+- Device paths are translated via registry mappings
+- Kernel-side registry with permission controls
+- Regedit-like tool for registry management
+- Secure registry access with per-module permissions
+
+### Special Drive Assignments
+
+- A: Drive - Initial RAM filesystem and boot configuration (similar to /boot in Linux)
+- B: Drive - EFI partition (when enabled, similar to /boot/efi in Linux)
+- C: Drive - Primary storage device with pagefile.sys (Windows-style swap)
+- Other drives follow standard Windows conventions
+
+### Build System Integration
+
+The build.sh script handles configuration by:
+- Reading .config file options
+- Writing configuration as C++ defines to kernel headers
+- Maintaining .gitignore to keep repository clean of build residues
+- Supporting both UPP project file and Makefile synchronization
+- Ensuring UMKA building still works with new configuration system
