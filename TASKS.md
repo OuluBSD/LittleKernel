@@ -32,11 +32,11 @@ The kernel rapid reboot issue was caused by timer interrupts firing before inter
 - [x] Write kernel configuration system
 
 ## Phase 3: Process Management
-- [ ] Implement process scheduler with both cooperative and preemptive modes
+- [x] Implement process scheduler with both cooperative and preemptive modes
 - [x] Create process control block (PCB) structures
-- [ ] Implement fork/exec/vfork system calls
-- [ ] Implement process synchronization primitives (semaphores, mutexes, events)
-- [ ] Implement inter-process communication (pipes, shared memory, signals)
+- [x] Implement fork/exec/vfork system calls
+- [x] Implement process synchronization primitives (semaphores, mutexes, events)
+- [x] Implement inter-process communication (pipes, shared memory, signals)
 - [ ] Implement process state management
 
 ## Phase 4: Memory Management
@@ -115,6 +115,26 @@ The kernel rapid reboot issue was caused by timer interrupts firing before inter
 - [ ] Implement DOS interrupt system (for compatibility)
 - [ ] Test with existing DOS-shell application
 - [ ] Optimize for DOS application performance
+
+## Phase 11: Virtio Device Support
+### Basic Virtio Devices (Without GPU/OpenGL)
+- [ ] Implement virtio-block driver for storage devices
+- [ ] Implement virtio-net driver for network devices
+- [ ] Implement virtio-console driver for terminal I/O
+- [ ] Implement virtio-serial driver for communication
+- [ ] Implement virtio-input drivers (keyboard, mouse)
+- [ ] Implement virtio-rng driver for random number generation
+- [ ] Implement virtio-balloon driver for memory management
+- [ ] Create unified device driver framework for virtio devices
+- [ ] Implement virtio-mmio driver for ARM platforms
+
+### Advanced Virtio Devices (GPU/OpenGL Support)
+- [ ] Implement virtio-gpu driver for basic graphics
+- [ ] Implement virtio-gpu-gl driver for OpenGL acceleration
+- [ ] Design GPU resource management system
+- [ ] Implement 2D/3D acceleration support
+- [ ] Add multimedia support (audio, video)
+- [ ] Implement virtualized display and rendering
 
 ## Architecture Notes:
 
