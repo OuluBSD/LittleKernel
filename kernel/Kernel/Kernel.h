@@ -38,6 +38,17 @@
 
 // Configuration
 #include "KernelConfig.h"
+#include "BootProcess.h"
+#include "HAL.h"
+#include "RuntimeConfig.h"
+#include "HardwareDiagnostics.h"
+#include "EarlyMemory.h"
+#include "ErrorHandler.h"
+#include "Profiler.h"
+#include "ModuleLoader.h"
+#include "HardwareComponents.h"
+#include "ConfigParser.h"
+#include "ArchAbstraction.h"
 
 // Process Management
 #include "ProcessControlBlock.h"

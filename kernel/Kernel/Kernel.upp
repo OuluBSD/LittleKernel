@@ -6,7 +6,6 @@ uses
 	Library;
 
 file
-	Kernel.h separator,
 	boot.asm,
 	link.ld,
 	Process.asm,
@@ -58,7 +57,39 @@ file
 	"IPC" separator,
 	Ipc.h,
 	Ipc.cpp;
-
+  kernel/Kernel/BootProcess.cpp,
+  kernel/Kernel/Ipc.cpp,
+  kernel/Kernel/HardwareComponents.cpp,
+  kernel/Kernel/Monitor.cpp,
+  kernel/Kernel/ConfigParser.cpp,
+  kernel/Kernel/KernelConfig.cpp,
+  kernel/Kernel/Paging.cpp,
+  kernel/Kernel/Common.cpp,
+  kernel/Kernel/RuntimeConfig.cpp,
+  kernel/Kernel/EarlyMemory.cpp,
+  kernel/Kernel/DriverFramework.cpp,
+  kernel/Kernel/Interrupts.cpp,
+  kernel/Kernel/MemoryManager.cpp,
+  kernel/Kernel/HardwareDiagnostics.cpp,
+  kernel/Kernel/MemoryMappedFile.cpp,
+  kernel/Kernel/DescriptorTable.cpp,
+  kernel/Kernel/Profiler.cpp,
+  kernel/Kernel/DriverBase.cpp,
+  kernel/Kernel/ModuleLoader.cpp,
+  kernel/Kernel/Global.cpp,
+  kernel/Kernel/HAL.cpp,
+  kernel/Kernel/main.cpp,
+  kernel/Kernel/Logging.cpp,
+  kernel/Kernel/ExampleBlockDriver.cpp,
+  kernel/Kernel/MemoryTracker.cpp,
+  kernel/Kernel/SerialDriver.cpp,
+  kernel/Kernel/ProcessControlBlock.cpp,
+  kernel/Kernel/ConsoleDriver.cpp,
+  kernel/Kernel/SharedMemory.cpp,
+  kernel/Kernel/Syscall.cpp,
+  kernel/Kernel/Synchronization.cpp,
+  kernel/Kernel/Timer.cpp,
+  kernel/Kernel/ErrorHandler.cpp,
 mainconfig
 	"" = "";
 

@@ -37,12 +37,99 @@ void TestProcessFunction2() {
 
 // Kernel entry point
 extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
-    // Initialize the global structure with essential systems
-    global = (Global*)malloc(sizeof(Global));
+    // Initialize error handling system first (before anything else)
+    if (!InitializeErrorHandling()) {
+        // We can't even log properly if this fails, so just continue
+        // In a real implementation, we might need a basic error reporting mechanism
+    } else {
+        LOG("Error handling framework initialized successfully");
+    }
+    
+    // Initialize kernel profiling infrastructure
+    if (!InitializeKernelProfiling()) {
+        LOG("Warning: Failed to initialize kernel profiling infrastructure");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "KernelProfilingInitialization");
+    } else {
+        LOG("Kernel profiling infrastructure initialized successfully");
+        g_kernel_profiler->EnableProfiling();
+    }
+    
+    // Initialize module loading system
+    if (!InitializeModuleLoader()) {
+        LOG("Warning: Failed to initialize module loading system");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "ModuleLoaderInitialization");
+    } else {
+        LOG("Module loading system initialized successfully");
+        LOG("Kernel module loading framework ready");
+    }
+    
+    // Initialize hardware components system
+    g_pci_device_manager = new PCIDeviceManager();
+    if (!g_pci_device_manager) {
+        LOG("Warning: Failed to allocate PCI device manager");
+        REPORT_ERROR(KernelError::ERROR_OUT_OF_MEMORY, "PCIDeviceManagerAllocation");
+    } else if (g_pci_device_manager->Initialize() != HalResult::SUCCESS) {
+        LOG("Warning: Failed to initialize PCI device manager");
+        REPORT_ERROR(KernelError::ERROR_DEVICE_ERROR, "PCIDeviceManagerInitialization");
+        delete g_pci_device_manager;
+        g_pci_device_manager = nullptr;
+    } else {
+        LOG("Hardware components system (PCI Device Manager) initialized successfully");
+        g_pci_device_manager->PrintDeviceList();
+    }
+    
+    // Initialize Linux-style configuration system
+    if (!InitializeConfigSystem()) {
+        LOG("Warning: Failed to initialize configuration system");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "ConfigSystemInitialization");
+    } else {
+        LOG("Linux-style configuration system initialized successfully");
+        
+        // Load the .config file
+        if (!LoadKernelConfigFile(".config")) {
+            LOG("Warning: Failed to load .config file, using defaults");
+        } else {
+            LOG("Kernel configuration loaded from .config");
+            g_config_parser->PrintConfig();
+            
+            // Generate configuration header for build system
+            if (!GenerateConfigHeader(".config", "kernel_config_defines.h")) {
+                LOG("Warning: Failed to generate configuration header");
+            } else {
+                LOG("Configuration header generated successfully");
+            }
+        }
+    }
+    
+    // Initialize early memory management system first (before anything else)
+    if (!InitializeEarlyMemory(mboot_ptr)) {
+        LOG("Error: Failed to initialize early memory management, attempting with standard allocation");
+        REPORT_ERROR(KernelError::ERROR_DEVICE_ERROR, "EarlyMemoryInitialization");
+        // Continue with standard allocation approach
+    } else {
+        LOG("Early memory system initialized successfully");
+        g_early_memory_manager->PrintMemoryMap();
+    }
+    
+    // Initialize the global structure with essential systems (early initialization)
+    // For the enhanced boot process, we'll initialize the basic structure first
+    // to enable logging and basic functionality
+    global = (Global*)kmalloc(sizeof(Global));
+    if (!global) {
+        LOG("Fatal: Failed to allocate global structure");
+        REPORT_ERROR(KernelError::ERROR_OUT_OF_MEMORY, "GlobalStructureAllocation");
+        return -1;
+    }
     global->Initialize();
     
     LOG("LittleKernel starting...");
     DLOG("Version: 2.0 (Complete Rewrite)");
+    
+    // Use the enhanced boot process to handle multiboot information and configuration
+    if (EnhancedBootProcess(mboot_ptr, 0x2BADB002) != 0) {
+        LOG("Warning: Enhanced boot process had issues, continuing with basic initialization");
+        REPORT_ERROR(KernelError::ERROR_GENERAL, "EnhancedBootProcess");
+    }
     
     // Initialize serial port for logging
     InitializeSerial();
@@ -72,8 +159,33 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
     global->memory_manager->InitializePaging();
     LOG("Paging enabled");
     
-    // Set up timer interrupt handler BEFORE enabling interrupts
-    global->descriptor_table->interrupt_manager.SetHandler(IRQ0, TimerIrqHandler);
+    // Initialize the Hardware Abstraction Layer
+    g_hal_manager = new HalManager();
+    if (g_hal_manager->Initialize() != HalResult::SUCCESS) {
+        LOG("Error: Failed to initialize HAL Manager, continuing with reduced functionality");
+    } else {
+        LOG("HAL Manager initialized successfully");
+    }
+    
+    // Initialize the runtime configuration system
+    if (!InitializeRuntimeConfig()) {
+        LOG("Error: Failed to initialize runtime configuration system");
+    } else {
+        LOG("Runtime configuration system initialized successfully");
+    }
+    
+    // Initialize hardware diagnostics system
+    if (!InitializeHardwareDiagnostics()) {
+        LOG("Error: Failed to initialize hardware diagnostics system");
+    } else {
+        LOG("Hardware diagnostics system initialized successfully");
+        
+        // Run hardware detection to identify components
+        g_hardware_diagnostics->DetectHardware();
+        
+        // Run diagnostics during boot
+        g_hardware_diagnostics->RunAllDiagnostics();
+    }
     
     // Set up timer interrupt handler BEFORE enabling interrupts
     global->descriptor_table->interrupt_manager.SetHandler(IRQ0, TimerIrqHandler);

@@ -4,7 +4,6 @@ noblitz;
 
 file
 	"Core utilities" separator,
-	LittleLibrary.h,
 	Memory.h,
 	Memory.cpp,
 	Callback.h,
@@ -13,4 +12,6 @@ file
 	icxxabi.h,
 	icxxabi.cpp,
 	FixedArray.h;
-
+  kernel/Library/Callback.cpp,
+  kernel/Library/Memory.cpp,
+  kernel/Library/icxxabi.cpp,

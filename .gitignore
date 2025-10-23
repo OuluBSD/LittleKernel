@@ -1,3 +1,55 @@
-build
+# Build directories
+build/
+obj/
+iso/
 
+# Compiled binaries
+*.bin
+*.elf
+*.iso
+*.o
+*.obj
+*.out
+
+# Debug symbols
+*.map
+*.dbg
+*.sym
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Editor backups
+*~
+#*
+*\#
+
+# Virtual environment (if used)
 littlekernel_venv/
+
+# Logs
+*.log
+*.lst
+
+# Configuration backups
+.config.bak
+*.bak
+
+# Documentation and temporary files
+*.tmp
+docs/*.tmp
+tmp/
+
+# Ultimate++ files
+*.upp.backup
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Build system residue
+Makefile~
+compile_commands.json
