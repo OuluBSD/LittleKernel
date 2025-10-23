@@ -1,0 +1,319 @@
+@startuml NewKernel_Architecture
+
+title New Kernel Architecture with Windows 98 Features and Modern Concepts
+
+package "Kernel Core" {
+  class SVar {
+    - DescriptorTable dt
+    - Monitor monitor
+    - Timer timer
+    - KernelHeap kheap
+    - uint32 *frames
+    - uint32 nframes
+    - PageDirectory* kernel_directory
+    - PageDirectory* current_directory
+    - uint32 placement_address
+    - FixedArray<Callback1<int>, 1> cbtestarr
+    - FixedArray<Callback1<Registers>, 256> interrupt_handlers
+    - InitrdHeader *initrd_header
+    - InitrdFileHeader *file_headers
+    - FsNode *initrd_root
+    - FsNode *initrd_dev
+    - FsNode *root_nodes
+    - int nroot_nodes
+    - DirectoryEntity dirent
+    - volatile Task *current_task
+    - volatile Task *ready_queue
+    - uint32 initial_esp
+    - uint32 next_pid
+    - void *syscalls[256]
+    - uint32 num_syscalls
+    - ProcessManager process_manager
+    - MemoryManager memory_manager
+    - DeviceManager device_manager
+    - VirtualFileSystem vfs
+    - KernelRegistry registry
+    + read_eip() : uint32
+  }
+
+  class Monitor {
+    - uint16 *video_memory
+    - uint8 cursor_x
+    - uint8 cursor_y
+    - uint16 cursorLocation
+    + Init() : int
+    + MoveCursor() : void
+    + Scroll() : void
+    + Put(char c) : void
+    + Clear() : void
+    + Write(const char *c) : Monitor&
+    + WriteDec(int i) : Monitor&
+    + WriteHex(void* p) : Monitor&
+    + WriteHex(uint32 i) : Monitor&
+    + NewLine() : Monitor&
+  }
+
+  class Task {
+    - int id
+    - uint32 esp
+    - uint32 ebp
+    - uint32 eip
+    - PageDirectory *page_directory
+    - uint32 kernel_stack
+    - Task *next
+    - Process *process
+  }
+}
+
+package "Process Management" {
+  class ProcessManager {
+    - Process *current_process
+    - ProcessList process_list
+    - Scheduler scheduler
+    + CreateProcess(image: String) : Process*
+    + TerminateProcess(pid: int) : void
+    + SwitchProcess(next: Process*) : void
+    + GetCurrentProcess() : Process*
+    + GetProcess(pid: int) : Process*
+  }
+
+  class Process {
+    - int pid
+    - ProcessState state
+    - PageDirectory *page_directory
+    - Process *parent
+    - ProcessList children
+    - ThreadList threads
+    - uint32 kernel_stack
+    - uint32 user_stack
+    - uint32 esp
+    - uint32 ebp
+    - uint32 eip
+    - uint32 *registers
+    - FileMode *file_descriptors
+    - uint32 priority
+    + Fork() : Process*
+    + Exec(path: String, args: String[]) : int
+    + Wait(child_pid: int) : int
+    + Exit(status: int) : void
+    + Suspend() : void
+    + Resume() : void
+  }
+
+  class Thread {
+    - int tid
+    - ThreadState state
+    - uint32 esp
+    - uint32 ebp
+    - uint32 eip
+    - Process *parent_process
+    - uint32 priority
+    - Semaphore *sync_object
+    + Create(entry_point: void*) : Thread*
+    + Terminate() : void
+    + Suspend() : void
+    + Resume() : void
+  }
+
+  enum ProcessState {
+    RUNNING
+    READY
+    WAITING
+    TERMINATED
+  }
+
+  enum ThreadState {
+    RUNNING
+    READY
+    BLOCKED
+    TERMINATED
+  }
+}
+
+package "Memory Management" {
+  class MemoryManager {
+    - KernelHeap kheap
+    - VirtualMemoryAllocator vma
+    - PageFrameAllocator pfa
+    - uint32 *frames
+    - uint32 nframes
+    + Initialize() : void
+    + AllocateVirtualMemory(size: uint32) : void*
+    + FreeVirtualMemory(addr: void*) : void
+    + MapPhysicalMemory(phys_addr: uint32, virt_addr: uint32) : void
+    + UnmapVirtualMemory(virt_addr: uint32) : void
+  }
+
+  class KernelHeap {
+    - OrderedArray<MemoryBlock> index
+    - uint32 start_address
+    - uint32 end_address
+    - uint32 max_address
+    - uint8 supervisor
+    - uint8 readonly
+    + Create(uint32 start, uint32 end, uint32 max, uint8 supervisor, uint8 readonly) : KernelHeap&
+    + Allocate(uint32 size, uint8 page_align) : void*
+    + Free(void *p) : void
+    - FindSmallestHole(uint32 size, uint8 page_align) : int32
+    - Expand(uint32 new_size) : void
+    - Contract(uint32 new_size) : uint32
+  }
+
+  class MemoryBlock {
+    - uint32 magic
+    - uint8 is_hole
+    - uint32 size
+    - MemoryBlock *prev
+    - MemoryBlock *next
+  }
+}
+
+package "Device Management" {
+  abstract class DriverBase {
+    - String name
+    - String version
+    - DriverState state
+    + Initialize() : int
+    + Shutdown() : int
+    + HandleInterrupt() : int
+    + GetDeviceId() : String
+  }
+
+  class DeviceManager {
+    - DriverList drivers
+    - DeviceList devices
+    + RegisterDriver(driver: DriverBase*) : int
+    + UnregisterDriver(driverId: String) : int
+    + FindDevice(deviceId: String) : DeviceBase*
+    + EnumerateDevices() : DeviceList
+  }
+
+  class BlockDeviceDriver {
+    - BlockDevice *device
+    + Initialize() : int
+    + Read(block_num: uint32, buffer: void*, count: uint32) : uint32
+    + Write(block_num: uint32, buffer: void*, count: uint32) : uint32
+    + GetBlockSize() : uint32
+  }
+
+  class ConsoleDriver {
+    - Monitor *console
+    + Initialize() : int
+    + Write(buffer: String) : int
+    + Read(buffer: String, size: int) : int
+    + Clear() : void
+  }
+
+  enum DriverState {
+    STOPPED
+    STARTING
+    RUNNING
+    STOPPING
+    ERROR
+  }
+}
+
+package "File System" {
+  class VirtualFileSystem {
+    - FileSystemList mounted_filesystems
+    - MountPointList mount_points
+    + Mount(device: String, path: String, fstype: String) : int
+    + Unmount(path: String) : int
+    + Lookup(path: String) : FsNode*
+    + Open(path: String, flags: FileMode) : FileHandle
+    + Read(handle: FileHandle, buffer: void*, size: uint32) : uint32
+    + Write(handle: FileHandle, buffer: void*, size: uint32) : uint32
+  }
+
+  class FAT32FileSystem {
+    - SuperBlock superblock
+    - uint8 *fat_table
+    - uint32 cluster_size
+    + Mount(device: BlockDevice*) : int
+    + Unmount() : int
+    + ReadFile(inode: Inode*, buffer: void*, size: uint32) : uint32
+    + WriteFile(inode: Inode*, buffer: void*, size: uint32) : uint32
+    + CreateFile(path: String) : Inode*
+    + DeleteFile(path: String) : int
+  }
+
+  class FsNode {
+    - char name[128]
+    - uint32 mask
+    - uint32 uid
+    - uint32 gid
+    - uint32 flags
+    - uint32 inode
+    - uint32 length
+    - uint32 impl
+    - ReadType_t read
+    - WriteType_t write
+    - OpenType_t open
+    - CloseType_t close
+    - ExecType_t execute
+  }
+}
+
+package "System Call Interface" {
+  class SyscallHandler {
+    - syscall_table[256]
+    + RegisterSyscall(num: int, handler: syscall_func) : void
+    + HandleSyscall(num: int, args: void**) : int
+  }
+
+  class LinuxSyscallInterface {
+    + sys_open(pathname: String, flags: int, mode: int) : int
+    + sys_read(fd: int, buf: void*, count: uint32) : int32
+    + sys_write(fd: int, buf: void*, count: uint32) : int32
+    + sys_close(fd: int) : int
+    + sys_fork() : int
+    + sys_execve(filename: String, argv: char**, envp: char**) : int
+    + sys_wait4(pid: int, status: int*, options: int, rusage: void*) : int
+    + sys_exit(status: int) : void
+  }
+}
+
+package "Registry System" {
+  class KernelRegistry {
+    - RegistryKey root_key
+    - PermissionManager permissions
+    + OpenKey(path: String, access: AccessMask) : RegistryKey*
+    + CreateKey(path: String) : RegistryKey*
+    + DeleteKey(path: String) : int
+    + SetValue(key_path: String, value_name: String, data: void*, size: uint32) : int
+    + GetValue(key_path: String, value_name: String, data: void*, size: uint32*) : int
+  }
+
+  class RegistryKey {
+    - String name
+    - ValueList values
+    - KeyList subkeys
+    - AccessMask permissions
+  }
+}
+
+SVar ||--|| Monitor : contains
+SVar ||--|| Timer : contains
+SVar ||--|| KernelHeap : contains
+SVar ||--|| ProcessManager : contains
+SVar ||--|| MemoryManager : contains
+SVar ||--|| DeviceManager : contains
+SVar ||--|| VirtualFileSystem : contains
+SVar ||--|| KernelRegistry : contains
+
+SVar ||--|| Task : manages
+
+ProcessManager ||--|| Process : manages
+Process ||--o{ Thread : contains
+
+MemoryManager ||--|| KernelHeap : contains
+MemoryManager ||--|| MemoryBlock : manages
+
+DeviceManager ||--|| DriverBase : manages
+DriverBase <|-- BlockDeviceDriver
+DriverBase <|-- ConsoleDriver
+
+VirtualFileSystem ||--|| FsNode : manages
+VirtualFileSystem ||--|| FAT32FileSystem : contains
+
+@enduml
