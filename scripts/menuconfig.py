@@ -50,6 +50,20 @@ def save_config(config, config_file):
             else:
                 f.write(f"{key}=\"{value}\"\n")
 
+def use_dialog_interface():
+    """Use the dialog-based configuration interface."""
+    script_path = os.path.join(os.path.dirname(__file__), "configure_kernel.sh")
+    if os.path.exists(script_path):
+        try:
+            subprocess.run([script_path], check=True)
+            return True
+        except subprocess.CalledProcessError:
+            print("Error running dialog configuration interface.")
+            return False
+    else:
+        print(f"Dialog configuration script not found: {script_path}")
+        return False
+
 def display_menu(config):
     """Display the configuration menu."""
     while True:
@@ -57,12 +71,46 @@ def display_menu(config):
         print("LittleKernel Configuration")
         print("=========================")
         print()
+        print("1. Use dialog-based configuration (recommended)")
+        print("2. Use text-based configuration")
+        print("3. View current configuration")
+        print("4. Save and exit")
+        print("5. Exit without saving")
+        print()
+        
+        choice = input("Enter your choice (1-5): ").strip()
+        
+        if choice == '1':
+            if use_dialog_interface():
+                # Reload config after dialog interface
+                config.update(load_config(".config"))
+        elif choice == '2':
+            display_text_menu(config)
+        elif choice == '3':
+            view_config(config)
+        elif choice == '4':
+            save_config(config, '.config')
+            print("Configuration saved to .config")
+            break
+        elif choice == '5':
+            break
+        else:
+            print("Invalid choice. Press Enter to continue...")
+            input()
+
+def display_text_menu(config):
+    """Display the text-based configuration menu."""
+    while True:
+        os.system('clear' if os.name == 'posix' else 'cls')
+        print("LittleKernel Configuration - Text Mode")
+        print("=====================================")
+        print()
         print("1. Toggle boolean options")
         print("2. Set integer options")
         print("3. Set string options")
         print("4. View current configuration")
         print("5. Save and exit")
-        print("6. Exit without saving")
+        print("6. Return to main menu")
         print()
         
         choice = input("Enter your choice (1-6): ").strip()
@@ -80,7 +128,7 @@ def display_menu(config):
             print("Configuration saved to .config")
             break
         elif choice == '6':
-            break
+            return
         else:
             print("Invalid choice. Press Enter to continue...")
             input()

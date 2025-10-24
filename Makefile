@@ -351,6 +351,11 @@ menuconfig:
 	@echo "Starting menuconfig..."
 	@python3 scripts/menuconfig.py
 
+.PHONY: dialogconfig
+dialogconfig:
+	@echo "Starting dialog-based configuration..."
+	@scripts/configure_kernel.sh
+
 # Clean build files
 .PHONY: clean
 clean:
@@ -401,6 +406,7 @@ help:
 	@echo "  all                 - Build complete kernel ISO (default)"
 	@echo "  kernel              - Build only the kernel ELF"
 	@echo "  menuconfig          - Run configuration menu"
+	@echo "  dialogconfig        - Run dialog-based configuration menu"
 	@echo "  clean               - Clean build files"
 	@echo "  distclean           - Clean all including config"
 	@echo "  run                 - Build and run in appropriate emulator"
@@ -416,6 +422,7 @@ help:
 	@echo ""
 	@echo "Configuration is read from .config file"
 	@echo "Use 'make menuconfig' to modify configuration"
+	@echo "Use 'make dialogconfig' to run dialog-based configuration"
 
 # Include build.sh integration
 .PHONY: build_sh_compat
