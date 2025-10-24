@@ -25,6 +25,9 @@
 #include "MemoryTracker.h"
 #include "DriverFramework.h"
 #include "ConsoleDriver.h"
+#include "Vfs.h"
+#include "RamFs.h"
+#include "Registry.h"
 
 // I/O and drivers
 #include "SerialDriver.h"

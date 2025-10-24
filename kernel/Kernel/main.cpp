@@ -308,6 +308,27 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         LOG("Driver loader system initialized successfully");
     }
     
+    // Initialize Virtual File System
+    if (!InitializeVfs()) {
+        LOG("Warning: Failed to initialize Virtual File System");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "VfsInitialization");
+    } else {
+        LOG("Virtual File System initialized successfully");
+    }
+    
+    // Initialize kernel registry system
+    if (!InitializeRegistry()) {
+        LOG("Warning: Failed to initialize Registry system");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "RegistryInitialization");
+    } else {
+        LOG("Registry system initialized successfully");
+        
+        // Set up drive letter mappings in registry
+        RegistryWriteString("HKEY_LOCAL_MACHINE\\SYSTEM\\MountPoints", "A:", "/A", KEY_WRITE);
+        RegistryWriteString("HKEY_LOCAL_MACHINE\\SYSTEM\\MountPoints", "C:", "/HardDisk", KEY_WRITE);
+        LOG("Drive letter mappings registered");
+    }
+    
     // Initialize and register console driver
     ConsoleDriver* console_driver = new ConsoleDriver();
     if (console_driver->Initialize()) {
@@ -342,6 +363,18 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         }
     } else {
         LOG("Failed to initialize mouse driver");
+    }
+    
+    // Initialize RAM filesystem for A: drive (initial RAM filesystem and boot configuration)
+    RamFsDriver* ramfs_driver = new RamFsDriver();
+    if (ramfs_driver->Initialize(4 * 1024 * 1024)) {  // 4MB RAM filesystem
+        if (ramfs_driver->Mount("/A")) {
+            LOG("RAM filesystem (A: drive) mounted successfully");
+        } else {
+            LOG("Failed to mount RAM filesystem (A: drive)");
+        }
+    } else {
+        LOG("Failed to initialize RAM filesystem (A: drive)");
     }
     
     // Initialize driver framework
