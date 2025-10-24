@@ -66,10 +66,10 @@ The kernel rapid reboot issue was caused by timer interrupts firing before inter
 - [x] Implement fork/exec/vfork system calls
 - [x] Implement process synchronization primitives (semaphores, mutexes, events)
 - [x] Implement inter-process communication (pipes, shared memory, signals)
-- [ ] Implement process state management
+- [x] Implement process state management
 
 ## Phase 3: Process Management - Optional Enhancements
-- [ ] Thread Implementation: Add lightweight thread support in addition to process management
+- [x] Thread Implementation: Add lightweight thread support in addition to process management
 - [ ] Process Priority Scheduling: Implement more sophisticated scheduling algorithms (Round-robin, Priority-based, etc.)
 - [ ] Process Groups and Sessions: Add support for process groups and session management
 - [ ] Real-time Scheduling: Add real-time process scheduling capabilities
@@ -132,8 +132,8 @@ The kernel rapid reboot issue was caused by timer interrupts firing before inter
 - [x] Create file system mounting/unmounting system
 - [x] Implement file permissions and access control
 - [x] A: Drive Implementation: Create initial RAM filesystem and boot configuration system (like /boot in Linux)
-- [ ] B: Drive Implementation: Create EFI partition system when enabled (like /boot/efi in Linux)
-- [ ] C: Drive Swap File: Implement pagefile.sys-like swap functionality on primary drive
+- [x] B: Drive Implementation: Create EFI partition system when enabled (like /boot/efi in Linux)
+- [x] C: Drive Swap File: Implement pagefile.sys-like swap functionality on primary drive
 - [x] Drive Letter Management: Implement Windows-compatible drive letter assignment system
 - [x] Registry-Based Path Translation: Implement registry-based translation of device paths
 

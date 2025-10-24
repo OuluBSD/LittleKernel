@@ -34,6 +34,7 @@
 #include "Performance.h"
 #include "StabilityTest.h"
 #include "TestApplication.h"
+#include "BootDrives.h"
 
 // I/O and drivers
 #include "SerialDriver.h"

@@ -393,6 +393,28 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         LOG("Basic kernel tests FAILED");
     }
     
+    // Initialize boot drives (B: and C: drives)
+    if (!InitializeBootDrives()) {
+        LOG("Warning: Failed to initialize boot drives (B: and C: drives)");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "BootDriveInitialization");
+    } else {
+        LOG("Boot drives (B: and C: drives) initialized successfully");
+        
+        // Create pagefile.sys for C: drive swap functionality
+        if (CreateSwapFile(64)) {  // 64MB pagefile
+            LOG("C: drive swap file (pagefile.sys) created successfully");
+            
+            // Enable virtual memory
+            if (EnableVirtualMemory()) {
+                LOG("Virtual memory (swap) enabled successfully");
+            } else {
+                LOG("Warning: Failed to enable virtual memory");
+            }
+        } else {
+            LOG("Warning: Failed to create C: drive swap file");
+        }
+    }
+    
     // Initialize and register console driver
     ConsoleDriver* console_driver = new ConsoleDriver();
     if (console_driver->Initialize()) {
