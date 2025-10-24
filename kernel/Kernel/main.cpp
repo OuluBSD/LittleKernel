@@ -427,6 +427,18 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         LOG("Linuxulator ready to execute Linux binaries");
     }
     
+    // Initialize Linux shared library manager
+    if (!InitializeSoManager()) {
+        LOG("Warning: Failed to initialize Linux shared library manager");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "SoManagerInitialization");
+    } else {
+        LOG("Linux shared library manager initialized successfully");
+        
+        // In a real system, shared libraries would be loaded on demand
+        // For now, we'll just log that it's ready
+        LOG("Linux shared library manager ready to load libraries");
+    }
+    
     // Initialize and register console driver
     ConsoleDriver* console_driver = new ConsoleDriver();
     if (console_driver->Initialize()) {

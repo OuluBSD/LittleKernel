@@ -36,6 +36,7 @@
 #include "TestApplication.h"
 #include "BootDrives.h"
 #include "Linuxulator.h"
+#include "LinuxSharedLib.h"
 
 // I/O and drivers
 #include "SerialDriver.h"
