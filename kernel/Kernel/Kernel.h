@@ -29,6 +29,8 @@
 #include "RamFs.h"
 #include "Registry.h"
 #include "Syscalls.h"
+#include "TestSuite.h"
+#include "Debugging.h"
 
 // I/O and drivers
 #include "SerialDriver.h"

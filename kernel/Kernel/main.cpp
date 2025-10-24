@@ -337,6 +337,27 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         LOG("System call interface initialized successfully");
     }
     
+    // Initialize kernel test suite
+    if (!InitializeTestSuite()) {
+        LOG("Warning: Failed to initialize kernel test suite");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "TestSuiteInitialization");
+    } else {
+        LOG("Kernel test suite initialized successfully");
+    }
+    
+    // Initialize kernel debugger
+    if (!InitializeDebugger()) {
+        LOG("Warning: Failed to initialize kernel debugger");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "DebuggerInitialization");
+    } else {
+        LOG("Kernel debugger initialized successfully");
+        
+        // Set some basic debug flags
+        g_kernel_debugger->AddDebugFlag(DEBUG_FLAG_INTERRUPTS);
+        g_kernel_debugger->AddDebugFlag(DEBUG_FLAG_PROCESS);
+        LOG("Debug flags set for interrupts and processes");
+    }
+    
     // Initialize and register console driver
     ConsoleDriver* console_driver = new ConsoleDriver();
     if (console_driver->Initialize()) {

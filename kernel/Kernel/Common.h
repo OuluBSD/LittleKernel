@@ -89,4 +89,22 @@ static inline void outportl(uint16 port, uint32 data) {
 uint32 VirtualToPhysical(void* virtual_addr);
 void* PhysicalToVirtual(void* physical_addr);
 
+// Helper functions for debugging
+static inline void* get_frame_pointer() {
+    void* ebp;
+    __asm__ volatile("mov %%ebp, %0" : "=r" (ebp));
+    return ebp;
+}
+
+static inline uint32 get_instruction_pointer() {
+    uint32 eip;
+    __asm__ volatile("call 1f\n1: pop %0" : "=r" (eip));
+    return eip;
+}
+
+static inline bool is_kernel_address(void* addr) {
+    uint32 address = (uint32)addr;
+    return address >= 0x00100000 && address < 0xC0000000;
+}
+
 #endif

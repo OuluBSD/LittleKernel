@@ -146,8 +146,8 @@ The kernel rapid reboot issue was caused by timer interrupts firing before inter
 - [ ] Create networking system calls (for future)
 
 ## Phase 8: Testing and Integration
-- [ ] Create kernel test suite
-- [ ] Implement kernel debugging tools
+- [x] Create kernel test suite
+- [x] Implement kernel debugging tools
 - [ ] Test with basic applications
 - [ ] Performance optimization
 - [ ] Stability testing and bug fixes
