@@ -143,7 +143,7 @@ The kernel rapid reboot issue was caused by timer interrupts firing before inter
 - [x] Implement process control system calls (fork, exec, wait, etc.)
 - [x] Create signal handling system
 - [x] Implement memory management system calls (mmap, brk, etc.)
-- [ ] Create networking system calls (for future)
+- [x] Create networking system calls (for future)
 
 ## Phase 8: Testing and Integration
 - [x] Create kernel test suite

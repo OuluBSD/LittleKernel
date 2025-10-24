@@ -64,6 +64,22 @@ bool SyscallInterface::Initialize() {
     RegisterSyscall(SYS_SIGNAL, SysSignalWrapper, "signal");
     RegisterSyscall(SYS_SIGACTION, SysSigactionWrapper, "sigaction");
     
+    // Network operations
+    RegisterSyscall(SYS_SOCKET, SysSocketWrapper, "socket");
+    RegisterSyscall(SYS_BIND, SysBindWrapper, "bind");
+    RegisterSyscall(SYS_CONNECT, SysConnectWrapper, "connect");
+    RegisterSyscall(SYS_LISTEN, SysListenWrapper, "listen");
+    RegisterSyscall(SYS_ACCEPT, SysAcceptWrapper, "accept");
+    RegisterSyscall(SYS_SENDTO, SysSendtoWrapper, "sendto");
+    RegisterSyscall(SYS_RECVFROM, SysRecvfromWrapper, "recvfrom");
+    RegisterSyscall(SYS_SENDMSG, SysSendmsgWrapper, "sendmsg");
+    RegisterSyscall(SYS_RECVMSG, SysRecvmsgWrapper, "recvmsg");
+    RegisterSyscall(SYS_SHUTDOWN, SysShutdownWrapper, "shutdown");
+    RegisterSyscall(SYS_SETSOCKOPT, SysSetsockoptWrapper, "setsockopt");
+    RegisterSyscall(SYS_GETSOCKOPT, SysGetsockoptWrapper, "getsockopt");
+    RegisterSyscall(SYS_RECV, SysRecvWrapper, "recv");
+    RegisterSyscall(SYS_SEND, SysSendWrapper, "send");
+    
     // System information
     RegisterSyscall(SYS_UNAME, SysUnameWrapper, "uname");
     RegisterSyscall(SYS_GETTIMEOFDAY, SysGettimeofdayWrapper, "gettimeofday");
@@ -606,4 +622,76 @@ int SyscallInterface::SysSignalWrapper(uint32 arg1, uint32 arg2, uint32 arg3, ui
 int SyscallInterface::SysSigactionWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
     if (!g_syscall_interface) return -1;
     return g_syscall_interface->SysSigaction((int)arg1, (const struct sigaction*)arg2, (struct sigaction*)arg3);
+}
+
+// Network system call wrappers
+
+int SyscallInterface::SysSocketWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysSocket((int)arg1, (int)arg2, (int)arg3);
+}
+
+int SyscallInterface::SysBindWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysBind((int)arg1, (const struct sockaddr*)arg2, (socklen_t)arg3);
+}
+
+int SyscallInterface::SysConnectWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysConnect((int)arg1, (const struct sockaddr*)arg2, (socklen_t)arg3);
+}
+
+int SyscallInterface::SysListenWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysListen((int)arg1, (int)arg2);
+}
+
+int SyscallInterface::SysAcceptWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysAccept((int)arg1, (struct sockaddr*)arg2, (socklen_t*)arg3);
+}
+
+int SyscallInterface::SysSendtoWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysSendto((int)arg1, (const void*)arg2, (size_t)arg3, (int)arg4, (const struct sockaddr*)arg5, (socklen_t)arg6);
+}
+
+int SyscallInterface::SysRecvfromWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysRecvfrom((int)arg1, (void*)arg2, (size_t)arg3, (int)arg4, (struct sockaddr*)arg5, (socklen_t*)arg6);
+}
+
+int SyscallInterface::SysSendmsgWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysSendmsg((int)arg1, (const struct msghdr*)arg2, (int)arg3);
+}
+
+int SyscallInterface::SysRecvmsgWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysRecvmsg((int)arg1, (struct msghdr*)arg2, (int)arg3);
+}
+
+int SyscallInterface::SysShutdownWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysShutdown((int)arg1, (int)arg2);
+}
+
+int SyscallInterface::SysSetsockoptWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysSetsockopt((int)arg1, (int)arg2, (int)arg3, (const void*)arg4, (socklen_t)arg5);
+}
+
+int SyscallInterface::SysGetsockoptWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysGetsockopt((int)arg1, (int)arg2, (int)arg3, (void*)arg4, (socklen_t*)arg5);
+}
+
+int SyscallInterface::SysRecvWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysRecv((int)arg1, (void*)arg2, (size_t)arg3, (int)arg4);
+}
+
+int SyscallInterface::SysSendWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
+    if (!g_syscall_interface) return -1;
+    return g_syscall_interface->SysSend((int)arg1, (const void*)arg2, (size_t)arg3, (int)arg4);
 }

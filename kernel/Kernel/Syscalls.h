@@ -91,7 +91,9 @@
 #define SYS_SETPRIORITY       97
 #define SYS_STATFS            99
 #define SYS_FSTATFS          100
-#define SYS_SOCKET           102
+#define SYS_SOCKET           100
+#define SYS_LISTEN           101
+#define SYS_ACCEPT           102
 #define SYS_BIND             104
 #define SYS_CONNECT          105
 #define SYS_SENDTO           114
@@ -353,6 +355,22 @@ private:
     static int SysWaitPidWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
     static int SysSignalWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
     static int SysSigactionWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    
+    // Network system calls
+    static int SysSocketWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysBindWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysConnectWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysListenWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysAcceptWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysSendtoWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysRecvfromWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysSendmsgWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysRecvmsgWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysShutdownWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysSetsockoptWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysGetsockoptWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysRecvWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SysSendWrapper(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
 };
 
 // External instance of the system call interface
