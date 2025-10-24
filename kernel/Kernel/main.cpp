@@ -358,6 +358,32 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         LOG("Debug flags set for interrupts and processes");
     }
     
+    // Initialize performance profiler
+    if (!InitializePerformanceProfiler()) {
+        LOG("Warning: Failed to initialize performance profiler");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "PerformanceProfilerInitialization");
+    } else {
+        LOG("Performance profiler initialized successfully");
+        
+        // Apply basic performance optimizations
+        g_performance_profiler->OptimizeScheduler();
+        g_performance_profiler->OptimizeMemoryManagement();
+        g_performance_profiler->OptimizeInterruptHandling();
+        LOG("Basic performance optimizations applied");
+    }
+    
+    // Initialize stability tester
+    if (!InitializeStabilityTester()) {
+        LOG("Warning: Failed to initialize stability tester");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "StabilityTesterInitialization");
+    } else {
+        LOG("Stability tester initialized successfully");
+        
+        // In a real system, we might run stability tests here
+        // For now, we'll just log that it's available
+        LOG("Stability testing framework ready");
+    }
+    
     // Initialize and register console driver
     ConsoleDriver* console_driver = new ConsoleDriver();
     if (console_driver->Initialize()) {

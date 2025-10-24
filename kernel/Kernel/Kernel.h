@@ -31,6 +31,8 @@
 #include "Syscalls.h"
 #include "TestSuite.h"
 #include "Debugging.h"
+#include "Performance.h"
+#include "StabilityTest.h"
 
 // I/O and drivers
 #include "SerialDriver.h"
