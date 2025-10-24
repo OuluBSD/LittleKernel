@@ -1,5 +1,8 @@
 # Kernel Rewrite Tasks
 
+## Kernel configuration
+- [ ] Use /usr/bin/dialog for configuring kernel compilation (when calling make menuconfig)
+
 ## Project Restructure Completed:
 - [x] Renamed old kernel directory to kernel_old (read-only)
 - [x] Created new kernel structure: kernel/{Kernel,Library}

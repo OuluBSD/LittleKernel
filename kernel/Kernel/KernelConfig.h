@@ -14,6 +14,15 @@ struct KernelConfig {
     uint32 timer_frequency;         // Timer interrupt frequency in Hz
     uint32 scheduler_quantum_ms;    // Time slice quantum in milliseconds
     
+    // Advanced scheduling settings
+    uint32 mlfq_levels;            // Number of levels in MLFQ scheduler
+    uint32* mlfq_quanta;           // Quantum times for each MLFQ level
+    bool mlfq_boost_enabled;       // Enable periodic priority boosting in MLFQ
+    uint32 mlfq_boost_interval;    // Interval for priority boosting (in ticks)
+    uint32 round_robin_quantum;   // Quantum for round-robin scheduling
+    uint32 priority_levels;        // Number of priority levels
+    bool starvation_prevention;    // Enable starvation prevention mechanisms
+    
     // Process settings
     bool enable_preemptive_scheduling; // Whether to use preemptive scheduling
     bool enable_cooperative_scheduling; // Whether to allow cooperative scheduling
@@ -52,6 +61,15 @@ static inline void InitializeDefaultConfig(KernelConfig& config) {
     // Timer settings
     config.timer_frequency = 100;  // 100Hz (10ms intervals)
     config.scheduler_quantum_ms = 10; // 10ms time slices
+    config.round_robin_quantum = 10;   // 10ms time slices for round-robin
+    
+    // Advanced scheduling settings
+    config.mlfq_levels = 3;           // 3 levels in MLFQ
+    config.mlfq_quanta = nullptr;     // Will be allocated dynamically
+    config.mlfq_boost_enabled = true; // Enable priority boosting
+    config.mlfq_boost_interval = 1000;  // Boost every 1000 ticks
+    config.priority_levels = 32;       // 32 priority levels
+    config.starvation_prevention = true; // Enable starvation prevention
     
     // Process settings
     config.enable_preemptive_scheduling = true;

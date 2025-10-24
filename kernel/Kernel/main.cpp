@@ -63,6 +63,33 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         LOG("Kernel module loading framework ready");
     }
     
+    // Initialize real-time scheduling system
+    if (!InitializeRealTimeScheduling()) {
+        LOG("Warning: Failed to initialize real-time scheduling system");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "RealTimeSchedulingInitialization");
+    } else {
+        LOG("Real-time scheduling system initialized successfully");
+        LOG("Kernel real-time scheduling framework ready");
+    }
+    
+    // Initialize process debugging system
+    if (!InitializeProcessDebugging()) {
+        LOG("Warning: Failed to initialize process debugging system");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "ProcessDebuggingInitialization");
+    } else {
+        LOG("Process debugging system initialized successfully");
+        LOG("Kernel process debugging framework ready");
+    }
+    
+    // Initialize process accounting system
+    if (!InitializeProcessAccounting()) {
+        LOG("Warning: Failed to initialize process accounting system");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "ProcessAccountingInitialization");
+    } else {
+        LOG("Process accounting system initialized successfully");
+        LOG("Kernel process accounting framework ready");
+    }
+    
     // Initialize hardware components system
     g_pci_device_manager = new PCIDeviceManager();
     if (!g_pci_device_manager) {
@@ -98,6 +125,49 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
             } else {
                 LOG("Configuration header generated successfully");
             }
+        }
+    }
+    
+    // Initialize thread management system
+    thread_manager = new ThreadManager();
+    if (!thread_manager) {
+        LOG("Warning: Failed to allocate thread manager");
+        REPORT_ERROR(KernelError::ERROR_OUT_OF_MEMORY, "ThreadManagerAllocation");
+    } else {
+        LOG("Thread management system initialized successfully");
+    }
+    
+    // Initialize process group and session management system
+    process_group_manager = new ProcessGroupManager();
+    if (!process_group_manager) {
+        LOG("Warning: Failed to allocate process group manager");
+        REPORT_ERROR(KernelError::ERROR_OUT_OF_MEMORY, "ProcessGroupManagerAllocation");
+    } else {
+        LOG("Process group and session management system initialized successfully");
+        
+        // Run process group diagnostics during boot
+        if (process_group_manager->Initialize()) {
+            process_group_manager->PrintProcessGroupList();
+            process_group_manager->PrintSessionList();
+            process_group_manager->PrintProcessGroupTree();
+        }
+    }
+    
+    // Initialize real-time scheduling system
+    real_time_scheduler = new RealTimeScheduler();
+    if (!real_time_scheduler) {
+        LOG("Warning: Failed to allocate real-time scheduler");
+        REPORT_ERROR(KernelError::ERROR_OUT_OF_MEMORY, "RealTimeSchedulerAllocation");
+    } else {
+        LOG("Real-time scheduling system initialized successfully");
+        if (real_time_scheduler->Initialize()) {
+            // Run real-time diagnostics during boot
+            real_time_scheduler->PrintRealTimeTaskList();
+            real_time_scheduler->PrintRealTimeStatistics();
+            real_time_scheduler->PrintSchedulingAnalysis();
+        } else {
+            LOG("Warning: Failed to initialize real-time scheduler");
+            REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "RealTimeSchedulerInitialization");
         }
     }
     
@@ -193,6 +263,9 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
     // Set up keyboard interrupt handler
     global->descriptor_table->interrupt_manager.SetHandler(IRQ1, KeyboardIrqHandler);
     
+    // Set up mouse interrupt handler
+    global->descriptor_table->interrupt_manager.SetHandler(IRQ12, MouseIrqHandler);
+    
     // Set up page fault handler (interrupt 14) - this must be done after IDT is loaded
     global->descriptor_table->interrupt_manager.SetHandler(14, PageFaultHandler);
     
@@ -212,6 +285,29 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
     ipc_manager = new IpcManager();
     LOG("IPC manager initialized");
     
+    // Initialize process suspension system
+    if (!InitializeProcessSuspension()) {
+        LOG("Warning: Failed to initialize process suspension system");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "ProcessSuspensionInitialization");
+    } else {
+        LOG("Process suspension system initialized successfully");
+        LOG("Kernel process suspension framework ready");
+        
+        // Run process suspension diagnostics during boot
+        if (g_process_suspension_manager) {
+            g_process_suspension_manager->PrintProcessSuspensionList();
+            g_process_suspension_manager->PrintProcessSuspensionStatistics();
+        }
+    }
+    
+    // Initialize driver loader system
+    if (!InitializeDriverLoader()) {
+        LOG("Warning: Failed to initialize driver loader system");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "DriverLoaderInitialization");
+    } else {
+        LOG("Driver loader system initialized successfully");
+    }
+    
     // Initialize and register console driver
     ConsoleDriver* console_driver = new ConsoleDriver();
     if (console_driver->Initialize()) {
@@ -222,6 +318,30 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         }
     } else {
         LOG("Failed to initialize console driver");
+    }
+    
+    // Initialize and register keyboard driver
+    KeyboardDriver* keyboard_driver = new KeyboardDriver();
+    if (keyboard_driver->Initialize()) {
+        if (global->driver_framework->RegisterDevice(keyboard_driver->GetDevice())) {
+            LOG("Keyboard driver registered successfully");
+        } else {
+            LOG("Failed to register keyboard driver");
+        }
+    } else {
+        LOG("Failed to initialize keyboard driver");
+    }
+    
+    // Initialize and register mouse driver
+    MouseDriver* mouse_driver = new MouseDriver();
+    if (mouse_driver->Initialize()) {
+        if (global->driver_framework->RegisterDevice(mouse_driver->GetDevice())) {
+            LOG("Mouse driver registered successfully");
+        } else {
+            LOG("Failed to register mouse driver");
+        }
+    } else {
+        LOG("Failed to initialize mouse driver");
     }
     
     // Initialize driver framework

@@ -49,6 +49,14 @@
 #include "HardwareComponents.h"
 #include "ConfigParser.h"
 #include "ArchAbstraction.h"
+#include "Thread.h"
+#include "ProcessGroup.h"
+#include "ProcessDebugging.h"
+#include "RealTimeScheduling.h"
+#include "RealTimeScheduling.h"
+#include "ProcessDebugging.h"
+#include "ProcessAccounting.h"
+#include "ProcessSuspension.h"
 
 // Process Management
 #include "ProcessControlBlock.h"

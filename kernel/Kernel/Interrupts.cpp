@@ -97,9 +97,45 @@ void KeyboardIrqHandler(Registers regs) {
     // Handle keyboard input
     uint8 scan_code = inportb(0x60);
     
-    // In a real implementation, we would process the keyboard input
-    // For now, just log it
-    LOG("Keyboard scan code: " << (uint32)scan_code);
+    // Find the keyboard driver instance and process the scancode
+    if (global && global->driver_framework) {
+        Device* keyboard_dev = global->driver_framework->FindDeviceByType(DEVICE_TYPE_KEYBOARD);
+        if (keyboard_dev && keyboard_dev->private_data) {
+            KeyboardDriver* keyboard_driver = (KeyboardDriver*)keyboard_dev->private_data;
+            keyboard_driver->ProcessScancode(scan_code);
+        }
+    }
+    
+    // Send End of Interrupt (EOI) to PIC
+    outportb(0x20, 0x20);
+}
+
+void MouseIrqHandler(Registers regs) {
+    // Handle mouse input
+    uint8 data = inportb(0x60);
+    
+    // Find the mouse driver instance and process the data
+    if (global && global->driver_framework) {
+        Device* mouse_dev = global->driver_framework->FindDeviceByType(DEVICE_TYPE_MOUSE);
+        if (mouse_dev && mouse_dev->private_data) {
+            MouseDriver* mouse_driver = (MouseDriver*)mouse_dev->private_data;
+            
+            // Build mouse packet byte by byte
+            if (mouse_driver->packet_byte_index < 3) {
+                mouse_driver->packet_bytes[mouse_driver->packet_byte_index] = data;
+                mouse_driver->packet_byte_index++;
+                
+                // If we have a complete 3-byte packet, process it
+                if (mouse_driver->packet_byte_index == 3) {
+                    mouse_driver->ProcessPacket();
+                }
+            }
+        }
+    }
+    
+    // Send End of Interrupt (EOI) to PIC
+    outportb(0xA0, 0x20); // Slave PIC
+    outportb(0x20, 0x20); // Master PIC
 }
 
 void PageFaultHandler(Registers regs) {
