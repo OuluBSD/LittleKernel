@@ -138,11 +138,11 @@ The kernel rapid reboot issue was caused by timer interrupts firing before inter
 - [x] Registry-Based Path Translation: Implement registry-based translation of device paths
 
 ## Phase 7: System Calls Interface
-- [ ] Implement Linux-compatible system calls (open, read, write, etc.)
-- [ ] Create system call dispatcher
-- [ ] Implement process control system calls (fork, exec, wait, etc.)
-- [ ] Create signal handling system
-- [ ] Implement memory management system calls (mmap, brk, etc.)
+- [x] Implement Linux-compatible system calls (open, read, write, etc.)
+- [x] Create system call dispatcher
+- [x] Implement process control system calls (fork, exec, wait, etc.)
+- [x] Create signal handling system
+- [x] Implement memory management system calls (mmap, brk, etc.)
 - [ ] Create networking system calls (for future)
 
 ## Phase 8: Testing and Integration

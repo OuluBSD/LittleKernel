@@ -28,6 +28,7 @@
 #include "Vfs.h"
 #include "RamFs.h"
 #include "Registry.h"
+#include "Syscalls.h"
 
 // I/O and drivers
 #include "SerialDriver.h"

@@ -329,6 +329,14 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         LOG("Drive letter mappings registered");
     }
     
+    // Initialize system call interface
+    if (!InitializeSyscalls()) {
+        LOG("Warning: Failed to initialize system call interface");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "SyscallInitialization");
+    } else {
+        LOG("System call interface initialized successfully");
+    }
+    
     // Initialize and register console driver
     ConsoleDriver* console_driver = new ConsoleDriver();
     if (console_driver->Initialize()) {
