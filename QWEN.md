@@ -84,6 +84,13 @@ For all new code, use the following logging approach:
 - All C/C++ files must include only the package header, which has the same name as the directory and project file
 - Compiled files are managed by .upp project files
 
+### Data Type Conventions for Multi-Platform Support
+- Use platform-appropriate types for system calls to ensure compatibility across different architectures (32-bit vs 64-bit)
+- Avoid using fixed-size types like `uint32` as constants when the value represents sizes, counts, or memory addresses that may vary across platforms
+- Prefer types like `size_t` for quantities that represent sizes, counts, or indices that could exceed 32-bit limits on 64-bit architectures
+- For system call parameters that represent memory addresses or large counts, consider using `uintptr_t` or `size_t` instead of `uint32`
+- Always consider the target platform's register size when designing system call interfaces
+
 ### Header Inclusion Conventions
 - Only the package header (Kernel.h) should include other headers
 - Other header files should NOT include additional headers directly
