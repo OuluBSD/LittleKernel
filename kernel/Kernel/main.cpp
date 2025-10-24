@@ -384,6 +384,15 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         LOG("Stability testing framework ready");
     }
     
+    // Run basic test application
+    LOG("Running basic kernel tests...");
+    int test_result = run_basic_tests();
+    if (test_result == 0) {
+        LOG("Basic kernel tests PASSED");
+    } else {
+        LOG("Basic kernel tests FAILED");
+    }
+    
     // Initialize and register console driver
     ConsoleDriver* console_driver = new ConsoleDriver();
     if (console_driver->Initialize()) {
