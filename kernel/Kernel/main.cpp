@@ -415,6 +415,18 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         }
     }
     
+    // Initialize Linuxulator (Linux compatibility layer)
+    if (!InitializeLinuxulator()) {
+        LOG("Warning: Failed to initialize Linuxulator");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "LinuxulatorInitialization");
+    } else {
+        LOG("Linuxulator (Linux compatibility layer) initialized successfully");
+        
+        // Test loading a simple Linux binary (in a real system, this would be done on demand)
+        // For now, we'll just log that it's ready
+        LOG("Linuxulator ready to execute Linux binaries");
+    }
+    
     // Initialize and register console driver
     ConsoleDriver* console_driver = new ConsoleDriver();
     if (console_driver->Initialize()) {
