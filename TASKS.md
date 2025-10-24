@@ -188,13 +188,13 @@ The kernel rapid reboot issue was caused by timer interrupts firing before inter
 - [x] Add support for Linux-specific features (proc, sysfs, etc.)
 - [x] Test with static Linux executables
 - [x] Implement Linux shared library support
-- [ ] Bootstrap CentOS userspace environment
-- [ ] Integrate Gentoo Prefix compilation support
-- [ ] Add X11 forwarding support for Linux applications
-- [ ] Implement Sound support for Linux applications
-- [ ] Optimize Linuxulator performance
-- [ ] Test with real-world Linux applications
-- [ ] Document Linuxulator usage and limitations
+- [x] Bootstrap CentOS userspace environment
+- [x] Integrate Gentoo Prefix compilation support
+- [x] Add X11 forwarding support for Linux applications
+- [x] Implement Sound support for Linux applications
+- [x] Optimize Linuxulator performance
+- [x] Test with real-world Linux applications
+- [x] Document Linuxulator usage and limitations
 
 ## Phase 10: Legacy Code Migration
 - [ ] Rename multiboot_main to multiboot_main_old (with "deprecated - to be removed" comment)
