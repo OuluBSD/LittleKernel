@@ -3,6 +3,9 @@
 // Global variable definition
 Global* global = nullptr;
 
+// Current process pointer
+ProcessControlBlock* g_current_process = nullptr;
+
 void Global::Initialize() {
     // Allocate the global structure itself
     // In a real kernel, this would be done carefully to ensure it's in the right memory space

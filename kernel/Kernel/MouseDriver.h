@@ -99,6 +99,16 @@ public:
     uint32_t GetEventCount();
     void FlushBuffer();
     
+    // Public accessor methods for packet building
+    uint8_t GetPacketByteIndex() const { return packet_byte_index; }
+    void SetPacketByte(uint8_t index, uint8_t value) { 
+        if (index < 3) packet_bytes[index] = value; 
+    }
+    void IncrementPacketByteIndex() { 
+        if (packet_byte_index < 3) packet_byte_index++; 
+    }
+    void ResetPacketByteIndex() { packet_byte_index = 0; }
+    
     // Configuration functions
     bool SetResolution(uint8_t res);
     uint8_t GetResolution();

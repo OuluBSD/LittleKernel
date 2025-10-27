@@ -26,14 +26,14 @@ bool PagingManager::Initialize() {
     memset(kernel_directory, 0, sizeof(PageDirectory));
     
     // Identity map the first 1MB of memory (for kernel code/data)
-    for (uint32 addr = 0; addr < 0x100000; addr += PAGE_SIZE) {
+    for (uint32 addr = 0; addr < 0x100000; addr += KERNEL_PAGE_SIZE) {
         MapPage(addr, addr, PAGE_PRESENT | PAGE_WRITABLE, kernel_directory);
     }
     
     // Map kernel heap area
     for (uint32 addr = MemoryManager::HEAP_START; 
          addr < MemoryManager::HEAP_START + MemoryManager::HEAP_SIZE; 
-         addr += PAGE_SIZE) {
+         addr += KERNEL_PAGE_SIZE) {
         MapPage(addr, addr, PAGE_PRESENT | PAGE_WRITABLE, kernel_directory);
     }
     

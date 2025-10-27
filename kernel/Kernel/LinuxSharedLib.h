@@ -93,37 +93,37 @@
 
 // Linux shared library hash table structure
 struct LinuxSoHashTable {
-    uint32_t nbucket;    // Number of hash buckets
-    uint32_t nchain;     // Number of hash chains
-    uint32_t bucket[1]; // Hash buckets
-    uint32_t chain[1];   // Hash chain table
+    uint32 nbucket;    // Number of hash buckets
+    uint32 nchain;     // Number of hash chains
+    uint32 bucket[1]; // Hash buckets
+    uint32 chain[1];   // Hash chain table
 };
 
 // Linux GNU hash table structure
 struct LinuxGnuHashTable {
-    uint32_t nbuckets;   // Number of hash buckets
-    uint32_t symoffset;  // Index of first symbol in hash table
-    uint32_t bloom_size;  // Bloom filter size (in words)
-    uint32_t bloom_shift; // Bloom filter shift count
-    uint32_t bloom[1];    // Bloom filter
-    uint32_t buckets[1];  // Hash buckets
-    uint32_t chain[1];   // Hash chain table
+    uint32 nbuckets;   // Number of hash buckets
+    uint32 symoffset;  // Index of first symbol in hash table
+    uint32 bloom_size;  // Bloom filter size (in words)
+    uint32 bloom_shift; // Bloom filter shift count
+    uint32 bloom[1];    // Bloom filter
+    uint32 buckets[1];  // Hash buckets
+    uint32 chain[1];   // Hash chain table
 };
 
 // Linux dynamic entry structure
 struct LinuxDynEntry {
-    uint32_t d_tag;      // Dynamic entry tag
+    uint32 d_tag;      // Dynamic entry tag
     union {
-        uint32_t d_val;  // Integer value
-        uint32_t d_ptr;  // Pointer value
+        uint32 d_val;  // Integer value
+        uint32 d_ptr;  // Pointer value
     } d_un;
 };
 
 // Linux symbol table entry
 struct LinuxElfSym {
-    uint32_t st_name;    // Symbol name (string table index)
-    uint32_t st_value;   // Symbol value
-    uint32_t st_size;    // Symbol size
+    uint32 st_name;    // Symbol name (string table index)
+    uint32 st_value;   // Symbol value
+    uint32 st_size;    // Symbol size
     uint8_t st_info;     // Symbol type and binding
     uint8_t st_other;    // Symbol visibility
     uint16_t st_shndx;   // Section index
@@ -131,14 +131,14 @@ struct LinuxElfSym {
 
 // Linux relocation entry
 struct LinuxElfRel {
-    uint32_t r_offset;    // Address of reference
-    uint32_t r_info;     // Symbol index and type
+    uint32 r_offset;    // Address of reference
+    uint32 r_info;     // Symbol index and type
 };
 
 // Linux relocation entry with addend
 struct LinuxElfRela {
-    uint32_t r_offset;    // Address of reference
-    uint32_t r_info;     // Symbol index and type
+    uint32 r_offset;    // Address of reference
+    uint32 r_info;     // Symbol index and type
     int32_t r_addend;    // Constant part of expression
 };
 
@@ -148,83 +148,83 @@ struct LinuxVerDef {
     uint16_t vd_flags;   // Version information
     uint16_t vd_ndx;     // Version index
     uint16_t vd_cnt;     // Number of associated aux entries
-    uint32_t vd_hash;    // Version name hash value
-    uint32_t vd_aux;     // Offset in bytes to verdaux array
-    uint32_t vd_next;    // Offset in bytes to next verdef entry
+    uint32 vd_hash;    // Version name hash value
+    uint32 vd_aux;     // Offset in bytes to verdaux array
+    uint32 vd_next;    // Offset in bytes to next verdef entry
 };
 
 // Linux version definition auxiliary structure
 struct LinuxVerDefAux {
-    uint32_t vda_name;   // Version or dependency name
-    uint32_t vda_next;   // Offset in bytes to next verdaux entry
+    uint32 vda_name;   // Version or dependency name
+    uint32 vda_next;   // Offset in bytes to next verdaux entry
 };
 
 // Linux version need structure
 struct LinuxVerNeed {
     uint16_t vn_version; // Version of structure
     uint16_t vn_cnt;     // Number of associated aux entries
-    uint32_t vn_file;    // Offset of filename for this dependency
-    uint32_t vn_aux;     // Offset in bytes to vernaux array
-    uint32_t vn_next;    // Offset in bytes to next verneed entry
+    uint32 vn_file;    // Offset of filename for this dependency
+    uint32 vn_aux;     // Offset in bytes to vernaux array
+    uint32 vn_next;    // Offset in bytes to next verneed entry
 };
 
 // Linux version need auxiliary structure
 struct LinuxVerNeedAux {
-    uint32_t vna_hash;   // Hash value of dependency name
+    uint32 vna_hash;   // Hash value of dependency name
     uint16_t vna_flags;  // Dependency specific information
     uint16_t vna_other;  // Unused
-    uint32_t vna_name;   // Dependency name string offset
-    uint32_t vna_next;   // Offset in bytes to next vernaux entry
+    uint32 vna_name;   // Dependency name string offset
+    uint32 vna_next;   // Offset in bytes to next vernaux entry
 };
 
 // Linux shared library structure
 struct LinuxSharedLibrary {
     char name[LINUX_SO_MAX_PATH];     // Library name
     char path[LINUX_SO_MAX_PATH];     // Full path to library
-    uint32_t base_address;           // Base address where library is loaded
-    uint32_t size;                    // Size of library in memory
-    uint32_t type;                    // Type of shared object
-    uint32_t ref_count;               // Reference count
+    uint32 base_address;           // Base address where library is loaded
+    uint32 size;                    // Size of library in memory
+    uint32 type;                    // Type of shared object
+    uint32 ref_count;               // Reference count
     bool loaded;                      // Whether library is loaded
     bool relocated;                  // Whether library has been relocated
-    uint32_t entry_point;             // Library entry point
-    uint32_t init_func;              // Initialization function
-    uint32_t fini_func;               // Finalization function
-    uint32_t* init_array;            // Initialization function array
-    uint32_t init_array_size;        // Size of initialization array
-    uint32_t* fini_array;            // Finalization function array
-    uint32_t fini_array_size;         // Size of finalization array
+    uint32 entry_point;             // Library entry point
+    uint32 init_func;              // Initialization function
+    uint32 fini_func;               // Finalization function
+    uint32* init_array;            // Initialization function array
+    uint32 init_array_size;        // Size of initialization array
+    uint32* fini_array;            // Finalization function array
+    uint32 fini_array_size;         // Size of finalization array
     LinuxSharedLibrary* dependencies[LINUX_SO_MAX_DEPS]; // Dependencies
-    uint32_t dep_count;               // Number of dependencies
+    uint32 dep_count;               // Number of dependencies
     LinuxElfHeader elf_header;        // ELF header
     LinuxDynEntry* dynamic_section;   // Dynamic section
-    uint32_t dynamic_section_size;   // Size of dynamic section
+    uint32 dynamic_section_size;   // Size of dynamic section
     LinuxElfSym* symbol_table;        // Symbol table
-    uint32_t symbol_count;            // Number of symbols
+    uint32 symbol_count;            // Number of symbols
     char* string_table;               // String table
-    uint32_t string_table_size;       // Size of string table
+    uint32 string_table_size;       // Size of string table
     LinuxElfRela* rela_table;         // RELA relocation table
-    uint32_t rela_count;              // Number of RELA relocations
+    uint32 rela_count;              // Number of RELA relocations
     LinuxElfRel* rel_table;           // REL relocation table
-    uint32_t rel_count;               // Number of REL relocations
+    uint32 rel_count;               // Number of REL relocations
     LinuxElfRela* jmprel_table;       // PLT relocation table
-    uint32_t jmprel_count;            // Number of PLT relocations
-    uint32_t pltrel_type;             // Type of PLT relocations
+    uint32 jmprel_count;            // Number of PLT relocations
+    uint32 pltrel_type;             // Type of PLT relocations
     LinuxSoHashTable* hash_table;    // Hash table
     LinuxGnuHashTable* gnu_hash_table; // GNU hash table
-    uint32_t* got;                    // Global offset table
-    uint32_t got_size;                // Size of GOT
-    uint32_t plt_base;                // Base address of PLT
-    uint32_t plt_size;                // Size of PLT
+    uint32* got;                    // Global offset table
+    uint32 got_size;                // Size of GOT
+    uint32 plt_base;                // Base address of PLT
+    uint32 plt_size;                // Size of PLT
     LinuxVerDef* verdef;             // Version definition section
-    uint32_t verdef_count;            // Number of version definitions
+    uint32 verdef_count;            // Number of version definitions
     LinuxVerNeed* verneed;           // Version needed section
-    uint32_t verneed_count;           // Number of version needs
+    uint32 verneed_count;           // Number of version needs
     uint16_t* versym;                // Version symbol table
-    uint32_t versym_count;           // Number of version symbols
-    uint32_t load_time;               // Time when library was loaded
-    uint32_t last_used;               // Last time library was used
-    uint32_t load_order;              // Load order (for dependency resolution)
+    uint32 versym_count;           // Number of version symbols
+    uint32 load_time;               // Time when library was loaded
+    uint32 last_used;               // Last time library was used
+    uint32 load_order;              // Load order (for dependency resolution)
     LinuxSharedLibrary* next;         // Next library in linked list
     LinuxSharedLibrary* prev;         // Previous library in linked list
 };
@@ -233,7 +233,7 @@ struct LinuxSharedLibrary {
 class LinuxSoManager {
 private:
     LinuxSharedLibrary* libraries;        // Linked list of loaded libraries
-    uint32_t library_count;                // Number of loaded libraries
+    uint32 library_count;                // Number of loaded libraries
     Spinlock so_manager_lock;              // Lock for thread safety
     LinuxSharedLibrary* hash_table[LINUX_SO_HASH_TABLE_SIZE]; // Hash table for fast lookup
     
@@ -254,13 +254,13 @@ public:
     LinuxSharedLibrary* FindLibrary(const char* name);
     
     // Get library by base address
-    LinuxSharedLibrary* GetLibraryByAddress(uint32_t address);
+    LinuxSharedLibrary* GetLibraryByAddress(uint32 address);
     
     // Resolve a symbol in a library
-    uint32_t ResolveSymbol(LinuxSharedLibrary* library, const char* symbol_name);
+    uint32 ResolveSymbol(LinuxSharedLibrary* library, const char* symbol_name);
     
     // Resolve a symbol globally (across all libraries)
-    uint32_t ResolveSymbolGlobal(const char* symbol_name);
+    uint32 ResolveSymbolGlobal(const char* symbol_name);
     
     // Perform relocations for a library
     bool RelocateLibrary(LinuxSharedLibrary* library);
@@ -272,17 +272,17 @@ public:
     bool FinalizeLibrary(LinuxSharedLibrary* library);
     
     // Get library statistics
-    uint32_t GetLibraryCount();
+    uint32 GetLibraryCount();
     void PrintLibraryList();
     void PrintLibraryInfo(LinuxSharedLibrary* library);
     
     // Memory management
-    void* AllocateLibraryMemory(uint32_t size);
+    void* AllocateLibraryMemory(uint32 size);
     bool FreeLibraryMemory(void* address);
     
 private:
     // Internal helper functions
-    uint32_t HashName(const char* name);
+    uint32 HashName(const char* name);
     LinuxSharedLibrary* CreateLibraryEntry();
     void DestroyLibraryEntry(LinuxSharedLibrary* library);
     bool ParseElfHeaders(LinuxSharedLibrary* library, const char* filename);
@@ -299,9 +299,9 @@ private:
     bool ApplyPltRelocations(LinuxSharedLibrary* library);
     bool SetupGOT(LinuxSharedLibrary* library);
     bool SetupPLT(LinuxSharedLibrary* library);
-    char* GetStringFromTable(LinuxSharedLibrary* library, uint32_t offset);
-    LinuxElfSym* GetSymbolFromTable(LinuxSharedLibrary* library, uint32_t index);
-    uint32_t CalculateRelocation(LinuxSharedLibrary* library, uint32_t type, uint32_t symbol_value, uint32_t addend, uint32_t address);
+    char* GetStringFromTable(LinuxSharedLibrary* library, uint32 offset);
+    LinuxElfSym* GetSymbolFromTable(LinuxSharedLibrary* library, uint32 index);
+    uint32 CalculateRelocation(LinuxSharedLibrary* library, uint32 type, uint32 symbol_value, uint32 addend, uint32 address);
     bool AddToHashTable(LinuxSharedLibrary* library);
     bool RemoveFromHashTable(LinuxSharedLibrary* library);
     LinuxSharedLibrary* FindInHashTable(const char* name);
@@ -320,6 +320,6 @@ LinuxSharedLibrary* LoadLinuxSharedLibrary(const char* name, const char* path = 
 bool UnloadLinuxSharedLibrary(const char* name);
 
 // Resolve a symbol in loaded libraries
-uint32_t ResolveLinuxSymbol(const char* symbol_name);
+uint32 ResolveLinuxSymbol(const char* symbol_name);
 
 #endif

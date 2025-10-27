@@ -17,9 +17,9 @@ MemoryMappingManager::~MemoryMappingManager() {
         // Remove the mapping from the process's address space
         if (global && global->paging_manager && current->page_dir) {
             // Unmap the pages from the process's page directory
-            uint32 page_count = (current->size + PAGE_SIZE - 1) / PAGE_SIZE;
+            uint32 page_count = (current->size + KERNEL_PAGE_SIZE - 1) / KERNEL_PAGE_SIZE;
             for (uint32 i = 0; i < page_count; i++) {
-                uint32 virt_addr = (uint32)current->virtual_address + i * PAGE_SIZE;
+                uint32 virt_addr = (uint32)current->virtual_address + i * KERNEL_PAGE_SIZE;
                 global->paging_manager->UnmapPage(virt_addr, current->page_dir);
             }
         }
@@ -66,12 +66,12 @@ MemoryMappedFile* MemoryMappingManager::CreateMapFile(void* file_handle,
         // Allocate a virtual address in user space (e.g., starting from 0x50000000)
         static uint32 next_vaddr = 0x50000000;
         mapping->virtual_address = (void*)next_vaddr;
-        next_vaddr += (size + PAGE_SIZE - 1) & ~(PAGE_SIZE - 1);  // Align to page boundary
+        next_vaddr += (size + KERNEL_PAGE_SIZE - 1) & ~(KERNEL_PAGE_SIZE - 1);  // Align to page boundary
     }
     
     // For now, we'll implement a simple approach where we read the file into memory
     // In a real implementation, this would use demand paging to load pages on demand
-    uint32 page_count = (size + PAGE_SIZE - 1) / PAGE_SIZE;
+    uint32 page_count = (size + KERNEL_PAGE_SIZE - 1) / KERNEL_PAGE_SIZE;
     
     // Allocate physical pages and map them to the virtual address
     if (global && global->paging_manager && pcb->page_directory) {
@@ -81,7 +81,7 @@ MemoryMappedFile* MemoryMappingManager::CreateMapFile(void* file_handle,
                 LOG("Failed to allocate physical page for memory mapping");
                 // Clean up already allocated pages
                 for (uint32 j = 0; j < i; j++) {
-                    uint32 virt_addr = (uint32)mapping->virtual_address + j * PAGE_SIZE;
+                    uint32 virt_addr = (uint32)mapping->virtual_address + j * KERNEL_PAGE_SIZE;
                     void* page_to_free = (void*)global->paging_manager->GetPhysicalAddress(virt_addr, pcb->page_directory);
                     if (page_to_free) {
                         global->memory_manager->FreePage(page_to_free);
@@ -93,7 +93,7 @@ MemoryMappedFile* MemoryMappingManager::CreateMapFile(void* file_handle,
             }
             
             // Map the physical page to the virtual address
-            uint32 virt_addr = (uint32)mapping->virtual_address + i * PAGE_SIZE;
+            uint32 virt_addr = (uint32)mapping->virtual_address + i * KERNEL_PAGE_SIZE;
             uint32 phys_addr = VirtualToPhysical(page);
             
             // Determine page flags based on mapping flags
@@ -111,7 +111,7 @@ MemoryMappedFile* MemoryMappingManager::CreateMapFile(void* file_handle,
                 global->memory_manager->FreePage(page);
                 // Clean up already allocated pages
                 for (uint32 j = 0; j < i; j++) {
-                    uint32 undo_virt_addr = (uint32)mapping->virtual_address + j * PAGE_SIZE;
+                    uint32 undo_virt_addr = (uint32)mapping->virtual_address + j * KERNEL_PAGE_SIZE;
                     void* page_to_free = (void*)global->paging_manager->GetPhysicalAddress(undo_virt_addr, pcb->page_directory);
                     if (page_to_free) {
                         global->memory_manager->FreePage(page_to_free);
@@ -126,7 +126,7 @@ MemoryMappedFile* MemoryMappingManager::CreateMapFile(void* file_handle,
             // This is a simplified implementation - in reality, we'd either:
             // 1. Read the appropriate file segment into the page, or
             // 2. Set up demand paging so the page is loaded when first accessed
-            memset(page, 0, PAGE_SIZE);  // For now, just zero the page
+            memset(page, 0, KERNEL_PAGE_SIZE);  // For now, just zero the page
         }
     } else {
         LOG("Paging manager or process page directory not available");
@@ -164,9 +164,9 @@ bool MemoryMappingManager::UnmapFile(MemoryMappedFile* mapping) {
             
             // Unmap pages from the process's address space
             if (global && global->paging_manager && mapping->page_dir) {
-                uint32 page_count = (mapping->size + PAGE_SIZE - 1) / PAGE_SIZE;
+                uint32 page_count = (mapping->size + KERNEL_PAGE_SIZE - 1) / KERNEL_PAGE_SIZE;
                 for (uint32 i = 0; i < page_count; i++) {
-                    uint32 virt_addr = (uint32)mapping->virtual_address + i * PAGE_SIZE;
+                    uint32 virt_addr = (uint32)mapping->virtual_address + i * KERNEL_PAGE_SIZE;
                     uint32 phys_addr = global->paging_manager->GetPhysicalAddress(virt_addr, mapping->page_dir);
                     if (phys_addr) {
                         // Free the physical page if the mapping was private

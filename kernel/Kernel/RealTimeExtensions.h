@@ -3,7 +3,7 @@
 
 #include "Defs.h"
 #include "ProcessControlBlock.h"
-#include "ProcessManager.h"
+#include "ProcessControlBlock.h"
 #include "Scheduler.h"
 
 // Real-time scheduling policies
@@ -25,51 +25,51 @@ enum RealTimeSchedulingPolicy {
     RT_SCHED_CUSTOM       // Custom scheduling policy
 };
 
-// Real-time process parameters
-struct RealTimeParams {
-    RealTimeSchedulingPolicy policy;  // Scheduling policy
-    uint32 priority;                   // Real-time priority (higher number = higher priority)
-    uint32 execution_time;            // Worst-case execution time (WCET)
-    uint32 period;                    // Period for periodic tasks (in ticks)
-    uint32 deadline;                  // Absolute deadline (in ticks)
-    uint32 release_time;              // Time when task becomes ready (in ticks)
-    uint32 deadline_misses;           // Number of missed deadlines
-    uint32 completions;               // Number of successful completions
-    bool is_periodic;                 // Whether this is a periodic task
-    bool is_soft_realtime;            // Whether this is soft real-time (misses allowed)
-    uint32 budget;                    // CPU time budget for this task
-    uint32 budget_used;               // CPU time used in current period
-    uint32 budget_period;             // Budget replenishment period
-};
+// Real-time process parameters (already defined in RealTimeScheduling.h)
+// struct RealTimeParams {
+//     RealTimeSchedulingPolicy policy;  // Scheduling policy
+//     uint32 priority;                   // Real-time priority (higher number = higher priority)
+//     uint32 execution_time;            // Worst-case execution time (WCET)
+//     uint32 period;                    // Period for periodic tasks (in ticks)
+//     uint32 deadline;                  // Absolute deadline (in ticks)
+//     uint32 release_time;              // Time when task becomes ready (in ticks)
+//     uint32 deadline_misses;           // Number of missed deadlines
+//     uint32 completions;               // Number of successful completions
+//     bool is_periodic;                 // Whether this is a periodic task
+//     bool is_soft_realtime;            // Whether this is soft real-time (misses allowed)
+//     uint32 budget;                    // CPU time budget for this task
+//     uint32 budget_used;               // CPU time used in current period
+//     uint32 budget_period;             // Budget replenishment period
+// };
 
-// Real-time scheduler statistics
-struct RealTimeSchedulerStats {
-    uint32 total_deadline_misses;     // Total number of missed deadlines
-    uint32 total_completions;         // Total number of task completions
-    uint32 total_preemptions;          // Total number of preemptions
-    uint32 total_context_switches;     // Total number of context switches
-    uint32 max_latency;               // Maximum observed latency
-    uint32 avg_latency;               // Average observed latency
-    uint32 jitter;                    // Jitter in task execution times
-    uint32 last_deadline_miss_time;    // Time of last deadline miss
-    uint32 last_completion_time;      // Time of last completion
-};
+// Real-time scheduler statistics (already defined in RealTimeScheduling.h)
+// struct RealTimeSchedulerStats {
+//     uint32 total_deadline_misses;     // Total number of missed deadlines
+//     uint32 total_completions;         // Total number of task completions
+//     uint32 total_preemptions;          // Total number of preemptions
+//     uint32 total_context_switches;     // Total number of context switches
+//     uint32 max_latency;               // Maximum observed latency
+//     uint32 avg_latency;               // Average observed latency
+//     uint32 jitter;                    // Jitter in task execution times
+//     uint32 last_deadline_miss_time;    // Time of last deadline miss
+//     uint32 last_completion_time;      // Time of last completion
+// };
 
-// Real-time task states
-enum RealTimeTaskState {
-    RT_TASK_STATE_INACTIVE = 0,       // Task is not active
-    RT_TASK_STATE_READY,              // Task is ready to run
-    RT_TASK_STATE_RUNNING,           // Task is currently running
-    RT_TASK_STATE_WAITING,            // Task is waiting for resource/event
-    RT_TASK_STATE_SUSPENDED,          // Task is suspended
-    RT_TASK_STATE_COMPLETED,          // Task has completed execution
-    RT_TASK_STATE_DEADLINE_MISSED     // Task missed its deadline
-};
+// Real-time task states (already defined in RealTimeScheduling.h)
+// enum RealTimeTaskState {
+//     RT_TASK_STATE_INACTIVE = 0,       // Task is not active
+//     RT_TASK_STATE_READY,              // Task is ready to run
+//     RT_TASK_STATE_RUNNING,           // Task is currently running
+//     RT_TASK_STATE_WAITING,            // Task is waiting for resource/event
+//     RT_TASK_STATE_SUSPENDED,          // Task is suspended
+//     RT_TASK_STATE_COMPLETED,          // Task has completed execution
+//     RT_TASK_STATE_DEADLINE_MISSED     // Task missed its deadline
+// };
 
-// Real-time scheduling constraints
-const uint32 RT_MIN_PRIORITY = 1;      // Minimum real-time priority
-const uint32 RT_MAX_PRIORITY = 99;      // Maximum real-time priority
-const uint32 RT_DEFAULT_PRIORITY = 50; // Default real-time priority
+// Real-time scheduling constraints (already defined in RealTimeScheduling.h)
+// const uint32 RT_MIN_PRIORITY = 1;      // Minimum real-time priority
+// const uint32 RT_MAX_PRIORITY = 99;      // Maximum real-time priority
+// const uint32 RT_DEFAULT_PRIORITY = 50; // Default real-time priority
 const uint32 RT_QUANTUM_MIN = 1;        // Minimum time quantum (1ms)
 const uint32 RT_QUANTUM_MAX = 1000;    // Maximum time quantum (1s)
 const uint32 RT_QUANTUM_DEFAULT = 10;  // Default time quantum (10ms)

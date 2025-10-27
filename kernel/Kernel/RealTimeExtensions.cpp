@@ -3,7 +3,7 @@
 #include "MemoryManager.h"
 #include "Logging.h"
 #include "Timer.h"
-#include "ProcessManager.h"
+#include "ProcessControlBlock.h"
 
 // Global real-time scheduler extension instance
 RealTimeSchedulerExtension* g_real_time_extension = nullptr;

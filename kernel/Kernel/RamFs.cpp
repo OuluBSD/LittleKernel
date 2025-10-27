@@ -15,7 +15,7 @@ RamFsDriver::~RamFsDriver() {
             DestroyNode(fs->root);
         }
         
-        kfree(fs);
+        free(fs);
         fs = nullptr;
     }
     
@@ -25,11 +25,11 @@ RamFsDriver::~RamFsDriver() {
     }
 }
 
-bool RamFsDriver::Initialize(uint32_t size) {
+bool RamFsDriver::Initialize(uint32 size) {
     LOG("Initializing RAM filesystem with size " << size << " bytes");
     
     // Allocate filesystem structure
-    fs = (RamFs*)kmalloc(sizeof(RamFs));
+    fs = (RamFs*)malloc(sizeof(RamFs));
     if (!fs) {
         LOG("Failed to allocate RAM filesystem structure");
         return false;
@@ -46,7 +46,7 @@ bool RamFsDriver::Initialize(uint32_t size) {
     fs->root = CreateNode("/", nullptr, true);
     if (!fs->root) {
         LOG("Failed to create RAM filesystem root");
-        kfree(fs);
+        free(fs);
         fs = nullptr;
         return false;
     }
@@ -56,7 +56,7 @@ bool RamFsDriver::Initialize(uint32_t size) {
     if (!vfs_root) {
         LOG("Failed to create VFS root for RAM filesystem");
         DestroyNode(fs->root);
-        kfree(fs);
+        free(fs);
         fs = nullptr;
         return false;
     }
@@ -107,7 +107,7 @@ bool RamFsDriver::Unmount() {
     return true;
 }
 
-RamFsNode* RamFsDriver::CreateFile(const char* path, uint8_t attributes) {
+RamFsNode* RamFsDriver::CreateFile(const char* path, uint8 attributes) {
     if (!path || !fs || !fs->root) {
         return nullptr;
     }
@@ -224,7 +224,7 @@ bool RamFsDriver::Delete(const char* path) {
     return true;
 }
 
-int RamFsDriver::WriteFile(RamFsNode* node, const void* buffer, uint32_t size, uint32_t offset) {
+int RamFsDriver::WriteFile(RamFsNode* node, const void* buffer, uint32 size, uint32 offset) {
     if (!node || !buffer || size == 0 || !fs) {
         return VFS_ERROR;
     }
@@ -232,7 +232,7 @@ int RamFsDriver::WriteFile(RamFsNode* node, const void* buffer, uint32_t size, u
     fs->fs_lock.Acquire();
     
     // Check if we need to resize the file
-    uint32_t new_size = offset + size;
+    uint32 new_size = offset + size;
     if (new_size > node->alloc_size) {
         // We need to allocate more space
         if (!ResizeData(node, new_size)) {
@@ -242,7 +242,7 @@ int RamFsDriver::WriteFile(RamFsNode* node, const void* buffer, uint32_t size, u
     }
     
     // Copy data to the file
-    memcpy((uint8_t*)node->data + offset, buffer, size);
+    memcpy((uint8*)node->data + offset, buffer, size);
     
     // Update file size if necessary
     if (new_size > node->size) {
@@ -256,7 +256,7 @@ int RamFsDriver::WriteFile(RamFsNode* node, const void* buffer, uint32_t size, u
     return size;
 }
 
-int RamFsDriver::ReadFile(RamFsNode* node, void* buffer, uint32_t size, uint32_t offset) {
+int RamFsDriver::ReadFile(RamFsNode* node, void* buffer, uint32 size, uint32 offset) {
     if (!node || !buffer || size == 0 || !fs) {
         return VFS_ERROR;
     }
@@ -270,11 +270,11 @@ int RamFsDriver::ReadFile(RamFsNode* node, void* buffer, uint32_t size, uint32_t
     }
     
     // Calculate how much we can actually read
-    uint32_t remaining = node->size - offset;
-    uint32_t bytes_to_read = (size < remaining) ? size : remaining;
+    uint32 remaining = node->size - offset;
+    uint32 bytes_to_read = (size < remaining) ? size : remaining;
     
     // Copy data from the file
-    memcpy(buffer, (uint8_t*)node->data + offset, bytes_to_read);
+    memcpy(buffer, (uint8*)node->data + offset, bytes_to_read);
     
     // Update access time
     node->access_time = global_timer ? global_timer->GetTickCount() : 0;
@@ -290,7 +290,7 @@ int RamFsDriver::GetStat(RamFsNode* node, FileStat* stat) {
     
     memset(stat, 0, sizeof(FileStat));
     
-    stat->inode = (uint32_t)node;  // Use pointer as inode (not ideal for persistent FS)
+    stat->inode = (uint32)node;  // Use pointer as inode (not ideal for persistent FS)
     stat->size = node->size;
     stat->blocks = (node->size + 511) / 512;  // Assuming 512-byte blocks
     stat->block_size = 512;
@@ -350,7 +350,7 @@ RamFsNode* RamFsDriver::FindNode(const char* path) {
     return current;
 }
 
-bool RamFsDriver::GetFsInfo(uint32_t& total_size, uint32_t& used_size, uint32_t& free_size) {
+bool RamFsDriver::GetFsInfo(uint32& total_size, uint32& used_size, uint32& free_size) {
     if (!fs) {
         return false;
     }
@@ -365,7 +365,7 @@ bool RamFsDriver::GetFsInfo(uint32_t& total_size, uint32_t& used_size, uint32_t&
 }
 
 RamFsNode* RamFsDriver::CreateNode(const char* name, RamFsNode* parent, bool is_directory) {
-    RamFsNode* node = (RamFsNode*)kmalloc(sizeof(RamFsNode));
+    RamFsNode* node = (RamFsNode*)malloc(sizeof(RamFsNode));
     if (!node) {
         return nullptr;
     }
@@ -421,7 +421,7 @@ void RamFsDriver::DestroyNode(RamFsNode* node) {
     
     // Free allocated data
     if (node->data) {
-        kfree(node->data);
+        free(node->data);
         node->data = nullptr;
         
         // Update filesystem size tracking
@@ -447,10 +447,10 @@ void RamFsDriver::DestroyNode(RamFsNode* node) {
     }
     
     // Free the node
-    kfree(node);
+    free(node);
 }
 
-bool RamFsDriver::AllocateData(RamFsNode* node, uint32_t size) {
+bool RamFsDriver::AllocateData(RamFsNode* node, uint32 size) {
     if (!node || size == 0) {
         return false;
     }
@@ -462,26 +462,26 @@ bool RamFsDriver::AllocateData(RamFsNode* node, uint32_t size) {
     
     // First, free existing data if any
     if (node->data) {
-        kfree(node->data);
+        free(node->data);
         fs->used_size -= node->alloc_size;
         fs->free_size += node->alloc_size;
     }
     
     // Allocate new data block
-    node->data = kmalloc(size);
+    node->data = malloc(size);
     if (!node->data) {
         return false;
     }
     
     // Update filesystem size tracking
-    uint32_t old_alloc = node->alloc_size;
+    uint32 old_alloc = node->alloc_size;
     node->alloc_size = size;
     fs->used_size += size;
     fs->free_size -= size;
     
     // Check if we have enough space
     if (fs->used_size > fs->total_size) {
-        kfree(node->data);
+        free(node->data);
         node->data = nullptr;
         node->alloc_size = old_alloc;
         fs->used_size -= size;
@@ -498,7 +498,7 @@ bool RamFsDriver::AllocateData(RamFsNode* node, uint32_t size) {
     return true;
 }
 
-bool RamFsDriver::ResizeData(RamFsNode* node, uint32_t new_size) {
+bool RamFsDriver::ResizeData(RamFsNode* node, uint32 new_size) {
     if (!node) {
         return false;
     }
@@ -515,7 +515,7 @@ bool RamFsDriver::ResizeData(RamFsNode* node, uint32_t new_size) {
     }
     
     // Calculate how much additional space we need
-    uint32_t needed = new_size - node->alloc_size;
+    uint32 needed = new_size - node->alloc_size;
     
     // Check if we have enough free space in the filesystem
     if (needed > fs->free_size) {
@@ -523,7 +523,7 @@ bool RamFsDriver::ResizeData(RamFsNode* node, uint32_t new_size) {
     }
     
     // Allocate a new block
-    void* new_data = kmalloc(new_size);
+    void* new_data = malloc(new_size);
     if (!new_data) {
         return false;
     }
@@ -531,7 +531,7 @@ bool RamFsDriver::ResizeData(RamFsNode* node, uint32_t new_size) {
     // Copy existing data to the new block
     if (node->data) {
         memcpy(new_data, node->data, node->size);
-        kfree(node->data);
+        free(node->data);
     }
     
     // Update filesystem size tracking
@@ -582,7 +582,7 @@ void RamFsDriver::SplitPath(const char* path, char* dir, char* filename) {
 
 // VFS operation implementations
 
-int RamFsDriver::Open(VfsNode* node, uint32_t flags) {
+int RamFsDriver::Open(VfsNode* node, uint32 flags) {
     if (!node || !node->fs_specific) {
         return VFS_ERROR;
     }
@@ -602,7 +602,7 @@ int RamFsDriver::Close(VfsNode* node) {
     return VFS_SUCCESS;
 }
 
-int RamFsDriver::Read(VfsNode* node, void* buffer, uint32_t size, uint32_t offset) {
+int RamFsDriver::Read(VfsNode* node, void* buffer, uint32 size, uint32 offset) {
     if (!node || !buffer || size == 0 || !node->fs_specific) {
         return VFS_ERROR;
     }
@@ -620,7 +620,7 @@ int RamFsDriver::Read(VfsNode* node, void* buffer, uint32_t size, uint32_t offse
     return driver->ReadFile(ram_node, buffer, size, offset);
 }
 
-int RamFsDriver::Write(VfsNode* node, const void* buffer, uint32_t size, uint32_t offset) {
+int RamFsDriver::Write(VfsNode* node, const void* buffer, uint32 size, uint32 offset) {
     if (!node || !buffer || size == 0 || !node->fs_specific) {
         return VFS_ERROR;
     }
@@ -657,7 +657,7 @@ int RamFsDriver::Stat(VfsNode* node, FileStat* stat) {
     return driver->GetStat(ram_node, stat);
 }
 
-int RamFsDriver::Readdir(VfsNode* node, uint32_t index, DirEntry* entry) {
+int RamFsDriver::Readdir(VfsNode* node, uint32 index, DirEntry* entry) {
     if (!node || !entry || !node->fs_specific) {
         return VFS_ERROR;
     }
@@ -672,7 +672,7 @@ int RamFsDriver::Readdir(VfsNode* node, uint32_t index, DirEntry* entry) {
     
     // Iterate through children to find the entry at the specified index
     RamFsNode* child = ram_node->children;
-    for (uint32_t i = 0; i < index && child; i++) {
+    for (uint32 i = 0; i < index && child; i++) {
         child = child->next_sibling;
     }
     
@@ -683,13 +683,13 @@ int RamFsDriver::Readdir(VfsNode* node, uint32_t index, DirEntry* entry) {
     // Fill the directory entry
     strcpy_safe(entry->name, child->name, sizeof(entry->name));
     entry->type = child->is_directory ? ATTR_DIRECTORY : 0;
-    entry->inode = (uint32_t)child;  // Use pointer as inode
+    entry->inode = (uint32)child;  // Use pointer as inode
     entry->size = child->size;
     
     return VFS_SUCCESS;
 }
 
-int RamFsDriver::Create(VfsNode* node, const char* name, uint8_t attributes) {
+int RamFsDriver::Create(VfsNode* node, const char* name, uint8 attributes) {
     if (!node || !name || !node->fs_specific) {
         return VFS_ERROR;
     }

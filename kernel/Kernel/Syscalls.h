@@ -98,6 +98,8 @@
 #define SYS_CONNECT          105
 #define SYS_SENDTO           114
 #define SYS_RECVFROM         115
+#define SYS_FORK             2           // Fork system call (missing from original list)
+#define SYS_CLONE            120         // Clone system call
 #define SYS_SENDMSG          116
 #define SYS_RECVMSG          117
 #define SYS_SHUTDOWN         118
@@ -140,7 +142,6 @@
 #define SYS_FREMOVEXATTR    199
 #define SYS_TKILL           208
 #define SYS_SENDFILE64      209
-#define SYS_FUTEX           221
 #define SYS_EXIT_GROUP      222
 #define SYS_EPOLL_CREATE    223
 #define SYS_EPOLL_CTL       224
@@ -156,8 +157,6 @@
 #define SYS_CLOCK_GETTIME   234
 #define SYS_CLOCK_GETRES    235
 #define SYS_CLOCK_NANOSLEEP 236
-#define SYS_STATFS64        237
-#define SYS_FSTATFS64       238
 #define SYS_TGKILL          239
 #define SYS_UTIMES          240
 #define SYS_MQ_OPEN         241
@@ -317,6 +316,26 @@ public:
     int SysChdir(const char* path);
     int SysGetcwd(char* buf, size_t size);
     int SysUname(struct utsname* buf);
+    
+    // Network system calls
+    int SysSocket(int domain, int type, int protocol);
+    int SysBind(int sockfd, const struct sockaddr* addr, socklen_t addrlen);
+    int SysConnect(int sockfd, const struct sockaddr* addr, socklen_t addrlen);
+    int SysListen(int sockfd, int backlog);
+    int SysAccept(int sockfd, struct sockaddr* addr, socklen_t* addrlen);
+    int SysSendto(int sockfd, const void* buf, size_t len, int flags,
+                 const struct sockaddr* dest_addr, socklen_t addrlen);
+    int SysRecvfrom(int sockfd, void* buf, size_t len, int flags,
+                   struct sockaddr* src_addr, socklen_t* addrlen);
+    int SysSendmsg(int sockfd, const struct msghdr* msg, int flags);
+    int SysRecvmsg(int sockfd, struct msghdr* msg, int flags);
+    int SysShutdown(int sockfd, int how);
+    int SysSetsockopt(int sockfd, int level, int optname,
+                     const void* optval, socklen_t optlen);
+    int SysGetsockopt(int sockfd, int level, int optname,
+                     void* optval, socklen_t* optlen);
+    int SysRecv(int sockfd, void* buf, size_t len, int flags);
+    int SysSend(int sockfd, const void* buf, size_t len, int flags);
 
 private:
     // Initialize the system call table with default handlers

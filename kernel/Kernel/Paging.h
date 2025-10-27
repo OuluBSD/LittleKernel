@@ -3,9 +3,8 @@
 
 #include "Common.h"
 
-// Page size constants
-const uint32 PAGE_SIZE = 4096;          // 4KB pages
-const uint32 PAGE_MASK = ~(PAGE_SIZE - 1);  // Mask to get page-aligned address
+// Page size constants - using pre-defined macro
+const uint32 PAGE_MASK = ~(KERNEL_PAGE_SIZE - 1);  // Mask to get page-aligned address
 
 // Page table entry flags
 struct PageTableEntry {

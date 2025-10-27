@@ -7,34 +7,34 @@
 // Module header structure
 struct ModuleHeader {
     char signature[8];        // "LKMOD" signature + null + version info
-    uint32_t version;         // Module format version
-    uint32_t header_size;     // Size of this header
-    uint32_t module_size;     // Total size of the module
-    uint32_t code_size;       // Size of code section
-    uint32_t data_size;       // Size of data section
-    uint32_t bss_size;        // Size of BSS section
-    uint32_t entry_point;     // Entry point offset from module start
-    uint32_t init_function;   // Initialization function offset
-    uint32_t cleanup_function; // Cleanup function offset
-    uint32_t export_table_offset; // Offset to export table
-    uint32_t export_count;    // Number of exported symbols
-    uint32_t import_table_offset; // Offset to import table
-    uint32_t import_count;    // Number of imported symbols
+    uint32 version;         // Module format version
+    uint32 header_size;     // Size of this header
+    uint32 module_size;     // Total size of the module
+    uint32 code_size;       // Size of code section
+    uint32 data_size;       // Size of data section
+    uint32 bss_size;        // Size of BSS section
+    uint32 entry_point;     // Entry point offset from module start
+    uint32 init_function;   // Initialization function offset
+    uint32 cleanup_function; // Cleanup function offset
+    uint32 export_table_offset; // Offset to export table
+    uint32 export_count;    // Number of exported symbols
+    uint32 import_table_offset; // Offset to import table
+    uint32 import_count;    // Number of imported symbols
     char module_name[64];     // Name of the module
     char author[64];          // Author of the module
     char description[256];    // Description of the module
-    uint32_t checksum;        // Simple checksum for integrity
+    uint32 checksum;        // Simple checksum for integrity
 };
 
 // Module information structure
 struct ModuleInfo {
     char name[64];
     void* base_address;
-    uint32_t size;
+    uint32 size;
     ModuleHeader* header;
     bool loaded;
     bool initialized;
-    uint32_t reference_count;
+    uint32 reference_count;
     ModuleInfo* next;
 };
 
@@ -42,7 +42,7 @@ struct ModuleInfo {
 struct SymbolInfo {
     char name[128];
     void* address;
-    uint32_t size;
+    uint32 size;
 };
 
 // Module loading result codes
@@ -65,16 +65,16 @@ typedef void (*ModuleCleanupFn)();
 // Module loader interface
 class ModuleLoader {
 private:
-    static const uint32_t MAX_LOADED_MODULES = 64;
-    static const uint32_t MAX_SYMBOLS = 1024;
+    static const uint32 MAX_LOADED_MODULES = 64;
+    static const uint32 MAX_SYMBOLS = 1024;
     
     ModuleInfo* loaded_modules;
-    uint32_t module_count;
+    uint32 module_count;
     
     // Symbol table for exports from all modules
     SymbolInfo* symbol_table;
-    uint32_t symbol_count;
-    uint32_t max_symbols;
+    uint32 symbol_count;
+    uint32 max_symbols;
     
     // For serial module loading (optional enhancement)
     bool serial_loading_enabled;
@@ -87,7 +87,7 @@ public:
     bool Initialize();
     
     // Load a module from memory
-    ModuleLoadResult LoadModule(void* module_data, uint32_t size, const char* name = nullptr);
+    ModuleLoadResult LoadModule(void* module_data, uint32 size, const char* name = nullptr);
     
     // Load a module from a file (when file system is available)
     ModuleLoadResult LoadModuleFromFile(const char* filename);
@@ -105,7 +105,7 @@ public:
     ModuleInfo* GetModuleInfo(const char* name);
     
     // Get loaded module list
-    ModuleInfo* GetLoadedModules(uint32_t* count);
+    ModuleInfo* GetLoadedModules(uint32* count);
     
     // Check if a module is loaded
     bool IsModuleLoaded(const char* name);
@@ -114,10 +114,10 @@ public:
     void* GetSymbolAddress(const char* symbol_name);
     
     // Register a symbol in the global symbol table
-    bool RegisterSymbol(const char* name, void* address, uint32_t size = 0);
+    bool RegisterSymbol(const char* name, void* address, uint32 size = 0);
     
     // Validate module header
-    ModuleLoadResult ValidateModule(const void* module_data, uint32_t size);
+    ModuleLoadResult ValidateModule(const void* module_data, uint32 size);
     
     // Relocate module (if needed for position-independent code)
     ModuleLoadResult RelocateModule(ModuleInfo* module, void* target_address);
@@ -139,7 +139,7 @@ public:
     bool VerifyModuleSignature(ModuleInfo* module);
     
     // Get module statistics
-    void GetStatistics(uint32_t* module_count, uint32_t* symbol_count, uint32_t* total_memory);
+    void GetStatistics(uint32* module_count, uint32* symbol_count, uint32* total_memory);
     
     // Perform dependency resolution
     ModuleLoadResult ResolveDependencies(ModuleInfo* module);
@@ -170,9 +170,9 @@ public:
         .code_size = 0, /* Filled at build time */ \
         .data_size = 0, /* Filled at build time */ \
         .bss_size = 0, /* Filled at build time */ \
-        .entry_point = (uint32_t)module_entry_point, \
-        .init_function = (uint32_t)module_init, \
-        .cleanup_function = (uint32_t)module_cleanup, \
+        .entry_point = (uint32)module_entry_point, \
+        .init_function = (uint32)module_init, \
+        .cleanup_function = (uint32)module_cleanup, \
         .export_table_offset = 0, \
         .export_count = 0, \
         .import_table_offset = 0, \
@@ -190,6 +190,6 @@ extern ModuleLoader* g_module_loader;
 bool InitializeModuleLoader();
 
 // Utility function to calculate simple checksum
-uint32_t CalculateModuleChecksum(const void* data, uint32_t size);
+uint32 CalculateModuleChecksum(const void* data, uint32 size);
 
 #endif // _Kernel_ModuleLoader_h_

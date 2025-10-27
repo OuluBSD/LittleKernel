@@ -153,7 +153,7 @@ LinuxProcess* Linuxulator::CreateLinuxProcess(const char* filename, char* const 
     return process;
 }
 
-bool Linuxulator::DestroyLinuxProcess(uint32_t pid) {
+bool Linuxulator::DestroyLinuxProcess(uint32 pid) {
     linuxulator_lock.Acquire();
     
     // Find the process with the given PID
@@ -180,7 +180,7 @@ bool Linuxulator::DestroyLinuxProcess(uint32_t pid) {
     return true;
 }
 
-LinuxProcess* Linuxulator::GetLinuxProcess(uint32_t pid) {
+LinuxProcess* Linuxulator::GetLinuxProcess(uint32 pid) {
     for (int i = 0; i < MAX_LINUX_PROCESSES; i++) {
         if (linux_processes[i].pid == pid) {
             return &linux_processes[i];
@@ -190,7 +190,7 @@ LinuxProcess* Linuxulator::GetLinuxProcess(uint32_t pid) {
     return nullptr;
 }
 
-uint32_t Linuxulator::GetLinuxProcessCount() {
+uint32 Linuxulator::GetLinuxProcessCount() {
     return process_count;
 }
 
@@ -453,7 +453,7 @@ int Linuxulator::LinuxGetPid() {
 
 // Utility functions
 
-const char* Linuxulator::GetSyscallName(uint32_t syscall_number) {
+const char* Linuxulator::GetSyscallName(uint32 syscall_number) {
     switch (syscall_number) {
         case SYS_LINUX_READ: return "read";
         case SYS_LINUX_WRITE: return "write";
@@ -822,7 +822,7 @@ const char* Linuxulator::GetSyscallName(uint32_t syscall_number) {
     }
 }
 
-bool Linuxulator::IsSyscallImplemented(uint32_t syscall_number) {
+bool Linuxulator::IsSyscallImplemented(uint32 syscall_number) {
     // For now, we'll say all syscalls are implemented (just return -1 for unimplemented ones)
     // In a real implementation, we would check if we have an actual implementation
     return true;
@@ -848,7 +848,7 @@ void Linuxulator::PrintLinuxProcessInfo(LinuxProcess* process) {
 
 void Linuxulator::PrintLinuxProcesses() {
     LOG("Linux Process List:");
-    for (uint32_t i = 0; i < process_count && i < MAX_LINUX_PROCESSES; i++) {
+    for (uint32 i = 0; i < process_count && i < MAX_LINUX_PROCESSES; i++) {
         if (linux_processes[i].pid != INVALID_PID) {
             LOG("  PID: " << linux_processes[i].pid << ", Name: " << linux_processes[i].name);
         }
@@ -1087,7 +1087,7 @@ bool InitializeLinuxulator() {
     return true;
 }
 
-extern "C" int HandleLinuxSyscall(uint32_t syscall_number, uint32_t arg1, uint32_t arg2, uint32_t arg3, uint32_t arg4, uint32_t arg5, uint32_t arg6) {
+extern "C" int HandleLinuxSyscall(uint32 syscall_number, uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
     if (!g_linuxulator) {
         return -1;
     }

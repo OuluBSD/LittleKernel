@@ -6,7 +6,7 @@ PCIDeviceManager* g_pci_device_manager = nullptr;
 
 // HardwareComponent implementation
 HardwareComponent::HardwareComponent(const char* component_name, HardwareComponentType comp_type, 
-                                     uint32_t vendor, uint32_t device) 
+                                     uint32 vendor, uint32 device) 
     : type(comp_type), initialized(false), enabled(false), 
       vendor_id(vendor), device_id(device), private_data(nullptr) {
     // Initialize name
@@ -30,7 +30,7 @@ HalResult HardwareComponent::Configure() {
     return HalResult::SUCCESS;
 }
 
-HalResult HardwareComponent::GetStatus(void* status_buffer, uint32_t buffer_size) {
+HalResult HardwareComponent::GetStatus(void* status_buffer, uint32 buffer_size) {
     if (!status_buffer || buffer_size < sizeof(HalResult)) {
         return HalResult::ERROR_INVALID_PARAMETER;
     }
@@ -39,12 +39,12 @@ HalResult HardwareComponent::GetStatus(void* status_buffer, uint32_t buffer_size
     return HalResult::SUCCESS;
 }
 
-HalResult HardwareComponent::SetPowerState(uint32_t state) {
+HalResult HardwareComponent::SetPowerState(uint32 state) {
     LOG("Setting power state " << state << " for component: " << name);
     return HalResult::SUCCESS;
 }
 
-uint32_t HardwareComponent::GetPowerState() {
+uint32 HardwareComponent::GetPowerState() {
     // For simplicity, return 0 (full power) for all components
     return 0;
 }
@@ -78,8 +78,8 @@ void HardwareComponent::PrintInfo() {
 }
 
 // PCIDevice implementation
-PCIDevice::PCIDevice(const char* name, uint8_t b, uint8_t d, uint8_t f, 
-                     uint32_t vendor, uint32_t device_id)
+PCIDevice::PCIDevice(const char* name, uint8 b, uint8 d, uint8 f, 
+                     uint32 vendor, uint32 device_id)
     : HardwareComponent(name, HardwareComponentType::PCI_DEVICE, vendor, device_id),
       bus(b), device(d), function(f), class_code(0), subclass(0), 
       prog_if(0), revision_id(0), header_type(0) {
@@ -100,7 +100,7 @@ HalResult PCIDevice::Initialize() {
     LOG("Initializing PCI device: " << name << " at " << bus << ":" << device << ":" << function);
     
     // Read device header to get class code, etc.
-    uint32_t header_dword = ReadConfig(0);
+    uint32 header_dword = ReadConfig(0);
     if (header_dword == 0xFFFFFFFF) {
         LOG("PCI device not found at " << bus << ":" << device << ":" << function);
         return HalResult::ERROR_INVALID_DEVICE;
@@ -143,7 +143,7 @@ HalResult PCIDevice::Enable() {
     LOG("Enabling PCI device: " << name);
     
     // Enable memory space and bus mastering if supported
-    uint32_t cmd = ReadConfig(0x04);
+    uint32 cmd = ReadConfig(0x04);
     cmd |= 0x07; // Enable memory space, I/O space, and bus mastering
     WriteConfig(0x04, cmd);
     
@@ -159,7 +159,7 @@ HalResult PCIDevice::Disable() {
     LOG("Disabling PCI device: " << name);
     
     // Disable memory space and bus mastering
-    uint32_t cmd = ReadConfig(0x04);
+    uint32 cmd = ReadConfig(0x04);
     cmd &= ~0x07; // Disable memory space, I/O space, and bus mastering
     WriteConfig(0x04, cmd);
     
@@ -181,25 +181,25 @@ HalResult PCIDevice::HandleInterrupt() {
     return HalResult::SUCCESS;
 }
 
-uint32_t PCIDevice::ReadConfig(uint8_t offset) {
+uint32 PCIDevice::ReadConfig(uint8 offset) {
     if (HAL_PCI()) {
         return HAL_PCI()->ReadConfig(bus, device, function, offset);
     }
     return 0xFFFFFFFF; // Error value
 }
 
-void PCIDevice::WriteConfig(uint8_t offset, uint32_t value) {
+void PCIDevice::WriteConfig(uint8 offset, uint32 value) {
     if (HAL_PCI()) {
         HAL_PCI()->WriteConfig(bus, device, function, offset, value);
     }
 }
 
-HalResult PCIDevice::MapBAR(uint8_t bar_num, uint32_t* address) {
+HalResult PCIDevice::MapBAR(uint8 bar_num, uint32* address) {
     if (bar_num >= 6 || !address) {
         return HalResult::ERROR_INVALID_PARAMETER;
     }
     
-    uint32_t bar_value = bar[bar_num];
+    uint32 bar_value = bar[bar_num];
     
     if (bar_value == 0) {
         return HalResult::ERROR_INVALID_PARAMETER; // BAR not valid
@@ -207,8 +207,8 @@ HalResult PCIDevice::MapBAR(uint8_t bar_num, uint32_t* address) {
     
     // Check if it's a memory BAR (bit 0 = 0)
     if ((bar_value & 0x1) == 0) {
-        uint32_t base_addr = bar_value & 0xFFFFFFF0; // Mask out flags
-        *address = (uint32_t)HAL_MEMORY()->MapPhysicalMemory(base_addr, 0x1000); // Map 4KB
+        uint32 base_addr = bar_value & 0xFFFFFFF0; // Mask out flags
+        *address = (uint32)HAL_MEMORY()->MapPhysicalMemory(base_addr, 0x1000); // Map 4KB
         if (*address) {
             LOG("Mapped BAR" << bar_num << " for device " << name << " to virtual address 0x" << (void*)*address);
             return HalResult::SUCCESS;
@@ -218,7 +218,7 @@ HalResult PCIDevice::MapBAR(uint8_t bar_num, uint32_t* address) {
     return HalResult::ERROR_INVALID_PARAMETER;
 }
 
-HalResult PCIDevice::UnmapBAR(uint8_t bar_num) {
+HalResult PCIDevice::UnmapBAR(uint8 bar_num) {
     if (bar_num >= 6) {
         return HalResult::ERROR_INVALID_PARAMETER;
     }
@@ -265,8 +265,8 @@ void PCIDevice::PrintInfo() {
 }
 
 // PCIBridge implementation
-PCIBridge::PCIBridge(const char* name, uint8_t b, uint8_t d, uint8_t f, 
-                     uint32_t vendor, uint32_t device_id)
+PCIBridge::PCIBridge(const char* name, uint8 b, uint8 d, uint8 f, 
+                     uint32 vendor, uint32 device_id)
     : PCIDevice(name, b, d, f, vendor, device_id),
       secondary_bus(0), subordinate_bus(0), memory_base(0), memory_limit(0) {
     type = HardwareComponentType::PCI_DEVICE; // Bridges are still PCI devices but with special handling
@@ -330,12 +330,12 @@ HalResult PCIBridge::HandleInterrupt() {
     return HalResult::SUCCESS;
 }
 
-void PCIBridge::SetBusNumbers(uint8_t sec_bus, uint8_t sub_bus) {
+void PCIBridge::SetBusNumbers(uint8 sec_bus, uint8 sub_bus) {
     secondary_bus = sec_bus;
     subordinate_bus = sub_bus;
     
     // Update the PCI config space
-    uint32_t bus_reg = ReadConfig(0x18);
+    uint32 bus_reg = ReadConfig(0x18);
     bus_reg = (bus_reg & 0xFF000000) | (sub_bus << 16) | (sec_bus << 8) | (bus_reg & 0xFF);
     WriteConfig(0x18, bus_reg);
 }
@@ -353,7 +353,7 @@ PCIDeviceManager::PCIDeviceManager() : device_count(0) {
 
 PCIDeviceManager::~PCIDeviceManager() {
     // Shutdown and destroy all devices
-    for (uint32_t i = 0; i < device_count; i++) {
+    for (uint32 i = 0; i < device_count; i++) {
         if (devices[i]) {
             devices[i]->Shutdown();
             delete devices[i];
@@ -383,11 +383,11 @@ HalResult PCIDeviceManager::EnumerateDevices() {
         return HalResult::ERROR_NOT_INITIALIZED;
     }
     
-    for (uint8_t bus = 0; bus < 255; bus++) {
-        for (uint8_t device = 0; device < 32; device++) {
-            for (uint8_t function = 0; function < 8; function++) {
+    for (uint8 bus = 0; bus < 255; bus++) {
+        for (uint8 device = 0; device < 32; device++) {
+            for (uint8 function = 0; function < 8; function++) {
                 // Read vendor ID to check if device exists
-                uint32_t id = HAL_PCI()->ReadConfig(bus, device, function, 0);
+                uint32 id = HAL_PCI()->ReadConfig(bus, device, function, 0);
                 
                 if (id == 0xFFFFFFFF || id == 0xFFFF0000 || id == 0x0000FFFF) {
                     // Device doesn't exist, skip to next
@@ -443,15 +443,15 @@ HalResult PCIDeviceManager::AddDevice(PCIDevice* device) {
     return HalResult::SUCCESS;
 }
 
-HalResult PCIDeviceManager::RemoveDevice(uint8_t bus, uint8_t device, uint8_t function) {
-    for (uint32_t i = 0; i < device_count; i++) {
+HalResult PCIDeviceManager::RemoveDevice(uint8 bus, uint8 device, uint8 function) {
+    for (uint32 i = 0; i < device_count; i++) {
         PCIDevice* dev = devices[i];
         if (dev && dev->GetBus() == bus && dev->GetDevice() == device && dev->GetFunction() == function) {
             dev->Shutdown();
             delete dev;
             
             // Shift remaining devices
-            for (uint32_t j = i; j < device_count - 1; j++) {
+            for (uint32 j = i; j < device_count - 1; j++) {
                 devices[j] = devices[j + 1];
             }
             devices[device_count - 1] = nullptr;
@@ -465,8 +465,8 @@ HalResult PCIDeviceManager::RemoveDevice(uint8_t bus, uint8_t device, uint8_t fu
     return HalResult::ERROR_INVALID_DEVICE;
 }
 
-PCIDevice* PCIDeviceManager::FindDevice(uint8_t bus, uint8_t device, uint8_t function) {
-    for (uint32_t i = 0; i < device_count; i++) {
+PCIDevice* PCIDeviceManager::FindDevice(uint8 bus, uint8 device, uint8 function) {
+    for (uint32 i = 0; i < device_count; i++) {
         PCIDevice* dev = devices[i];
         if (dev && dev->GetBus() == bus && dev->GetDevice() == device && dev->GetFunction() == function) {
             return dev;
@@ -476,7 +476,7 @@ PCIDevice* PCIDeviceManager::FindDevice(uint8_t bus, uint8_t device, uint8_t fun
 }
 
 PCIDevice* PCIDeviceManager::FindDevice(uint16_t vendor_id, uint16_t device_id) {
-    for (uint32_t i = 0; i < device_count; i++) {
+    for (uint32 i = 0; i < device_count; i++) {
         PCIDevice* dev = devices[i];
         if (dev && dev->GetVendorId() == vendor_id && dev->GetDeviceId() == device_id) {
             return dev;
@@ -485,10 +485,10 @@ PCIDevice* PCIDeviceManager::FindDevice(uint16_t vendor_id, uint16_t device_id) 
     return nullptr;
 }
 
-uint32_t PCIDeviceManager::FindDevicesByClass(uint16_t class_code, uint16_t subclass, PCIDevice** found_devices, uint32_t max_count) {
-    uint32_t count = 0;
+uint32 PCIDeviceManager::FindDevicesByClass(uint16_t class_code, uint16_t subclass, PCIDevice** found_devices, uint32 max_count) {
+    uint32 count = 0;
     
-    for (uint32_t i = 0; i < device_count && count < max_count; i++) {
+    for (uint32 i = 0; i < device_count && count < max_count; i++) {
         PCIDevice* dev = devices[i];
         if (dev && dev->GetClassCode() == class_code && dev->GetSubclass() == subclass) {
             found_devices[count] = dev;
@@ -499,13 +499,13 @@ uint32_t PCIDeviceManager::FindDevicesByClass(uint16_t class_code, uint16_t subc
     return count;
 }
 
-PCIDevice** PCIDeviceManager::GetDevices(uint32_t* count) {
+PCIDevice** PCIDeviceManager::GetDevices(uint32* count) {
     *count = device_count;
     return devices;
 }
 
 HalResult PCIDeviceManager::InitializeAllDevices() {
-    for (uint32_t i = 0; i < device_count; i++) {
+    for (uint32 i = 0; i < device_count; i++) {
         if (devices[i] && !devices[i]->IsInitialized()) {
             if (devices[i]->Initialize() != HalResult::SUCCESS) {
                 LOG("Failed to initialize device: " << devices[i]->GetName());
@@ -516,7 +516,7 @@ HalResult PCIDeviceManager::InitializeAllDevices() {
 }
 
 HalResult PCIDeviceManager::ShutdownAllDevices() {
-    for (uint32_t i = 0; i < device_count; i++) {
+    for (uint32 i = 0; i < device_count; i++) {
         if (devices[i] && devices[i]->IsInitialized()) {
             devices[i]->Shutdown();
         }
@@ -526,7 +526,7 @@ HalResult PCIDeviceManager::ShutdownAllDevices() {
 
 void PCIDeviceManager::PrintDeviceList() {
     LOG("=== PCI Device List ===");
-    for (uint32_t i = 0; i < device_count; i++) {
+    for (uint32 i = 0; i < device_count; i++) {
         if (devices[i]) {
             devices[i]->PrintInfo();
             LOG("---");
@@ -539,7 +539,7 @@ void PCIDeviceManager::PrintDeviceList() {
 HalResult PCIDeviceManager::HandleInterrupts() {
     // Handle interrupts for managed devices
     // This would typically be called from the IRQ handler
-    for (uint32_t i = 0; i < device_count; i++) {
+    for (uint32 i = 0; i < device_count; i++) {
         if (devices[i]) {
             // In a real implementation, we'd check if this device generated the interrupt
             // For now, just assume a general PCI interrupt and try to handle it
@@ -552,8 +552,8 @@ HalResult PCIDeviceManager::HandleInterrupts() {
 // HardwareComponentFactory implementation
 HardwareComponent* HardwareComponentFactory::CreateComponent(HardwareComponentType type, 
                                                            const char* name,
-                                                           uint32_t vendor_id,
-                                                           uint32_t device_id) {
+                                                           uint32 vendor_id,
+                                                           uint32 device_id) {
     switch (type) {
         case HardwareComponentType::TIMER:
             return new TimerComponent(name, vendor_id, device_id);
@@ -569,9 +569,9 @@ HardwareComponent* HardwareComponentFactory::CreateComponent(HardwareComponentTy
     }
 }
 
-PCIDevice* HardwareComponentFactory::CreatePCIDevice(uint8_t bus, uint8_t device, uint8_t function) {
+PCIDevice* HardwareComponentFactory::CreatePCIDevice(uint8 bus, uint8 device, uint8 function) {
     // Check if device exists
-    uint32_t id = HAL_PCI() ? HAL_PCI()->ReadConfig(bus, device, function, 0) : 0xFFFFFFFF;
+    uint32 id = HAL_PCI() ? HAL_PCI()->ReadConfig(bus, device, function, 0) : 0xFFFFFFFF;
     if (id == 0xFFFFFFFF) {
         return nullptr;
     }
@@ -589,7 +589,7 @@ void HardwareComponentFactory::DestroyComponent(HardwareComponent* component) {
 }
 
 // TimerComponent implementation
-TimerComponent::TimerComponent(const char* name, uint32_t vendor, uint32_t device)
+TimerComponent::TimerComponent(const char* name, uint32 vendor, uint32 device)
     : HardwareComponent(name, HardwareComponentType::TIMER, vendor, device), 
       frequency(0), tick_count(0) {
 }
@@ -642,7 +642,7 @@ HalResult TimerComponent::HandleInterrupt() {
     return HalResult::SUCCESS;
 }
 
-void TimerComponent::SetFrequency(uint32_t hz) {
+void TimerComponent::SetFrequency(uint32 hz) {
     if (HAL_TIMER() && HAL_TIMER()->SetFrequency(hz) == HalResult::SUCCESS) {
         frequency = hz;
     }
@@ -657,7 +657,7 @@ void TimerComponent::PrintInfo() {
 }
 
 // MemoryController implementation
-MemoryController::MemoryController(const char* name, uint32_t vendor, uint32_t device)
+MemoryController::MemoryController(const char* name, uint32 vendor, uint32 device)
     : HardwareComponent(name, HardwareComponentType::MEMORY_CONTROLLER, vendor, device),
       total_memory(0), available_memory(0), memory_slots(0), slot_count(0) {
 }

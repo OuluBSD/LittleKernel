@@ -2,6 +2,7 @@
 build/
 obj/
 iso/
+floppy_images/
 
 # Compiled binaries
 *.bin

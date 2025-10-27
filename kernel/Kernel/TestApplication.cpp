@@ -16,7 +16,7 @@ int basic_test_application() {
     LOG("Current process ID: " << pid);
     
     // Test basic memory allocation
-    char* test_buffer = (char*)kmalloc(1024);
+    char* test_buffer = (char*)malloc(1024);
     if (test_buffer) {
         LOG("Successfully allocated 1024 bytes of memory");
         
@@ -40,7 +40,7 @@ int basic_test_application() {
             LOG("Memory integrity test failed");
         }
         
-        kfree(test_buffer);
+        free(test_buffer);
         LOG("Memory deallocated successfully");
     } else {
         LOG("Failed to allocate memory");

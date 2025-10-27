@@ -73,4 +73,8 @@ extern "C" void free(void* ptr);
 extern "C" void* realloc(void* ptr, uint32 size);
 extern "C" void* calloc(uint32 num, uint32 size);
 
+// Kernel memory allocation aliases
+#define kmalloc(size) malloc(size)
+#define kfree(ptr) free(ptr)
+
 #endif

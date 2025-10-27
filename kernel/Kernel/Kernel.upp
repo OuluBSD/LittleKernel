@@ -6,18 +6,26 @@ uses
 	Library;
 
 file
+	// Core files
 	boot.asm,
 	link.ld,
 	Process.asm,
 	CLANG_K32.bm,
 	Configuration separator,
 	Defs.h,
+	Kernel.h,
+
+	// Core utilities
 	"Core utilities" separator,
 	Common.h,
 	Common.cpp,
+
+	// System management
 	"System management" separator,
 	Global.h,
 	Global.cpp,
+
+	// Hardware interfaces
 	"Hardware interfaces" separator,
 	Monitor.h,
 	Monitor.cpp,
@@ -28,68 +36,194 @@ file
 	DescriptorTable.h,
 	DescriptorTable.cpp,
 	DescriptorTable.asm,
+
+	// Memory management
 	"Memory management" separator,
+	Paging.h,
+	Paging.cpp,
+	SharedMemory.h,
+	SharedMemory.cpp,
 	MemoryManager.h,
 	MemoryManager.cpp,
-	"I/O and drivers" separator,
-	SerialDriver.h,
-	SerialDriver.cpp,
-	"Boot and low-level" separator,
-	Multiboot.h,
-	Initrd.h,
-	"System services" separator,
-	Syscall.h,
-	Syscall.cpp,
-	Logging separator,
-	Logging.h,
-	Logging.cpp,
-	"Kernel entry point" separator,
-	main.cpp,
+	MemoryMappedFile.h,
+	MemoryMappedFile.cpp,
+	MemoryTracker.h,
+	MemoryTracker.cpp,
+
+	// Configuration
 	"Configuration" separator,
 	KernelConfig.h,
 	KernelConfig.cpp,
+	BootProcess.h,
+	BootProcess.cpp,
+	RuntimeConfig.h,
+	RuntimeConfig.cpp,
+	ConfigParser.h,
+	ConfigParser.cpp,
+	EarlyMemory.h,
+	EarlyMemory.cpp,
+
+	// Hardware management
+	"Hardware management" separator,
+	HardwareComponents.h,
+	HardwareComponents.cpp,
+	HardwareDiagnostics.h,
+	HardwareDiagnostics.cpp,
+	HAL.h,
+	HAL.cpp,
+
+	// I/O and drivers
+	"I/O and drivers" separator,
+	SerialDriver.h,
+	SerialDriver.cpp,
+	ConsoleDriver.h,
+	ConsoleDriver.cpp,
+	DriverFramework.h,
+	DriverFramework.cpp,
+	DriverBase.h,
+	DriverBase.cpp,
+	ExampleBlockDriver.h,
+	ExampleBlockDriver.cpp,
+
+	// Boot and low-level
+	"Boot and low-level" separator,
+	Multiboot.h,
+	Initrd.h,
+
+	// System services
+	"System services" separator,
+	Syscall.h,
+	Syscall.cpp,
+
+	// Process management
 	"Process Management" separator,
 	ProcessControlBlock.h,
 	ProcessControlBlock.cpp,
+	ProcessGroup.h,
+	ProcessGroup.cpp,
+	ProcessSuspension.h,
+	ProcessSuspension.cpp,
+	ProcessDebugging.h,
+	ProcessDebugging.cpp,
+	ProcessAccounting.h,
+	ProcessAccounting.cpp,
+	Thread.h,
+	Thread.cpp,
+
+	// Synchronization
 	"Synchronization" separator,
 	Synchronization.h,
 	Synchronization.cpp,
+
+	// Inter-Process Communication
 	"IPC" separator,
 	Ipc.h,
-	Ipc.cpp;
-  kernel/Kernel/BootProcess.cpp,
-  kernel/Kernel/Ipc.cpp,
-  kernel/Kernel/HardwareComponents.cpp,
-  kernel/Kernel/Monitor.cpp,
-  kernel/Kernel/ConfigParser.cpp,
-  kernel/Kernel/KernelConfig.cpp,
-  kernel/Kernel/Paging.cpp,
-  kernel/Kernel/Common.cpp,
-  kernel/Kernel/RuntimeConfig.cpp,
-  kernel/Kernel/EarlyMemory.cpp,
-  kernel/Kernel/DriverFramework.cpp,
-  kernel/Kernel/Interrupts.cpp,
-  kernel/Kernel/MemoryManager.cpp,
-  kernel/Kernel/HardwareDiagnostics.cpp,
-  kernel/Kernel/MemoryMappedFile.cpp,
-  kernel/Kernel/DescriptorTable.cpp,
-  kernel/Kernel/Profiler.cpp,
-  kernel/Kernel/DriverBase.cpp,
-  kernel/Kernel/ModuleLoader.cpp,
-  kernel/Kernel/Global.cpp,
-  kernel/Kernel/HAL.cpp,
-  kernel/Kernel/main.cpp,
-  kernel/Kernel/Logging.cpp,
-  kernel/Kernel/ExampleBlockDriver.cpp,
-  kernel/Kernel/MemoryTracker.cpp,
-  kernel/Kernel/SerialDriver.cpp,
-  kernel/Kernel/ProcessControlBlock.cpp,
-  kernel/Kernel/ConsoleDriver.cpp,
-  kernel/Kernel/SharedMemory.cpp,
-  kernel/Kernel/Syscall.cpp,
-  kernel/Kernel/Synchronization.cpp,
-  kernel/Kernel/Timer.cpp,
-  kernel/Kernel/ErrorHandler.cpp,
+	Ipc.cpp,
+
+	// File systems
+	"File systems" separator,
+	Vfs.h,
+	Vfs.cpp,
+	RamFs.h,
+	RamFs.cpp,
+	Registry.h,
+	Registry.cpp,
+
+	// ABIs and system interfaces
+	"ABIs and system interfaces" separator,
+	Syscalls.h,
+	Syscalls.cpp,
+	SciMultiplexer.h,
+	SciMultiplexer.cpp,
+	AbiMultiplexer.h,
+	AbiMultiplexer.cpp,
+	Linuxulator.h,
+	Linuxulator.cpp,
+	LinuxulatorAbi.h,
+	LinuxulatorAbi.cpp,
+	LinuxSharedLib.h,
+	LinuxSharedLib.cpp,
+	DosSyscalls.h,
+	DosSyscalls.cpp,
+	DosKpiV2.h,
+	DosKpiV2.cpp,
+
+	// Real-time scheduling
+	"Real-time scheduling" separator,
+	RealTimeScheduling.h,
+	RealTimeScheduling.cpp,
+	RealTimeExtensions.h,
+	RealTimeExtensions.cpp,
+	ScheduleRR.h,
+	ScheduleRR.cpp,
+	ScheduleMLFQ.h,
+	ScheduleMLFQ.cpp,
+	ScheduleFairShare.h,
+	ScheduleFairShare.cpp,
+	ScheduleRealtime.h,
+	ScheduleRealtime.cpp,
+
+	// Logging
+	"Logging" separator,
+	Logging.h,
+	Logging.cpp,
+
+	// Testing
+	"Testing" separator,
+	TestSuite.h,
+	TestSuite.cpp,
+	TestApplication.h,
+	TestApplication.cpp,
+	StabilityTest.h,
+	StabilityTest.cpp,
+	Performance.h,
+	Performance.cpp,
+
+	// Debugging
+	"Debugging" separator,
+	Debugging.h,
+	Debugging.cpp,
+	Profiler.h,
+	Profiler.cpp,
+	ErrorHandler.h,
+	ErrorHandler.cpp,
+
+	// Drivers
+	"Drivers" separator,
+	FloppyDriver.h,
+	FloppyDriver.cpp,
+	FloppyTest.h,
+	FloppyTest.cpp,
+	KeyboardDriver.h,
+	KeyboardDriver.cpp,
+	MouseDriver.h,
+	MouseDriver.cpp,
+	BootDrives.h,
+	BootDrives.cpp,
+	NetworkDriverInterface.h,
+	NetworkDriverInterface.cpp,
+	Fat32Driver.h,
+	Fat32Driver.cpp,
+	Virtio.h,
+	Virtio.cpp,
+	VirtioBlk.h,
+	VirtioBlk.cpp,
+	VirtioNet.h,
+	VirtioNet.cpp,
+	DriverLoader.h,
+	DriverLoader.cpp,
+
+	// Specialized components
+	"Specialized components" separator,
+	NvidiaSupport.h,
+	NvidiaSupport.cpp,
+	ModuleLoader.h,
+	ModuleLoader.cpp,
+
+	// Kernel entry point
+	"Kernel entry point" separator,
+	main.cpp;
+
 mainconfig
 	"" = "";
 

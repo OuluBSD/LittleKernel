@@ -3,7 +3,7 @@
 #include "MemoryManager.h"
 #include "Logging.h"
 #include "Timer.h"
-#include "ProcessManager.h"
+#include "ProcessControlBlock.h"
 
 // Global process suspension manager instance
 ProcessSuspensionManager* g_process_suspension_manager = nullptr;
@@ -148,7 +148,7 @@ bool ProcessSuspensionManager::SuspendProcess(uint32 pid, ProcessSuspensionReaso
     }
     
     // Create suspension context for the process
-    ProcessSuspensionContext* context = (ProcessSuspensionContext*)kmalloc(sizeof(ProcessSuspensionContext));
+    ProcessSuspensionContext* context = (ProcessSuspensionContext*)malloc(sizeof(ProcessSuspensionContext));
     if (!context) {
         LOG("Failed to allocate suspension context for PID " << pid);
         return false;

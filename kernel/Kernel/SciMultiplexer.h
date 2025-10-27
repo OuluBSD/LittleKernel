@@ -1,0 +1,99 @@
+#ifndef _Kernel_SciMultiplexer_h_
+#define _Kernel_SciMultiplexer_h_
+
+#include "Common.h"
+#include "Defs.h"
+#include "ProcessControlBlock.h"
+#include "AbiMultiplexer.h"  // Include the main ABI multiplexer instead of duplicating definitions
+
+// Function pointer types for SCI-specific handlers (different signature from AbiMultiplexer)
+typedef int (*SciSyscallHandler)(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+
+// SCI-specific syscall table (different from AbiMultiplexer)
+// struct SciSyscallTable {
+//     SciSyscallHandler* handlers;
+//     uint32 max_syscall_num;
+//     const char** names;     // Names for debugging
+// };
+
+// Main SCI multiplexer class (already defined in AbiMultiplexer.h)
+// class SciMultiplexer {
+// private:
+//     SciSyscallTable* sci_tables[MAX_SCI_TYPES];  // Syscall tables for each SCI
+//     bool initialized;                            // Initialization status
+//
+// public:
+//     SciMultiplexer();
+//     ~SciMultiplexer();
+//     
+//     // Initialize the multiplexer
+//     bool Initialize();
+//     
+//     // Register a syscall table for an SCI type
+//     bool RegisterSciSyscalls(SciType type, SciSyscallTable* table);
+//     
+//     // Dispatch a syscall to the appropriate SCI handler
+//     int DispatchSyscall(SciType type, uint32 syscall_num, 
+//                        uint32 arg1, uint32 arg2, uint32 arg3, 
+//                        uint32 arg4, uint32 arg5, uint32 arg6);
+//     
+//     // Get the current process SCI type
+//     SciType GetCurrentProcessSci();
+//     
+//     // Set the SCI type for a process
+//     bool SetProcessSci(ProcessControlBlock* pcb, SciType type);
+//     
+//     // Get the SCI type for a process
+//     SciType GetProcessSci(ProcessControlBlock* pcb);
+//     
+//     // Get the SCI context for a process
+//     SciContext* GetProcessSciContext(ProcessControlBlock* pcb);
+//     
+//     // Create an SCI context for a process
+//     SciContext* CreateSciContext(SciType type);
+//     
+//     // Destroy an SCI context
+//     void DestroySciContext(SciContext* context);
+//     
+//     // Translate DOS path to Unix path (for DOS SCI)
+//     bool ConvertDosPathToUnix(const char* dos_path, char* unix_path, uint32 max_len);
+//     
+//     // Translate Unix path to DOS path (for DOS SCI)
+//     bool ConvertUnixPathToDos(const char* unix_path, char* dos_path, uint32 max_len);
+//     
+//     // Set up default drive mappings (for DOS SCI)
+//     bool SetupDosDriveMappings();
+//     
+//     // Load a DOS executable
+//     ProcessControlBlock* LoadDosExecutable(const char* filename, char* const argv[], char* const envp[]);
+//     
+//     // Load a Linux executable
+//     ProcessControlBlock* LoadLinuxExecutable(const char* filename, char* const argv[], char* const envp[]);
+//     
+//     // Load a native executable
+//     ProcessControlBlock* LoadNativeExecutable(const char* filename, char* const argv[], char* const envp[]);
+//     
+//     // Auto-detect executable type and load appropriately
+//     ProcessControlBlock* LoadExecutable(const char* filename, char* const argv[], char* const envp[]);
+// };
+
+// Global instance of the SCI multiplexer
+extern SciMultiplexer* g_sci_multiplexer;
+
+// Initialize the SCI multiplexer
+bool InitializeSciMultiplexer();
+
+// Main syscall dispatcher function
+extern "C" int HandleMultiplexedSyscall(uint32 syscall_num, 
+                                       uint32 arg1, uint32 arg2, uint32 arg3, 
+                                       uint32 arg4, uint32 arg5, uint32 arg6);
+
+// Determine SCI type from executable format
+SciType DetectSciTypeFromExecutable(const char* filename);
+
+// SCI-specific initialization functions
+bool InitializeDosSciV1();
+bool InitializeDosSciV2();
+bool InitializeLinuxulatorSci();
+
+#endif

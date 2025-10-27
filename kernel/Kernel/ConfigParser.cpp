@@ -1,8 +1,6 @@
 #include "ConfigParser.h"
 #include "Kernel.h"
-#include "stdio.h"
-#include "string.h"
-#include "stdlib.h"
+#include "Common.h"
 
 // Global configuration parser instance
 ConfigParser* g_config_parser = nullptr;
@@ -65,7 +63,7 @@ bool ConfigParser::SaveConfig(const char* file_path) {
     return true;
 }
 
-bool ConfigParser::ParseConfig(const char* buffer, uint32_t size) {
+bool ConfigParser::ParseConfig(const char* buffer, uint32 size) {
     if (!buffer || size == 0) return false;
     
     // Simple parser for .config format
@@ -121,7 +119,7 @@ bool ConfigParser::ParseConfig(const char* buffer, uint32_t size) {
                     }
                     
                     if (is_number) {
-                        SetInt(name, atoi(value));
+                        SetInt(name, str_to_int(value));
                     } else {
                         // Otherwise treat as string
                         SetString(name, value);
@@ -161,7 +159,7 @@ bool ConfigParser::ParseConfig(const char* buffer, uint32_t size) {
 bool ConfigParser::GetBool(const char* name, bool default_value) {
     if (!name) return default_value;
     
-    for (uint32_t i = 0; i < option_count; i++) {
+    for (uint32 i = 0; i < option_count; i++) {
         if (strcmp(options[i].name, name) == 0 && options[i].is_bool) {
             return options[i].bool_value;
         }
@@ -173,7 +171,7 @@ bool ConfigParser::GetBool(const char* name, bool default_value) {
 int ConfigParser::GetInt(const char* name, int default_value) {
     if (!name) return default_value;
     
-    for (uint32_t i = 0; i < option_count; i++) {
+    for (uint32 i = 0; i < option_count; i++) {
         if (strcmp(options[i].name, name) == 0 && !options[i].is_bool) {
             return options[i].int_value;
         }
@@ -185,7 +183,7 @@ int ConfigParser::GetInt(const char* name, int default_value) {
 const char* ConfigParser::GetString(const char* name, const char* default_value) {
     if (!name) return default_value;
     
-    for (uint32_t i = 0; i < option_count; i++) {
+    for (uint32 i = 0; i < option_count; i++) {
         if (strcmp(options[i].name, name) == 0 && !options[i].is_bool) {
             return options[i].str_value;
         }
@@ -198,7 +196,7 @@ bool ConfigParser::SetBool(const char* name, bool value) {
     if (!name || option_count >= MAX_CONFIG_OPTIONS) return false;
     
     // Look for existing option
-    for (uint32_t i = 0; i < option_count; i++) {
+    for (uint32 i = 0; i < option_count; i++) {
         if (strcmp(options[i].name, name) == 0) {
             options[i].is_bool = true;
             options[i].bool_value = value;
@@ -223,7 +221,7 @@ bool ConfigParser::SetInt(const char* name, int value) {
     if (!name || option_count >= MAX_CONFIG_OPTIONS) return false;
     
     // Look for existing option
-    for (uint32_t i = 0; i < option_count; i++) {
+    for (uint32 i = 0; i < option_count; i++) {
         if (strcmp(options[i].name, name) == 0) {
             options[i].is_bool = false;
             options[i].int_value = value;
@@ -248,7 +246,7 @@ bool ConfigParser::SetString(const char* name, const char* value) {
     if (!name || !value || option_count >= MAX_CONFIG_OPTIONS) return false;
     
     // Look for existing option
-    for (uint32_t i = 0; i < option_count; i++) {
+    for (uint32 i = 0; i < option_count; i++) {
         if (strcmp(options[i].name, name) == 0) {
             options[i].is_bool = false;
             strncpy(options[i].str_value, value, sizeof(options[i].str_value) - 1);
@@ -274,7 +272,7 @@ bool ConfigParser::SetString(const char* name, const char* value) {
 bool ConfigParser::IsSet(const char* name) {
     if (!name) return false;
     
-    for (uint32_t i = 0; i < option_count; i++) {
+    for (uint32 i = 0; i < option_count; i++) {
         if (strcmp(options[i].name, name) == 0) {
             return options[i].is_set;
         }
@@ -294,7 +292,7 @@ bool ConfigParser::GenerateHeaderFile(const char* header_path) {
     
     // The header would contain C #define statements for each configuration option
     LOG("Generated defines:");
-    for (uint32_t i = 0; i < option_count; i++) {
+    for (uint32 i = 0; i < option_count; i++) {
         if (options[i].is_set) {
             if (options[i].is_bool) {
                 LOG("  #define " << options[i].name << " " << (options[i].bool_value ? "1" : "0"));
@@ -309,14 +307,14 @@ bool ConfigParser::GenerateHeaderFile(const char* header_path) {
     return true;
 }
 
-const ConfigOption* ConfigParser::GetOptions(uint32_t* count) {
+const ConfigOption* ConfigParser::GetOptions(uint32* count) {
     *count = option_count;
     return options;
 }
 
 void ConfigParser::PrintConfig() {
     LOG("=== Kernel Configuration ===");
-    for (uint32_t i = 0; i < option_count; i++) {
+    for (uint32 i = 0; i < option_count; i++) {
         if (options[i].is_set) {
             if (options[i].is_bool) {
                 LOG(options[i].name << "=" << (options[i].bool_value ? "y" : "n"));

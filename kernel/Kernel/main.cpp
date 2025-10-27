@@ -1,4 +1,5 @@
 #include "Kernel.h"
+#include "DriverLoader.h"  // Include DriverLoader for InitializeDriverLoader function
 
 // Function to simulate a simple process
 void TestProcessFunction1() {
@@ -35,8 +36,29 @@ void TestProcessFunction2() {
     while(true) { /* Process should be terminated by scheduler */ }
 }
 
-// Kernel entry point
+#if 0
+// DEPRECATED - to be removed during kernel rewrite
+// This function preserves the original kernel implementation for reference
+// New code should use the modern kernel entry point below
+extern "C" int multiboot_main_old(struct Multiboot* mboot_ptr) {
+    // This function preserves the original kernel implementation for reference
+    // It will be removed once the new implementation is stable
+    
+    // For now, we'll just log that this deprecated function was called
+    LOG("Warning: Called deprecated multiboot_main_old function");
+    LOG("This function is preserved for reference only and will be removed");
+    
+    // In a real implementation, this would contain the original kernel code
+    // For now, we'll just delegate to the new implementation
+    return multiboot_main(mboot_ptr);
+}
+#endif
+
+// Modern kernel entry point
 extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
+    LOG("LittleKernel starting...");
+    DLOG("Version: 2.0 (Complete Rewrite)");
+    
     // Initialize error handling system first (before anything else)
     if (!InitializeErrorHandling()) {
         // We can't even log properly if this fails, so just continue
@@ -73,7 +95,7 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
     }
     
     // Initialize process debugging system
-    if (!InitializeProcessDebugging()) {
+    if (!g_process_accounting_manager->Initialize()) {
         LOG("Warning: Failed to initialize process debugging system");
         REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "ProcessDebuggingInitialization");
     } else {
@@ -82,7 +104,7 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
     }
     
     // Initialize process accounting system
-    if (!InitializeProcessAccounting()) {
+    if (!g_process_accounting_manager->Initialize()) {
         LOG("Warning: Failed to initialize process accounting system");
         REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "ProcessAccountingInitialization");
     } else {
@@ -146,25 +168,23 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         LOG("Process group and session management system initialized successfully");
         
         // Run process group diagnostics during boot
-        if (process_group_manager->Initialize()) {
-            process_group_manager->PrintProcessGroupList();
-            process_group_manager->PrintSessionList();
-            process_group_manager->PrintProcessGroupTree();
-        }
+        process_group_manager->PrintProcessGroupList();
+        process_group_manager->PrintSessionList();
+        process_group_manager->PrintProcessGroupTree();
     }
     
     // Initialize real-time scheduling system
-    real_time_scheduler = new RealTimeScheduler();
-    if (!real_time_scheduler) {
+    g_real_time_scheduler = new RealTimeScheduler();
+    if (!g_real_time_scheduler) {
         LOG("Warning: Failed to allocate real-time scheduler");
         REPORT_ERROR(KernelError::ERROR_OUT_OF_MEMORY, "RealTimeSchedulerAllocation");
     } else {
         LOG("Real-time scheduling system initialized successfully");
-        if (real_time_scheduler->Initialize()) {
+        if (g_real_time_scheduler->Initialize()) {
             // Run real-time diagnostics during boot
-            real_time_scheduler->PrintRealTimeTaskList();
-            real_time_scheduler->PrintRealTimeStatistics();
-            real_time_scheduler->PrintSchedulingAnalysis();
+            g_real_time_scheduler->PrintRealTimeTaskList();
+            g_real_time_scheduler->PrintRealTimeStatistics();
+            g_real_time_scheduler->PrintSchedulingAnalysis();
         } else {
             LOG("Warning: Failed to initialize real-time scheduler");
             REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "RealTimeSchedulerInitialization");
@@ -184,16 +204,13 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
     // Initialize the global structure with essential systems (early initialization)
     // For the enhanced boot process, we'll initialize the basic structure first
     // to enable logging and basic functionality
-    global = (Global*)kmalloc(sizeof(Global));
+    global = (Global*)malloc(sizeof(Global));
     if (!global) {
         LOG("Fatal: Failed to allocate global structure");
         REPORT_ERROR(KernelError::ERROR_OUT_OF_MEMORY, "GlobalStructureAllocation");
         return -1;
     }
     global->Initialize();
-    
-    LOG("LittleKernel starting...");
-    DLOG("Version: 2.0 (Complete Rewrite)");
     
     // Use the enhanced boot process to handle multiboot information and configuration
     if (EnhancedBootProcess(mboot_ptr, 0x2BADB002) != 0) {
@@ -269,6 +286,12 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
     // Set up page fault handler (interrupt 14) - this must be done after IDT is loaded
     global->descriptor_table->interrupt_manager.SetHandler(14, PageFaultHandler);
     
+    // Set up DOS interrupt handlers (INT 21h, INT 20h, etc.)
+    global->descriptor_table->interrupt_manager.SetHandler(0x20, DosInterruptHandler);  // INT 20h - Program termination
+    global->descriptor_table->interrupt_manager.SetHandler(0x21, DosInterruptHandler);  // INT 21h - DOS system calls
+    global->descriptor_table->interrupt_manager.SetHandler(0x25, DosInterruptHandler);  // INT 25h - Absolute disk read
+    global->descriptor_table->interrupt_manager.SetHandler(0x26, DosInterruptHandler);  // INT 26h - Absolute disk write
+    
     // Enable interrupts AFTER setting up handlers
     global->descriptor_table->interrupt_manager.Enable();
     LOG("Interrupts enabled");
@@ -295,8 +318,8 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         
         // Run process suspension diagnostics during boot
         if (g_process_suspension_manager) {
-            g_process_suspension_manager->PrintProcessSuspensionList();
-            g_process_suspension_manager->PrintProcessSuspensionStatistics();
+            g_process_suspension_manager->PrintSuspendedProcessList();
+            g_process_suspension_manager->PrintSuspensionStatistics();
         }
     }
     
@@ -335,6 +358,69 @@ extern "C" int multiboot_main(struct Multiboot* mboot_ptr) {
         REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "SyscallInitialization");
     } else {
         LOG("System call interface initialized successfully");
+    }
+    
+    // Initialize DOS system calls interface
+    if (!InitializeDosSyscalls()) {
+        LOG("Warning: Failed to initialize DOS system call interface");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "DosSyscallInitialization");
+    } else {
+        LOG("DOS system call interface initialized successfully");
+    }
+    
+    // Initialize ABI multiplexer (supports DOS, Linuxulator, etc.)
+    if (!InitializeSciMultiplexer()) {
+        LOG("Warning: Failed to initialize ABI multiplexer");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "AbiMultiplexerInitialization");
+    } else {
+        LOG("ABI multiplexer initialized successfully");
+    }
+    
+    // Initialize SCI multiplexer (modern System Call Interface)
+    if (!InitializeSciMultiplexer()) {
+        LOG("Warning: Failed to initialize SCI multiplexer");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "SciMultiplexerInitialization");
+    } else {
+        LOG("SCI multiplexer initialized successfully");
+    }
+    
+    // Initialize DOS-KPIv2 (syscall-based DOS compatibility)
+    if (!InitializeDosKpiV2()) {
+        LOG("Warning: Failed to initialize DOS-KPIv2 interface");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "DosKpiV2Initialization");
+    } else {
+        LOG("DOS-KPIv2 interface initialized successfully");
+    }
+    
+    // Initialize Linuxulator ABI (Linux compatibility layer)
+    if (!InitializeLinuxulatorAbi()) {
+        LOG("Warning: Failed to initialize Linuxulator ABI");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "LinuxulatorAbiInitialization");
+    } else {
+        LOG("Linuxulator ABI initialized successfully");
+    }
+    
+    // Initialize NVIDIA driver support
+    if (!InitializeNvidiaDriverSupport()) {
+        LOG("Warning: Failed to initialize NVIDIA driver support");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "NvidiaDriverSupportInitialization");
+    } else {
+        LOG("NVIDIA driver support initialized successfully");
+    }
+    
+    // Initialize floppy disk driver (for QEMU fda support)
+    if (!InitializeFloppyDriver()) {
+        LOG("Warning: Failed to initialize floppy disk driver");
+        REPORT_ERROR(KernelError::ERROR_NOT_INITIALIZED, "FloppyDriverInitialization");
+    } else {
+        LOG("Floppy disk driver initialized successfully");
+        
+        // Run floppy driver tests
+        if (run_floppy_tests() == 0) {
+            LOG("Floppy driver tests PASSED");
+        } else {
+            LOG("Floppy driver tests FAILED");
+        }
     }
     
     // Initialize kernel test suite

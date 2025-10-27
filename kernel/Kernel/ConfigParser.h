@@ -16,9 +16,9 @@ struct ConfigOption {
 // Configuration parser class
 class ConfigParser {
 private:
-    static const uint32_t MAX_CONFIG_OPTIONS = 256;
+    static const uint32 MAX_CONFIG_OPTIONS = 256;
     ConfigOption options[MAX_CONFIG_OPTIONS];
-    uint32_t option_count;
+    uint32 option_count;
     char config_file_path[256];
 
 public:
@@ -35,7 +35,7 @@ public:
     bool SaveConfig(const char* file_path);
     
     // Parse configuration from a buffer
-    bool ParseConfig(const char* buffer, uint32_t size);
+    bool ParseConfig(const char* buffer, uint32 size);
     
     // Get boolean configuration value
     bool GetBool(const char* name, bool default_value = false);
@@ -62,7 +62,7 @@ public:
     bool GenerateHeaderFile(const char* header_path);
     
     // Get all configuration options
-    const ConfigOption* GetOptions(uint32_t* count);
+    const ConfigOption* GetOptions(uint32* count);
     
     // Print configuration to console
     void PrintConfig();

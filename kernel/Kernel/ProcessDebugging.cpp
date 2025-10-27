@@ -3,7 +3,7 @@
 #include "MemoryManager.h"
 #include "Logging.h"
 #include "Timer.h"
-#include "ProcessManager.h"
+#include "ProcessControlBlock.h"
 
 // Global process debugging manager instance
 ProcessDebuggingManager* g_process_debugging_manager = nullptr;

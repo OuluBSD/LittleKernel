@@ -60,24 +60,24 @@ struct ErrorInfo {
     KernelError error_code;
     const char* context;
     const char* description;
-    uint32_t line_number;
+    uint32 line_number;
     const char* file_name;
-    uint32_t timestamp;
+    uint32 timestamp;
     void* additional_info;
 };
 
 // Error handling manager
 class ErrorHandlerManager {
 private:
-    static const uint32_t MAX_ERROR_HANDLERS = 16;
-    static const uint32_t MAX_ERROR_HISTORY = 64;
+    static const uint32 MAX_ERROR_HANDLERS = 16;
+    static const uint32 MAX_ERROR_HISTORY = 64;
     
     ErrorHandler handlers[MAX_ERROR_HANDLERS];
-    uint32_t handler_count;
+    uint32 handler_count;
     
     ErrorInfo error_history[MAX_ERROR_HISTORY];
-    uint32_t history_count;
-    uint32_t history_index;
+    uint32 history_count;
+    uint32 history_index;
     
     bool error_recovery_enabled;
     
@@ -95,11 +95,11 @@ public:
     bool UnregisterErrorHandler(ErrorHandler handler);
     
     // Report an error
-    void ReportError(KernelError error, const char* context, const char* file, uint32_t line);
+    void ReportError(KernelError error, const char* context, const char* file, uint32 line);
     
     // Report an error with additional info
     void ReportErrorWithInfo(KernelError error, const char* context, const char* file, 
-                            uint32_t line, void* additional_info);
+                            uint32 line, void* additional_info);
     
     // Get error description as string
     const char* GetErrorDescription(KernelError error);
@@ -118,7 +118,7 @@ public:
     bool IsRecoveryEnabled() const;
     
     // Get error history
-    const ErrorInfo* GetErrorHistory(uint32_t* count);
+    const ErrorInfo* GetErrorHistory(uint32* count);
     
     // Clear error history
     void ClearErrorHistory();

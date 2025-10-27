@@ -42,25 +42,25 @@ void KernelDebugger::Enable(bool enable) {
     debugger_lock.Release();
 }
 
-void KernelDebugger::SetDebugFlags(uint32_t flags) {
+void KernelDebugger::SetDebugFlags(uint32 flags) {
     debugger_lock.Acquire();
     active_debug_flags = flags;
     debugger_lock.Release();
 }
 
-void KernelDebugger::AddDebugFlag(uint32_t flag) {
+void KernelDebugger::AddDebugFlag(uint32 flag) {
     debugger_lock.Acquire();
     active_debug_flags |= flag;
     debugger_lock.Release();
 }
 
-void KernelDebugger::RemoveDebugFlag(uint32_t flag) {
+void KernelDebugger::RemoveDebugFlag(uint32 flag) {
     debugger_lock.Acquire();
     active_debug_flags &= ~flag;
     debugger_lock.Release();
 }
 
-int KernelDebugger::SetBreakpoint(void* address, BreakpointType type, uint32_t length, const char* description) {
+int KernelDebugger::SetBreakpoint(void* address, BreakpointType type, uint32 length, const char* description) {
     debugger_lock.Acquire();
     
     int slot = FindFreeBreakpointSlot();
@@ -165,7 +165,7 @@ bool KernelDebugger::HasBreakpoint(void* address) {
     return FindBreakpoint(address) != -1;
 }
 
-bool KernelDebugger::ReadMemory(void* address, void* buffer, uint32_t size) {
+bool KernelDebugger::ReadMemory(void* address, void* buffer, uint32 size) {
     if (!address || !buffer || size == 0) {
         return false;
     }
@@ -181,7 +181,7 @@ bool KernelDebugger::ReadMemory(void* address, void* buffer, uint32_t size) {
     }
 }
 
-bool KernelDebugger::WriteMemory(void* address, const void* buffer, uint32_t size) {
+bool KernelDebugger::WriteMemory(void* address, const void* buffer, uint32 size) {
     if (!address || !buffer || size == 0) {
         return false;
     }
@@ -197,7 +197,7 @@ bool KernelDebugger::WriteMemory(void* address, const void* buffer, uint32_t siz
     }
 }
 
-void KernelDebugger::DumpMemory(void* address, uint32_t size, MemoryDumpFlags flags) {
+void KernelDebugger::DumpMemory(void* address, uint32 size, MemoryDumpFlags flags) {
     if (!address || size == 0) {
         LOG("Cannot dump memory: invalid address or size");
         return;
@@ -205,12 +205,12 @@ void KernelDebugger::DumpMemory(void* address, uint32_t size, MemoryDumpFlags fl
     
     LOG("Memory dump at 0x" << (uint32)address << ", size: " << size << " bytes");
     
-    uint8_t* addr = (uint8_t*)address;
+    uint8* addr = (uint8*)address;
     char line[100];
     char ascii[17];
     
-    for (uint32_t i = 0; i < size; i += 16) {
-        uint32_t j;
+    for (uint32 i = 0; i < size; i += 16) {
+        uint32 j;
         snprintf(line, sizeof(line), "%08X: ", (uint32)(addr + i));
         
         // Hex part
@@ -255,7 +255,7 @@ void KernelDebugger::PrintStackTrace() {
     // For x86, typical frame pointer is stored at EBP
     void** frame_ptr = (void**)get_frame_pointer();  // We'd need to implement this
     
-    for (uint32_t i = 0; i < 16; i++) {  // Print up to 16 stack frames
+    for (uint32 i = 0; i < 16; i++) {  // Print up to 16 stack frames
         if (frame_ptr && is_kernel_address(frame_ptr) && is_kernel_address(frame_ptr[1])) {
             LOG("  [" << i << "] 0x" << (uint32)frame_ptr[1]);  // Return address is at [1]
             
@@ -271,7 +271,7 @@ void KernelDebugger::PrintStackTrace() {
     }
 }
 
-uint32_t KernelDebugger::GetStackTrace(StackFrame* frames, uint32_t max_frames) {
+uint32 KernelDebugger::GetStackTrace(StackFrame* frames, uint32 max_frames) {
     if (!frames || max_frames == 0) {
         return 0;
     }
@@ -376,7 +376,7 @@ void KernelDebugger::DumpDriverState() {
     }
     
     LOG("=== DRIVER STATE ===");
-    uint32_t device_count = driver_framework->GetDeviceCount();
+    uint32 device_count = driver_framework->GetDeviceCount();
     LOG("Total registered devices: " << device_count);
     
     if (device_count > 0) {
@@ -431,7 +431,7 @@ void KernelDebugger::PrintDebugInfo() {
     LOG("=======================");
 }
 
-void KernelDebugger::Panic(const char* message, const char* file, uint32_t line) {
+void KernelDebugger::Panic(const char* message, const char* file, uint32 line) {
     LOG("!!! KERNEL PANIC !!!");
     LOG("Message: " << message);
     
@@ -495,8 +495,8 @@ void KernelDebugger::LogBreakpointHit(int bp_id, void* address) {
     }
 }
 
-void KernelDebugger::SanitizeString(char* str, uint32_t max_len) {
-    for (uint32_t i = 0; i < max_len && str[i] != '\0'; i++) {
+void KernelDebugger::SanitizeString(char* str, uint32 max_len) {
+    for (uint32 i = 0; i < max_len && str[i] != '\0'; i++) {
         if (str[i] < 32 || str[i] > 126) {
             str[i] = '?';
         }

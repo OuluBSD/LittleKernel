@@ -121,13 +121,14 @@ void MouseIrqHandler(Registers regs) {
             MouseDriver* mouse_driver = (MouseDriver*)mouse_dev->private_data;
             
             // Build mouse packet byte by byte
-            if (mouse_driver->packet_byte_index < 3) {
-                mouse_driver->packet_bytes[mouse_driver->packet_byte_index] = data;
-                mouse_driver->packet_byte_index++;
+            if (mouse_driver->GetPacketByteIndex() < 3) {
+                mouse_driver->SetPacketByte(mouse_driver->GetPacketByteIndex(), data);
+                mouse_driver->IncrementPacketByteIndex();
                 
                 // If we have a complete 3-byte packet, process it
-                if (mouse_driver->packet_byte_index == 3) {
+                if (mouse_driver->GetPacketByteIndex() == 3) {
                     mouse_driver->ProcessPacket();
+                    mouse_driver->ResetPacketByteIndex();
                 }
             }
         }
@@ -186,7 +187,7 @@ void PageFaultHandler(Registers regs) {
                             uint32 new_page_phys = VirtualToPhysical(new_page);
                             
                             // Zero the page
-                            memset(new_page, 0, PAGE_SIZE);
+                            memset(new_page, 0, KERNEL_PAGE_SIZE);
                             
                             // Map the page in the current process's page directory
                             uint32 page_vaddr = faulting_address & PAGE_MASK;
@@ -235,4 +236,43 @@ void PageFaultHandler(Registers regs) {
     }
     
     LOG("Page fault processed");
+}
+
+void DosInterruptHandler(Registers regs) {
+    // This is a simplified implementation
+    // In a real implementation, we would need assembly code to properly save and restore registers
+    // For now, we'll pass the register state to our DOS system call handler
+    
+    // Check that DOS syscall interface is initialized
+    if (!g_dos_syscall_interface) {
+        LOG("DOS interrupt handler called but DOS interface not initialized");
+        return;
+    }
+    
+    // Create a DOS system call context from the register state
+    DosSyscallContext context;
+    context.interrupt_number = regs.int_no;  // The interrupt number that was called
+    context.function_number = regs.eax & 0xFF;  // AL register contains function number for INT 21h
+    context.ax = regs.eax;
+    context.bx = regs.ebx;
+    context.cx = regs.ecx;
+    context.dx = regs.edx;
+    context.si = regs.esi;
+    context.di = regs.edi;
+    context.bp = regs.ebp;
+    context.sp = regs.esp;
+    context.ds = regs.ds;
+    // context.es = regs.es;  // Not available in Registers struct
+    context.flags = regs.eflags;
+    context.cs = regs.cs;
+    context.ip = regs.eip;
+    context.ss = regs.ss;
+    
+    // Handle the DOS system call
+    int result = g_dos_syscall_interface->HandleSyscall(&context);
+    
+    // In a real implementation, we would update the return value in registers
+    // For example, setting the return value in AX register
+    // Since this is a simplified implementation, we'll just log what happened
+    DLOG("DOS interrupt " << (int)regs.int_no << " handled, result: " << result);
 }

@@ -2,7 +2,7 @@
 #include "Kernel.h"
 
 // Static buffer for early memory management
-uint8_t EarlyMemoryManager::early_memory_buffer[EARLY_MEMORY_SIZE];
+uint8 EarlyMemoryManager::early_memory_buffer[EARLY_MEMORY_SIZE];
 
 // Global early memory manager instance
 EarlyMemoryManager* g_early_memory_manager = nullptr;
@@ -24,7 +24,7 @@ EarlyMemoryManager::~EarlyMemoryManager() {
     }
 }
 
-bool EarlyMemoryManager::Initialize(uint32_t kernel_end_address) {
+bool EarlyMemoryManager::Initialize(uint32 kernel_end_address) {
     // Initialize the early memory manager with the provided end address
     if (kernel_end_address == 0) {
         LOG("Error: Invalid kernel end address for early memory initialization");
@@ -36,40 +36,40 @@ bool EarlyMemoryManager::Initialize(uint32_t kernel_end_address) {
     
     // Initialize the first memory region
     free_list->start = (void*)(kernel_end_address + sizeof(MemoryRegion));
-    free_list->size = EARLY_MEMORY_SIZE - (uint32_t)sizeof(MemoryRegion) - 
-                     (kernel_end_address - (uint32_t)early_memory_buffer);
+    free_list->size = EARLY_MEMORY_SIZE - (uint32)sizeof(MemoryRegion) - 
+                     (kernel_end_address - (uint32)early_memory_buffer);
     free_list->used = false;
     free_list->next = nullptr;
     
     initialized_size = EARLY_MEMORY_SIZE;
     
     LOG("Early memory manager initialized with " << free_list->size << " bytes available starting at 0x" << 
-        (uint32_t)free_list->start);
+        (uint32)free_list->start);
     
     return true;
 }
 
-void* EarlyMemoryManager::Allocate(uint32_t size, uint32_t alignment) {
+void* EarlyMemoryManager::Allocate(uint32 size, uint32 alignment) {
     if (size == 0) return nullptr;
     
     // Add space for possible alignment padding
-    uint32_t required_size = size + alignment - 1;
+    uint32 required_size = size + alignment - 1;
     
     // Find a suitable free region
     MemoryRegion* current = free_list;
     while (current) {
         if (!current->used && current->size >= required_size) {
             // Align the start address
-            uint32_t addr = (uint32_t)current->start;
-            uint32_t aligned_addr = (addr + alignment - 1) & ~(alignment - 1);
+            uint32 addr = (uint32)current->start;
+            uint32 aligned_addr = (addr + alignment - 1) & ~(alignment - 1);
             
             // Check if the aligned region fits
-            if ((aligned_addr + size) <= ((uint32_t)current->start + current->size)) {
+            if ((aligned_addr + size) <= ((uint32)current->start + current->size)) {
                 // Mark as used
                 current->used = true;
                 
                 // If there's remaining space after this allocation, create a new free region
-                uint32_t remaining_size = ((uint32_t)current->start + current->size) - (aligned_addr + size);
+                uint32 remaining_size = ((uint32)current->start + current->size) - (aligned_addr + size);
                 if (remaining_size > sizeof(MemoryRegion)) {
                     // Create a new region for the remaining space
                     MemoryRegion* new_region = (MemoryRegion*)(aligned_addr + size);
@@ -80,10 +80,10 @@ void* EarlyMemoryManager::Allocate(uint32_t size, uint32_t alignment) {
                     current->next = new_region;
                     
                     // Update current region size
-                    current->size = size + ((uint32_t)new_region - (uint32_t)current->start);
+                    current->size = size + ((uint32)new_region - (uint32)current->start);
                 } else {
                     // Just reduce the size of the current region
-                    current->size = (aligned_addr + size) - (uint32_t)current->start;
+                    current->size = (aligned_addr + size) - (uint32)current->start;
                 }
                 
                 LOG("Early memory allocated: " << size << " bytes at 0x" << (void*)aligned_addr);
@@ -103,9 +103,9 @@ void EarlyMemoryManager::Free(void* ptr) {
     // Find the region that contains this pointer
     MemoryRegion* current = free_list;
     while (current) {
-        uint32_t addr = (uint32_t)ptr;
-        uint32_t region_start = (uint32_t)current->start;
-        uint32_t region_end = region_start + current->size;
+        uint32 addr = (uint32)ptr;
+        uint32 region_start = (uint32)current->start;
+        uint32 region_end = region_start + current->size;
         
         if (addr >= region_start && addr < region_end && current->used) {
             current->used = false;
@@ -118,8 +118,8 @@ void EarlyMemoryManager::Free(void* ptr) {
     LOG("Warning: Attempt to free invalid early memory address: 0x" << ptr);
 }
 
-uint32_t EarlyMemoryManager::GetAvailableMemory() {
-    uint32_t available = 0;
+uint32 EarlyMemoryManager::GetAvailableMemory() {
+    uint32 available = 0;
     MemoryRegion* current = free_list;
     while (current) {
         if (!current->used) {
@@ -130,8 +130,8 @@ uint32_t EarlyMemoryManager::GetAvailableMemory() {
     return available;
 }
 
-uint32_t EarlyMemoryManager::GetUsedMemory() {
-    uint32_t used = 0;
+uint32 EarlyMemoryManager::GetUsedMemory() {
+    uint32 used = 0;
     MemoryRegion* current = free_list;
     while (current) {
         if (current->used) {
@@ -145,11 +145,11 @@ uint32_t EarlyMemoryManager::GetUsedMemory() {
 void EarlyMemoryManager::PrintMemoryMap() {
     LOG("=== Early Memory Map ===");
     MemoryRegion* current = free_list;
-    uint32_t region_num = 0;
+    uint32 region_num = 0;
     
     while (current) {
         LOG("Region " << region_num << ": 0x" << current->start << 
-            " - 0x" << (void*)((uint32_t)current->start + current->size) << 
+            " - 0x" << (void*)((uint32)current->start + current->size) << 
             ", Size: " << current->size << " bytes, " << 
             (current->used ? "USED" : "FREE"));
         current = current->next;
@@ -165,14 +165,14 @@ bool EarlyMemoryManager::InitializeFromMultiboot(struct Multiboot* mboot_ptr) {
     if (!mboot_ptr || !(mboot_ptr->flags & 0x01)) {
         LOG("No multiboot memory information available");
         // Use a default approach if no multiboot info
-        uint32_t kernel_end = 0x100000; // Default assumption
+        uint32 kernel_end = 0x100000; // Default assumption
         return Initialize(kernel_end);
     }
     
     // Calculate how much conventional and extended memory is available
-    uint32_t total_memory = (mboot_ptr->mem_lower + mboot_ptr->mem_upper) * 1024;
-    uint32_t kernel_end = 0x100000; // Start at 1MB after 0
-    uint32_t early_memory_end = kernel_end + EARLY_MEMORY_SIZE;
+    uint32 total_memory = (mboot_ptr->mem_lower + mboot_ptr->mem_upper) * 1024;
+    uint32 kernel_end = 0x100000; // Start at 1MB after 0
+    uint32 early_memory_end = kernel_end + EARLY_MEMORY_SIZE;
     
     // Make sure we don't exceed available memory
     if (early_memory_end > total_memory) {
@@ -186,15 +186,15 @@ bool EarlyMemoryManager::InitializeFromMultiboot(struct Multiboot* mboot_ptr) {
     return Initialize(kernel_end);
 }
 
-bool EarlyMemoryManager::ReserveRegion(uint32_t start_addr, uint32_t size) {
+bool EarlyMemoryManager::ReserveRegion(uint32 start_addr, uint32 size) {
     // Find the region that contains this address range
     MemoryRegion* current = free_list;
     
     // This is a simplified implementation - in a complete implementation,
     // we'd split regions as needed to reserve the requested area
     while (current) {
-        uint32_t region_start = (uint32_t)current->start;
-        uint32_t region_end = region_start + current->size;
+        uint32 region_start = (uint32)current->start;
+        uint32 region_end = region_start + current->size;
         
         // Check if the requested region overlaps with this free region
         if (start_addr < region_end && (start_addr + size) > region_start && !current->used) {
@@ -210,11 +210,11 @@ bool EarlyMemoryManager::ReserveRegion(uint32_t start_addr, uint32_t size) {
     return false;
 }
 
-bool EarlyMemoryManager::IsValidAddress(uint32_t addr) {
+bool EarlyMemoryManager::IsValidAddress(uint32 addr) {
     MemoryRegion* current = free_list;
     while (current) {
-        uint32_t region_start = (uint32_t)current->start;
-        uint32_t region_end = region_start + current->size;
+        uint32 region_start = (uint32)current->start;
+        uint32 region_end = region_start + current->size;
         
         if (addr >= region_start && addr < region_end) {
             return true;
@@ -224,7 +224,7 @@ bool EarlyMemoryManager::IsValidAddress(uint32_t addr) {
     return false;
 }
 
-uint32_t EarlyMemoryManager::GetTotalMemory() {
+uint32 EarlyMemoryManager::GetTotalMemory() {
     return initialized_size;
 }
 
@@ -240,7 +240,7 @@ bool InitializeEarlyMemory(struct Multiboot* mboot_ptr) {
         }
     } else {
         // Fallback initialization
-        uint32_t kernel_end = 0x100000; // 1MB - typical location after kernel
+        uint32 kernel_end = 0x100000; // 1MB - typical location after kernel
         if (!g_early_memory_manager->Initialize(kernel_end)) {
             LOG("Error: Failed to initialize early memory manager");
             return false;
@@ -252,7 +252,7 @@ bool InitializeEarlyMemory(struct Multiboot* mboot_ptr) {
 }
 
 // Helper functions that work before the main heap is initialized
-void* EarlyMalloc(uint32_t size) {
+void* EarlyMalloc(uint32 size) {
     if (!g_early_memory_manager) {
         LOG("Error: Early memory manager not initialized");
         return nullptr;
@@ -270,8 +270,8 @@ void EarlyFree(void* ptr) {
     g_early_memory_manager->Free(ptr);
 }
 
-void* EarlyCalloc(uint32_t count, uint32_t size) {
-    uint32_t total_size = count * size;
+void* EarlyCalloc(uint32 count, uint32 size) {
+    uint32 total_size = count * size;
     void* ptr = EarlyMalloc(total_size);
     
     if (ptr) {

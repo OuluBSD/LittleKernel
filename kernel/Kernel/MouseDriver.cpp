@@ -54,7 +54,7 @@ bool MouseDriver::Initialize() {
     outportb(PS2_MOUSE_PORT_COMMAND, 0xA8);  // Enable auxiliary device
     
     // Enable interrupts for the auxiliary device
-    uint8_t config;
+    uint8 config;
     if (!WaitForOutputBuffer()) return false;
     outportb(PS2_MOUSE_PORT_COMMAND, 0x20);  // Read configuration
     if (!WaitForOutputBuffer()) return false;
@@ -109,7 +109,7 @@ bool MouseDriver::Initialize() {
     return true;
 }
 
-bool MouseDriver::ReadPacket(uint8_t& data) {
+bool MouseDriver::ReadPacket(uint8& data) {
     if (inportb(PS2_MOUSE_PORT_STATUS) & 1) {  // Check if output buffer has data
         data = inportb(PS2_MOUSE_PORT_DATA);
         return true;
@@ -170,9 +170,9 @@ bool MouseDriver::GetMouseEvent(MouseEvent& event) {
     return false;
 }
 
-uint32_t MouseDriver::GetEventCount() {
+uint32 MouseDriver::GetEventCount() {
     buffer_lock.Acquire();
-    uint32_t count = event_buffer.Count();
+    uint32 count = event_buffer.Count();
     buffer_lock.Release();
     return count;
 }
@@ -183,14 +183,14 @@ void MouseDriver::FlushBuffer() {
     buffer_lock.Release();
 }
 
-bool MouseDriver::SetResolution(uint8_t res) {
+bool MouseDriver::SetResolution(uint8 res) {
     if (res > 3) res = 3;  // Max resolution value is 3
     
     if (!WaitForInputBuffer()) return false;
     outportb(PS2_MOUSE_PORT_DATA, PS2_MOUSE_CMD_SET_RESOLUTION);
     
     // Wait for ACK
-    uint8_t response;
+    uint8 response;
     int retries = 10000;
     while (retries-- > 0) {
         if (inportb(PS2_MOUSE_PORT_STATUS) & 1) {
@@ -218,16 +218,16 @@ bool MouseDriver::SetResolution(uint8_t res) {
     return false;
 }
 
-uint8_t MouseDriver::GetResolution() {
+uint8 MouseDriver::GetResolution() {
     return resolution;
 }
 
-bool MouseDriver::SetSampleRate(uint8_t rate) {
+bool MouseDriver::SetSampleRate(uint8 rate) {
     if (!WaitForInputBuffer()) return false;
     outportb(PS2_MOUSE_PORT_DATA, PS2_MOUSE_CMD_SET_SAMPLE_RATE);
     
     // Wait for ACK
-    uint8_t response;
+    uint8 response;
     int retries = 10000;
     while (retries-- > 0) {
         if (inportb(PS2_MOUSE_PORT_STATUS) & 1) {
@@ -257,11 +257,11 @@ bool MouseDriver::SetSampleRate(uint8_t rate) {
     return false;
 }
 
-uint8_t MouseDriver::GetSampleRate() {
+uint8 MouseDriver::GetSampleRate() {
     return sample_rate;
 }
 
-uint8_t MouseDriver::GetMouseId() {
+uint8 MouseDriver::GetMouseId() {
     return mouse_id;
 }
 
@@ -270,7 +270,7 @@ bool MouseDriver::GetStatus() {
     outportb(PS2_MOUSE_PORT_DATA, PS2_MOUSE_CMD_GET_STATUS);
     
     // Wait for response (3 bytes)
-    uint8_t status_bytes[3];
+    uint8 status_bytes[3];
     for (int i = 0; i < 3; i++) {
         int retries = 10000;
         while (retries-- > 0) {
@@ -321,7 +321,7 @@ bool MouseDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case MOUSE_GET_RESOLUTION: {
-            uint8_t* res = (uint8_t*)arg;
+            uint8* res = (uint8*)arg;
             if (res) {
                 *res = GetResolution();
             }
@@ -329,7 +329,7 @@ bool MouseDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case MOUSE_SET_RESOLUTION: {
-            uint8_t* new_res = (uint8_t*)arg;
+            uint8* new_res = (uint8*)arg;
             if (new_res) {
                 return SetResolution(*new_res);
             }
@@ -337,7 +337,7 @@ bool MouseDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case MOUSE_GET_SAMPLE_RATE: {
-            uint8_t* rate = (uint8_t*)arg;
+            uint8* rate = (uint8*)arg;
             if (rate) {
                 *rate = GetSampleRate();
             }
@@ -345,7 +345,7 @@ bool MouseDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case MOUSE_SET_SAMPLE_RATE: {
-            uint8_t* new_rate = (uint8_t*)arg;
+            uint8* new_rate = (uint8*)arg;
             if (new_rate) {
                 return SetSampleRate(*new_rate);
             }
@@ -353,7 +353,7 @@ bool MouseDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case MOUSE_GET_ID: {
-            uint8_t* id = (uint8_t*)arg;
+            uint8* id = (uint8*)arg;
             if (id) {
                 *id = GetMouseId();
             }
@@ -366,7 +366,7 @@ bool MouseDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case MOUSE_GET_EVENT_COUNT: {
-            uint32_t* count = (uint32_t*)arg;
+            uint32* count = (uint32*)arg;
             if (count) {
                 *count = GetEventCount();
             }
@@ -491,19 +491,19 @@ bool MouseDriver::MouseClose(Device* device) {
     return true;
 }
 
-bool MouseDriver::SendCommand(uint8_t cmd) {
+bool MouseDriver::SendCommand(uint8 cmd) {
     if (!WaitForInputBuffer()) return false;
     outportb(PS2_MOUSE_PORT_COMMAND, cmd);
     return true;
 }
 
-bool MouseDriver::WriteData(uint8_t data) {
+bool MouseDriver::WriteData(uint8 data) {
     if (!WaitForInputBuffer()) return false;
     outportb(PS2_MOUSE_PORT_DATA, data);
     return true;
 }
 
-uint8_t MouseDriver::ReadData() {
+uint8 MouseDriver::ReadData() {
     return inportb(PS2_MOUSE_PORT_DATA);
 }
 
@@ -532,7 +532,7 @@ bool MouseDriver::EnablePacketStreaming() {
     outportb(PS2_MOUSE_PORT_DATA, PS2_MOUSE_CMD_ENABLE_PACKET_STREAMING);
     
     // Wait for ACK
-    uint8_t response;
+    uint8 response;
     int retries = 10000;
     while (retries-- > 0) {
         if (inportb(PS2_MOUSE_PORT_STATUS) & 1) {
@@ -552,7 +552,7 @@ bool MouseDriver::DisablePacketStreaming() {
     outportb(PS2_MOUSE_PORT_DATA, PS2_MOUSE_CMD_DISABLE_PACKET_STREAMING);
     
     // Wait for ACK
-    uint8_t response;
+    uint8 response;
     int retries = 10000;
     while (retries-- > 0) {
         if (inportb(PS2_MOUSE_PORT_STATUS) & 1) {
@@ -567,7 +567,7 @@ bool MouseDriver::DisablePacketStreaming() {
     return false;
 }
 
-bool MouseDriver::MouseWrite(uint8_t data) {
+bool MouseDriver::MouseWrite(uint8 data) {
     if (!WaitForInputBuffer()) return false;
     outportb(PS2_MOUSE_PORT_COMMAND, PS2_CMD_MOUSE_WRITE);
     if (!WaitForInputBuffer()) return false;
@@ -575,7 +575,7 @@ bool MouseDriver::MouseWrite(uint8_t data) {
     return true;
 }
 
-bool MouseDriver::MouseRead(uint8_t& data) {
+bool MouseDriver::MouseRead(uint8& data) {
     // Wait for data from mouse
     int retries = 10000;
     while (retries-- > 0) {

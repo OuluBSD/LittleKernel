@@ -20,21 +20,21 @@ enum class DriverLoadResult {
 struct LoadedDriverInfo {
     char name[64];                    // Driver name
     char version[16];                 // Driver version
-    uint32_t load_address;            // Address where driver is loaded
-    uint32_t size;                    // Size of driver in memory
+    uint32 load_address;            // Address where driver is loaded
+    uint32 size;                    // Size of driver in memory
     DriverBase* driver_instance;      // Pointer to driver instance
     Device* device;                   // Associated device
     bool is_loaded;                   // Whether currently loaded
-    uint32_t ref_count;               // Reference count
-    uint32_t timestamp;               // When loaded
+    uint32 ref_count;               // Reference count
+    uint32 timestamp;               // When loaded
 };
 
 // Driver loader class that manages dynamic loading/unloading of drivers
 class DriverLoader {
 private:
-    static const uint32_t MAX_LOADED_DRIVERS = 64;
+    static const uint32 MAX_LOADED_DRIVERS = 64;
     LoadedDriverInfo loaded_drivers[MAX_LOADED_DRIVERS];
-    uint32_t driver_count;
+    uint32 driver_count;
     Spinlock loader_lock;             // Lock for thread safety
     
 public:
@@ -51,23 +51,23 @@ public:
     DriverLoadResult UnloadDriver(const char* driver_name);
     
     // Unload a driver by device ID
-    DriverLoadResult UnloadDriverById(uint32_t device_id);
+    DriverLoadResult UnloadDriverById(uint32 device_id);
     
     // Get information about a loaded driver
     bool GetDriverInfo(const char* driver_name, LoadedDriverInfo& info);
-    bool GetDriverInfoById(uint32_t device_id, LoadedDriverInfo& info);
+    bool GetDriverInfoById(uint32 device_id, LoadedDriverInfo& info);
     
     // Check if a driver is currently loaded
     bool IsDriverLoaded(const char* driver_name);
     
     // Get loaded driver count
-    uint32_t GetLoadedDriverCount();
+    uint32 GetLoadedDriverCount();
     
     // Enumerate loaded drivers
-    bool GetNextDriverInfo(uint32_t index, LoadedDriverInfo& info);
+    bool GetNextDriverInfo(uint32 index, LoadedDriverInfo& info);
     
     // Validate a driver module before loading
-    bool ValidateDriverModule(void* module_base, uint32_t size);
+    bool ValidateDriverModule(void* module_base, uint32 size);
     
     // Update driver reference count
     bool IncrementReferenceCount(const char* driver_name);
@@ -78,13 +78,13 @@ public:
 
 private:
     // Internal helper functions
-    uint32_t FindDriverIndex(const char* driver_name);
-    uint32_t FindDriverIndexById(uint32_t device_id);
-    uint32_t FindFreeSlot();
+    uint32 FindDriverIndex(const char* driver_name);
+    uint32 FindDriverIndexById(uint32 device_id);
+    uint32 FindFreeSlot();
     
     // Driver loading/unloading functions
     DriverLoadResult InternalLoadDriver(const char* driver_name, void* module_base);
-    DriverLoadResult InternalUnloadDriver(uint32_t index, bool force_unload = false);
+    DriverLoadResult InternalUnloadDriver(uint32 index, bool force_unload = false);
     
     // Security and validation functions
     bool CheckDriverSignature(void* module_base);

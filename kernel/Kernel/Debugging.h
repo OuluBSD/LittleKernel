@@ -32,9 +32,9 @@ enum BreakpointType {
 struct Breakpoint {
     void* address;                    // Address for the breakpoint
     BreakpointType type;              // Type of breakpoint
-    uint32_t length;                  // Length for watchpoints (1, 2, 4, or 8 bytes)
+    uint32 length;                  // Length for watchpoints (1, 2, 4, or 8 bytes)
     bool enabled;                     // Whether the breakpoint is active
-    uint32_t hit_count;               // Number of times the breakpoint was hit
+    uint32 hit_count;               // Number of times the breakpoint was hit
     const char* description;          // Description of the breakpoint
 };
 
@@ -57,8 +57,8 @@ struct StackFrame {
 class KernelDebugger {
 private:
     Breakpoint breakpoints[MAX_BREAKPOINTS];
-    uint32_t breakpoint_count;
-    uint32_t active_debug_flags;
+    uint32 breakpoint_count;
+    uint32 active_debug_flags;
     bool debugger_enabled;
     Spinlock debugger_lock;           // Lock for debugger operations
     
@@ -74,13 +74,13 @@ public:
     bool IsEnabled() { return debugger_enabled; }
     
     // Set debugging flags
-    void SetDebugFlags(uint32_t flags);
-    uint32_t GetDebugFlags() { return active_debug_flags; }
-    void AddDebugFlag(uint32_t flag);
-    void RemoveDebugFlag(uint32_t flag);
+    void SetDebugFlags(uint32 flags);
+    uint32 GetDebugFlags() { return active_debug_flags; }
+    void AddDebugFlag(uint32 flag);
+    void RemoveDebugFlag(uint32 flag);
     
     // Breakpoint management
-    int SetBreakpoint(void* address, BreakpointType type = BP_EXECUTION, uint32_t length = 1, const char* description = nullptr);
+    int SetBreakpoint(void* address, BreakpointType type = BP_EXECUTION, uint32 length = 1, const char* description = nullptr);
     bool RemoveBreakpoint(int bp_id);
     bool RemoveBreakpointAtAddress(void* address);
     bool EnableBreakpoint(int bp_id);
@@ -92,15 +92,15 @@ public:
     bool HasBreakpoint(void* address);
     
     // Memory inspection
-    bool ReadMemory(void* address, void* buffer, uint32_t size);
-    bool WriteMemory(void* address, const void* buffer, uint32_t size);
-    void DumpMemory(void* address, uint32_t size, MemoryDumpFlags flags = MEM_DUMP_BOTH);
+    bool ReadMemory(void* address, void* buffer, uint32 size);
+    bool WriteMemory(void* address, const void* buffer, uint32 size);
+    void DumpMemory(void* address, uint32 size, MemoryDumpFlags flags = MEM_DUMP_BOTH);
     
     // Register inspection
     void DumpRegisters();
     
     // Stack trace
-    uint32_t GetStackTrace(StackFrame* frames, uint32_t max_frames);
+    uint32 GetStackTrace(StackFrame* frames, uint32 max_frames);
     void PrintStackTrace();
     
     // Process debugging
@@ -122,7 +122,7 @@ public:
     void PrintDebugInfo();
     
     // Kernel panic and crash handling
-    void Panic(const char* message, const char* file = nullptr, uint32_t line = 0);
+    void Panic(const char* message, const char* file = nullptr, uint32 line = 0);
     void CrashDump();
 
 private:
@@ -130,7 +130,7 @@ private:
     int FindFreeBreakpointSlot();
     void ExecuteBreakpointAction(int bp_id);
     void LogBreakpointHit(int bp_id, void* address);
-    void SanitizeString(char* str, uint32_t max_len);
+    void SanitizeString(char* str, uint32 max_len);
 };
 
 // Global debugger instance

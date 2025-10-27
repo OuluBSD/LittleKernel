@@ -9,7 +9,7 @@
 
 // Constructor for DriverBase
 DriverBase::DriverBase(const char* driver_name, const char* driver_version, 
-                       uint32_t vid, uint32_t did, uint32_t irq) 
+                       uint32 vid, uint32 did, uint32 irq) 
     : vendor_id(vid), device_id(did), interrupt_number(irq), device_handle(nullptr) {
     // Initialize state to stopped
     state = DriverState::STOPPED;
@@ -72,7 +72,7 @@ void DriverBase::LogDebug(const char* message) {
 
 // BlockDeviceDriver constructor
 BlockDeviceDriver::BlockDeviceDriver(const char* driver_name, const char* driver_version, 
-                                     uint32_t vid, uint32_t did, uint32_t irq)
+                                     uint32 vid, uint32 did, uint32 irq)
     : DriverBase(driver_name, driver_version, vid, did, irq), 
       block_size(512), total_blocks(0), read_only(false) {
 }
@@ -136,7 +136,7 @@ int BlockDeviceDriver::ProcessIoRequest(IoRequest* request) {
 }
 
 // BlockDeviceDriver ReadBlocks implementation
-uint32_t BlockDeviceDriver::ReadBlocks(uint32_t start_block, uint32_t num_blocks, void* buffer) {
+uint32 BlockDeviceDriver::ReadBlocks(uint32 start_block, uint32 num_blocks, void* buffer) {
     // Placeholder implementation
     LogDebug("ReadBlocks called - start_block: " << start_block << ", num_blocks: " << num_blocks);
     // In a real implementation, this would perform the actual block read operation
@@ -144,7 +144,7 @@ uint32_t BlockDeviceDriver::ReadBlocks(uint32_t start_block, uint32_t num_blocks
 }
 
 // BlockDeviceDriver WriteBlocks implementation
-uint32_t BlockDeviceDriver::WriteBlocks(uint32_t start_block, uint32_t num_blocks, const void* buffer) {
+uint32 BlockDeviceDriver::WriteBlocks(uint32 start_block, uint32 num_blocks, const void* buffer) {
     // Placeholder implementation
     if (read_only) {
         LogError("Attempt to write to read-only block device");
@@ -158,7 +158,7 @@ uint32_t BlockDeviceDriver::WriteBlocks(uint32_t start_block, uint32_t num_block
 
 // CharacterDeviceDriver constructor
 CharacterDeviceDriver::CharacterDeviceDriver(const char* driver_name, const char* driver_version, 
-                                             uint32_t vid, uint32_t did, uint32_t irq)
+                                             uint32 vid, uint32 did, uint32 irq)
     : DriverBase(driver_name, driver_version, vid, did, irq), buffered(true) {
 }
 
@@ -211,7 +211,7 @@ int CharacterDeviceDriver::ProcessIoRequest(IoRequest* request) {
 }
 
 // CharacterDeviceDriver Read implementation
-int CharacterDeviceDriver::Read(void* buffer, uint32_t size) {
+int CharacterDeviceDriver::Read(void* buffer, uint32 size) {
     // Placeholder implementation
     LogDebug("Character device read called - size: " << size);
     // In a real implementation, this would read data into the buffer
@@ -219,7 +219,7 @@ int CharacterDeviceDriver::Read(void* buffer, uint32_t size) {
 }
 
 // CharacterDeviceDriver Write implementation
-int CharacterDeviceDriver::Write(const void* buffer, uint32_t size) {
+int CharacterDeviceDriver::Write(const void* buffer, uint32 size) {
     // Placeholder implementation
     LogDebug("Character device write called - size: " << size);
     // In a real implementation, this would write data from the buffer
@@ -244,7 +244,7 @@ int CharacterDeviceDriver::WaitForOutput() {
 
 // NetworkDriver constructor
 NetworkDriver::NetworkDriver(const char* driver_name, const char* driver_version, 
-                             uint32_t vid, uint32_t did, uint32_t irq)
+                             uint32 vid, uint32 did, uint32 irq)
     : DriverBase(driver_name, driver_version, vid, did, irq), 
       mtu(1500), link_up(false) {
     // Initialize MAC address to 0
@@ -303,7 +303,7 @@ int NetworkDriver::ProcessIoRequest(IoRequest* request) {
 }
 
 // NetworkDriver SendPacket implementation
-int NetworkDriver::SendPacket(const void* packet, uint32_t size) {
+int NetworkDriver::SendPacket(const void* packet, uint32 size) {
     // Placeholder implementation
     if (!link_up) {
         LogError("Attempt to send packet when link is down");
@@ -321,7 +321,7 @@ int NetworkDriver::SendPacket(const void* packet, uint32_t size) {
 }
 
 // NetworkDriver ReceivePacket implementation
-int NetworkDriver::ReceivePacket(void* packet, uint32_t max_size) {
+int NetworkDriver::ReceivePacket(void* packet, uint32 max_size) {
     // Placeholder implementation
     if (!link_up) {
         LogError("Attempt to receive packet when link is down");
@@ -335,7 +335,7 @@ int NetworkDriver::ReceivePacket(void* packet, uint32_t max_size) {
 
 // UsbDriver constructor
 UsbDriver::UsbDriver(const char* driver_name, const char* driver_version, 
-                     uint32_t vid, uint32_t did, uint32_t irq)
+                     uint32 vid, uint32 did, uint32 irq)
     : DriverBase(driver_name, driver_version, vid, did, irq), 
       usb_address(0), usb_port(0), usb_vendor_id(vid & 0xFFFF), usb_product_id(did & 0xFFFF) {
 }
@@ -381,7 +381,7 @@ int UsbDriver::ProcessIoRequest(IoRequest* request) {
 }
 
 // UsbDriver control transfer implementation
-int UsbDriver::UsbControlTransfer(uint8_t request_type, uint8_t request, 
+int UsbDriver::UsbControlTransfer(uint8 request_type, uint8 request, 
                                   uint16_t value, uint16_t index, 
                                   void* data, uint16_t length) {
     // Placeholder implementation
@@ -395,7 +395,7 @@ int UsbDriver::UsbControlTransfer(uint8_t request_type, uint8_t request,
 }
 
 // UsbDriver bulk transfer implementation
-int UsbDriver::UsbBulkTransfer(uint8_t endpoint, void* data, uint32_t length, bool in) {
+int UsbDriver::UsbBulkTransfer(uint8 endpoint, void* data, uint32 length, bool in) {
     // Placeholder implementation
     LogDebug("USB Bulk Transfer - ep: 0x" << endpoint << 
              ", len: " << length << 
@@ -405,7 +405,7 @@ int UsbDriver::UsbBulkTransfer(uint8_t endpoint, void* data, uint32_t length, bo
 }
 
 // UsbDriver interrupt transfer implementation
-int UsbDriver::UsbInterruptTransfer(uint8_t endpoint, void* data, uint32_t length, bool in) {
+int UsbDriver::UsbInterruptTransfer(uint8 endpoint, void* data, uint32 length, bool in) {
     // Placeholder implementation
     LogDebug("USB Interrupt Transfer - ep: 0x" << endpoint << 
              ", len: " << length << 

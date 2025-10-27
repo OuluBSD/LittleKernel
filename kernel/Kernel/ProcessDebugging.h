@@ -831,3 +831,5 @@ extern ProcessDebuggingManager* g_process_debugging_manager;
 
 // Initialize process debugging system
 bool InitializeProcessDebugging();
+
+#endif

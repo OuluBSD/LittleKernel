@@ -25,7 +25,7 @@ struct PerfCounter {
     uint64_t min_value;         // Minimum value recorded
     uint64_t max_value;         // Maximum value recorded
     uint64_t total_value;       // Total accumulated value
-    uint32_t sample_count;      // Number of samples taken
+    uint32 sample_count;      // Number of samples taken
     uint64_t start_time;        // Start time for time-based counters
     bool active;                // Whether the counter is active
 };
@@ -33,9 +33,9 @@ struct PerfCounter {
 // Performance profiling class
 class PerformanceProfiler {
 private:
-    static const uint32_t MAX_PERFORMANCE_COUNTERS = 128;
+    static const uint32 MAX_PERFORMANCE_COUNTERS = 128;
     PerfCounter counters[MAX_PERFORMANCE_COUNTERS];
-    uint32_t counter_count;
+    uint32 counter_count;
     Spinlock profiler_lock;     // Lock for profiler operations
     
 public:

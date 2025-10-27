@@ -27,7 +27,7 @@ bool Fat32Driver::Initialize(Device* device) {
     LOG("Initializing FAT32 filesystem on device");
     
     // Read the boot sector
-    uint8_t boot_sector[FAT32_SECTOR_SIZE];
+    uint8 boot_sector[FAT32_SECTOR_SIZE];
     if (!ReadSector(0, boot_sector)) {
         LOG("Failed to read boot sector");
         return false;
@@ -52,7 +52,7 @@ bool Fat32Driver::Initialize(Device* device) {
                                (fs_info.bpb.num_fats * fs_info.bpb.sectors_per_fat);
     
     // Calculate total clusters
-    uint32_t total_sectors = fs_info.bpb.total_sectors_long ? 
+    uint32 total_sectors = fs_info.bpb.total_sectors_long ? 
                             fs_info.bpb.total_sectors_long : fs_info.bpb.total_sectors_short;
     fs_info.total_clusters = (total_sectors - fs_info.data_start_sector) / fs_info.bpb.sectors_per_cluster;
     fs_info.first_data_cluster = 2; // Clusters 0 and 1 are reserved
@@ -97,7 +97,7 @@ bool Fat32Driver::Initialize(Device* device) {
     return true;
 }
 
-bool Fat32Driver::ReadSector(uint32_t sector, void* buffer) {
+bool Fat32Driver::ReadSector(uint32 sector, void* buffer) {
     if (!fs_info.device || !buffer) {
         return false;
     }
@@ -111,7 +111,7 @@ bool Fat32Driver::ReadSector(uint32_t sector, void* buffer) {
                                   sector * FAT32_SECTOR_SIZE);
 }
 
-bool Fat32Driver::WriteSector(uint32_t sector, const void* buffer) {
+bool Fat32Driver::WriteSector(uint32 sector, const void* buffer) {
     if (!fs_info.device || !buffer) {
         return false;
     }
@@ -125,15 +125,15 @@ bool Fat32Driver::WriteSector(uint32_t sector, const void* buffer) {
                                    sector * FAT32_SECTOR_SIZE);
 }
 
-bool Fat32Driver::ReadCluster(uint32_t cluster, void* buffer) {
+bool Fat32Driver::ReadCluster(uint32 cluster, void* buffer) {
     if (cluster < fs_info.first_data_cluster || cluster >= (fs_info.first_data_cluster + fs_info.total_clusters)) {
         return false;
     }
     
-    uint32_t sector = ClusterToSector(cluster);
-    uint8_t* buf = (uint8_t*)buffer;
+    uint32 sector = ClusterToSector(cluster);
+    uint8* buf = (uint8*)buffer;
     
-    for (uint32_t i = 0; i < fs_info.bpb.sectors_per_cluster; i++) {
+    for (uint32 i = 0; i < fs_info.bpb.sectors_per_cluster; i++) {
         if (!ReadSector(sector + i, buf + (i * FAT32_SECTOR_SIZE))) {
             return false;
         }
@@ -142,15 +142,15 @@ bool Fat32Driver::ReadCluster(uint32_t cluster, void* buffer) {
     return true;
 }
 
-bool Fat32Driver::WriteCluster(uint32_t cluster, const void* buffer) {
+bool Fat32Driver::WriteCluster(uint32 cluster, const void* buffer) {
     if (cluster < fs_info.first_data_cluster || cluster >= (fs_info.first_data_cluster + fs_info.total_clusters)) {
         return false;
     }
     
-    uint32_t sector = ClusterToSector(cluster);
-    const uint8_t* buf = (const uint8_t*)buffer;
+    uint32 sector = ClusterToSector(cluster);
+    const uint8* buf = (const uint8*)buffer;
     
-    for (uint32_t i = 0; i < fs_info.bpb.sectors_per_cluster; i++) {
+    for (uint32 i = 0; i < fs_info.bpb.sectors_per_cluster; i++) {
         if (!WriteSector(sector + i, buf + (i * FAT32_SECTOR_SIZE))) {
             return false;
         }
@@ -159,7 +159,7 @@ bool Fat32Driver::WriteCluster(uint32_t cluster, const void* buffer) {
     return true;
 }
 
-uint32_t Fat32Driver::GetNextCluster(uint32_t cluster) {
+uint32 Fat32Driver::GetNextCluster(uint32 cluster) {
     if (!IsValidCluster(cluster)) {
         return 0;
     }
@@ -167,9 +167,9 @@ uint32_t Fat32Driver::GetNextCluster(uint32_t cluster) {
     return GetFatEntry(cluster);
 }
 
-uint32_t Fat32Driver::AllocateCluster() {
+uint32 Fat32Driver::AllocateCluster() {
     // Find a free cluster in the FAT
-    for (uint32_t i = fs_info.first_data_cluster; i < fs_info.first_data_cluster + fs_info.total_clusters; i++) {
+    for (uint32 i = fs_info.first_data_cluster; i < fs_info.first_data_cluster + fs_info.total_clusters; i++) {
         if (GetFatEntry(i) == 0) {
             // Found a free cluster
             SetFatEntry(i, FAT32_EOF_CLUSTER);  // Mark as end of chain for now
@@ -180,29 +180,29 @@ uint32_t Fat32Driver::AllocateCluster() {
     return 0;  // No free clusters
 }
 
-void Fat32Driver::FreeCluster(uint32_t cluster) {
+void Fat32Driver::FreeCluster(uint32 cluster) {
     if (IsValidCluster(cluster)) {
         SetFatEntry(cluster, 0);  // Mark as free
     }
 }
 
-bool Fat32Driver::ReadDirEntry(uint32_t cluster, uint32_t index, Fat32DirEntry* entry) {
+bool Fat32Driver::ReadDirEntry(uint32 cluster, uint32 index, Fat32DirEntry* entry) {
     if (!entry) {
         return false;
     }
     
     // Calculate which sector and offset the entry is in
-    uint32_t entries_per_cluster = (fs_info.bytes_per_cluster) / sizeof(Fat32DirEntry);
+    uint32 entries_per_cluster = (fs_info.bytes_per_cluster) / sizeof(Fat32DirEntry);
     
     if (index >= entries_per_cluster) {
         // Need to follow cluster chain
-        uint32_t chain_index = index / entries_per_cluster;
-        uint32_t local_index = index % entries_per_cluster;
+        uint32 chain_index = index / entries_per_cluster;
+        uint32 local_index = index % entries_per_cluster;
         
         // Follow the cluster chain
-        uint32_t current_cluster = cluster;
-        for (uint32_t i = 0; i < chain_index; i++) {
-            uint32_t next_cluster = GetNextCluster(current_cluster);
+        uint32 current_cluster = cluster;
+        for (uint32 i = 0; i < chain_index; i++) {
+            uint32 next_cluster = GetNextCluster(current_cluster);
             if (IsEndOfChain(next_cluster)) {
                 return false;  // No more clusters in chain
             }
@@ -214,7 +214,7 @@ bool Fat32Driver::ReadDirEntry(uint32_t cluster, uint32_t index, Fat32DirEntry* 
     }
     
     // Read the cluster
-    uint8_t cluster_data[FAT32_MAX_CLUSTER_SIZE];
+    uint8 cluster_data[FAT32_MAX_CLUSTER_SIZE];
     if (!ReadCluster(cluster, cluster_data)) {
         return false;
     }
@@ -226,9 +226,9 @@ bool Fat32Driver::ReadDirEntry(uint32_t cluster, uint32_t index, Fat32DirEntry* 
     return true;
 }
 
-bool Fat32Driver::FindFile(uint32_t dir_cluster, const char* name, Fat32DirEntry* entry) {
-    uint32_t cluster = dir_cluster;
-    uint32_t index = 0;
+bool Fat32Driver::FindFile(uint32 dir_cluster, const char* name, Fat32DirEntry* entry) {
+    uint32 cluster = dir_cluster;
+    uint32 index = 0;
     
     while (cluster > 0 && !IsEndOfChain(cluster)) {
         Fat32DirEntry dir_entry;
@@ -290,7 +290,7 @@ bool Fat32Driver::FindFile(uint32_t dir_cluster, const char* name, Fat32DirEntry
         index++;
         
         // If we've reached the end of the current cluster, move to the next one
-        uint32_t entries_per_cluster = fs_info.bytes_per_cluster / sizeof(Fat32DirEntry);
+        uint32 entries_per_cluster = fs_info.bytes_per_cluster / sizeof(Fat32DirEntry);
         if (index >= entries_per_cluster) {
             cluster = GetNextCluster(cluster);
             index = 0;
@@ -300,8 +300,8 @@ bool Fat32Driver::FindFile(uint32_t dir_cluster, const char* name, Fat32DirEntry
     return false;  // File not found
 }
 
-uint8_t Fat32Driver::ConvertFat32ToVfsAttr(uint8_t fat_attr) {
-    uint8_t vfs_attr = 0;
+uint8 Fat32Driver::ConvertFat32ToVfsAttr(uint8 fat_attr) {
+    uint8 vfs_attr = 0;
     
     if (fat_attr & FAT32_ATTR_READ_ONLY) vfs_attr |= ATTR_READONLY;
     if (fat_attr & FAT32_ATTR_HIDDEN) vfs_attr |= ATTR_HIDDEN;
@@ -312,8 +312,8 @@ uint8_t Fat32Driver::ConvertFat32ToVfsAttr(uint8_t fat_attr) {
     return vfs_attr;
 }
 
-uint8_t Fat32Driver::ConvertVfsToFat32Attr(uint8_t vfs_attr) {
-    uint8_t fat_attr = 0;
+uint8 Fat32Driver::ConvertVfsToFat32Attr(uint8 vfs_attr) {
+    uint8 fat_attr = 0;
     
     if (vfs_attr & ATTR_READONLY) fat_attr |= FAT32_ATTR_READ_ONLY;
     if (vfs_attr & ATTR_HIDDEN) fat_attr |= FAT32_ATTR_HIDDEN;
@@ -326,7 +326,7 @@ uint8_t Fat32Driver::ConvertVfsToFat32Attr(uint8_t vfs_attr) {
 
 // VFS operation implementations
 
-int Fat32Driver::Open(VfsNode* node, uint32_t flags) {
+int Fat32Driver::Open(VfsNode* node, uint32 flags) {
     if (!node || !node->fs_specific) {
         return VFS_ERROR;
     }
@@ -347,7 +347,7 @@ int Fat32Driver::Close(VfsNode* node) {
     return VFS_SUCCESS;
 }
 
-int Fat32Driver::Read(VfsNode* node, void* buffer, uint32_t size, uint32_t offset) {
+int Fat32Driver::Read(VfsNode* node, void* buffer, uint32 size, uint32 offset) {
     if (!node || !buffer || size == 0 || !node->fs_specific) {
         return VFS_ERROR;
     }
@@ -359,7 +359,7 @@ int Fat32Driver::Read(VfsNode* node, void* buffer, uint32_t size, uint32_t offse
     return VFS_ERROR;
 }
 
-int Fat32Driver::Write(VfsNode* node, const void* buffer, uint32_t size, uint32_t offset) {
+int Fat32Driver::Write(VfsNode* node, const void* buffer, uint32 size, uint32 offset) {
     if (!node || !buffer || size == 0 || !node->fs_specific) {
         return VFS_ERROR;
     }
@@ -407,7 +407,7 @@ int Fat32Driver::Stat(VfsNode* node, FileStat* stat) {
     return VFS_SUCCESS;
 }
 
-int Fat32Driver::Readdir(VfsNode* node, uint32_t index, DirEntry* entry) {
+int Fat32Driver::Readdir(VfsNode* node, uint32 index, DirEntry* entry) {
     if (!node || !entry || !node->fs_specific) {
         return VFS_ERROR;
     }
@@ -422,7 +422,7 @@ int Fat32Driver::Readdir(VfsNode* node, uint32_t index, DirEntry* entry) {
     return VFS_ERROR;
 }
 
-int Fat32Driver::Create(VfsNode* node, const char* name, uint8_t attributes) {
+int Fat32Driver::Create(VfsNode* node, const char* name, uint8 attributes) {
     if (!node || !name || !node->fs_specific) {
         return VFS_ERROR;
     }
@@ -446,55 +446,55 @@ int Fat32Driver::Delete(VfsNode* node) {
 
 // Helper functions
 
-uint32_t Fat32Driver::SectorToByte(uint32_t sector) {
+uint32 Fat32Driver::SectorToByte(uint32 sector) {
     return sector * fs_info.bpb.bytes_per_sector;
 }
 
-uint32_t Fat32Driver::ClusterToSector(uint32_t cluster) {
+uint32 Fat32Driver::ClusterToSector(uint32 cluster) {
     if (cluster < 2) {
         return 0;  // Reserved clusters
     }
     return fs_info.data_start_sector + ((cluster - 2) * fs_info.bpb.sectors_per_cluster);
 }
 
-uint32_t Fat32Driver::GetFatEntry(uint32_t cluster) {
+uint32 Fat32Driver::GetFatEntry(uint32 cluster) {
     // Calculate which sector of the FAT contains this cluster entry
-    uint32_t fat_sector = fs_info.fat_start_sector + (cluster * 4) / FAT32_SECTOR_SIZE;
-    uint32_t entry_offset = (cluster * 4) % FAT32_SECTOR_SIZE;
+    uint32 fat_sector = fs_info.fat_start_sector + (cluster * 4) / FAT32_SECTOR_SIZE;
+    uint32 entry_offset = (cluster * 4) % FAT32_SECTOR_SIZE;
     
-    uint8_t fat_sector_data[FAT32_SECTOR_SIZE];
+    uint8 fat_sector_data[FAT32_SECTOR_SIZE];
     if (!ReadSector(fat_sector, fat_sector_data)) {
         return 0;
     }
     
     // FAT32 entries are 32-bit values
-    return *((uint32_t*)(fat_sector_data + entry_offset)) & 0x0FFFFFFF;
+    return *((uint32*)(fat_sector_data + entry_offset)) & 0x0FFFFFFF;
 }
 
-void Fat32Driver::SetFatEntry(uint32_t cluster, uint32_t value) {
+void Fat32Driver::SetFatEntry(uint32 cluster, uint32 value) {
     // Calculate which sector of the FAT contains this cluster entry
-    uint32_t fat_sector = fs_info.fat_start_sector + (cluster * 4) / FAT32_SECTOR_SIZE;
-    uint32_t entry_offset = (cluster * 4) % FAT32_SECTOR_SIZE;
+    uint32 fat_sector = fs_info.fat_start_sector + (cluster * 4) / FAT32_SECTOR_SIZE;
+    uint32 entry_offset = (cluster * 4) % FAT32_SECTOR_SIZE;
     
-    uint8_t fat_sector_data[FAT32_SECTOR_SIZE];
+    uint8 fat_sector_data[FAT32_SECTOR_SIZE];
     if (!ReadSector(fat_sector, fat_sector_data)) {
         return;
     }
     
     // Update the entry in the in-memory copy
-    uint32_t* entries = (uint32_t*)fat_sector_data;
-    uint32_t entry_idx = entry_offset / 4;
+    uint32* entries = (uint32*)fat_sector_data;
+    uint32 entry_idx = entry_offset / 4;
     entries[entry_idx] = (entries[entry_idx] & 0xF0000000) | (value & 0x0FFFFFFF);
     
     // Write the sector back to the device
     WriteSector(fat_sector, fat_sector_data);
 }
 
-uint32_t Fat32Driver::GetFreeClusterCount() {
-    uint32_t free_count = 0;
+uint32 Fat32Driver::GetFreeClusterCount() {
+    uint32 free_count = 0;
     
     // Count free clusters (those with value 0 in the FAT)
-    for (uint32_t i = fs_info.first_data_cluster; i < fs_info.first_data_cluster + fs_info.total_clusters; i++) {
+    for (uint32 i = fs_info.first_data_cluster; i < fs_info.first_data_cluster + fs_info.total_clusters; i++) {
         if (GetFatEntry(i) == 0) {
             free_count++;
         }
@@ -503,18 +503,18 @@ uint32_t Fat32Driver::GetFreeClusterCount() {
     return free_count;
 }
 
-bool Fat32Driver::IsEndOfChain(uint32_t cluster) {
+bool Fat32Driver::IsEndOfChain(uint32 cluster) {
     return cluster >= FAT32_EOF_CLUSTER;
 }
 
-bool Fat32Driver::IsValidCluster(uint32_t cluster) {
+bool Fat32Driver::IsValidCluster(uint32 cluster) {
     return cluster >= fs_info.first_data_cluster && 
            cluster < (fs_info.first_data_cluster + fs_info.total_clusters);
 }
 
-bool Fat32Driver::ValidateChecksum(const char* short_name, const uint8_t* long_name, uint32_t name_len) {
+bool Fat32Driver::ValidateChecksum(const char* short_name, const uint8* long_name, uint32 name_len) {
     // Calculate the checksum for the 8.3 short name
-    uint8_t checksum = 0;
+    uint8 checksum = 0;
     for (int i = 0; i < 11; i++) {
         checksum = ((checksum & 1) ? 0x80 : 0) + (checksum >> 1) + short_name[i];
     }

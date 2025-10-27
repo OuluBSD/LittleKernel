@@ -1,0 +1,50 @@
+Building LittleKernel...
+Generated kernel_config_defines.h with 35 configuration defines
+Building kernel with UMKA...
+Config directory: /home/sblo/.config/u++
+Inline assembly: /home/sblo/Dev/LittleKernel/kernel
+Output directory: /home/sblo/.cache/upp.out
+Main package: /home/sblo/Dev/LittleKernel/kernel/Kernel/Kernel.upp
+Build flags: 
+Build method: /home/sblo/Dev/LittleKernel/kernel/Kernel/CLANG_K32.bm
+Target override: /home/sblo/Dev/LittleKernel/build/kernel
+Saving 
+
+----- Library ( CLANG DEBUG SHARED POSIX LINUX ) (1 / 2)
+cd /home/sblo/Dev/LittleKernel/kernel/Library
+----- Kernel ( MAIN CLANG DEBUG SHARED POSIX LINUX ) (2 / 2)
+cd /home/sblo/Dev/LittleKernel/kernel/Kernel
+MemoryTracker.cpp
+clang++ -c  -I"/home/sblo/Dev/LittleKernel/kernel" -I"/usr/lib/llvm/11/include" -I"/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared" -DflagMAIN -DflagCLANG -DflagDEBUG -DflagSHARED -DflagPOSIX -DflagLINUX  -fexceptions -D_DEBUG -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti -march=i386 -O0 -x c++ -std=c++17 -Wno-logical-op-parentheses "/home/sblo/Dev/LittleKernel/kernel/Kernel/MemoryTracker.cpp"  -o "/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared/MemoryTracker.o"
+compiled in (0:00.00)
+BootProcess.cpp
+clang++ -c  -I"/home/sblo/Dev/LittleKernel/kernel" -I"/usr/lib/llvm/11/include" -I"/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared" -DflagMAIN -DflagCLANG -DflagDEBUG -DflagSHARED -DflagPOSIX -DflagLINUX  -fexceptions -D_DEBUG -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti -march=i386 -O0 -x c++ -std=c++17 -Wno-logical-op-parentheses "/home/sblo/Dev/LittleKernel/kernel/Kernel/BootProcess.cpp"  -o "/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared/BootProcess.o"
+compiled in (0:00.00)
+RuntimeConfig.cpp
+clang++ -c  -I"/home/sblo/Dev/LittleKernel/kernel" -I"/usr/lib/llvm/11/include" -I"/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared" -DflagMAIN -DflagCLANG -DflagDEBUG -DflagSHARED -DflagPOSIX -DflagLINUX  -fexceptions -D_DEBUG -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti -march=i386 -O0 -x c++ -std=c++17 -Wno-logical-op-parentheses "/home/sblo/Dev/LittleKernel/kernel/Kernel/RuntimeConfig.cpp"  -o "/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared/RuntimeConfig.o"
+compiled in (0:00.00)
+ConfigParser.cpp
+clang++ -c  -I"/home/sblo/Dev/LittleKernel/kernel" -I"/usr/lib/llvm/11/include" -I"/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared" -DflagMAIN -DflagCLANG -DflagDEBUG -DflagSHARED -DflagPOSIX -DflagLINUX  -fexceptions -D_DEBUG -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti -march=i386 -O0 -x c++ -std=c++17 -Wno-logical-op-parentheses "/home/sblo/Dev/LittleKernel/kernel/Kernel/ConfigParser.cpp"  -o "/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared/ConfigParser.o"
+compiled in (0:00.00)
+EarlyMemory.cpp
+clang++ -c  -I"/home/sblo/Dev/LittleKernel/kernel" -I"/usr/lib/llvm/11/include" -I"/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared" -DflagMAIN -DflagCLANG -DflagDEBUG -DflagSHARED -DflagPOSIX -DflagLINUX  -fexceptions -D_DEBUG -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti -march=i386 -O0 -x c++ -std=c++17 -Wno-logical-op-parentheses "/home/sblo/Dev/LittleKernel/kernel/Kernel/EarlyMemory.cpp"  -o "/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared/EarlyMemory.o"
+/home/sblo/Dev/LittleKernel/kernel/Kernel/BootProcess.cpp:52:48: warning: multi-character character constant [-Wmultichar]
+   52 |     for (i = 0; i < dest_size - 1 && src[i] != '\\0'; i++) {
+      |                                                ^
+/home/sblo/Dev/LittleKernel/kernel/Kernel/BootProcess.cpp:55:15: warning: multi-character character constant [-Wmultichar]
+   55 |     dest[i] = '\\0';
+      |               ^
+/home/sblo/Dev/LittleKernel/kernel/Kernel/BootProcess.cpp:52:45: warning: result of comparison of constant 23600 with expression of type 'const char' is always true [-Wtautological-constant-out-of-range-compare]
+   52 |     for (i = 0; i < dest_size - 1 && src[i] != '\\0'; i++) {
+      |                                      ~~~~~~ ^  ~~~~~
+/home/sblo/Dev/LittleKernel/kernel/Kernel/BootProcess.cpp:55:15: warning: implicit conversion from 'int' to 'char' changes value from 23600 to 48 [-Wconstant-conversion]
+   55 |     dest[i] = '\\0';
+      |             ~ ^~~~~
+/home/sblo/Dev/LittleKernel/ke/usr/lib/llvm/21/bin/clang++ -c  -I"/home/sblo/Dev/LittleKernel/kernel" -I"/usr/lib/llvm/11/include" -I"/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared" -DflagMAIN -DflagCLANG -DflagDEBUG -DflagSHARED -DflagPOSIX -DflagLINUX  -fexceptions -D_DEBUG -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti -march=i386 -O0 -x c++ -std=c++17 -Wno-logical-op-parentheses "/home/sblo/Dev/LittleKernel/kernel/Kernel/MemoryTracker.cpp"  -o "/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared/MemoryTracker.o"
+/usr/lib/llvm/21/bin/clang++ -c  -I"/home/sblo/Dev/LittleKernel/kernel" -I"/usr/lib/llvm/11/include" -I"/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared" -DflagMAIN -DflagCLANG -DflagDEBUG -DflagSHARED -DflagPOSIX -DflagLINUX  -fexceptions -D_DEBUG -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti -march=i386 -O0 -x c++ -std=c++17 -Wno-logical-op-parentheses "/home/sblo/Dev/LittleKernel/kernel/Kernel/BootProcess.cpp"  -o "/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared/BootProcess.o"
+/usr/lib/llvm/21/bin/clang++ -c  -I"/home/sblo/Dev/LittleKernel/kernel" -I"/usr/lib/llvm/11/include" -I"/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared" -DflagMAIN -DflagCLANG -DflagDEBUG -DflagSHARED -DflagPOSIX -DflagLINUX  -fexceptions -D_DEBUG -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti -march=i386 -O0 -x c++ -std=c++17 -Wno-logical-op-parentheses "/home/sblo/Dev/LittleKernel/kernel/Kernel/RuntimeConfig.cpp"  -o "/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared/RuntimeConfig.o"
+/usr/lib/llvm/21/bin/clang++ -c  -I"/home/sblo/Dev/LittleKernel/kernel" -I"/usr/lib/llvm/11/include" -I"/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared" -DflagMAIN -DflagCLANG -DflagDEBUG -DflagSHARED -DflagPOSIX -DflagLINUX  -fexceptions -D_DEBUG -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti -march=i386 -O0 -x c++ -std=c++17 -Wno-logical-op-parentheses "/home/sblo/Dev/LittleKernel/kernel/Kernel/ConfigParser.cpp"  -o "/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared/ConfigParser.o"
+Error executing /usr/lib/llvm/21/bin/clang++ -c  -I"/home/sblo/Dev/LittleKernel/kernel" -I"/usr/lib/llvm/11/include" -I"/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared" -DflagMAIN -DflagCLANG -DflagDEBUG -DflagSHARED -DflagPOSIX -DflagLINUX  -fexceptions -D_DEBUG -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti -march=i386 -O0 -x c++ -std=c++17 -Wno-logical-op-parentheses "/home/sblo/Dev/LittleKernel/kernel/Kernel/BootProcess.cpp"  -o "/home/sblo/.cache/upp.out/Kernel/CLANG_K32.Debug.Main.Noblitz.Shared/BootProcess.o"
+/home/sblo/Dev/LittleKernel/kernel/Kernel/ConfigParser.cpp:122:38: error: use of undeclared identifier 'atoi'
+  122 |                         SetInt(name, atoi(value));
+      |                                      ^~~~

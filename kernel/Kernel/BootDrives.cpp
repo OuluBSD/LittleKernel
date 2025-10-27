@@ -21,7 +21,7 @@ BootDriveManager::BootDriveManager() {
 BootDriveManager::~BootDriveManager() {
     // Clean up resources
     if (pagefile_bitmap) {
-        kfree(pagefile_bitmap);
+        free(pagefile_bitmap);
         pagefile_bitmap = nullptr;
     }
     
@@ -89,7 +89,7 @@ bool BootDriveManager::MountEfiPartition(const char* mount_point) {
     return result;
 }
 
-bool BootDriveManager::WriteEfiBootData(const char* filename, const void* data, uint32_t size) {
+bool BootDriveManager::WriteEfiBootData(const char* filename, const void* data, uint32 size) {
     if (!b_drive_driver || !filename || !data || size == 0) {
         return false;
     }
@@ -100,7 +100,7 @@ bool BootDriveManager::WriteEfiBootData(const char* filename, const void* data, 
     return true;
 }
 
-bool BootDriveManager::ReadEfiBootData(const char* filename, void* buffer, uint32_t size) {
+bool BootDriveManager::ReadEfiBootData(const char* filename, void* buffer, uint32 size) {
     if (!b_drive_driver || !filename || !buffer || size == 0) {
         return false;
     }
@@ -170,14 +170,14 @@ bool BootDriveManager::MountPrimaryDrive(const char* mount_point) {
     return result;
 }
 
-bool BootDriveManager::CreatePagefile(uint32_t size_mb) {
+bool BootDriveManager::CreatePagefile(uint32 size_mb) {
     if (size_mb == 0) {
         return false;
     }
     
-    uint32_t size_bytes = size_mb * 1024 * 1024;
-    uint32_t page_size = 4096; // Standard 4KB page size
-    uint32_t total_pages = size_bytes / page_size;
+    uint32 size_bytes = size_mb * 1024 * 1024;
+    uint32 page_size = 4096; // Standard 4KB page size
+    uint32 total_pages = size_bytes / page_size;
     
     // Initialize pagefile header
     pagefile_info.signature = 0x454C4946; // "FILE" in hex
@@ -186,8 +186,8 @@ bool BootDriveManager::CreatePagefile(uint32_t size_mb) {
     pagefile_info.free_pages = total_pages;
     
     // Allocate bitmap for page tracking
-    uint32_t bitmap_size = (total_pages + 31) / 32; // Number of 32-bit integers needed
-    pagefile_bitmap = (uint8_t*)kmalloc(bitmap_size * 4);
+    uint32 bitmap_size = (total_pages + 31) / 32; // Number of 32-bit integers needed
+    pagefile_bitmap = (uint8*)malloc(bitmap_size * 4);
     if (!pagefile_bitmap) {
         LOG("Failed to allocate pagefile bitmap");
         return false;
@@ -224,18 +224,18 @@ bool BootDriveManager::IsSwapEnabled() {
     return c_drive_swap_enabled;
 }
 
-bool BootDriveManager::AllocatePagefileSpace(uint32_t num_pages, uint32_t* page_indices) {
+bool BootDriveManager::AllocatePagefileSpace(uint32 num_pages, uint32* page_indices) {
     if (!pagefile_bitmap || !page_indices || num_pages == 0) {
         return false;
     }
     
-    uint32_t allocated_count = 0;
-    uint32_t total_pages = pagefile_info.total_pages;
+    uint32 allocated_count = 0;
+    uint32 total_pages = pagefile_info.total_pages;
     
     // Find free pages in the bitmap
-    for (uint32_t bit_idx = 0; bit_idx < total_pages && allocated_count < num_pages; bit_idx++) {
-        uint32_t word_idx = bit_idx / 32;
-        uint32_t bit_pos = bit_idx % 32;
+    for (uint32 bit_idx = 0; bit_idx < total_pages && allocated_count < num_pages; bit_idx++) {
+        uint32 word_idx = bit_idx / 32;
+        uint32 bit_pos = bit_idx % 32;
         
         if (!(pagefile_bitmap[word_idx * 4 + bit_pos / 8] & (1 << (bit_pos % 8)))) {
             // Page is free, allocate it
@@ -250,28 +250,28 @@ bool BootDriveManager::AllocatePagefileSpace(uint32_t num_pages, uint32_t* page_
         return true;
     } else {
         // Rollback allocated pages
-        for (uint32_t i = 0; i < allocated_count; i++) {
-            uint32_t word_idx = page_indices[i] / 32;
-            uint32_t bit_pos = page_indices[i] % 32;
+        for (uint32 i = 0; i < allocated_count; i++) {
+            uint32 word_idx = page_indices[i] / 32;
+            uint32 bit_pos = page_indices[i] % 32;
             pagefile_bitmap[word_idx * 4 + bit_pos / 8] &= ~(1 << (bit_pos % 8));
         }
         return false;
     }
 }
 
-bool BootDriveManager::FreePagefilePages(uint32_t* page_indices, uint32_t num_pages) {
+bool BootDriveManager::FreePagefilePages(uint32* page_indices, uint32 num_pages) {
     if (!pagefile_bitmap || !page_indices || num_pages == 0) {
         return false;
     }
     
-    for (uint32_t i = 0; i < num_pages; i++) {
-        uint32_t page_idx = page_indices[i];
+    for (uint32 i = 0; i < num_pages; i++) {
+        uint32 page_idx = page_indices[i];
         if (page_idx >= pagefile_info.total_pages) {
             continue; // Skip invalid page indices
         }
         
-        uint32_t word_idx = page_idx / 32;
-        uint32_t bit_pos = page_idx % 32;
+        uint32 word_idx = page_idx / 32;
+        uint32 bit_pos = page_idx % 32;
         
         // Mark page as free
         pagefile_bitmap[word_idx * 4 + bit_pos / 8] &= ~(1 << (bit_pos % 8));
@@ -281,7 +281,7 @@ bool BootDriveManager::FreePagefilePages(uint32_t* page_indices, uint32_t num_pa
     return true;
 }
 
-bool BootDriveManager::ReadPagefilePage(uint32_t page_index, void* buffer) {
+bool BootDriveManager::ReadPagefilePage(uint32 page_index, void* buffer) {
     if (!buffer || page_index >= pagefile_info.total_pages) {
         return false;
     }
@@ -292,7 +292,7 @@ bool BootDriveManager::ReadPagefilePage(uint32_t page_index, void* buffer) {
     return false;
 }
 
-bool BootDriveManager::WritePagefilePage(uint32_t page_index, const void* buffer) {
+bool BootDriveManager::WritePagefilePage(uint32 page_index, const void* buffer) {
     if (!buffer || page_index >= pagefile_info.total_pages) {
         return false;
     }
@@ -343,12 +343,12 @@ bool BootDriveManager::SetupDriveMappings() {
     return false;
 }
 
-bool BootDriveManager::InitializePagefileBitmap(uint32_t total_pages) {
+bool BootDriveManager::InitializePagefileBitmap(uint32 total_pages) {
     // Calculate required bitmap size
-    uint32_t bitmap_size = (total_pages + 31) / 32; // Number of 32-bit integers needed
+    uint32 bitmap_size = (total_pages + 31) / 32; // Number of 32-bit integers needed
     bitmap_size *= 4; // Convert to bytes
     
-    pagefile_bitmap = (uint8_t*)kmalloc(bitmap_size);
+    pagefile_bitmap = (uint8*)malloc(bitmap_size);
     if (!pagefile_bitmap) {
         return false;
     }
@@ -359,7 +359,7 @@ bool BootDriveManager::InitializePagefileBitmap(uint32_t total_pages) {
     return true;
 }
 
-bool BootDriveManager::FindSwapSpaceOnDevice(Device* device, uint32_t required_size) {
+bool BootDriveManager::FindSwapSpaceOnDevice(Device* device, uint32 required_size) {
     // In a real implementation, this would query the device for available space
     // For now, we'll just return true as a placeholder
     LOG("Looking for " << required_size << " bytes of swap space on device");
@@ -392,7 +392,7 @@ bool InitializeBootDrives() {
     return true;
 }
 
-bool CreateSwapFile(uint32_t size_mb) {
+bool CreateSwapFile(uint32 size_mb) {
     if (!g_boot_drive_manager) {
         return false;
     }

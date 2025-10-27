@@ -14,28 +14,28 @@
 // RAM file node structure
 struct RamFsNode {
     char name[RAMFS_MAX_FILENAME_LENGTH];
-    uint8_t attributes;
-    uint32_t size;
-    uint32_t alloc_size;  // Allocated size (may be larger than actual size)
-    uint32_t access_time;
-    uint32_t modify_time;
-    uint32_t create_time;
+    uint8 attributes;
+    uint32 size;
+    uint32 alloc_size;  // Allocated size (may be larger than actual size)
+    uint32 access_time;
+    uint32 modify_time;
+    uint32 create_time;
     void* data;           // Pointer to file data
     RamFsNode* parent;
     RamFsNode* children;
     RamFsNode* next_sibling;
     RamFsNode* prev_sibling;
     bool is_directory;
-    uint32_t ref_count;
+    uint32 ref_count;
 };
 
 // RAM filesystem structure
 struct RamFs {
-    uint32_t magic;
+    uint32 magic;
     RamFsNode* root;
-    uint32_t total_size;
-    uint32_t used_size;
-    uint32_t free_size;
+    uint32 total_size;
+    uint32 used_size;
+    uint32 free_size;
     Spinlock fs_lock;
 };
 
@@ -50,7 +50,7 @@ public:
     ~RamFsDriver();
     
     // Initialize the RAM filesystem
-    bool Initialize(uint32_t size = 4 * 1024 * 1024);  // Default 4MB
+    bool Initialize(uint32 size = 4 * 1024 * 1024);  // Default 4MB
     
     // Mount the RAM filesystem to VFS
     bool Mount(const char* mount_point);
@@ -59,7 +59,7 @@ public:
     bool Unmount();
     
     // Create a file
-    RamFsNode* CreateFile(const char* path, uint8_t attributes = 0);
+    RamFsNode* CreateFile(const char* path, uint8 attributes = 0);
     
     // Create a directory
     RamFsNode* CreateDirectory(const char* path);
@@ -68,10 +68,10 @@ public:
     bool Delete(const char* path);
     
     // Write to a file
-    int WriteFile(RamFsNode* node, const void* buffer, uint32_t size, uint32_t offset);
+    int WriteFile(RamFsNode* node, const void* buffer, uint32 size, uint32 offset);
     
     // Read from a file
-    int ReadFile(RamFsNode* node, void* buffer, uint32_t size, uint32_t offset);
+    int ReadFile(RamFsNode* node, void* buffer, uint32 size, uint32 offset);
     
     // Get file statistics
     int GetStat(RamFsNode* node, FileStat* stat);
@@ -80,7 +80,7 @@ public:
     RamFsNode* FindNode(const char* path);
     
     // Get file system information
-    bool GetFsInfo(uint32_t& total_size, uint32_t& used_size, uint32_t& free_size);
+    bool GetFsInfo(uint32& total_size, uint32& used_size, uint32& free_size);
     
     // Get the VFS root node
     VfsNode* GetVfsRoot() { return vfs_root; }
@@ -89,19 +89,19 @@ private:
     // Internal helper functions
     RamFsNode* CreateNode(const char* name, RamFsNode* parent, bool is_directory);
     void DestroyNode(RamFsNode* node);
-    bool AllocateData(RamFsNode* node, uint32_t size);
-    bool ResizeData(RamFsNode* node, uint32_t new_size);
+    bool AllocateData(RamFsNode* node, uint32 size);
+    bool ResizeData(RamFsNode* node, uint32 new_size);
     void SplitPath(const char* path, char* dir, char* filename);
     
     // VFS operation implementations
-    static int Open(VfsNode* node, uint32_t flags);
+    static int Open(VfsNode* node, uint32 flags);
     static int Close(VfsNode* node);
-    static int Read(VfsNode* node, void* buffer, uint32_t size, uint32_t offset);
-    static int Write(VfsNode* node, const void* buffer, uint32_t size, uint32_t offset);
-    static int Seek(VfsNode* node, int32_t offset, int origin);
+    static int Read(VfsNode* node, void* buffer, uint32 size, uint32 offset);
+    static int Write(VfsNode* node, const void* buffer, uint32 size, uint32 offset);
+    static int Seek(VfsNode* node, int32 offset, int origin);
     static int Stat(VfsNode* node, FileStat* stat);
-    static int Readdir(VfsNode* node, uint32_t index, DirEntry* entry);
-    static int Create(VfsNode* node, const char* name, uint8_t attributes);
+    static int Readdir(VfsNode* node, uint32 index, DirEntry* entry);
+    static int Create(VfsNode* node, const char* name, uint8 attributes);
     static int Delete(VfsNode* node);
 };
 

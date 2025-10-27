@@ -57,12 +57,12 @@ public:
     virtual uint64_t GetFeatures() = 0;
     
     // I/O port operations
-    virtual uint8_t InByte(uint16_t port) = 0;
+    virtual uint8 InByte(uint16_t port) = 0;
     virtual uint16_t InWord(uint16_t port) = 0;
-    virtual uint32_t InDWord(uint16_t port) = 0;
-    virtual void OutByte(uint16_t port, uint8_t value) = 0;
+    virtual uint32 InDWord(uint16_t port) = 0;
+    virtual void OutByte(uint16_t port, uint8 value) = 0;
     virtual void OutWord(uint16_t port, uint16_t value) = 0;
-    virtual void OutDWord(uint16_t port, uint32_t value) = 0;
+    virtual void OutDWord(uint16_t port, uint32 value) = 0;
     
     // CPU-specific memory operations
     virtual void MemoryBarrier() = 0;
@@ -84,19 +84,19 @@ public:
     virtual uint64_t GetAvailableMemory() = 0;
     
     // Allocate physical pages
-    virtual void* AllocatePages(uint32_t count) = 0;
+    virtual void* AllocatePages(uint32 count) = 0;
     
     // Free physical pages
-    virtual void FreePages(void* addr, uint32_t count) = 0;
+    virtual void FreePages(void* addr, uint32 count) = 0;
     
     // Map physical memory to virtual
-    virtual void* MapPhysicalMemory(uint32_t physical_addr, uint32_t size) = 0;
+    virtual void* MapPhysicalMemory(uint32 physical_addr, uint32 size) = 0;
     
     // Unmap virtual memory
     virtual void UnmapVirtualMemory(void* virtual_addr) = 0;
     
     // Get page size
-    virtual uint32_t GetPageSize() = 0;
+    virtual uint32 GetPageSize() = 0;
 };
 
 // HAL interface for interrupt management
@@ -108,22 +108,22 @@ public:
     virtual HalResult Initialize() = 0;
     
     // Register an interrupt handler
-    virtual HalResult RegisterHandler(uint8_t irq, void (*handler)(void*)) = 0;
+    virtual HalResult RegisterHandler(uint8 irq, void (*handler)(void*)) = 0;
     
     // Unregister an interrupt handler
-    virtual HalResult UnregisterHandler(uint8_t irq) = 0;
+    virtual HalResult UnregisterHandler(uint8 irq) = 0;
     
     // Enable an interrupt
-    virtual HalResult EnableInterrupt(uint8_t irq) = 0;
+    virtual HalResult EnableInterrupt(uint8 irq) = 0;
     
     // Disable an interrupt
-    virtual HalResult DisableInterrupt(uint8_t irq) = 0;
+    virtual HalResult DisableInterrupt(uint8 irq) = 0;
     
     // Get interrupt status
-    virtual bool IsInterruptEnabled(uint8_t irq) = 0;
+    virtual bool IsInterruptEnabled(uint8 irq) = 0;
     
     // Send End of Interrupt signal
-    virtual void EndOfInterrupt(uint8_t irq) = 0;
+    virtual void EndOfInterrupt(uint8 irq) = 0;
     
     // Get interrupt controller type
     virtual const char* GetControllerType() = 0;
@@ -138,10 +138,10 @@ public:
     virtual HalResult Initialize() = 0;
     
     // Set timer frequency
-    virtual HalResult SetFrequency(uint32_t hz) = 0;
+    virtual HalResult SetFrequency(uint32 hz) = 0;
     
     // Get current timer frequency
-    virtual uint32_t GetFrequency() = 0;
+    virtual uint32 GetFrequency() = 0;
     
     // Get timer tick count
     virtual uint64_t GetTickCount() = 0;
@@ -150,7 +150,7 @@ public:
     virtual uint64_t GetHighResolutionTime() = 0;
     
     // Sleep for specified milliseconds
-    virtual void Sleep(uint32_t milliseconds) = 0;
+    virtual void Sleep(uint32 milliseconds) = 0;
     
     // Register timer interrupt handler
     virtual HalResult RegisterHandler(void (*handler)()) = 0;
@@ -165,16 +165,16 @@ public:
     virtual HalResult Initialize() = 0;
     
     // Read PCI configuration space
-    virtual uint32_t ReadConfig(uint8_t bus, uint8_t device, uint8_t function, uint8_t offset) = 0;
+    virtual uint32 ReadConfig(uint8 bus, uint8 device, uint8 function, uint8 offset) = 0;
     
     // Write PCI configuration space
-    virtual void WriteConfig(uint8_t bus, uint8_t device, uint8_t function, uint8_t offset, uint32_t value) = 0;
+    virtual void WriteConfig(uint8 bus, uint8 device, uint8 function, uint8 offset, uint32 value) = 0;
     
     // Find PCI device by vendor and device ID
-    virtual HalResult FindDevice(uint16_t vendor_id, uint16_t device_id, uint8_t* bus, uint8_t* device, uint8_t* function) = 0;
+    virtual HalResult FindDevice(uint16_t vendor_id, uint16_t device_id, uint8* bus, uint8* device, uint8* function) = 0;
     
     // Enumerate all PCI devices
-    virtual uint32_t EnumerateDevices() = 0;
+    virtual uint32 EnumerateDevices() = 0;
 };
 
 // Main HAL manager that provides access to all HAL interfaces

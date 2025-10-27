@@ -11,7 +11,7 @@ typedef void (*ConfigChangeCallback)(const char* config_name, void* old_value, v
 struct RuntimeConfigEntry {
     char name[64];                    // Configuration name
     void* value;                      // Pointer to the configuration value
-    uint32_t size;                    // Size of the configuration value in bytes
+    uint32 size;                    // Size of the configuration value in bytes
     ConfigChangeCallback callback;    // Callback for when the value changes
     bool is_readonly;                 // Whether this configuration can be changed at runtime
     void* default_value;              // Default value for this configuration
@@ -20,9 +20,9 @@ struct RuntimeConfigEntry {
 // Runtime configuration manager
 class RuntimeConfigManager {
 private:
-    static const uint32_t MAX_CONFIG_ENTRIES = 256;
+    static const uint32 MAX_CONFIG_ENTRIES = 256;
     RuntimeConfigEntry entries[MAX_CONFIG_ENTRIES];
-    uint32_t entry_count;
+    uint32 entry_count;
 
 public:
     RuntimeConfigManager();
@@ -32,14 +32,14 @@ public:
     bool Initialize();
 
     // Register a configuration value that can be changed at runtime
-    bool RegisterConfig(const char* name, void* value, uint32_t size, 
+    bool RegisterConfig(const char* name, void* value, uint32 size, 
                        ConfigChangeCallback callback = nullptr, bool is_readonly = false);
 
     // Get a configuration value by name
-    bool GetConfig(const char* name, void* out_value, uint32_t max_size);
+    bool GetConfig(const char* name, void* out_value, uint32 max_size);
 
     // Set a configuration value by name (runtime change)
-    bool SetConfig(const char* name, const void* new_value, uint32_t size);
+    bool SetConfig(const char* name, const void* new_value, uint32 size);
 
     // Get configuration as string
     const char* GetConfigString(const char* name);
@@ -54,7 +54,7 @@ public:
     bool LoadConfigFromFile(const char* filename);
 
     // Get a list of all configuration names
-    uint32_t GetConfigNames(char** names, uint32_t max_names);
+    uint32 GetConfigNames(char** names, uint32 max_names);
 
     // Update all configuration values based on the current g_kernel_config
     bool UpdateFromStaticConfig();
@@ -63,7 +63,7 @@ public:
     bool ApplyPendingChanges();
     
     // Validate a configuration change before applying it
-    bool ValidateConfigChange(const char* name, const void* new_value, uint32_t size);
+    bool ValidateConfigChange(const char* name, const void* new_value, uint32 size);
 };
 
 // Global runtime configuration manager instance

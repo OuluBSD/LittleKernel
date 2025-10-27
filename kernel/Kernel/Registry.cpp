@@ -58,7 +58,7 @@ bool Registry::Initialize() {
     return true;
 }
 
-bool Registry::CreateKey(const char* path, uint32_t access, RegistryKey** key) {
+bool Registry::CreateKey(const char* path, uint32 access, RegistryKey** key) {
     if (!path || !key) {
         return false;
     }
@@ -100,7 +100,7 @@ bool Registry::CreateKey(const char* path, uint32_t access, RegistryKey** key) {
     while (token != nullptr) {
         // Look for the subkey under the current parent
         RegistryKey* found_child = nullptr;
-        for (uint32_t i = 0; i < parent_key->subkey_count; i++) {
+        for (uint32 i = 0; i < parent_key->subkey_count; i++) {
             if (parent_key->subkeys[i] && strcmp(parent_key->subkeys[i]->name, token) == 0) {
                 found_child = parent_key->subkeys[i];
                 break;
@@ -125,7 +125,7 @@ bool Registry::CreateKey(const char* path, uint32_t access, RegistryKey** key) {
     return true;
 }
 
-bool Registry::OpenKey(const char* path, uint32_t access, RegistryKey** key) {
+bool Registry::OpenKey(const char* path, uint32 access, RegistryKey** key) {
     if (!path || !key) {
         return false;
     }
@@ -182,13 +182,13 @@ bool Registry::DeleteKey(const char* path) {
     }
     
     // Find the key to delete in parent's subkeys
-    for (uint32_t i = 0; i < parent->subkey_count; i++) {
+    for (uint32 i = 0; i < parent->subkey_count; i++) {
         if (parent->subkeys[i] && strcmp(parent->subkeys[i]->name, key_name) == 0) {
             // Remove from the array
             DestroyRegistryKey(parent->subkeys[i]);
             
             // Shift the remaining keys down
-            for (uint32_t j = i; j < parent->subkey_count - 1; j++) {
+            for (uint32 j = i; j < parent->subkey_count - 1; j++) {
                 parent->subkeys[j] = parent->subkeys[j + 1];
             }
             parent->subkey_count--;
@@ -203,7 +203,7 @@ bool Registry::DeleteKey(const char* path) {
     return false;
 }
 
-bool Registry::SetValue(RegistryKey* key, const char* value_name, uint32_t type, const void* data, uint32_t size) {
+bool Registry::SetValue(RegistryKey* key, const char* value_name, uint32 type, const void* data, uint32 size) {
     if (!key || !value_name || !data || size > REGISTRY_MAX_VALUE_LENGTH) {
         return false;
     }
@@ -212,7 +212,7 @@ bool Registry::SetValue(RegistryKey* key, const char* value_name, uint32_t type,
     
     // Check if value already exists
     int existing_index = -1;
-    for (uint32_t i = 0; i < key->value_count; i++) {
+    for (uint32 i = 0; i < key->value_count; i++) {
         if (key->value_names[i] && strcmp(key->value_names[i], value_name) == 0) {
             existing_index = i;
             break;
@@ -221,15 +221,15 @@ bool Registry::SetValue(RegistryKey* key, const char* value_name, uint32_t type,
     
     if (existing_index >= 0) {
         // Update existing value
-        uint32_t old_size = key->value_sizes[existing_index];
+        uint32 old_size = key->value_sizes[existing_index];
         
         // Free old data if needed
         if (key->value_data[existing_index]) {
-            kfree(key->value_data[existing_index]);
+            free(key->value_data[existing_index]);
         }
         
         // Allocate new data
-        key->value_data[existing_index] = kmalloc(size);
+        key->value_data[existing_index] = malloc(size);
         if (!key->value_data[existing_index]) {
             key->key_lock.Release();
             return false;
@@ -241,9 +241,9 @@ bool Registry::SetValue(RegistryKey* key, const char* value_name, uint32_t type,
         
         // Update the name if it changed
         if (key->value_names[existing_index]) {
-            kfree(key->value_names[existing_index]);
+            free(key->value_names[existing_index]);
         }
-        key->value_names[existing_index] = (char*)kmalloc(strlen(value_name) + 1);
+        key->value_names[existing_index] = (char*)malloc(strlen(value_name) + 1);
         if (key->value_names[existing_index]) {
             strcpy(key->value_names[existing_index], value_name);
         }
@@ -254,10 +254,10 @@ bool Registry::SetValue(RegistryKey* key, const char* value_name, uint32_t type,
             return false;  // No more space for values
         }
         
-        uint32_t idx = key->value_count;
+        uint32 idx = key->value_count;
         
         // Allocate value name
-        key->value_names[idx] = (char*)kmalloc(strlen(value_name) + 1);
+        key->value_names[idx] = (char*)malloc(strlen(value_name) + 1);
         if (!key->value_names[idx]) {
             key->key_lock.Release();
             return false;
@@ -265,9 +265,9 @@ bool Registry::SetValue(RegistryKey* key, const char* value_name, uint32_t type,
         strcpy(key->value_names[idx], value_name);
         
         // Allocate value data
-        key->value_data[idx] = kmalloc(size);
+        key->value_data[idx] = malloc(size);
         if (!key->value_data[idx]) {
-            kfree(key->value_names[idx]);
+            free(key->value_names[idx]);
             key->value_names[idx] = nullptr;
             key->key_lock.Release();
             return false;
@@ -283,7 +283,7 @@ bool Registry::SetValue(RegistryKey* key, const char* value_name, uint32_t type,
     return true;
 }
 
-bool Registry::GetValue(RegistryKey* key, const char* value_name, void* data, uint32_t* size) {
+bool Registry::GetValue(RegistryKey* key, const char* value_name, void* data, uint32* size) {
     if (!key || !value_name || !data || !size) {
         return false;
     }
@@ -291,7 +291,7 @@ bool Registry::GetValue(RegistryKey* key, const char* value_name, void* data, ui
     key->key_lock.Acquire();
     
     // Find the value
-    for (uint32_t i = 0; i < key->value_count; i++) {
+    for (uint32 i = 0; i < key->value_count; i++) {
         if (key->value_names[i] && strcmp(key->value_names[i], value_name) == 0) {
             // Check if the provided buffer is large enough
             if (*size < key->value_sizes[i]) {
@@ -321,18 +321,18 @@ bool Registry::DeleteValue(RegistryKey* key, const char* value_name) {
     key->key_lock.Acquire();
     
     // Find the value
-    for (uint32_t i = 0; i < key->value_count; i++) {
+    for (uint32 i = 0; i < key->value_count; i++) {
         if (key->value_names[i] && strcmp(key->value_names[i], value_name) == 0) {
             // Free the data and name
             if (key->value_data[i]) {
-                kfree(key->value_data[i]);
+                free(key->value_data[i]);
             }
             if (key->value_names[i]) {
-                kfree(key->value_names[i]);
+                free(key->value_names[i]);
             }
             
             // Shift remaining values down
-            for (uint32_t j = i; j < key->value_count - 1; j++) {
+            for (uint32 j = i; j < key->value_count - 1; j++) {
                 key->value_names[j] = key->value_names[j + 1];
                 key->value_data[j] = key->value_data[j + 1];
                 key->value_types[j] = key->value_types[j + 1];
@@ -352,7 +352,7 @@ bool Registry::DeleteValue(RegistryKey* key, const char* value_name) {
     return false;  // Value not found
 }
 
-bool Registry::EnumerateKey(RegistryKey* key, uint32_t index, char* name, uint32_t name_size) {
+bool Registry::EnumerateKey(RegistryKey* key, uint32 index, char* name, uint32 name_size) {
     if (!key || !name || index >= key->subkey_count) {
         return false;
     }
@@ -370,7 +370,7 @@ bool Registry::EnumerateKey(RegistryKey* key, uint32_t index, char* name, uint32
     return false;
 }
 
-bool Registry::EnumerateValue(RegistryKey* key, uint32_t index, char* name, uint32_t name_size, uint32_t* type) {
+bool Registry::EnumerateValue(RegistryKey* key, uint32 index, char* name, uint32 name_size, uint32* type) {
     if (!key || !name || !type || index >= key->value_count) {
         return false;
     }
@@ -389,14 +389,14 @@ bool Registry::EnumerateValue(RegistryKey* key, uint32_t index, char* name, uint
     return false;
 }
 
-bool Registry::QueryValueInfo(RegistryKey* key, const char* value_name, uint32_t* type, uint32_t* size) {
+bool Registry::QueryValueInfo(RegistryKey* key, const char* value_name, uint32* type, uint32* size) {
     if (!key || !value_name) {
         return false;
     }
     
     key->key_lock.Acquire();
     
-    for (uint32_t i = 0; i < key->value_count; i++) {
+    for (uint32 i = 0; i < key->value_count; i++) {
         if (key->value_names[i] && strcmp(key->value_names[i], value_name) == 0) {
             if (type) *type = key->value_types[i];
             if (size) *size = key->value_sizes[i];
@@ -409,7 +409,7 @@ bool Registry::QueryValueInfo(RegistryKey* key, const char* value_name, uint32_t
     return false;
 }
 
-bool Registry::TranslatePath(const char* input_path, char* output_path, uint32_t max_len) {
+bool Registry::TranslatePath(const char* input_path, char* output_path, uint32 max_len) {
     if (!input_path || !output_path) {
         return false;
     }
@@ -421,7 +421,7 @@ bool Registry::TranslatePath(const char* input_path, char* output_path, uint32_t
         // Look up the drive letter in the registry MountPoints key
         RegistryKey* mount_key = nullptr;
         if (OpenKey("HKEY_LOCAL_MACHINE\\SYSTEM\\MountPoints", KEY_READ, &mount_key)) {
-            uint32_t size = max_len;
+            uint32 size = max_len;
             bool result = GetValue(mount_key, drive_letter, output_path, &size);
             CloseKey(mount_key);
             
@@ -463,7 +463,7 @@ bool Registry::AddPathMapping(const char* virtual_path, const char* physical_pat
 }
 
 RegistryKey* Registry::CreateRegistryKey(const char* name, RegistryKey* parent) {
-    RegistryKey* key = (RegistryKey*)kmalloc(sizeof(RegistryKey));
+    RegistryKey* key = (RegistryKey*)malloc(sizeof(RegistryKey));
     if (!key) {
         return nullptr;
     }
@@ -510,7 +510,7 @@ RegistryKey* Registry::CreateRegistryKey(const char* name, RegistryKey* parent) 
             parent->subkey_count++;
         } else {
             // No space for more subkeys
-            kfree(key);
+            free(key);
             return nullptr;
         }
     }
@@ -524,24 +524,24 @@ void Registry::DestroyRegistryKey(RegistryKey* key) {
     }
     
     // Recursively destroy subkeys
-    for (uint32_t i = 0; i < key->subkey_count; i++) {
+    for (uint32 i = 0; i < key->subkey_count; i++) {
         if (key->subkeys[i]) {
             DestroyRegistryKey(key->subkeys[i]);
         }
     }
     
     // Free all value data
-    for (uint32_t i = 0; i < key->value_count; i++) {
+    for (uint32 i = 0; i < key->value_count; i++) {
         if (key->value_data[i]) {
-            kfree(key->value_data[i]);
+            free(key->value_data[i]);
         }
         if (key->value_names[i]) {
-            kfree(key->value_names[i]);
+            free(key->value_names[i]);
         }
     }
     
     // Free the key itself
-    kfree(key);
+    free(key);
 }
 
 RegistryKey* Registry::FindKey(const char* path) {
@@ -585,7 +585,7 @@ RegistryKey* Registry::FindKey(const char* path) {
     while (token != nullptr) {
         // Find the subkey with matching name
         RegistryKey* found_child = nullptr;
-        for (uint32_t i = 0; i < current->subkey_count; i++) {
+        for (uint32 i = 0; i < current->subkey_count; i++) {
             if (current->subkeys[i] && strcmp(current->subkeys[i]->name, token) == 0) {
                 found_child = current->subkeys[i];
                 break;
@@ -668,7 +668,7 @@ bool InitializeRegistry() {
 }
 
 // Registry API for modules to safely access registry with proper permissions
-bool RegistryReadValue(const char* key_path, const char* value_name, void* buffer, uint32_t* size, uint32_t access_mask) {
+bool RegistryReadValue(const char* key_path, const char* value_name, void* buffer, uint32* size, uint32 access_mask) {
     if (!g_registry) {
         return false;
     }
@@ -684,7 +684,7 @@ bool RegistryReadValue(const char* key_path, const char* value_name, void* buffe
     return result;
 }
 
-bool RegistryWriteValue(const char* key_path, const char* value_name, uint32_t type, const void* buffer, uint32_t size, uint32_t access_mask) {
+bool RegistryWriteValue(const char* key_path, const char* value_name, uint32 type, const void* buffer, uint32 size, uint32 access_mask) {
     if (!g_registry) {
         return false;
     }
@@ -700,7 +700,7 @@ bool RegistryWriteValue(const char* key_path, const char* value_name, uint32_t t
     return result;
 }
 
-bool RegistryReadString(const char* key_path, const char* value_name, char* buffer, uint32_t* size, uint32_t access_mask) {
+bool RegistryReadString(const char* key_path, const char* value_name, char* buffer, uint32* size, uint32 access_mask) {
     if (!g_registry) {
         return false;
     }
@@ -721,7 +721,7 @@ bool RegistryReadString(const char* key_path, const char* value_name, char* buff
     return result;
 }
 
-bool RegistryWriteString(const char* key_path, const char* value_name, const char* str, uint32_t access_mask) {
+bool RegistryWriteString(const char* key_path, const char* value_name, const char* str, uint32 access_mask) {
     if (!g_registry) {
         return false;
     }

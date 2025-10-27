@@ -2,8 +2,62 @@
 #include "Kernel.h"
 #include "KernelConfig.h"
 
+// Implement missing string functions for freestanding environment
+
+// String comparison function
+int strcmp(const char* str1, const char* str2) {
+    while (*str1 && (*str1 == *str2)) {
+        str1++;
+        str2++;
+    }
+    return *(unsigned char*)str1 - *(unsigned char*)str2;
+}
+
+// String length function
+int strlen(const char* str) {
+    int len = 0;
+    while (str[len]) {
+        len++;
+    }
+    return len;
+}
+
+// Find first occurrence of substring in string
+char* strstr(const char* haystack, const char* needle) {
+    if (!*needle) return (char*)haystack; // Empty needle
+    
+    const char* h = haystack;
+    while (*h) {
+        const char* h_it = h;
+        const char* n_it = needle;
+        
+        while (*h_it && *n_it && (*h_it == *n_it)) {
+            h_it++;
+            n_it++;
+        }
+        
+        if (!*n_it) return (char*)h; // Found complete match
+        
+        h++;
+    }
+    
+    return nullptr; // Not found
+}
+
+// Copy string (with safe bounds)
+char* strcpy_safe(char* dest, const char* src, uint32 dest_size) {
+    if (!dest || !src || dest_size == 0) return dest;
+    
+    uint32 i;
+    for (i = 0; i < dest_size - 1 && src[i] != '\\0'; i++) {
+        dest[i] = src[i];
+    }
+    dest[i] = '\\0';
+    return dest;
+}
+
 // Enhanced boot process function
-int EnhancedBootProcess(struct Multiboot* mboot_ptr, uint32_t magic) {
+int EnhancedBootProcess(struct Multiboot* mboot_ptr, uint32 magic) {
     // Check if multiboot magic number is correct
     if (magic != 0x2BADB002) {
         LOG("Error: Invalid multiboot magic number: 0x" << magic);
@@ -28,7 +82,7 @@ int EnhancedBootProcess(struct Multiboot* mboot_ptr, uint32_t magic) {
     LOG("Boot parameters validated successfully");
 
     // Initialize the global structure with essential systems (early initialization)
-    // Note: We can't use kmalloc yet as the heap may not be initialized
+    // Note: We can't use malloc yet as the heap may not be initialized
     // So we'll need to use static allocation or a different approach
     if (!global) {
         LOG("Initializing global structure in EnhancedBootProcess");
@@ -58,7 +112,7 @@ int EnhancedBootProcess(struct Multiboot* mboot_ptr, uint32_t magic) {
     LOG("  Total memory estimate: " << (boot_info->memory_lower + boot_info->memory_upper) << " KB");
 
     // Clean up boot info structure (it was allocated in ParseBootInfo)
-    // We need to make sure not to call kfree before heap is initialized
+    // We need to make sure not to call free before heap is initialized
     // For now, don't free the structure to avoid issues with early boot
     
     // Store the boot info pointer globally if needed later in the boot process
@@ -68,14 +122,14 @@ int EnhancedBootProcess(struct Multiboot* mboot_ptr, uint32_t magic) {
 }
 
 // Function to extract and parse boot parameters
-BootInfo* ParseBootInfo(struct Multiboot* mboot_ptr, uint32_t magic) {
+BootInfo* ParseBootInfo(struct Multiboot* mboot_ptr, uint32 magic) {
     if (!mboot_ptr) {
         LOG("Error: Null multiboot pointer");
         return nullptr;
     }
 
     // Allocate boot info structure
-    BootInfo* boot_info = (BootInfo*)kmalloc(sizeof(BootInfo));
+    BootInfo* boot_info = (BootInfo*)malloc(sizeof(BootInfo));
     if (!boot_info) {
         LOG("Error: Failed to allocate boot info structure");
         return nullptr;
@@ -120,7 +174,7 @@ BootInfo* ParseBootInfo(struct Multiboot* mboot_ptr, uint32_t magic) {
     // Extract initrd info if available
     if (mboot_ptr->flags & 0x06) {
         boot_info->initrd_count = mboot_ptr->mods_count;
-        boot_info->initrd_addr = (uint32_t*)mboot_ptr->mods_addr;
+        boot_info->initrd_addr = (uint32*)mboot_ptr->mods_addr;
         LOG("Initrd info: " << boot_info->initrd_count << " modules at 0x" << boot_info->initrd_addr);
     } else {
         boot_info->initrd_count = 0;
@@ -248,7 +302,7 @@ bool InitializeHardwareFromBoot(BootInfo* boot_info) {
     // This is a placeholder for more sophisticated hardware detection
 
     // Example: Adjust configuration based on available memory
-    uint32_t total_memory = (boot_info->memory_lower + boot_info->memory_upper) * 1024; // Convert from KB to bytes
+    uint32 total_memory = (boot_info->memory_lower + boot_info->memory_upper) * 1024; // Convert from KB to bytes
     if (total_memory < 32 * 1024 * 1024) { // Less than 32MB
         LOG("Low memory system detected, adjusting configuration");
         // Reduce some default values for low-memory systems

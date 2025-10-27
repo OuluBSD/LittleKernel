@@ -27,7 +27,7 @@ Vfs::Vfs() {
     }
     
     // Initialize cache
-    for (uint32_t i = 0; i < CACHE_SIZE; i++) {
+    for (uint32 i = 0; i < CACHE_SIZE; i++) {
         cache[i].valid = false;
         cache[i].data = nullptr;
         cache[i].size = 0;
@@ -43,7 +43,7 @@ Vfs::~Vfs() {
     // and properly unmount all filesystems before destroying the VFS
     
     // Unmount all mounted filesystems
-    for (uint32_t i = 0; i < mount_count; i++) {
+    for (uint32 i = 0; i < mount_count; i++) {
         if (mount_points[i].mounted) {
             Unmount(mount_points[i].mount_path);
         }
@@ -78,7 +78,7 @@ bool Vfs::Initialize() {
     return true;
 }
 
-bool Vfs::Mount(const char* mount_point, Device* device, uint32_t fs_type, const char* fs_name) {
+bool Vfs::Mount(const char* mount_point, Device* device, uint32 fs_type, const char* fs_name) {
     if (!mount_point || !device) {
         return false;
     }
@@ -86,7 +86,7 @@ bool Vfs::Mount(const char* mount_point, Device* device, uint32_t fs_type, const
     vfs_lock.Acquire();
     
     // Check if mount point already exists
-    for (uint32_t i = 0; i < mount_count; i++) {
+    for (uint32 i = 0; i < mount_count; i++) {
         if (mount_points[i].mounted && 
             strcmp(mount_points[i].mount_path, mount_point) == 0) {
             LOG("Mount point " << mount_point << " already exists");
@@ -96,8 +96,8 @@ bool Vfs::Mount(const char* mount_point, Device* device, uint32_t fs_type, const
     }
     
     // Find a free mount point slot
-    uint32_t slot = MAX_MOUNT_POINTS;
-    for (uint32_t i = 0; i < MAX_MOUNT_POINTS; i++) {
+    uint32 slot = MAX_MOUNT_POINTS;
+    for (uint32 i = 0; i < MAX_MOUNT_POINTS; i++) {
         if (!mount_points[i].mounted) {
             slot = i;
             break;
@@ -147,7 +147,7 @@ bool Vfs::Unmount(const char* mount_point) {
     
     vfs_lock.Acquire();
     
-    for (uint32_t i = 0; i < mount_count; i++) {
+    for (uint32 i = 0; i < mount_count; i++) {
         if (mount_points[i].mounted && 
             strcmp(mount_points[i].mount_path, mount_point) == 0) {
             
@@ -186,7 +186,7 @@ bool Vfs::Unmount(const char* mount_point) {
     return false;  // Mount point not found
 }
 
-int Vfs::Open(const char* path, uint32_t flags) {
+int Vfs::Open(const char* path, uint32 flags) {
     if (!path) {
         return VFS_ERROR;
     }
@@ -278,7 +278,7 @@ int Vfs::Close(int fd) {
     return VFS_SUCCESS;
 }
 
-int Vfs::Read(int fd, void* buffer, uint32_t size) {
+int Vfs::Read(int fd, void* buffer, uint32 size) {
     if (!IsValidFileHandle(fd) || !buffer || size == 0) {
         return VFS_ERROR;
     }
@@ -307,7 +307,7 @@ int Vfs::Read(int fd, void* buffer, uint32_t size) {
     return bytes_read;
 }
 
-int Vfs::Write(int fd, const void* buffer, uint32_t size) {
+int Vfs::Write(int fd, const void* buffer, uint32 size) {
     if (!IsValidFileHandle(fd) || !buffer || size == 0) {
         return VFS_ERROR;
     }
@@ -350,7 +350,7 @@ int Vfs::Seek(int fd, int32_t offset, int origin) {
     }
     
     // Calculate new position based on origin
-    uint32_t new_pos = 0;
+    uint32 new_pos = 0;
     switch (origin) {
         case SEEK_SET:
             new_pos = offset;
@@ -422,7 +422,7 @@ int Vfs::Stat(const char* path, FileStat* stat) {
     }
 }
 
-int Vfs::Mkdir(const char* path, uint32_t mode) {
+int Vfs::Mkdir(const char* path, uint32 mode) {
     if (!path) {
         return VFS_ERROR;
     }
@@ -483,7 +483,7 @@ int Vfs::Rmdir(const char* path) {
     }
 }
 
-int Vfs::Create(const char* path, uint32_t mode) {
+int Vfs::Create(const char* path, uint32 mode) {
     if (!path) {
         return VFS_ERROR;
     }
@@ -546,7 +546,7 @@ int Vfs::Chdir(const char* path) {
     return VFS_SUCCESS;
 }
 
-int Vfs::Readdir(const char* path, DirEntry* entries, uint32_t max_entries) {
+int Vfs::Readdir(const char* path, DirEntry* entries, uint32 max_entries) {
     if (!path || !entries || max_entries == 0) {
         return VFS_ERROR;
     }
@@ -567,7 +567,7 @@ int Vfs::Readdir(const char* path, DirEntry* entries, uint32_t max_entries) {
     
     if (node->readdir) {
         // Read directory entries using the filesystem-specific function
-        for (uint32_t i = 0; i < max_entries; i++) {
+        for (uint32 i = 0; i < max_entries; i++) {
             int result = node->readdir(node, i, &entries[i]);
             if (result != VFS_SUCCESS) {
                 vfs_lock.Release();
@@ -649,7 +649,7 @@ MountPoint* Vfs::FindMountPoint(const char* path) {
     int best_match_len = 0;
     MountPoint* best_match = nullptr;
     
-    for (uint32_t i = 0; i < mount_count; i++) {
+    for (uint32 i = 0; i < mount_count; i++) {
         if (mount_points[i].mounted) {
             int len = strlen(mount_points[i].mount_path);
             
@@ -669,7 +669,7 @@ MountPoint* Vfs::FindMountPoint(const char* path) {
     return best_match;
 }
 
-void Vfs::GetAbsolutePath(const char* relative_path, char* absolute_path, uint32_t max_len) {
+void Vfs::GetAbsolutePath(const char* relative_path, char* absolute_path, uint32 max_len) {
     if (!relative_path || !absolute_path) {
         return;
     }
@@ -686,7 +686,7 @@ void Vfs::GetAbsolutePath(const char* relative_path, char* absolute_path, uint32
 }
 
 VfsNode* Vfs::CreateVfsNode(const char* name, VfsNode* parent) {
-    VfsNode* node = (VfsNode*)kmalloc(sizeof(VfsNode));
+    VfsNode* node = (VfsNode*)malloc(sizeof(VfsNode));
     if (!node) {
         return nullptr;
     }
@@ -748,7 +748,7 @@ void Vfs::DestroyVfsNode(VfsNode* node) {
     }
     
     // Free the node
-    kfree(node);
+    free(node);
 }
 
 FileHandle* Vfs::GetFreeFileHandle() {
@@ -831,7 +831,7 @@ bool Vfs::IsAbsolutePath(const char* path) {
     return path && path[0] == '/';
 }
 
-bool Vfs::CheckPermissions(VfsNode* node, uint32_t uid, uint32_t gid, uint32_t required_permissions) {
+bool Vfs::CheckPermissions(VfsNode* node, uint32 uid, uint32 gid, uint32 required_permissions) {
     if (!node) {
         return false;
     }
@@ -865,7 +865,7 @@ bool Vfs::CheckPermissions(VfsNode* node, uint32_t uid, uint32_t gid, uint32_t r
 
 // Cache management functions
 
-bool Vfs::ReadFromCache(Device* device, uint32_t block_number, void* buffer, uint32_t size) {
+bool Vfs::ReadFromCache(Device* device, uint32 block_number, void* buffer, uint32 size) {
     if (!device || !buffer || size == 0) {
         return false;
     }
@@ -873,7 +873,7 @@ bool Vfs::ReadFromCache(Device* device, uint32_t block_number, void* buffer, uin
     vfs_lock.Acquire();
     
     // Look for the block in cache
-    for (uint32_t i = 0; i < CACHE_SIZE; i++) {
+    for (uint32 i = 0; i < CACHE_SIZE; i++) {
         if (cache[i].valid && 
             cache[i].device == device && 
             cache[i].block_number == block_number && 
@@ -895,7 +895,7 @@ bool Vfs::ReadFromCache(Device* device, uint32_t block_number, void* buffer, uin
     return false;
 }
 
-bool Vfs::WriteToCache(Device* device, uint32_t block_number, const void* buffer, uint32_t size) {
+bool Vfs::WriteToCache(Device* device, uint32 block_number, const void* buffer, uint32 size) {
     if (!device || !buffer || size == 0 || size > 4096) {  // Use a reasonable max block size
         return false;
     }
@@ -903,10 +903,10 @@ bool Vfs::WriteToCache(Device* device, uint32_t block_number, const void* buffer
     vfs_lock.Acquire();
     
     // Find a free cache slot or replace the least recently used
-    uint32_t slot = CACHE_SIZE;
+    uint32 slot = CACHE_SIZE;
     
     // First, try to find an invalid slot
-    for (uint32_t i = 0; i < CACHE_SIZE; i++) {
+    for (uint32 i = 0; i < CACHE_SIZE; i++) {
         if (!cache[i].valid) {
             slot = i;
             break;
@@ -915,8 +915,8 @@ bool Vfs::WriteToCache(Device* device, uint32_t block_number, const void* buffer
     
     // If no invalid slot found, find the least recently used
     if (slot == CACHE_SIZE) {
-        uint32_t oldest_time = UINT32_MAX;
-        for (uint32_t i = 0; i < CACHE_SIZE; i++) {
+        uint32 oldest_time = UINT32_MAX;
+        for (uint32 i = 0; i < CACHE_SIZE; i++) {
             if (cache[i].last_access_time < oldest_time) {
                 oldest_time = cache[i].last_access_time;
                 slot = i;
@@ -928,11 +928,11 @@ bool Vfs::WriteToCache(Device* device, uint32_t block_number, const void* buffer
     if (slot < CACHE_SIZE) {
         // Free existing data if any
         if (cache[slot].data) {
-            kfree(cache[slot].data);
+            free(cache[slot].data);
         }
         
         // Allocate new data
-        cache[slot].data = kmalloc(size);
+        cache[slot].data = malloc(size);
         if (!cache[slot].data) {
             vfs_lock.Release();
             return false;
@@ -955,10 +955,10 @@ bool Vfs::WriteToCache(Device* device, uint32_t block_number, const void* buffer
     return false;
 }
 
-void Vfs::InvalidateCache(Device* device, uint32_t block_number) {
+void Vfs::InvalidateCache(Device* device, uint32 block_number) {
     vfs_lock.Acquire();
     
-    for (uint32_t i = 0; i < CACHE_SIZE; i++) {
+    for (uint32 i = 0; i < CACHE_SIZE; i++) {
         if (cache[i].valid && 
             cache[i].device == device && 
             (block_number == UINT32_MAX || cache[i].block_number == block_number)) {
@@ -966,7 +966,7 @@ void Vfs::InvalidateCache(Device* device, uint32_t block_number) {
             cache[i].valid = false;
             
             if (cache[i].data) {
-                kfree(cache[i].data);
+                free(cache[i].data);
                 cache[i].data = nullptr;
             }
         }
@@ -978,14 +978,14 @@ void Vfs::InvalidateCache(Device* device, uint32_t block_number) {
 void Vfs::FlushCache(Device* device) {
     vfs_lock.Acquire();
     
-    for (uint32_t i = 0; i < CACHE_SIZE; i++) {
+    for (uint32 i = 0; i < CACHE_SIZE; i++) {
         if (cache[i].valid && cache[i].dirty && 
             (device == nullptr || cache[i].device == device)) {
             
             // Write dirty block back to device
             if (driver_framework && cache[i].device) {
                 // Calculate the byte offset for this block (assuming 512-byte sectors)
-                uint32_t byte_offset = cache[i].block_number * 512;
+                uint32 byte_offset = cache[i].block_number * 512;
                 driver_framework->Write(cache[i].device->id, cache[i].data, cache[i].size, byte_offset);
             }
             

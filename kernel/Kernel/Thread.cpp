@@ -289,7 +289,7 @@ bool ThreadManager::TransitionThreadState(uint32 tid, ThreadState new_state) {
     
     // Update timing information
     if (global_timer) {
-        uint32_t current_time = global_timer->GetTickCount();
+        uint32 current_time = global_timer->GetTickCount();
         target->last_state_change = current_time;
         target->state_duration = 0; // Reset duration counter
     }
@@ -323,7 +323,7 @@ uint32 ThreadManager::GetStateDuration(uint32 tid) {
         return 0;
     }
     
-    uint32_t current_time = global_timer->GetTickCount();
+    uint32 current_time = global_timer->GetTickCount();
     return current_time - target->last_state_change;
 }
 

@@ -3,7 +3,7 @@
 #include "MemoryManager.h"
 #include "Logging.h"
 #include "Timer.h"
-#include "ProcessManager.h"
+#include "ProcessControlBlock.h"
 
 // Global process suspension manager instance
 ProcessSuspensionManager* g_process_suspension_manager = nullptr;

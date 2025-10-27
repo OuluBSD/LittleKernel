@@ -121,7 +121,7 @@ ProcessControlBlock* ProcessManager::CreateProcess(void* entry_point, const char
     new_pcb->rt_budget_period = 0;             // No budget period set
     new_pcb->rt_is_periodic = false;           // Initially aperiodic
     new_pcb->rt_is_soft_realtime = true;       // Soft real-time by default (misses allowed)
-    new_pcb->rt_is_critical = false;           // Not critical by default
+    new_pcb->rt_criticality_level = 0;           // Not critical by default
     new_pcb->rt_jitter_tolerance = 0;          // No jitter tolerance set
     new_pcb->rt_phase_offset = 0;              // No phase offset
     new_pcb->rt_relative_deadline = 0;         // No relative deadline set
@@ -176,7 +176,7 @@ ProcessControlBlock* ProcessManager::CreateProcess(void* entry_point, const char
         attr.stack_addr = nullptr;
         
         ThreadControlBlock* main_thread = thread_manager->CreateThread(
-            new_pcb, (void*)entry_point, new_pcb->name, &attr);
+            (struct ProcessControlBlock*)new_pcb, (void*)entry_point, new_pcb->name, &attr);
         
         if (!main_thread) {
             LOG("Failed to create main thread for process PID: " << new_pcb->pid);
@@ -361,7 +361,7 @@ bool ProcessManager::TransitionProcessState(uint32 pid, ProcessState new_state) 
     
     // Update timing information
     if (global_timer) {
-        uint32_t current_time = global_timer->GetTickCount();
+        uint32 current_time = global_timer->GetTickCount();
         target->last_state_change = current_time;
         target->state_duration = 0; // Reset duration counter
     }
@@ -385,7 +385,7 @@ uint32 ProcessManager::GetStateDuration(uint32 pid) {
         return 0;
     }
     
-    uint32_t current_time = global_timer->GetTickCount();
+    uint32 current_time = global_timer->GetTickCount();
     return current_time - target->last_state_change;
 }
 

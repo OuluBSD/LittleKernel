@@ -410,6 +410,170 @@ int SyscallInterface::SysUname(struct utsname* buf) {
     return 0;
 }
 
+// Network system calls implementation
+
+int SyscallInterface::SysSocket(int domain, int type, int protocol) {
+    LOG("Socket system call: domain=" << domain << ", type=" << type << ", protocol=" << protocol);
+    
+    // In a real implementation, this would create a socket
+    // For now, just return an error as we don't have network support yet
+    LOG("Network socket support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysBind(int sockfd, const struct sockaddr* addr, socklen_t addrlen) {
+    if (!addr || addrlen == 0) {
+        return -1;
+    }
+    
+    LOG("Bind system call: sockfd=" << sockfd);
+    
+    // In a real implementation, this would bind a socket to an address
+    // For now, just return an error as we don't have network support yet
+    LOG("Network bind support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysConnect(int sockfd, const struct sockaddr* addr, socklen_t addrlen) {
+    if (!addr || addrlen == 0) {
+        return -1;
+    }
+    
+    LOG("Connect system call: sockfd=" << sockfd);
+    
+    // In a real implementation, this would connect a socket to an address
+    // For now, just return an error as we don't have network support yet
+    LOG("Network connect support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysListen(int sockfd, int backlog) {
+    LOG("Listen system call: sockfd=" << sockfd << ", backlog=" << backlog);
+    
+    // In a real implementation, this would put a socket in listening mode
+    // For now, just return an error as we don't have network support yet
+    LOG("Network listen support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysAccept(int sockfd, struct sockaddr* addr, socklen_t* addrlen) {
+    LOG("Accept system call: sockfd=" << sockfd);
+    
+    // In a real implementation, this would accept a connection on a listening socket
+    // For now, just return an error as we don't have network support yet
+    LOG("Network accept support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysSendto(int sockfd, const void* buf, size_t len, int flags,
+                               const struct sockaddr* dest_addr, socklen_t addrlen) {
+    if (!buf || len == 0) {
+        return -1;
+    }
+    
+    LOG("Sendto system call: sockfd=" << sockfd << ", len=" << len << ", flags=" << flags);
+    
+    // In a real implementation, this would send data to a socket
+    // For now, just return an error as we don't have network support yet
+    LOG("Network sendto support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysRecvfrom(int sockfd, void* buf, size_t len, int flags,
+                                 struct sockaddr* src_addr, socklen_t* addrlen) {
+    if (!buf || len == 0) {
+        return -1;
+    }
+    
+    LOG("Recvfrom system call: sockfd=" << sockfd << ", len=" << len << ", flags=" << flags);
+    
+    // In a real implementation, this would receive data from a socket
+    // For now, just return an error as we don't have network support yet
+    LOG("Network recvfrom support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysSendmsg(int sockfd, const struct msghdr* msg, int flags) {
+    if (!msg) {
+        return -1;
+    }
+    
+    LOG("Sendmsg system call: sockfd=" << sockfd << ", flags=" << flags);
+    
+    // In a real implementation, this would send a message on a socket
+    // For now, just return an error as we don't have network support yet
+    LOG("Network sendmsg support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysRecvmsg(int sockfd, struct msghdr* msg, int flags) {
+    if (!msg) {
+        return -1;
+    }
+    
+    LOG("Recvmsg system call: sockfd=" << sockfd << ", flags=" << flags);
+    
+    // In a real implementation, this would receive a message from a socket
+    // For now, just return an error as we don't have network support yet
+    LOG("Network recvmsg support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysShutdown(int sockfd, int how) {
+    LOG("Shutdown system call: sockfd=" << sockfd << ", how=" << how);
+    
+    // In a real implementation, this would shut down a socket
+    // For now, just return an error as we don't have network support yet
+    LOG("Network shutdown support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysSetsockopt(int sockfd, int level, int optname,
+                                   const void* optval, socklen_t optlen) {
+    LOG("Setsockopt system call: sockfd=" << sockfd << ", level=" << level << ", optname=" << optname);
+    
+    // In a real implementation, this would set socket options
+    // For now, just return an error as we don't have network support yet
+    LOG("Network setsockopt support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysGetsockopt(int sockfd, int level, int optname,
+                                   void* optval, socklen_t* optlen) {
+    LOG("Getsockopt system call: sockfd=" << sockfd << ", level=" << level << ", optname=" << optname);
+    
+    // In a real implementation, this would get socket options
+    // For now, just return an error as we don't have network support yet
+    LOG("Network getsockopt support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysRecv(int sockfd, void* buf, size_t len, int flags) {
+    if (!buf || len == 0) {
+        return -1;
+    }
+    
+    LOG("Recv system call: sockfd=" << sockfd << ", len=" << len << ", flags=" << flags);
+    
+    // In a real implementation, this would receive data from a socket
+    // For now, just return an error as we don't have network support yet
+    LOG("Network recv support not implemented yet");
+    return -1;
+}
+
+int SyscallInterface::SysSend(int sockfd, const void* buf, size_t len, int flags) {
+    if (!buf || len == 0) {
+        return -1;
+    }
+    
+    LOG("Send system call: sockfd=" << sockfd << ", len=" << len << ", flags=" << flags);
+    
+    // In a real implementation, this would send data to a socket
+    // For now, just return an error as we don't have network support yet
+    LOG("Network send support not implemented yet");
+    return -1;
+}
+
 void SyscallInterface::InitializeSyscallTable() {
     // Initialize all function pointers to the default handler
     for (int i = 0; i < 334; i++) {

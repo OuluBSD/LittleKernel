@@ -191,7 +191,7 @@ bool MemoryManager::InitializePaging() {
 void* MemoryManager::AllocatePage() {
     // For now, allocate a page using the basic memory allocator
     // In a more complete implementation, we'd have a dedicated page management system
-    void* page = malloc(PAGE_SIZE);
+    void* page = malloc(KERNEL_PAGE_SIZE);
     if (page) {
         // Track this page if we're in debug mode or tracking is enabled
         page_lock.Acquire();
@@ -282,14 +282,14 @@ void MemoryManager::DefragmentMemory() {
     LOG("Memory defragmentation not implemented in this version");
 }
 
-void* MemoryManager::AllocatePage() {
-    // For now, allocate a 4KB page
-    return Allocate(PAGE_SIZE);
-}
+// void* MemoryManager::AllocatePage() {
+//     // For now, allocate a 4KB page
+//     return Allocate(KERNEL_PAGE_SIZE);
+// }
 
-void MemoryManager::FreePage(void* page) {
-    Free(page);
-}
+// void MemoryManager::FreePage(void* page) {
+//     Free(page);
+// }
 
 PageDirectory* MemoryManager::CreatePageDirectory() {
     // In a complete implementation, this would create a proper page directory

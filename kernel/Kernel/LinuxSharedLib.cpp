@@ -246,7 +246,7 @@ LinuxSharedLibrary* LinuxSoManager::FindLibrary(const char* name) {
     return nullptr;
 }
 
-LinuxSharedLibrary* LinuxSoManager::GetLibraryByAddress(uint32_t address) {
+LinuxSharedLibrary* LinuxSoManager::GetLibraryByAddress(uint32 address) {
     LinuxSharedLibrary* current = libraries;
     while (current) {
         if (address >= current->base_address && 
@@ -259,13 +259,13 @@ LinuxSharedLibrary* LinuxSoManager::GetLibraryByAddress(uint32_t address) {
     return nullptr;
 }
 
-uint32_t LinuxSoManager::ResolveSymbol(LinuxSharedLibrary* library, const char* symbol_name) {
+uint32 LinuxSoManager::ResolveSymbol(LinuxSharedLibrary* library, const char* symbol_name) {
     if (!library || !symbol_name) {
         return 0;
     }
     
     // Search in this library's symbol table
-    for (uint32_t i = 0; i < library->symbol_count; i++) {
+    for (uint32 i = 0; i < library->symbol_count; i++) {
         LinuxElfSym* sym = &library->symbol_table[i];
         const char* name = GetStringFromTable(library, sym->st_name);
         
@@ -278,7 +278,7 @@ uint32_t LinuxSoManager::ResolveSymbol(LinuxSharedLibrary* library, const char* 
     return 0; // Symbol not found
 }
 
-uint32_t LinuxSoManager::ResolveSymbolGlobal(const char* symbol_name) {
+uint32 LinuxSoManager::ResolveSymbolGlobal(const char* symbol_name) {
     if (!symbol_name) {
         return 0;
     }
@@ -286,7 +286,7 @@ uint32_t LinuxSoManager::ResolveSymbolGlobal(const char* symbol_name) {
     // Search in all loaded libraries
     LinuxSharedLibrary* current = libraries;
     while (current) {
-        uint32_t address = ResolveSymbol(current, symbol_name);
+        uint32 address = ResolveSymbol(current, symbol_name);
         if (address != 0) {
             return address;
         }
@@ -354,9 +354,9 @@ bool LinuxSoManager::InitializeLibrary(LinuxSharedLibrary* library) {
     
     // Call initialization array functions
     if (library->init_array && library->init_array_size > 0) {
-        uint32_t count = library->init_array_size / sizeof(uint32_t);
-        for (uint32_t i = 0; i < count; i++) {
-            uint32_t func_addr = library->init_array[i];
+        uint32 count = library->init_array_size / sizeof(uint32);
+        for (uint32 i = 0; i < count; i++) {
+            uint32 func_addr = library->init_array[i];
             if (func_addr != 0) {
                 // In a real implementation, we would call the function
                 // For now, we'll just log it
@@ -378,9 +378,9 @@ bool LinuxSoManager::FinalizeLibrary(LinuxSharedLibrary* library) {
     
     // Call finalization array functions
     if (library->fini_array && library->fini_array_size > 0) {
-        uint32_t count = library->fini_array_size / sizeof(uint32_t);
-        for (uint32_t i = 0; i < count; i++) {
-            uint32_t func_addr = library->fini_array[i];
+        uint32 count = library->fini_array_size / sizeof(uint32);
+        for (uint32 i = 0; i < count; i++) {
+            uint32 func_addr = library->fini_array[i];
             if (func_addr != 0) {
                 // In a real implementation, we would call the function
                 // For now, we'll just log it
@@ -400,7 +400,7 @@ bool LinuxSoManager::FinalizeLibrary(LinuxSharedLibrary* library) {
     return true;
 }
 
-uint32_t LinuxSoManager::GetLibraryCount() {
+uint32 LinuxSoManager::GetLibraryCount() {
     return library_count;
 }
 
@@ -442,16 +442,16 @@ void LinuxSoManager::PrintLibraryInfo(LinuxSharedLibrary* library) {
 
 // Internal helper functions
 
-uint32_t LinuxSoManager::HashName(const char* name) {
+uint32 LinuxSoManager::HashName(const char* name) {
     if (!name) {
         return 0;
     }
     
     // Simple hash function (would be replaced with ELF hash in real implementation)
-    uint32_t hash = 0;
+    uint32 hash = 0;
     while (*name) {
         hash = (hash << 4) + *name++;
-        uint32_t g = hash & 0xf0000000;
+        uint32 g = hash & 0xf0000000;
         if (g) {
             hash ^= g >> 24;
         }
@@ -462,7 +462,7 @@ uint32_t LinuxSoManager::HashName(const char* name) {
 }
 
 LinuxSharedLibrary* LinuxSoManager::CreateLibraryEntry() {
-    LinuxSharedLibrary* library = (LinuxSharedLibrary*)kmalloc(sizeof(LinuxSharedLibrary));
+    LinuxSharedLibrary* library = (LinuxSharedLibrary*)malloc(sizeof(LinuxSharedLibrary));
     if (!library) {
         return nullptr;
     }
@@ -530,63 +530,63 @@ void LinuxSoManager::DestroyLibraryEntry(LinuxSharedLibrary* library) {
     
     // Free allocated memory
     if (library->dynamic_section) {
-        kfree(library->dynamic_section);
+        free(library->dynamic_section);
     }
     
     if (library->symbol_table) {
-        kfree(library->symbol_table);
+        free(library->symbol_table);
     }
     
     if (library->string_table) {
-        kfree(library->string_table);
+        free(library->string_table);
     }
     
     if (library->rela_table) {
-        kfree(library->rela_table);
+        free(library->rela_table);
     }
     
     if (library->rel_table) {
-        kfree(library->rel_table);
+        free(library->rel_table);
     }
     
     if (library->jmprel_table) {
-        kfree(library->jmprel_table);
+        free(library->jmprel_table);
     }
     
     if (library->hash_table) {
-        kfree(library->hash_table);
+        free(library->hash_table);
     }
     
     if (library->gnu_hash_table) {
-        kfree(library->gnu_hash_table);
+        free(library->gnu_hash_table);
     }
     
     if (library->got) {
-        kfree(library->got);
+        free(library->got);
     }
     
     if (library->init_array) {
-        kfree(library->init_array);
+        free(library->init_array);
     }
     
     if (library->fini_array) {
-        kfree(library->fini_array);
+        free(library->fini_array);
     }
     
     if (library->verdef) {
-        kfree(library->verdef);
+        free(library->verdef);
     }
     
     if (library->verneed) {
-        kfree(library->verneed);
+        free(library->verneed);
     }
     
     if (library->versym) {
-        kfree(library->versym);
+        free(library->versym);
     }
     
     // Free the library structure itself
-    kfree(library);
+    free(library);
 }
 
 bool LinuxSoManager::ParseElfHeaders(LinuxSharedLibrary* library, const char* filename) {
@@ -636,7 +636,7 @@ bool LinuxSoManager::LoadElfSegments(LinuxSharedLibrary* library, const char* fi
     LOG("Loading ELF segments for library: " << filename);
     
     // For now, we'll just simulate loading by allocating memory
-    library->base_address = (uint32_t)kmalloc(0x100000); // Allocate 1MB for now
+    library->base_address = (uint32)malloc(0x100000); // Allocate 1MB for now
     if (!library->base_address) {
         LOG("Failed to allocate memory for library: " << filename);
         return false;
@@ -803,7 +803,7 @@ bool LinuxSoManager::SetupPLT(LinuxSharedLibrary* library) {
     return true; // For now, just return success
 }
 
-char* LinuxSoManager::GetStringFromTable(LinuxSharedLibrary* library, uint32_t offset) {
+char* LinuxSoManager::GetStringFromTable(LinuxSharedLibrary* library, uint32 offset) {
     if (!library || !library->string_table || offset >= library->string_table_size) {
         return nullptr;
     }
@@ -811,7 +811,7 @@ char* LinuxSoManager::GetStringFromTable(LinuxSharedLibrary* library, uint32_t o
     return library->string_table + offset;
 }
 
-LinuxElfSym* LinuxSoManager::GetSymbolFromTable(LinuxSharedLibrary* library, uint32_t index) {
+LinuxElfSym* LinuxSoManager::GetSymbolFromTable(LinuxSharedLibrary* library, uint32 index) {
     if (!library || !library->symbol_table || index >= library->symbol_count) {
         return nullptr;
     }
@@ -819,8 +819,8 @@ LinuxElfSym* LinuxSoManager::GetSymbolFromTable(LinuxSharedLibrary* library, uin
     return &library->symbol_table[index];
 }
 
-uint32_t LinuxSoManager::CalculateRelocation(LinuxSharedLibrary* library, uint32_t type, 
-                                            uint32_t symbol_value, uint32_t addend, uint32_t address) {
+uint32 LinuxSoManager::CalculateRelocation(LinuxSharedLibrary* library, uint32 type, 
+                                            uint32 symbol_value, uint32 addend, uint32 address) {
     if (!library) {
         return 0;
     }
@@ -849,7 +849,7 @@ bool LinuxSoManager::AddToHashTable(LinuxSharedLibrary* library) {
         return false;
     }
     
-    uint32_t hash = HashName(library->name);
+    uint32 hash = HashName(library->name);
     library->next = (LinuxSharedLibrary*)hash_table[hash];
     hash_table[hash] = library;
     return true;
@@ -860,7 +860,7 @@ bool LinuxSoManager::RemoveFromHashTable(LinuxSharedLibrary* library) {
         return false;
     }
     
-    uint32_t hash = HashName(library->name);
+    uint32 hash = HashName(library->name);
     LinuxSharedLibrary* current = hash_table[hash];
     LinuxSharedLibrary* prev = nullptr;
     
@@ -885,7 +885,7 @@ LinuxSharedLibrary* LinuxSoManager::FindInHashTable(const char* name) {
         return nullptr;
     }
     
-    uint32_t hash = HashName(name);
+    uint32 hash = HashName(name);
     LinuxSharedLibrary* current = hash_table[hash];
     
     while (current) {
@@ -937,7 +937,7 @@ bool UnloadLinuxSharedLibrary(const char* name) {
     return g_so_manager->UnloadLibrary(name);
 }
 
-uint32_t ResolveLinuxSymbol(const char* symbol_name) {
+uint32 ResolveLinuxSymbol(const char* symbol_name) {
     if (!symbol_name || !g_so_manager) {
         return 0;
     }

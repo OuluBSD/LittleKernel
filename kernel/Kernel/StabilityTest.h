@@ -21,19 +21,19 @@ enum StabilityTestType {
 // Stability test configuration
 struct StabilityTestConfig {
     StabilityTestType test_type;    // Type of test to run
-    uint32_t duration_seconds;      // Duration of test in seconds
-    uint32_t iterations;            // Number of iterations to perform
-    uint32_t thread_count;          // Number of concurrent threads (if applicable)
+    uint32 duration_seconds;      // Duration of test in seconds
+    uint32 iterations;            // Number of iterations to perform
+    uint32 thread_count;          // Number of concurrent threads (if applicable)
     bool verbose_output;            // Whether to output detailed information
-    uint32_t seed;                  // Random seed for randomized tests
+    uint32 seed;                  // Random seed for randomized tests
 };
 
 // Stability test result
 struct StabilityTestResult {
     bool passed;                    // Whether the test passed
-    uint32_t errors_found;          // Number of errors detected
-    uint32_t warnings;              // Number of warnings
-    uint32_t operations_completed;  // Number of operations completed
+    uint32 errors_found;          // Number of errors detected
+    uint32 warnings;              // Number of warnings
+    uint32 operations_completed;  // Number of operations completed
     uint64_t execution_time_ms;     // Execution time in milliseconds
     char error_details[512];        // Details about errors found
 };
@@ -64,7 +64,7 @@ public:
     StabilityTestResult RunConcurrentStressTest(const StabilityTestConfig& config);
     
     // Run all stability tests
-    bool RunAllStabilityTests(uint32_t duration_seconds = 60);
+    bool RunAllStabilityTests(uint32 duration_seconds = 60);
     
     // Check if a test is currently running
     bool IsTestRunning() { return is_running; }
@@ -78,7 +78,7 @@ public:
 private:
     // Internal helper functions
     void InitializeTestResult(StabilityTestResult& result);
-    void ReportTestProgress(StabilityTestType type, uint32_t completed, uint32_t total);
+    void ReportTestProgress(StabilityTestType type, uint32 completed, uint32 total);
     bool ValidateSystemState();  // Check if system is in a valid state
     bool CheckForMemoryLeaks();  // Check for memory leaks
     bool CheckForProcessLeaks(); // Check for process leaks

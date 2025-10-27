@@ -46,7 +46,7 @@ void KernelProfiler::StartFunctionProfile(const char* name) {
     
     // Find existing profile or create new one
     FunctionProfile* profile = nullptr;
-    for (uint32_t i = 0; i < function_count; i++) {
+    for (uint32 i = 0; i < function_count; i++) {
         if (strcmp(function_profiles[i].name, name) == 0) {
             profile = &function_profiles[i];
             break;
@@ -76,7 +76,7 @@ void KernelProfiler::EndFunctionProfile(const char* name) {
     
     // Find the profile
     FunctionProfile* profile = nullptr;
-    for (uint32_t i = 0; i < function_count; i++) {
+    for (uint32 i = 0; i < function_count; i++) {
         if (strcmp(function_profiles[i].name, name) == 0) {
             profile = &function_profiles[i];
             break;
@@ -111,7 +111,7 @@ void KernelProfiler::BeginRegion(const char* name) {
     
     // Look for an available profile region or create new one
     ProfileRegion* region = nullptr;
-    for (uint32_t i = 0; i < region_count; i++) {
+    for (uint32 i = 0; i < region_count; i++) {
         if (strcmp(profile_regions[i].name, name) == 0) {
             region = &profile_regions[i];
             break;
@@ -135,7 +135,7 @@ void KernelProfiler::EndRegion(const char* name) {
     if (!profiling_enabled || !name) return;
     
     // Find the region
-    for (uint32_t i = 0; i < region_count; i++) {
+    for (uint32 i = 0; i < region_count; i++) {
         if (strcmp(profile_regions[i].name, name) == 0 && profile_regions[i].active > 0) {
             uint64_t end_time = HAL_TIMER()->GetHighResolutionTime();
             uint64_t elapsed = end_time - profile_regions[i].start_time;
@@ -144,7 +144,7 @@ void KernelProfiler::EndRegion(const char* name) {
             StartFunctionProfile(name);  // Create profile if needed
             // Manually update the timing since we're not using the standard Start/End
             FunctionProfile* profile = nullptr;
-            for (uint32_t j = 0; j < function_count; j++) {
+            for (uint32 j = 0; j < function_count; j++) {
                 if (strcmp(function_profiles[j].name, name) == 0) {
                     profile = &function_profiles[j];
                     break;
@@ -205,7 +205,7 @@ const ProfileStats& KernelProfiler::GetStats() const {
 const FunctionProfile* KernelProfiler::GetFunctionProfile(const char* name) {
     if (!name) return nullptr;
     
-    for (uint32_t i = 0; i < function_count; i++) {
+    for (uint32 i = 0; i < function_count; i++) {
         if (strcmp(function_profiles[i].name, name) == 0) {
             return &function_profiles[i];
         }
@@ -213,12 +213,12 @@ const FunctionProfile* KernelProfiler::GetFunctionProfile(const char* name) {
     return nullptr;
 }
 
-const FunctionProfile* KernelProfiler::GetFunctionProfiles(uint32_t* count) {
+const FunctionProfile* KernelProfiler::GetFunctionProfiles(uint32* count) {
     *count = function_count;
     return function_profiles;
 }
 
-const ProfileSample* KernelProfiler::GetSamples(uint32_t* count) {
+const ProfileSample* KernelProfiler::GetSamples(uint32* count) {
     *count = sample_count;
     return samples;
 }
@@ -242,7 +242,7 @@ void KernelProfiler::PrintReport() {
     
     // Print function profiling data
     LOG("Function Profiling Data:");
-    for (uint32_t i = 0; i < function_count; i++) {
+    for (uint32 i = 0; i < function_count; i++) {
         const FunctionProfile& profile = function_profiles[i];
         LOG("  " << profile.name << ":");
         LOG("    Calls: " << profile.call_count);
@@ -266,23 +266,23 @@ uint64_t KernelProfiler::GetAverageFunctionTime(const char* name) {
     return profile ? profile->avg_time : 0;
 }
 
-uint32_t KernelProfiler::GetFunctionCallCount(const char* name) {
+uint32 KernelProfiler::GetFunctionCallCount(const char* name) {
     const FunctionProfile* profile = GetFunctionProfile(name);
     return profile ? profile->call_count : 0;
 }
 
-uint32_t KernelProfiler::GetCpuUtilization() {
+uint32 KernelProfiler::GetCpuUtilization() {
     // Simplified calculation - in a real implementation, this would track
     // actual CPU busy/idle time
     return 50; // Return a placeholder value
 }
 
-uint32_t KernelProfiler::GetMemoryUtilization() {
+uint32 KernelProfiler::GetMemoryUtilization() {
     // Simplified calculation - in a real implementation, this would track
     // actual memory usage vs total available
     if (global && global->memory_manager) {
-        uint32_t used = global->memory_manager->GetUsedMemory();
-        uint32_t total = global->memory_manager->GetTotalMemory();
+        uint32 used = global->memory_manager->GetUsedMemory();
+        uint32 total = global->memory_manager->GetTotalMemory();
         if (total > 0) {
             return (used * 100) / total;
         }

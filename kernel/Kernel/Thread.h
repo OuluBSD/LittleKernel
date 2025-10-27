@@ -22,6 +22,9 @@ enum ThreadSchedulingPolicy {
     THREAD_SCHED_POLICY_OTHER        // Other (implementation-defined)
 };
 
+// Forward declaration
+struct ProcessControlBlock;
+
 // Thread control block structure
 struct ThreadControlBlock {
     // Thread identification
@@ -81,7 +84,7 @@ struct ThreadControlBlock {
     uint32 flags;                  // Additional thread flags
     
     // Pointer to parent process
-    ProcessControlBlock* parent_process; // Parent process this thread belongs to
+    struct ProcessControlBlock* parent_process; // Parent process this thread belongs to
 };
 
 // Thread management constants
@@ -128,7 +131,7 @@ public:
     ~ThreadManager();
     
     // Thread creation and destruction
-    ThreadControlBlock* CreateThread(ProcessControlBlock* parent_process, 
+    ThreadControlBlock* CreateThread(struct ProcessControlBlock* parent_process, 
                                     void* entry_point, 
                                     const char* name, 
                                     const ThreadAttributes* attr = nullptr);

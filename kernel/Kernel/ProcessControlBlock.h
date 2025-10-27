@@ -4,6 +4,8 @@
 #include "Defs.h"
 #include "KernelConfig.h"  // Include the kernel configuration
 #include "Paging.h"        // Include paging structures
+#include "Thread.h"        // Include thread management structures
+#include "RealTimeScheduling.h"  // Include RealTimeParams definition
 
 // Process states
 enum ProcessState {
@@ -16,6 +18,30 @@ enum ProcessState {
     PROCESS_STATE_ZOMBIE,         // Process has terminated but parent hasn't collected exit code
     PROCESS_STATE_TERMINATED      // Process has completed execution
 };
+
+// Real-time scheduling parameters (already defined in RealTimeScheduling.h)
+// struct RealTimeParams {
+//     uint32 rt_policy;            // Real-time scheduling policy (FIFO, RR, etc.)
+//     uint32 rt_priority;          // Real-time priority (1-99, where 1 is highest)
+//     uint32 rt_period;            // Period in milliseconds for periodic tasks
+//     uint32 rt_deadline;          // Deadline in milliseconds relative to release time
+//     uint32 rt_execution_time;    // Worst-case execution time in milliseconds
+//     uint32 rt_release_time;      // Release time in milliseconds
+//     uint32 rt_budget;            // CPU time budget in milliseconds
+//     uint32 rt_jitter_tolerance;  // Jitter tolerance in milliseconds
+//     uint32 rt_phase_offset;      // Phase offset for periodic tasks
+//     uint32 rt_criticality;       // Criticality level (0=non-critical, 1=critical)
+//     uint32 rt_importance;        // Importance factor (0=lowest, higher=more important)
+//     uint32 rt_affinity_mask;     // CPU affinity mask for multi-core systems
+//     bool rt_is_periodic;         // Whether the task is periodic
+//     bool rt_is_soft_realtime;    // Whether it's soft real-time (misses are tolerated)
+//     bool rt_is_hard_realtime;    // Whether it's hard real-time (misses are catastrophic)
+//     uint32 rt_reservation;       // Resource reservation in milliseconds
+//     uint32 rt_utilization;       // CPU utilization percentage (0-100)
+//     uint32 rt_response_time;     // Expected response time in milliseconds
+//     uint32 rt_queueing_delay;    // Maximum queueing delay in milliseconds
+//     uint32 rt_migration_cost;    // Cost of migrating to another CPU in milliseconds
+// };
 
 // Process control block structure
 struct ProcessControlBlock {
@@ -85,6 +111,34 @@ struct ProcessControlBlock {
     uint32 cpu_quota_used;        // CPU quota used in current period
     uint32 cpu_quota_period;      // CPU quota period
     
+    // Real-time scheduling fields
+    uint32 rt_policy;             // Real-time scheduling policy (FIFO, RR, etc.)
+    uint32 rt_priority;           // Real-time priority (1-99, where 1 is highest)
+    uint32 rt_execution_time;     // Worst-case execution time in milliseconds
+    uint32 rt_period;             // Period in milliseconds for periodic tasks
+    uint32 rt_deadline;           // Deadline in milliseconds relative to release time
+    uint32 rt_release_time;       // Release time in milliseconds
+    uint32 rt_deadline_misses;    // Number of missed deadlines
+    uint32 rt_completions;        // Number of successful completions
+    uint32 rt_budget;             // CPU time budget in milliseconds
+    uint32 rt_budget_used;        // CPU time budget used so far
+    uint32 rt_budget_period;      // Budget period in milliseconds
+    bool rt_is_periodic;          // Whether the task is periodic
+    bool rt_is_soft_realtime;     // Whether it's soft real-time (misses are tolerated)
+    bool rt_is_hard_realtime;     // Whether it's hard real-time (misses are catastrophic)
+    uint32 rt_reservation;        // Resource reservation in milliseconds
+    uint32 rt_utilization;        // CPU utilization percentage (0-100)
+    uint32 rt_response_time;      // Expected response time in milliseconds
+    uint32 rt_queueing_delay;     // Maximum queueing delay in milliseconds
+    uint32 rt_migration_cost;     // Cost of migrating to another CPU in milliseconds
+    uint32 rt_jitter_tolerance;   // Jitter tolerance in milliseconds
+    uint32 rt_phase_offset;       // Phase offset for periodic tasks
+    uint32 rt_relative_deadline;  // Relative deadline in milliseconds
+    uint32 rt_criticality_level;  // Criticality level (0=non-critical, 1=critical)
+    uint32 rt_importance_factor;  // Importance factor (0=lowest, higher=more important)
+    uint32 rt_resource_requirements; // Resource requirements in milliseconds
+    uint32 rt_affinity_mask;      // CPU affinity mask for multi-core systems
+    
     // Synchronization primitives
     ProcessControlBlock* waiting_on_semaphore; // Next process in semaphore wait queue
     uint32* event_flags;          // Event flags for this process
@@ -109,15 +163,32 @@ struct ProcessControlBlock {
     ProcessControlBlock* next;    // Next PCB in the queue
     ProcessControlBlock* prev;    // Previous PCB in the queue
     
+    // ABI-specific context data
+    void* abi_context;            // ABI-specific context (AbiContext*)
+    
     // Additional flags
     uint32 flags;                 // Additional process flags
 };
 
 // Process management constants
 const uint32 INVALID_PID = 0xFFFFFFFF;
+const uint32 INVALID_PGID = 0xFFFFFFFF;  // Invalid process group ID
+const uint32 INVALID_SID = 0xFFFFFFFF;   // Invalid session ID
 const uint32 KERNEL_PID = 0;      // PID for kernel process
 const uint32 MIN_PID = 1;         // Minimum user process PID
 const uint32 MAX_PID = 0xFFFF;    // Maximum process ID (keeping it reasonable)
+
+// Real-time scheduling constants (already defined in RealTimeScheduling.h)
+// const uint32 RT_SCHED_FIFO = 1;           // First-In, First-Out scheduling
+// const uint32 RT_SCHED_RR = 2;             // Round-Robin scheduling
+// const uint32 RT_SCHED_SPORADIC = 3;       // Sporadic server scheduling
+// const uint32 RT_DEFAULT_PRIORITY = 50;    // Default real-time priority (1-99, where 1 is highest)
+// const uint32 RT_MIN_PRIORITY = 1;         // Minimum real-time priority
+// const uint32 RT_MAX_PRIORITY = 99;        // Maximum real-time priority
+const uint32 RT_DEFAULT_PERIOD = 1000;    // Default period in milliseconds
+const uint32 RT_DEFAULT_DEADLINE = 1000;  // Default deadline in milliseconds
+const uint32 RT_DEFAULT_BUDGET = 500;     // Default budget in milliseconds
+const uint32 RT_DEFAULT_JITTER = 10;      // Default jitter tolerance in milliseconds
 
 // Process scheduling modes
 enum SchedulingMode {

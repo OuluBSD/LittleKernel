@@ -66,7 +66,7 @@ bool KeyboardDriver::Initialize() {
     }
     
     // Enable keyboard interrupts
-    uint8_t config;
+    uint8 config;
     if (!WaitForOutputBuffer()) return false;
     outportb(PS2_KEYBOARD_PORT_COMMAND, PS2_CMD_READ_CONFIG);
     if (!WaitForInputBuffer()) return false;
@@ -94,7 +94,7 @@ bool KeyboardDriver::Initialize() {
     return true;
 }
 
-bool KeyboardDriver::ReadScancode(uint8_t& scancode) {
+bool KeyboardDriver::ReadScancode(uint8& scancode) {
     if (inportb(PS2_KEYBOARD_PORT_STATUS) & 1) {  // Check if output buffer has data
         scancode = inportb(PS2_KEYBOARD_PORT_DATA);
         return true;
@@ -102,7 +102,7 @@ bool KeyboardDriver::ReadScancode(uint8_t& scancode) {
     return false;
 }
 
-void KeyboardDriver::ProcessScancode(uint8_t scancode) {
+void KeyboardDriver::ProcessScancode(uint8 scancode) {
     KeyboardEvent event;
     event.scancode = scancode;
     event.is_pressed = !(scancode & 0x80);  // High bit indicates key release
@@ -131,9 +131,9 @@ bool KeyboardDriver::GetKeyEvent(KeyboardEvent& event) {
     return false;
 }
 
-uint32_t KeyboardDriver::GetEventCount() {
+uint32 KeyboardDriver::GetEventCount() {
     buffer_lock.Acquire();
-    uint32_t count = event_buffer.Count();
+    uint32 count = event_buffer.Count();
     buffer_lock.Release();
     return count;
 }
@@ -151,7 +151,7 @@ bool KeyboardDriver::SetLeds(bool num_lock, bool caps_lock, bool scroll_lock) {
     led_status[2] = scroll_lock;
     
     // Calculate LED byte: bit 0 = scroll lock, bit 1 = num lock, bit 2 = caps lock
-    uint8_t led_byte = 0;
+    uint8 led_byte = 0;
     if (scroll_lock) led_byte |= 1;
     if (num_lock) led_byte |= 2;
     if (caps_lock) led_byte |= 4;
@@ -161,7 +161,7 @@ bool KeyboardDriver::SetLeds(bool num_lock, bool caps_lock, bool scroll_lock) {
     outportb(PS2_KEYBOARD_PORT_DATA, 0xED);  // Set LEDs command
     
     // Wait for ACK
-    uint8_t response;
+    uint8 response;
     int retries = 10000;  // Prevent infinite loop
     while (retries-- > 0) {
         if (inportb(PS2_KEYBOARD_PORT_STATUS) & 1) {  // Check output buffer
@@ -194,7 +194,7 @@ bool KeyboardDriver::GetLeds(bool& num_lock, bool& caps_lock, bool& scroll_lock)
     return true;
 }
 
-bool KeyboardDriver::SetScancodeSet(uint8_t set) {
+bool KeyboardDriver::SetScancodeSet(uint8 set) {
     if (set != SCANCODE_SET_1 && set != SCANCODE_SET_2) {
         return false;
     }
@@ -204,7 +204,7 @@ bool KeyboardDriver::SetScancodeSet(uint8_t set) {
     outportb(PS2_KEYBOARD_PORT_DATA, 0xF0);  // Set scancode set command
     
     // Wait for ACK
-    uint8_t response;
+    uint8 response;
     int retries = 10000;
     while (retries-- > 0) {
         if (inportb(PS2_KEYBOARD_PORT_STATUS) & 1) {  // Check output buffer
@@ -233,14 +233,14 @@ bool KeyboardDriver::SetScancodeSet(uint8_t set) {
     return false;
 }
 
-uint8_t KeyboardDriver::GetScancodeSet() {
+uint8 KeyboardDriver::GetScancodeSet() {
     return current_scancode_set;
 }
 
 bool KeyboardDriver::HandleIoctl(uint32 command, void* arg) {
     switch (command) {
         case KEYBOARD_GET_SCANCODE_SET: {
-            uint8_t* set = (uint8_t*)arg;
+            uint8* set = (uint8*)arg;
             if (set) {
                 *set = GetScancodeSet();
             }
@@ -248,7 +248,7 @@ bool KeyboardDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case KEYBOARD_SET_SCANCODE_SET: {
-            uint8_t* new_set = (uint8_t*)arg;
+            uint8* new_set = (uint8*)arg;
             if (new_set) {
                 return SetScancodeSet(*new_set);
             }
@@ -283,7 +283,7 @@ bool KeyboardDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case KEYBOARD_GET_EVENT_COUNT: {
-            uint32_t* count = (uint32_t*)arg;
+            uint32* count = (uint32*)arg;
             if (count) {
                 *count = GetEventCount();
             }
@@ -397,19 +397,19 @@ bool KeyboardDriver::KeyboardClose(Device* device) {
     return true;
 }
 
-bool KeyboardDriver::SendCommand(uint8_t cmd) {
+bool KeyboardDriver::SendCommand(uint8 cmd) {
     if (!WaitForInputBuffer()) return false;
     outportb(PS2_KEYBOARD_PORT_COMMAND, cmd);
     return true;
 }
 
-bool KeyboardDriver::WriteData(uint8_t data) {
+bool KeyboardDriver::WriteData(uint8 data) {
     if (!WaitForInputBuffer()) return false;
     outportb(PS2_KEYBOARD_PORT_DATA, data);
     return true;
 }
 
-uint8_t KeyboardDriver::ReadData() {
+uint8 KeyboardDriver::ReadData() {
     return inportb(PS2_KEYBOARD_PORT_DATA);
 }
 

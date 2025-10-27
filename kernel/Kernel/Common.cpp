@@ -339,3 +339,224 @@ void* PhysicalToVirtual(void* physical_addr) {
     }
     return physical_addr;
 }
+
+// String compare with limit
+int strncmp(const char* str1, const char* str2, uint32 n) {
+    if (!str1 || !str2) return (str1 == str2) ? 0 : (str1 ? 1 : -1);
+    
+    for (uint32 i = 0; i < n; i++) {
+        if (str1[i] != str2[i] || str1[i] == '\0') {
+            return (unsigned char)str1[i] - (unsigned char)str2[i];
+        }
+    }
+    return 0;
+}
+
+// Find first occurrence of character in string
+char* strchr(const char* str, int c) {
+    if (!str) return nullptr;
+    
+    // Special case for null terminator
+    if (c == '\0') {
+        // Find the end of the string
+        while (*str) {
+            str++;
+        }
+        return (char*)str;
+    }
+    
+    // Look for the character in the string
+    while (*str) {
+        if (*str == (char)c) {
+            return (char*)str;
+        }
+        str++;
+    }
+    
+    return nullptr;
+}
+
+// String tokenizer
+char* strtok(char* str, const char* delim) {
+    static char* last_token = nullptr;
+    
+    // If str is provided, use it as the starting point, otherwise continue with last_token
+    if (str) {
+        last_token = str;
+    } else if (!last_token) {
+        return nullptr;
+    }
+    
+    // Skip leading delimiters
+    while (*last_token && strchr(delim, *last_token)) {
+        last_token++;
+    }
+    
+    // If we're at the end of the string, return nullptr
+    if (*last_token == '\0') {
+        return nullptr;
+    }
+    
+    // Find the beginning of the token
+    char* token_start = last_token;
+    
+    // Find the end of the token
+    while (*last_token && !strchr(delim, *last_token)) {
+        last_token++;
+    }
+    
+    // If we found a delimiter, terminate the token and advance past the delimiter
+    if (*last_token) {
+        *last_token = '\0';
+        last_token++;
+    }
+    
+    return token_start;
+}
+
+// Find last occurrence of character in string
+char* strrchr(const char* str, int c) {
+    if (!str) return nullptr;
+    
+    const char* last_occurrence = nullptr;
+    const char* current = str;
+    
+    // Check if we're looking for the null terminator
+    if (c == '\0') {
+        // Find the end of the string
+        while (*current) {
+            current++;
+        }
+        return (char*)current;
+    }
+    
+    // Look for the character in the string
+    while (*current) {
+        if (*current == (char)c) {
+            last_occurrence = current;
+        }
+        current++;
+    }
+    
+    return (char*)last_occurrence;
+}
+
+// Simple snprintf implementation
+int snprintf(char* buffer, uint32 buffer_size, const char* format, ...) {
+    va_list args;
+    va_start(args, format);
+    int result = vsnprintf(buffer, buffer_size, format, args);
+    va_end(args);
+    return result;
+}
+
+// Convert string to integer
+int atoi(const char* str) {
+    if (!str) return 0;
+    
+    int result = 0;
+    int sign = 1;
+    int i = 0;
+    
+    // Handle whitespace
+    while (str[i] == ' ' || str[i] == '\t') i++;
+    
+    // Handle sign
+    if (str[i] == '-' || str[i] == '+') {
+        sign = (str[i] == '-') ? -1 : 1;
+        i++;
+    }
+    
+    // Convert digits
+    while (str[i] >= '0' && str[i] <= '9') {
+        result = result * 10 + (str[i] - '0');
+        i++;
+    }
+    
+    return result * sign;
+}
+
+// Copy string
+char* strcpy(char* dest, const char* src) {
+    if (!dest || !src) return dest;
+    
+    char* ret = dest;
+    while ((*dest++ = *src++))
+        ;
+    return ret;
+}
+
+// Append characters from src to dest, limited to n characters
+char* strncat(char* dest, const char* src, uint32 n) {
+    if (!dest || !src) return dest;
+    
+    // Find end of dest string
+    char* dest_end = dest;
+    while (*dest_end) {
+        dest_end++;
+    }
+    
+    // Copy at most n characters from src
+    uint32 i;
+    for (i = 0; i < n && src[i] != '\0'; i++) {
+        dest_end[i] = src[i];
+    }
+    
+    // Null terminate
+    dest_end[i] = '\0';
+    
+    return dest;
+}
+
+// Find first occurrence of substring in string
+char* strstr(const char* haystack, const char* needle) {
+    if (!haystack || !needle) return nullptr;
+    
+    // Empty needle matches at beginning of haystack
+    if (!*needle) return (char*)haystack;
+    
+    const char* h = haystack;
+    while (*h) {
+        const char* h_it = h;
+        const char* n_it = needle;
+        
+        // Compare characters until end of needle or mismatch
+        while (*h_it && *n_it && (*h_it == *n_it)) {
+            h_it++;
+            n_it++;
+        }
+        
+        // If we've reached end of needle, we found a match
+        if (!*n_it) return (char*)h;
+        
+        h++;
+    }
+    
+    return nullptr;  // Not found
+}
+
+// String to integer conversion
+int str_to_int(const char* str) {
+    if (!str) return 0;
+    
+    int result = 0;
+    int sign = 1;
+    int i = 0;
+    
+    // Handle whitespace
+    while (str[i] == ' ' || str[i] == '\t') i++;
+    
+    // Handle sign
+    if (str[i] == '-' || str[i] == '+') {
+        sign = (str[i] == '-') ? -1 : 1;
+        i++;
+    }
+    
+    // Convert digits
+    while (str[i] >= '0' && str[i] <= '9') {
+        result = result * 10 + (str[i] - '0');
+        i++;
+    }
+    
+    return result * sign;
+}

@@ -5,8 +5,12 @@
 
 // Common structures and functions following Ultimate++ conventions
 
-// Include stdarg for variable argument functions
-#include <stdarg.h>
+// Define stdarg for variable argument functions for kernel
+typedef __builtin_va_list va_list;
+#define va_start(v, l) __builtin_va_start(v, l)
+#define va_end(v) __builtin_va_end(v)
+#define va_arg(v, l) __builtin_va_arg(v, l)
+#define va_copy(d, s) __builtin_va_copy(d, s)
 
 struct Registers {
     uint32 ds;                  // Data segment selector
@@ -25,11 +29,21 @@ void* memset(void* dest, char val, uint32 len);
 uint16* memsetw(uint16* dest, uint16 val, uint32 count);
 int strlen(const char* str);
 char* strcpy_safe(char* dest, const char* src, uint32 dest_size);
+char* strcpy(char* dest, const char* src);
 char* strcat_s(char* dest, const char* src, uint32 dest_size);
+char* strncat(char* dest, const char* src, uint32 n);
 int strcmp(const char* str1, const char* str2);
+int strncmp(const char* str1, const char* str2, uint32 n);
+char* strchr(const char* str, int c);
+char* strrchr(const char* str, int c);
 char* strncpy_s(char* dest, const char* src, uint32 count, uint32 dest_size);
+char* strtok(char* str, const char* delim);
+char* strstr(const char* haystack, const char* needle);
+int atoi(const char* str);
+int snprintf(char* buffer, uint32 buffer_size, const char* format, ...);
 int snprintf_s(char* buffer, uint32 buffer_size, const char* format, ...);
 int vsnprintf(char* buffer, uint32 buffer_size, const char* format, va_list args);
+int str_to_int(const char* str);
 
 #ifdef __cplusplus
 }

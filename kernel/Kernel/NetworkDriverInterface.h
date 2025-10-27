@@ -14,11 +14,11 @@
 
 // Ethernet frame structure
 struct EthernetFrame {
-    uint8_t destination[ETH_ADDRESS_SIZE];
-    uint8_t source[ETH_ADDRESS_SIZE];
+    uint8 destination[ETH_ADDRESS_SIZE];
+    uint8 source[ETH_ADDRESS_SIZE];
     uint16_t type;  // EtherType
-    uint8_t data[ETH_MTU];
-    uint32_t fcs;   // Frame Check Sequence (not actually part of data)
+    uint8 data[ETH_MTU];
+    uint32 fcs;   // Frame Check Sequence (not actually part of data)
 };
 
 // ARP constants
@@ -31,13 +31,13 @@ struct EthernetFrame {
 struct ArpPacket {
     uint16_t hw_type;
     uint16_t proto_type;
-    uint8_t hw_addr_len;
-    uint8_t proto_addr_len;
+    uint8 hw_addr_len;
+    uint8 proto_addr_len;
     uint16_t op;
-    uint8_t sender_hw_addr[ETH_ADDRESS_SIZE];
-    uint32_t sender_proto_addr;  // IP address
-    uint8_t target_hw_addr[ETH_ADDRESS_SIZE];
-    uint32_t target_proto_addr;  // IP address
+    uint8 sender_hw_addr[ETH_ADDRESS_SIZE];
+    uint32 sender_proto_addr;  // IP address
+    uint8 target_hw_addr[ETH_ADDRESS_SIZE];
+    uint32 target_proto_addr;  // IP address
 };
 
 // IPv4 constants
@@ -49,26 +49,26 @@ struct ArpPacket {
 
 // IPv4 header structure
 struct IpHeader {
-    uint8_t version_ihl;      // Version and Internet Header Length
-    uint8_t type_of_service;  // Type of Service
+    uint8 version_ihl;      // Version and Internet Header Length
+    uint8 type_of_service;  // Type of Service
     uint16_t total_length;    // Total Length
     uint16_t identification;  // Identification
     uint16_t flags_fragment;  // Flags and Fragment Offset
-    uint8_t time_to_live;     // Time to Live
-    uint8_t protocol;         // Protocol
+    uint8 time_to_live;     // Time to Live
+    uint8 protocol;         // Protocol
     uint16_t header_checksum; // Header Checksum
-    uint32_t source_addr;     // Source Address
-    uint32_t dest_addr;       // Destination Address
+    uint32 source_addr;     // Source Address
+    uint32 dest_addr;       // Destination Address
 } __attribute__((packed));
 
 // Network interface structure
 struct NetworkInterface {
-    uint8_t mac_address[ETH_ADDRESS_SIZE];
-    uint32_t ip_address;
-    uint32_t subnet_mask;
-    uint32_t gateway;
+    uint8 mac_address[ETH_ADDRESS_SIZE];
+    uint32 ip_address;
+    uint32 subnet_mask;
+    uint32 gateway;
     char name[16];            // Interface name (e.g., "eth0")
-    uint32_t mtu;             // Maximum Transmission Unit
+    uint32 mtu;             // Maximum Transmission Unit
     bool link_up;             // Whether physical link is up
     bool initialized;         // Whether interface is initialized
     void* driver_private;     // Private data for the specific driver
@@ -92,22 +92,22 @@ enum NetworkIoctlCommands {
 
 // Network statistics structure
 struct NetworkStats {
-    uint32_t packets_sent;
-    uint32_t packets_received;
-    uint32_t bytes_sent;
-    uint32_t bytes_received;
-    uint32_t errors_sent;
-    uint32_t errors_received;
-    uint32_t dropped_packets;
+    uint32 packets_sent;
+    uint32 packets_received;
+    uint32 bytes_sent;
+    uint32 bytes_received;
+    uint32 errors_sent;
+    uint32 errors_received;
+    uint32 dropped_packets;
 };
 
 // Network packet structure for the driver interface
 struct NetworkPacket {
-    uint8_t* data;
-    uint32_t length;
-    uint32_t max_length;
+    uint8* data;
+    uint32 length;
+    uint32 max_length;
     NetworkInterface* interface;
-    uint32_t timestamp;
+    uint32 timestamp;
 };
 
 // Base class for network drivers
@@ -128,22 +128,22 @@ public:
     virtual bool Initialize() = 0;
     
     // Network-specific functions
-    virtual bool SendPacket(const uint8_t* data, uint32_t length) = 0;
-    virtual bool ReceivePacket(uint8_t* buffer, uint32_t* length, uint32_t max_length);
-    virtual bool ProcessReceivedData(const uint8_t* data, uint32_t length);
+    virtual bool SendPacket(const uint8* data, uint32 length) = 0;
+    virtual bool ReceivePacket(uint8* buffer, uint32* length, uint32 max_length);
+    virtual bool ProcessReceivedData(const uint8* data, uint32 length);
     virtual void HandleInterrupt();
     
     // Interface configuration
-    bool SetIpAddress(uint32_t ip);
-    uint32_t GetIpAddress();
-    bool SetSubnetMask(uint32_t mask);
-    uint32_t GetSubnetMask();
-    bool SetGateway(uint32_t gateway);
-    uint32_t GetGateway();
-    void GetMacAddress(uint8_t* mac);
-    void SetMacAddress(const uint8_t* mac);
+    bool SetIpAddress(uint32 ip);
+    uint32 GetIpAddress();
+    bool SetSubnetMask(uint32 mask);
+    uint32 GetSubnetMask();
+    bool SetGateway(uint32 gateway);
+    uint32 GetGateway();
+    void GetMacAddress(uint8* mac);
+    void SetMacAddress(const uint8* mac);
     bool IsLinkUp();
-    uint32_t GetMtu();
+    uint32 GetMtu();
     
     // Statistics
     void GetNetworkStats(NetworkStats& stats_out);
@@ -168,8 +168,8 @@ protected:
     static bool NetworkClose(Device* device);
     
     // Helper functions
-    bool IsValidEthernetFrame(const uint8_t* frame, uint32_t length);
-    uint16_t CalculateChecksum(const uint8_t* data, uint32_t length);
+    bool IsValidEthernetFrame(const uint8* frame, uint32 length);
+    uint16_t CalculateChecksum(const uint8* data, uint32 length);
     uint16_t CalculateIpChecksum(const IpHeader* ip_header);
 };
 
@@ -181,12 +181,12 @@ public:
     
     // Pure virtual functions that hardware-specific drivers must implement
     virtual bool HardwareInitialize() = 0;
-    virtual bool SendRawFrame(const uint8_t* frame, uint32_t length) = 0;
-    virtual bool ReceiveRawFrame(uint8_t* frame, uint32_t* length, uint32_t max_length) = 0;
+    virtual bool SendRawFrame(const uint8* frame, uint32 length) = 0;
+    virtual bool ReceiveRawFrame(uint8* frame, uint32* length, uint32 max_length) = 0;
     
     // Implement base class pure virtual functions
     virtual bool Initialize() override;
-    virtual bool SendPacket(const uint8_t* data, uint32_t length) override;
+    virtual bool SendPacket(const uint8* data, uint32 length) override;
 };
 
 #endif

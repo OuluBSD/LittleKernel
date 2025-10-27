@@ -57,7 +57,7 @@ SharedMemoryRegion* SharedMemoryManager::CreateSharedMemory(uint32 size) {
     region->next = nullptr;
     
     // Allocate the actual shared memory (aligned to page boundaries for efficiency)
-    uint32 page_aligned_size = (size + PAGE_SIZE - 1) & ~(PAGE_SIZE - 1);
+    uint32 page_aligned_size = (size + KERNEL_PAGE_SIZE - 1) & ~(KERNEL_PAGE_SIZE - 1);
     region->virtual_address = malloc(page_aligned_size);
     if (!region->virtual_address) {
         LOG("Failed to allocate shared memory block of size " << size);
@@ -97,12 +97,12 @@ void* SharedMemoryManager::MapSharedMemoryToProcess(SharedMemoryRegion* region,
     // Map the physical page to the process's virtual address
     if (global && global->paging_manager) {
         // Map the shared memory pages to the process's address space
-        uint32 page_count = (region->size + PAGE_SIZE - 1) / PAGE_SIZE;
+        uint32 page_count = (region->size + KERNEL_PAGE_SIZE - 1) / KERNEL_PAGE_SIZE;
         uint32 shared_phys_addr = region->physical_address;
         
         for (uint32 i = 0; i < page_count; i++) {
-            uint32 virt_addr = (uint32)target_vaddr + i * PAGE_SIZE;
-            uint32 phys_addr = shared_phys_addr + i * PAGE_SIZE;
+            uint32 virt_addr = (uint32)target_vaddr + i * KERNEL_PAGE_SIZE;
+            uint32 phys_addr = shared_phys_addr + i * KERNEL_PAGE_SIZE;
             
             // Map the page in the process's page directory
             bool success = global->paging_manager->MapPage(
@@ -116,7 +116,7 @@ void* SharedMemoryManager::MapSharedMemoryToProcess(SharedMemoryRegion* region,
                 LOG("Failed to map shared memory page to process");
                 // Unmap any pages already mapped
                 for (uint32 j = 0; j < i; j++) {
-                    uint32 undo_virt_addr = (uint32)target_vaddr + j * PAGE_SIZE;
+                    uint32 undo_virt_addr = (uint32)target_vaddr + j * KERNEL_PAGE_SIZE;
                     global->paging_manager->UnmapPage(undo_virt_addr, pcb->page_directory);
                 }
                 return nullptr;
@@ -142,9 +142,9 @@ void* SharedMemoryManager::MapSharedMemoryToProcess(SharedMemoryRegion* region,
     if (!AddProcessMapping(region, pcb->pid, target_vaddr, pcb->page_directory)) {
         LOG("Failed to add process mapping for shared memory");
         // Unmap the pages we just mapped
-        uint32 page_count = (region->size + PAGE_SIZE - 1) / PAGE_SIZE;
+        uint32 page_count = (region->size + KERNEL_PAGE_SIZE - 1) / KERNEL_PAGE_SIZE;
         for (uint32 i = 0; i < page_count; i++) {
-            uint32 virt_addr = (uint32)target_vaddr + i * PAGE_SIZE;
+            uint32 virt_addr = (uint32)target_vaddr + i * KERNEL_PAGE_SIZE;
             global->paging_manager->UnmapPage(virt_addr, pcb->page_directory);
         }
         return nullptr;
@@ -185,9 +185,9 @@ bool SharedMemoryManager::UnmapSharedMemoryFromProcess(SharedMemoryRegion* regio
     }
     
     // Unmap the pages in the process's address space
-    uint32 page_count = (region->size + PAGE_SIZE - 1) / PAGE_SIZE;
+    uint32 page_count = (region->size + KERNEL_PAGE_SIZE - 1) / KERNEL_PAGE_SIZE;
     for (uint32 i = 0; i < page_count; i++) {
-        uint32 virt_addr = (uint32)mapping->process_vaddr + i * PAGE_SIZE;
+        uint32 virt_addr = (uint32)mapping->process_vaddr + i * KERNEL_PAGE_SIZE;
         global->paging_manager->UnmapPage(virt_addr, pcb->page_directory);
     }
     

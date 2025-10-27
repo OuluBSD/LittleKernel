@@ -3,6 +3,9 @@
 
 // Don't include other headers in this file - only the package header should include other headers
 
+// Define PAGE_SIZE for compatibility with code that expects it
+#define PAGE_SIZE KERNEL_PAGE_SIZE
+
 // Forward declarations
 class Monitor;
 class Timer;
@@ -47,5 +50,8 @@ struct Global {
 
 // Global variable declaration
 extern Global* global;
+
+// Current process pointer
+extern ProcessControlBlock* g_current_process;
 
 #endif

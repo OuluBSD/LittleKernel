@@ -67,7 +67,7 @@ DiagnosticResult HardwareDiagnostics::RunCpuDiagnostic() {
     }
     
     // Calculate execution time
-    diag.execution_time = (uint32_t)(HAL_TIMER()->GetTickCount() - start_time);
+    diag.execution_time = (uint32)(HAL_TIMER()->GetTickCount() - start_time);
     diag.timestamp = HAL_TIMER()->GetTickCount();
     
     diagnostic_count++;
@@ -103,7 +103,7 @@ DiagnosticResult HardwareDiagnostics::RunMemoryDiagnostic() {
     }
     
     // Calculate execution time
-    diag.execution_time = (uint32_t)(HAL_TIMER()->GetTickCount() - start_time);
+    diag.execution_time = (uint32)(HAL_TIMER()->GetTickCount() - start_time);
     diag.timestamp = HAL_TIMER()->GetTickCount();
     
     diagnostic_count++;
@@ -128,7 +128,7 @@ DiagnosticResult HardwareDiagnostics::RunTimerDiagnostic() {
         diag.result = DiagnosticResult::FAILED;
     } else {
         // Test timer frequency
-        uint32_t freq = timer->GetFrequency();
+        uint32 freq = timer->GetFrequency();
         if (freq > 0) {
             snprintf(diag.details, sizeof(diag.details), 
                     "Timer frequency: %u Hz", freq);
@@ -140,7 +140,7 @@ DiagnosticResult HardwareDiagnostics::RunTimerDiagnostic() {
     }
     
     // Calculate execution time
-    diag.execution_time = (uint32_t)(HAL_TIMER()->GetTickCount() - start_time);
+    diag.execution_time = (uint32)(HAL_TIMER()->GetTickCount() - start_time);
     diag.timestamp = HAL_TIMER()->GetTickCount();
     
     diagnostic_count++;
@@ -164,7 +164,7 @@ DiagnosticResult HardwareDiagnostics::RunPciDiagnostic() {
         strncpy(diag.details, "PCI HAL not available", sizeof(diag.details) - 1);
         diag.result = DiagnosticResult::FAILED;
     } else {
-        uint32_t device_count = pci->EnumerateDevices();
+        uint32 device_count = pci->EnumerateDevices();
         snprintf(diag.details, sizeof(diag.details), 
                 "Found %u PCI devices", device_count);
         diag.result = DiagnosticResult::PASSED;
@@ -176,7 +176,7 @@ DiagnosticResult HardwareDiagnostics::RunPciDiagnostic() {
     }
     
     // Calculate execution time
-    diag.execution_time = (uint32_t)(HAL_TIMER()->GetTickCount() - start_time);
+    diag.execution_time = (uint32)(HAL_TIMER()->GetTickCount() - start_time);
     diag.timestamp = HAL_TIMER()->GetTickCount();
     
     diagnostic_count++;
@@ -198,10 +198,10 @@ DiagnosticResult HardwareDiagnostics::RunBasicSystemDiagnostic() {
     // This could include testing basic I/O, memory allocation, etc.
     
     // Test basic memory allocation
-    void* test_ptr = kmalloc(1024);  // Try to allocate 1KB
+    void* test_ptr = malloc(1024);  // Try to allocate 1KB
     if (test_ptr) {
         // Write and read test
-        uint8_t* test_mem = (uint8_t*)test_ptr;
+        uint8* test_mem = (uint8*)test_ptr;
         test_mem[0] = 0xAA;
         test_mem[511] = 0x55;
         test_mem[1023] = 0xFF;
@@ -214,14 +214,14 @@ DiagnosticResult HardwareDiagnostics::RunBasicSystemDiagnostic() {
             diag.result = DiagnosticResult::FAILED;
         }
         
-        kfree(test_ptr);
+        free(test_ptr);
     } else {
         strncpy(diag.details, "Could not allocate test memory", sizeof(diag.details) - 1);
         diag.result = DiagnosticResult::FAILED;
     }
     
     // Calculate execution time
-    diag.execution_time = (uint32_t)(HAL_TIMER()->GetTickCount() - start_time);
+    diag.execution_time = (uint32)(HAL_TIMER()->GetTickCount() - start_time);
     diag.timestamp = HAL_TIMER()->GetTickCount();
     
     diagnostic_count++;
@@ -235,7 +235,7 @@ DiagnosticResult HardwareDiagnostics::RunDiagnostic(DiagnosticType type) {
     RunAllDiagnostics();
     
     // Find the specific diagnostic result
-    for (uint32_t i = 0; i < diagnostic_count; i++) {
+    for (uint32 i = 0; i < diagnostic_count; i++) {
         if (diagnostics[i].type == type) {
             return diagnostics[i].result;
         }
@@ -251,7 +251,7 @@ bool HardwareDiagnostics::RegisterDiagnostic(DiagnosticType type, const char* na
     return false;
 }
 
-const HardwareDiagnostic* HardwareDiagnostics::GetDiagnosticResults(uint32_t* count) {
+const HardwareDiagnostic* HardwareDiagnostics::GetDiagnosticResults(uint32* count) {
     *count = diagnostic_count;
     return diagnostics;
 }
@@ -259,9 +259,9 @@ const HardwareDiagnostic* HardwareDiagnostics::GetDiagnosticResults(uint32_t* co
 void HardwareDiagnostics::PrintDiagnosticSummary() {
     LOG("=== Hardware Diagnostic Summary ===");
     
-    uint32_t passed = 0, failed = 0, skipped = 0;
+    uint32 passed = 0, failed = 0, skipped = 0;
     
-    for (uint32_t i = 0; i < diagnostic_count; i++) {
+    for (uint32 i = 0; i < diagnostic_count; i++) {
         const HardwareDiagnostic& diag = diagnostics[i];
         LOG(TypeToString(diag.type) << " - " << diag.name << ": " 
             << ResultToString(diag.result) 
@@ -329,7 +329,7 @@ bool HardwareDiagnostics::DetectHardware() {
     // Detect PCI devices
     PciHal* pci = HAL_PCI();
     if (pci) {
-        uint32_t device_count = pci->EnumerateDevices();
+        uint32 device_count = pci->EnumerateDevices();
         LOG("PCI Devices Found: " << device_count);
     }
     

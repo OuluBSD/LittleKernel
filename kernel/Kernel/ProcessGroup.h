@@ -43,8 +43,8 @@ const uint32 SESSION_FLAG_LOGIN = 0x00000001;   // Session is a login session
 const uint32 SESSION_FLAG_FOREGROUND = 0x00000002; // Session is in foreground
 
 // Process group and session management constants
-const uint32 INVALID_PGID = 0xFFFFFFFF;
-const uint32 INVALID_SID = 0xFFFFFFFF;
+// const uint32 INVALID_PGID = 0xFFFFFFFF;  // Already defined in ProcessControlBlock.h
+// const uint32 INVALID_SID = 0xFFFFFFFF;   // Already defined in ProcessControlBlock.h
 const uint32 INITIAL_PGID = 1;     // Initial process group ID
 const uint32 INITIAL_SID = 1;       // Initial session ID
 

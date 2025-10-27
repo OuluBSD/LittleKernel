@@ -3,27 +3,8 @@
 
 #include "Defs.h"
 #include "ProcessControlBlock.h"
+// Removed duplicate RealTimeSchedulingPolicy enum - now included from RealTimeScheduling.h
 #include "RealTimeScheduling.h"
-
-// Real-time scheduling policies (duplicate from RealTimeScheduling.h for completeness)
-enum RealTimeSchedulingPolicy {
-    RT_SCHED_FIFO = 0,     // First-In-First-Out real-time scheduling
-    RT_SCHED_RR,           // Round-Robin real-time scheduling
-    RT_SCHED_DEADLINE,     // Earliest Deadline First scheduling
-    RT_SCHED_SPORADIC,    // Sporadic server scheduling
-    RT_SCHED_EDF,         // Earliest Deadline First
-    RT_SCHED_RM,          // Rate Monotonic scheduling
-    RT_SCHED_DM,          // Deadline Monotonic scheduling
-    RT_SCHED_LST,         // Least Slack Time scheduling
-    RT_SCHED_GS,          // Guaranteed Scheduling
-    RT_SCHED_CBS,         // Constant Bandwidth Server scheduling
-    RT_SCHED_DVS,         // Dynamic Voltage Scaling scheduling
-    RT_SCHED_DPS,         // Dynamic Priority Scheduling
-    RT_SCHED_AE,          // Aperiodic Events scheduling
-    RT_SCHED_BG,          // Background scheduling
-    RT_SCHED_IDLE,        // Idle scheduling
-    RT_SCHED_CUSTOM       // Custom scheduling policy
-};
 
 // Process accounting record structure
 struct ProcessAccountingRecord {

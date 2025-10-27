@@ -7,15 +7,15 @@
 // Profiling sample structure
 struct ProfileSample {
     uint64_t timestamp;        // Time when sample was taken
-    uint32_t cpu_usage;        // CPU utilization percentage
-    uint32_t memory_usage;     // Memory utilization percentage
-    uint32_t process_count;    // Number of running processes
+    uint32 cpu_usage;        // CPU utilization percentage
+    uint32 memory_usage;     // Memory utilization percentage
+    uint32 process_count;    // Number of running processes
     uint64_t total_processes;  // Total processes created
     uint64_t total_switches;   // Total context switches
     uint64_t total_syscalls;   // Total system calls made
-    uint32_t page_faults;      // Page faults since last sample
-    uint32_t interrupts;       // Interrupts since last sample
-    uint32_t ready_queue_size; // Number of processes ready to run
+    uint32 page_faults;      // Page faults since last sample
+    uint32 interrupts;       // Interrupts since last sample
+    uint32 ready_queue_size; // Number of processes ready to run
 };
 
 // Profiling data for a specific function or region
@@ -35,9 +35,9 @@ struct ProfileStats {
     uint64_t total_kernel_time;    // Total time kernel has been running
     uint64_t total_idle_time;      // Total time spent in idle state
     uint64_t total_process_time;   // Total time spent in processes
-    uint32_t avg_context_switch_time; // Average context switch time (nanoseconds)
-    uint32_t avg_syscall_time;     // Average system call time (nanoseconds)
-    uint32_t avg_interrupt_time;   // Average interrupt handling time (nanoseconds)
+    uint32 avg_context_switch_time; // Average context switch time (nanoseconds)
+    uint32 avg_syscall_time;     // Average system call time (nanoseconds)
+    uint32 avg_interrupt_time;   // Average interrupt handling time (nanoseconds)
 };
 
 // Profiling types
@@ -52,17 +52,17 @@ enum class ProfileType {
 // Kernel profiling manager
 class KernelProfiler {
 private:
-    static const uint32_t MAX_PROFILED_FUNCTIONS = 256;
-    static const uint32_t MAX_SAMPLES = 1024;
-    static const uint32_t MAX_REGIONS = 64;
+    static const uint32 MAX_PROFILED_FUNCTIONS = 256;
+    static const uint32 MAX_SAMPLES = 1024;
+    static const uint32 MAX_REGIONS = 64;
     
     FunctionProfile function_profiles[MAX_PROFILED_FUNCTIONS];
     ProfileSample samples[MAX_SAMPLES];
     ProfileStats stats;
     
-    uint32_t function_count;
-    uint32_t sample_count;
-    uint32_t sample_index;
+    uint32 function_count;
+    uint32 sample_count;
+    uint32 sample_index;
     
     bool profiling_enabled;
     ProfileType current_profile_type;
@@ -72,11 +72,11 @@ private:
     struct ProfileRegion {
         const char* name;
         uint64_t start_time;
-        uint32_t active;
+        uint32 active;
     };
     
     ProfileRegion profile_regions[MAX_REGIONS];
-    uint32_t region_count;
+    uint32 region_count;
     
 public:
     KernelProfiler();
@@ -108,10 +108,10 @@ public:
     const FunctionProfile* GetFunctionProfile(const char* name);
     
     // Get all function profiles
-    const FunctionProfile* GetFunctionProfiles(uint32_t* count);
+    const FunctionProfile* GetFunctionProfiles(uint32* count);
     
     // Get profiling samples
-    const ProfileSample* GetSamples(uint32_t* count);
+    const ProfileSample* GetSamples(uint32* count);
     
     // Reset profiling data
     void Reset();
@@ -121,11 +121,11 @@ public:
     
     // Calculate specific metrics
     uint64_t GetAverageFunctionTime(const char* name);
-    uint32_t GetFunctionCallCount(const char* name);
+    uint32 GetFunctionCallCount(const char* name);
     
     // Get system utilization
-    uint32_t GetCpuUtilization();
-    uint32_t GetMemoryUtilization();
+    uint32 GetCpuUtilization();
+    uint32 GetMemoryUtilization();
     
     // Update statistics
     void UpdateStats();

@@ -5,6 +5,7 @@
 #include "Defs.h"
 #include "Vfs.h"
 #include "Fat32Driver.h"
+#include "DriverFramework.h"
 
 // Boot drive implementations - B: and C: drives
 

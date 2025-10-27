@@ -11,9 +11,9 @@ RuntimeConfigManager::RuntimeConfigManager() : entry_count(0) {
 
 RuntimeConfigManager::~RuntimeConfigManager() {
     // Clean up any allocated resources for entries
-    for (uint32_t i = 0; i < entry_count; i++) {
+    for (uint32 i = 0; i < entry_count; i++) {
         if (entries[i].default_value) {
-            kfree(entries[i].default_value);
+            free(entries[i].default_value);
         }
     }
 }
@@ -92,14 +92,14 @@ bool RuntimeConfigManager::Initialize() {
     return true;
 }
 
-bool RuntimeConfigManager::RegisterConfig(const char* name, void* value, uint32_t size, 
+bool RuntimeConfigManager::RegisterConfig(const char* name, void* value, uint32 size, 
                                           ConfigChangeCallback callback, bool is_readonly) {
     if (!name || !value || entry_count >= MAX_CONFIG_ENTRIES) {
         return false;
     }
     
     // Check if a config with this name already exists
-    for (uint32_t i = 0; i < entry_count; i++) {
+    for (uint32 i = 0; i < entry_count; i++) {
         if (strcmp(entries[i].name, name) == 0) {
             LOG("Warning: Configuration " << name << " already registered, overwriting");
             // Update the existing entry
@@ -124,7 +124,7 @@ bool RuntimeConfigManager::RegisterConfig(const char* name, void* value, uint32_
     entry.is_readonly = is_readonly;
     
     // Store default value
-    entry.default_value = kmalloc(size);
+    entry.default_value = malloc(size);
     if (entry.default_value) {
         memcpy(entry.default_value, value, size);
     } else {
@@ -137,12 +137,12 @@ bool RuntimeConfigManager::RegisterConfig(const char* name, void* value, uint32_
     return true;
 }
 
-bool RuntimeConfigManager::GetConfig(const char* name, void* out_value, uint32_t max_size) {
+bool RuntimeConfigManager::GetConfig(const char* name, void* out_value, uint32 max_size) {
     if (!name || !out_value) {
         return false;
     }
     
-    for (uint32_t i = 0; i < entry_count; i++) {
+    for (uint32 i = 0; i < entry_count; i++) {
         if (strcmp(entries[i].name, name) == 0) {
             if (max_size < entries[i].size) {
                 return false;  // Output buffer too small
@@ -156,12 +156,12 @@ bool RuntimeConfigManager::GetConfig(const char* name, void* out_value, uint32_t
     return false;  // Config not found
 }
 
-bool RuntimeConfigManager::SetConfig(const char* name, const void* new_value, uint32_t size) {
+bool RuntimeConfigManager::SetConfig(const char* name, const void* new_value, uint32 size) {
     if (!name || !new_value) {
         return false;
     }
     
-    for (uint32_t i = 0; i < entry_count; i++) {
+    for (uint32 i = 0; i < entry_count; i++) {
         if (strcmp(entries[i].name, name) == 0) {
             if (entries[i].is_readonly) {
                 LOG("Error: Attempt to change read-only configuration: " << name);
@@ -180,7 +180,7 @@ bool RuntimeConfigManager::SetConfig(const char* name, const void* new_value, ui
             }
             
             // Store old value for callback
-            void* old_value = kmalloc(entries[i].size);
+            void* old_value = malloc(entries[i].size);
             if (old_value) {
                 memcpy(old_value, entries[i].value, entries[i].size);
             }
@@ -195,7 +195,7 @@ bool RuntimeConfigManager::SetConfig(const char* name, const void* new_value, ui
             
             // Free the old value storage
             if (old_value) {
-                kfree(old_value);
+                free(old_value);
             }
             
             LOG("Runtime configuration changed: " << name);
@@ -209,17 +209,17 @@ bool RuntimeConfigManager::SetConfig(const char* name, const void* new_value, ui
 const char* RuntimeConfigManager::GetConfigString(const char* name) {
     static char buffer[256];  // Static buffer for string representation
     
-    for (uint32_t i = 0; i < entry_count; i++) {
+    for (uint32 i = 0; i < entry_count; i++) {
         if (strcmp(entries[i].name, name) == 0) {
             // Convert the configuration value to a string representation
-            if (entries[i].size == sizeof(uint32_t)) {
-                uint32_t value = *(uint32_t*)entries[i].value;
+            if (entries[i].size == sizeof(uint32)) {
+                uint32 value = *(uint32*)entries[i].value;
                 snprintf(buffer, sizeof(buffer), "%u", value);
             } else if (entries[i].size == sizeof(bool)) {
                 bool value = *(bool*)entries[i].value;
                 snprintf(buffer, sizeof(buffer), "%s", value ? "true" : "false");
-            } else if (entries[i].size == sizeof(uint8_t)) {
-                uint8_t value = *(uint8_t*)entries[i].value;
+            } else if (entries[i].size == sizeof(uint8)) {
+                uint8 value = *(uint8*)entries[i].value;
                 snprintf(buffer, sizeof(buffer), "%u", value);
             } else if (entries[i].size == sizeof(uint16_t)) {
                 uint16_t value = *(uint16_t*)entries[i].value;
@@ -240,11 +240,11 @@ bool RuntimeConfigManager::SetConfigFromString(const char* name, const char* val
         return false;
     }
     
-    for (uint32_t i = 0; i < entry_count; i++) {
+    for (uint32 i = 0; i < entry_count; i++) {
         if (strcmp(entries[i].name, name) == 0) {
             // Parse the string value based on the configuration type
-            if (entries[i].size == sizeof(uint32_t)) {
-                uint32_t value = 0;
+            if (entries[i].size == sizeof(uint32)) {
+                uint32 value = 0;
                 const char* str = value_str;
                 
                 // Parse the number (simple implementation)
@@ -261,8 +261,8 @@ bool RuntimeConfigManager::SetConfigFromString(const char* name, const char* val
                               strcmp(value_str, "yes") == 0 ||
                               strcmp(value_str, "on") == 0);
                 return SetConfig(name, &value, sizeof(value));
-            } else if (entries[i].size == sizeof(uint8_t)) {
-                uint8_t value = 0;
+            } else if (entries[i].size == sizeof(uint8)) {
+                uint8 value = 0;
                 const char* str = value_str;
                 
                 while (*str && (*str == ' ' || *str == '\t')) str++;  // Skip whitespace
@@ -298,7 +298,7 @@ bool RuntimeConfigManager::SaveConfigToFile(const char* filename) {
     // In a real implementation, this would write to a file
     LOG("Saving runtime configuration to file: " << filename);
     
-    for (uint32_t i = 0; i < entry_count; i++) {
+    for (uint32 i = 0; i < entry_count; i++) {
         const char* value_str = GetConfigString(entries[i].name);
         if (value_str) {
             LOG("Config: " << entries[i].name << " = " << value_str);
@@ -317,9 +317,9 @@ bool RuntimeConfigManager::LoadConfigFromFile(const char* filename) {
     return true;
 }
 
-uint32_t RuntimeConfigManager::GetConfigNames(char** names, uint32_t max_names) {
-    uint32_t count = 0;
-    for (uint32_t i = 0; i < entry_count && count < max_names; i++) {
+uint32 RuntimeConfigManager::GetConfigNames(char** names, uint32 max_names) {
+    uint32 count = 0;
+    for (uint32 i = 0; i < entry_count && count < max_names; i++) {
         names[count] = entries[i].name;
         count++;
     }
@@ -340,22 +340,22 @@ bool RuntimeConfigManager::ApplyPendingChanges() {
     return true;
 }
 
-bool RuntimeConfigManager::ValidateConfigChange(const char* name, const void* new_value, uint32_t size) {
+bool RuntimeConfigManager::ValidateConfigChange(const char* name, const void* new_value, uint32 size) {
     // Basic validation for some common configuration values
-    if (strcmp(name, "timer_frequency") == 0 && size == sizeof(uint32_t)) {
-        uint32_t freq = *(uint32_t*)new_value;
+    if (strcmp(name, "timer_frequency") == 0 && size == sizeof(uint32)) {
+        uint32 freq = *(uint32*)new_value;
         if (freq < 1 || freq > 10000) {  // 1 Hz to 10 kHz seems reasonable
             LOG("Validation failed: timer_frequency out of range (1-10000): " << freq);
             return false;
         }
-    } else if (strcmp(name, "kernel_heap_size") == 0 && size == sizeof(uint32_t)) {
-        uint32_t heap_size = *(uint32_t*)new_value;
+    } else if (strcmp(name, "kernel_heap_size") == 0 && size == sizeof(uint32)) {
+        uint32 heap_size = *(uint32*)new_value;
         if (heap_size == 0 || heap_size > 1024 * 1024 * 1024) {  // Max 1GB
             LOG("Validation failed: kernel_heap_size out of range (1 - 1GB): " << heap_size);
             return false;
         }
-    } else if (strcmp(name, "max_processes") == 0 && size == sizeof(uint32_t)) {
-        uint32_t max_procs = *(uint32_t*)new_value;
+    } else if (strcmp(name, "max_processes") == 0 && size == sizeof(uint32)) {
+        uint32 max_procs = *(uint32*)new_value;
         if (max_procs == 0 || max_procs > 10000) {  // Arbitrary upper limit
             LOG("Validation failed: max_processes out of range (1-10000): " << max_procs);
             return false;

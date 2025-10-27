@@ -41,6 +41,7 @@ enum ProcessSuspensionReason {
     SUSPEND_REASON_POWER_MANAGEMENT, // Power management
     SUSPEND_REASON_SECURITY_VIOLATION, // Security violation detected
     SUSPEND_REASON_ERROR_CONDITION,   // Error condition occurred
+    SUSPEND_REASON_SYSTEM,           // System requested suspension
     SUSPEND_REASON_UNKNOWN           // Unknown reason
 };
 
@@ -220,7 +221,7 @@ public:
     
     // Initialization and configuration
     bool Initialize();
-    bool Configure(const ProcessSuspensionConfig* config);
+    bool Configure(const ProcessSuspensionContext* config);
     bool IsInitialized() const;
     bool IsEnabled() const;
     bool Enable();
@@ -461,16 +462,16 @@ public:
     uint32 GetCleanupCount();
     
     // Suspension monitoring
-    void OnTimerTick();
+    // void OnTimerTick();
     void OnContextSwitch();
     void OnSystemCall(uint32 pid, uint32 syscall_number);
     void OnPageFault(uint32 pid);
     void OnContextSwitch(uint32 pid);
-    void OnTimerTick();
+    // void OnTimerTick();  // Duplicate declaration
     void OnIOPerformed(uint32 pid, uint32 bytes_read, uint32 bytes_written);
     void OnSignalDelivered(uint32 pid, uint32 signal);
     void OnResourceLimitExceeded(uint32 pid, uint32 resource);
-    void OnThresholdExceeded(uint32 pid, uint32 resource, uint32 value);
+    // void OnThresholdExceeded(uint32 pid, uint32 resource, uint32 value);  // Duplicate declaration
     void OnCriticalError(uint32 pid, uint32 error_code);
     void OnWarning(uint32 pid, uint32 warning_code);
     void OnInformation(uint32 pid, uint32 info_code);

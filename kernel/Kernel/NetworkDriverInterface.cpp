@@ -44,12 +44,12 @@ NetworkDriver::~NetworkDriver() {
     FlushBuffers();
 }
 
-bool NetworkDriver::ReceivePacket(uint8_t* buffer, uint32_t* length, uint32_t max_length) {
+bool NetworkDriver::ReceivePacket(uint8* buffer, uint32* length, uint32 max_length) {
     buffer_lock.Acquire();
     
     if (!rx_buffer.IsEmpty()) {
         NetworkPacket packet = rx_buffer.Pop();
-        uint32_t copy_len = (packet.length < max_length) ? packet.length : max_length;
+        uint32 copy_len = (packet.length < max_length) ? packet.length : max_length;
         
         memcpy(buffer, packet.data, copy_len);
         *length = copy_len;
@@ -66,7 +66,7 @@ bool NetworkDriver::ReceivePacket(uint8_t* buffer, uint32_t* length, uint32_t ma
     return false;
 }
 
-bool NetworkDriver::ProcessReceivedData(const uint8_t* data, uint32_t length) {
+bool NetworkDriver::ProcessReceivedData(const uint8* data, uint32 length) {
     if (!data || length == 0 || length > ETH_FRAME_MAX) {
         return false;
     }
@@ -112,40 +112,40 @@ void NetworkDriver::HandleInterrupt() {
     // and call ProcessReceivedData for each packet
 }
 
-bool NetworkDriver::SetIpAddress(uint32_t ip) {
+bool NetworkDriver::SetIpAddress(uint32 ip) {
     interface_info.ip_address = ip;
     return true;
 }
 
-uint32_t NetworkDriver::GetIpAddress() {
+uint32 NetworkDriver::GetIpAddress() {
     return interface_info.ip_address;
 }
 
-bool NetworkDriver::SetSubnetMask(uint32_t mask) {
+bool NetworkDriver::SetSubnetMask(uint32 mask) {
     interface_info.subnet_mask = mask;
     return true;
 }
 
-uint32_t NetworkDriver::GetSubnetMask() {
+uint32 NetworkDriver::GetSubnetMask() {
     return interface_info.subnet_mask;
 }
 
-bool NetworkDriver::SetGateway(uint32_t gateway) {
+bool NetworkDriver::SetGateway(uint32 gateway) {
     interface_info.gateway = gateway;
     return true;
 }
 
-uint32_t NetworkDriver::GetGateway() {
+uint32 NetworkDriver::GetGateway() {
     return interface_info.gateway;
 }
 
-void NetworkDriver::GetMacAddress(uint8_t* mac) {
+void NetworkDriver::GetMacAddress(uint8* mac) {
     if (mac) {
         memcpy(mac, interface_info.mac_address, ETH_ADDRESS_SIZE);
     }
 }
 
-void NetworkDriver::SetMacAddress(const uint8_t* mac) {
+void NetworkDriver::SetMacAddress(const uint8* mac) {
     if (mac) {
         memcpy(interface_info.mac_address, mac, ETH_ADDRESS_SIZE);
     }
@@ -155,7 +155,7 @@ bool NetworkDriver::IsLinkUp() {
     return interface_info.link_up;
 }
 
-uint32_t NetworkDriver::GetMtu() {
+uint32 NetworkDriver::GetMtu() {
     return interface_info.mtu;
 }
 
@@ -192,7 +192,7 @@ void NetworkDriver::FlushBuffers() {
 bool NetworkDriver::HandleIoctl(uint32 command, void* arg) {
     switch (command) {
         case NETWORK_GET_MAC_ADDRESS: {
-            uint8_t* mac = (uint8_t*)arg;
+            uint8* mac = (uint8*)arg;
             if (mac) {
                 GetMacAddress(mac);
             }
@@ -200,7 +200,7 @@ bool NetworkDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case NETWORK_SET_MAC_ADDRESS: {
-            uint8_t* mac = (uint8_t*)arg;
+            uint8* mac = (uint8*)arg;
             if (mac) {
                 SetMacAddress(mac);
                 return true;
@@ -209,7 +209,7 @@ bool NetworkDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case NETWORK_GET_IP_ADDRESS: {
-            uint32_t* ip = (uint32_t*)arg;
+            uint32* ip = (uint32*)arg;
             if (ip) {
                 *ip = GetIpAddress();
             }
@@ -217,7 +217,7 @@ bool NetworkDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case NETWORK_SET_IP_ADDRESS: {
-            uint32_t* ip = (uint32_t*)arg;
+            uint32* ip = (uint32*)arg;
             if (ip) {
                 return SetIpAddress(*ip);
             }
@@ -225,7 +225,7 @@ bool NetworkDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case NETWORK_GET_SUBNET_MASK: {
-            uint32_t* mask = (uint32_t*)arg;
+            uint32* mask = (uint32*)arg;
             if (mask) {
                 *mask = GetSubnetMask();
             }
@@ -233,7 +233,7 @@ bool NetworkDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case NETWORK_SET_SUBNET_MASK: {
-            uint32_t* mask = (uint32_t*)arg;
+            uint32* mask = (uint32*)arg;
             if (mask) {
                 return SetSubnetMask(*mask);
             }
@@ -241,7 +241,7 @@ bool NetworkDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case NETWORK_GET_GATEWAY: {
-            uint32_t* gateway = (uint32_t*)arg;
+            uint32* gateway = (uint32*)arg;
             if (gateway) {
                 *gateway = GetGateway();
             }
@@ -249,7 +249,7 @@ bool NetworkDriver::HandleIoctl(uint32 command, void* arg) {
         }
         
         case NETWORK_SET_GATEWAY: {
-            uint32_t* gateway = (uint32_t*)arg;
+            uint32* gateway = (uint32*)arg;
             if (gateway) {
                 return SetGateway(*gateway);
             }
@@ -289,7 +289,7 @@ bool NetworkDriver::HandleIoctl(uint32 command, void* arg) {
     return true;
 }
 
-bool NetworkDriver::IsValidEthernetFrame(const uint8_t* frame, uint32_t length) {
+bool NetworkDriver::IsValidEthernetFrame(const uint8* frame, uint32 length) {
     if (!frame || length < ETH_FRAME_MIN || length > ETH_FRAME_MAX) {
         return false;
     }
@@ -308,10 +308,10 @@ bool NetworkDriver::IsValidEthernetFrame(const uint8_t* frame, uint32_t length) 
     return true;
 }
 
-uint16_t NetworkDriver::CalculateChecksum(const uint8_t* data, uint32_t length) {
-    uint32_t sum = 0;
+uint16_t NetworkDriver::CalculateChecksum(const uint8* data, uint32 length) {
+    uint32 sum = 0;
     
-    for (uint32_t i = 0; i < length - 1; i += 2) {
+    for (uint32 i = 0; i < length - 1; i += 2) {
         sum += (data[i] << 8) | data[i + 1];
     }
     
@@ -334,7 +334,7 @@ uint16_t NetworkDriver::CalculateIpChecksum(const IpHeader* ip_header) {
     const_cast<IpHeader*>(ip_header)->header_checksum = 0;
     
     // Calculate checksum
-    uint16_t checksum = CalculateChecksum((const uint8_t*)ip_header, 
+    uint16_t checksum = CalculateChecksum((const uint8*)ip_header, 
                                          (ip_header->version_ihl & 0x0F) * 4);
     
     // Restore original checksum
@@ -384,7 +384,7 @@ bool NetworkDriver::NetworkRead(Device* device, void* buffer, uint32 size, uint3
     }
     
     uint32 length;
-    bool result = driver->ReceivePacket((uint8_t*)buffer, &length, size);
+    bool result = driver->ReceivePacket((uint8*)buffer, &length, size);
     
     // Update the size parameter to reflect actual data read
     // This is tricky because the NetworkRead function signature doesn't allow us to modify size
@@ -404,7 +404,7 @@ bool NetworkDriver::NetworkWrite(Device* device, const void* buffer, uint32 size
     }
     
     // Send the network packet
-    bool result = driver->SendPacket((const uint8_t*)buffer, size);
+    bool result = driver->SendPacket((const uint8*)buffer, size);
     
     if (result) {
         driver->stats.packets_sent++;
@@ -474,7 +474,7 @@ bool EthernetDriver::Initialize() {
     return true;
 }
 
-bool EthernetDriver::SendPacket(const uint8_t* data, uint32_t length) {
+bool EthernetDriver::SendPacket(const uint8* data, uint32 length) {
     if (!data || length == 0 || length > interface_info.mtu) {
         return false;
     }

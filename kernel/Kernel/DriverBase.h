@@ -13,6 +13,27 @@
 struct DeviceBase;
 struct IoRequest;
 
+// I/O request types
+enum class IoRequestType {
+    READ,
+    WRITE,
+    IOCTL,
+    OPEN,
+    CLOSE,
+    FLUSH
+};
+
+// I/O request structure
+struct IoRequest {
+    IoRequestType type;        // Type of I/O request
+    uint32 offset;            // Offset for read/write operations
+    uint32 size;              // Size of data for read/write operations
+    void* buffer;             // Buffer for data transfer
+    uint32 flags;            // Request-specific flags
+    int result;              // Result of the operation
+    void* user_data;          // User data associated with the request
+};
+
 // Driver states enum
 enum class DriverState {
     STOPPED,
@@ -47,15 +68,15 @@ protected:
     char name[64];                  // Driver name
     char version[16];               // Driver version string
     DriverState state;              // Current driver state
-    uint32_t vendor_id;             // Hardware vendor ID
-    uint32_t device_id;             // Hardware device ID
+    uint32 vendor_id;             // Hardware vendor ID
+    uint32 device_id;             // Hardware device ID
     void* device_handle;            // Handle to the physical device
-    uint32_t interrupt_number;      // Associated interrupt number
+    uint32 interrupt_number;      // Associated interrupt number
 
 public:
     // Constructor
     DriverBase(const char* driver_name, const char* driver_version, 
-               uint32_t vid = 0, uint32_t did = 0, uint32_t irq = 0);
+               uint32 vid = 0, uint32 did = 0, uint32 irq = 0);
 
     // Destructor
     virtual ~DriverBase();
@@ -76,9 +97,9 @@ public:
     DriverState GetState() const { return state; }
     const char* GetName() const { return name; }
     const char* GetVersion() const { return version; }
-    uint32_t GetVendorId() const { return vendor_id; }
-    uint32_t GetDeviceId() const { return device_id; }
-    uint32_t GetInterruptNumber() const { return interrupt_number; }
+    uint32 GetVendorId() const { return vendor_id; }
+    uint32 GetDeviceId() const { return device_id; }
+    uint32 GetInterruptNumber() const { return interrupt_number; }
     void SetState(DriverState new_state) { state = new_state; }
     
     // Logging convenience functions
@@ -90,13 +111,13 @@ public:
 // Base class for block device drivers (disks, etc.)
 class BlockDeviceDriver : public DriverBase {
 protected:
-    uint32_t block_size;            // Size of each block in bytes
-    uint32_t total_blocks;          // Total number of blocks
+    uint32 block_size;            // Size of each block in bytes
+    uint32 total_blocks;          // Total number of blocks
     bool read_only;                 // Whether the device is read-only
 
 public:
     BlockDeviceDriver(const char* driver_name, const char* driver_version, 
-                      uint32_t vid = 0, uint32_t did = 0, uint32_t irq = 0);
+                      uint32 vid = 0, uint32 did = 0, uint32 irq = 0);
 
     // Implement pure virtual functions
     virtual DriverInitResult Initialize() override;
@@ -105,10 +126,10 @@ public:
     virtual int ProcessIoRequest(IoRequest* request) override;
 
     // Block device specific functions
-    virtual uint32_t ReadBlocks(uint32_t start_block, uint32_t num_blocks, void* buffer);
-    virtual uint32_t WriteBlocks(uint32_t start_block, uint32_t num_blocks, const void* buffer);
-    virtual uint32_t GetBlockSize() const { return block_size; }
-    virtual uint32_t GetTotalBlocks() const { return total_blocks; }
+    virtual uint32 ReadBlocks(uint32 start_block, uint32 num_blocks, void* buffer);
+    virtual uint32 WriteBlocks(uint32 start_block, uint32 num_blocks, const void* buffer);
+    virtual uint32 GetBlockSize() const { return block_size; }
+    virtual uint32 GetTotalBlocks() const { return total_blocks; }
     virtual bool IsReadOnly() const { return read_only; }
 };
 
@@ -119,7 +140,7 @@ protected:
 
 public:
     CharacterDeviceDriver(const char* driver_name, const char* driver_version, 
-                          uint32_t vid = 0, uint32_t did = 0, uint32_t irq = 0);
+                          uint32 vid = 0, uint32 did = 0, uint32 irq = 0);
 
     // Implement pure virtual functions
     virtual DriverInitResult Initialize() override;
@@ -128,8 +149,8 @@ public:
     virtual int ProcessIoRequest(IoRequest* request) override;
 
     // Character device specific functions
-    virtual int Read(void* buffer, uint32_t size);
-    virtual int Write(const void* buffer, uint32_t size);
+    virtual int Read(void* buffer, uint32 size);
+    virtual int Write(const void* buffer, uint32 size);
     virtual int WaitForInput();     // Block until input is available
     virtual int WaitForOutput();    // Block until output is possible
 };
@@ -137,13 +158,13 @@ public:
 // Base class for network device drivers
 class NetworkDriver : public DriverBase {
 protected:
-    uint8_t mac_address[6];         // MAC address of the device
-    uint32_t mtu;                   // Maximum transmission unit
+    uint8 mac_address[6];         // MAC address of the device
+    uint32 mtu;                   // Maximum transmission unit
     bool link_up;                   // Whether the physical link is up
 
 public:
     NetworkDriver(const char* driver_name, const char* driver_version, 
-                  uint32_t vid = 0, uint32_t did = 0, uint32_t irq = 0);
+                  uint32 vid = 0, uint32 did = 0, uint32 irq = 0);
 
     // Implement pure virtual functions
     virtual DriverInitResult Initialize() override;
@@ -152,10 +173,10 @@ public:
     virtual int ProcessIoRequest(IoRequest* request) override;
 
     // Network device specific functions
-    virtual int SendPacket(const void* packet, uint32_t size);
-    virtual int ReceivePacket(void* packet, uint32_t max_size);
-    virtual const uint8_t* GetMacAddress() const { return mac_address; }
-    virtual uint32_t GetMTU() const { return mtu; }
+    virtual int SendPacket(const void* packet, uint32 size);
+    virtual int ReceivePacket(void* packet, uint32 max_size);
+    virtual const uint8* GetMacAddress() const { return mac_address; }
+    virtual uint32 GetMTU() const { return mtu; }
     virtual bool IsLinkUp() const { return link_up; }
     virtual void SetLinkState(bool up) { link_up = up; }
 };
@@ -163,14 +184,14 @@ public:
 // Base class for USB device drivers
 class UsbDriver : public DriverBase {
 protected:
-    uint8_t usb_address;            // USB address (1-127)
-    uint8_t usb_port;               // Which USB port the device is connected to
-    uint16_t usb_vendor_id;         // USB vendor ID
-    uint16_t usb_product_id;        // USB product ID
+    uint8 usb_address;            // USB address (1-127)
+    uint8 usb_port;               // Which USB port the device is connected to
+    uint16 usb_vendor_id;         // USB vendor ID
+    uint16 usb_product_id;        // USB product ID
 
 public:
     UsbDriver(const char* driver_name, const char* driver_version, 
-              uint32_t vid = 0, uint32_t did = 0, uint32_t irq = 0);
+              uint32 vid = 0, uint32 did = 0, uint32 irq = 0);
 
     // Implement pure virtual functions
     virtual DriverInitResult Initialize() override;
@@ -179,14 +200,14 @@ public:
     virtual int ProcessIoRequest(IoRequest* request) override;
 
     // USB specific functions
-    virtual int UsbControlTransfer(uint8_t request_type, uint8_t request, 
-                                   uint16_t value, uint16_t index, 
-                                   void* data, uint16_t length);
-    virtual int UsbBulkTransfer(uint8_t endpoint, void* data, uint32_t length, bool in);
-    virtual int UsbInterruptTransfer(uint8_t endpoint, void* data, uint32_t length, bool in);
-    virtual uint8_t GetUsbAddress() const { return usb_address; }
-    virtual uint16_t GetUsbVendorId() const { return usb_vendor_id; }
-    virtual uint16_t GetUsbProductId() const { return usb_product_id; }
+    virtual int UsbControlTransfer(uint8 request_type, uint8 request, 
+                                   uint16 value, uint16 index, 
+                                   void* data, uint16 length);
+    virtual int UsbBulkTransfer(uint8 endpoint, void* data, uint32 length, bool in);
+    virtual int UsbInterruptTransfer(uint8 endpoint, void* data, uint32 length, bool in);
+    virtual uint8 GetUsbAddress() const { return usb_address; }
+    virtual uint16 GetUsbVendorId() const { return usb_vendor_id; }
+    virtual uint16 GetUsbProductId() const { return usb_product_id; }
 };
 
 // Base class for system modules (not hardware drivers but kernel modules)
@@ -195,7 +216,7 @@ protected:
     char module_name[64];           // Module name
     char module_version[16];        // Module version
     bool loaded;                    // Whether module is currently loaded
-    uint32_t load_address;          // Address where module is loaded
+    uint32 load_address;          // Address where module is loaded
 
 public:
     SystemModuleBase(const char* name, const char* version);
@@ -210,8 +231,8 @@ public:
     const char* GetModuleName() const { return module_name; }
     const char* GetModuleVersion() const { return module_version; }
     bool IsLoaded() const { return loaded; }
-    uint32_t GetLoadAddress() const { return load_address; }
-    void SetLoadAddress(uint32_t addr) { load_address = addr; }
+    uint32 GetLoadAddress() const { return load_address; }
+    void SetLoadAddress(uint32 addr) { load_address = addr; }
 };
 
 #endif // DRIVERBASE_H

@@ -3,6 +3,7 @@
 
 #include "Common.h"
 #include "Paging.h"
+#include "ProcessControlBlock.h"  // Include ProcessControlBlock for SharedMemory functions
 
 // Structure to represent a shared memory region
 struct SharedMemoryRegion {

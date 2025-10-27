@@ -18,7 +18,7 @@ class ProcessManager;
 #define SYSCALL_YIELD 8
 
 // System call function type
-typedef uint32 (*SyscallHandler)(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5);
+typedef int (*SyscallHandler)(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
 
 class SyscallManager {
 private:
@@ -28,15 +28,15 @@ public:
     SyscallManager();
     void Initialize();
     void RegisterHandler(uint32 syscall_num, SyscallHandler handler);
-    uint32 HandleSyscall(uint32 syscall_num, uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5);
+    int HandleSyscall(uint32 syscall_num, uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
     
     // Common system call handlers
-    static uint32 SyscallWrite(uint32 fd, uint32 buf, uint32 count, uint32 arg4, uint32 arg5);
-    static uint32 SyscallGetpid(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5);
-    static uint32 SyscallFork(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5);
-    static uint32 SyscallExecve(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5);
-    static uint32 SyscallVfork(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5);
-    static uint32 SyscallYield(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5);
+    static int SyscallWrite(uint32 fd, uint32 buf, uint32 count, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SyscallGetpid(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SyscallFork(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SyscallExecve(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SyscallVfork(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
+    static int SyscallYield(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
 };
 
 #endif

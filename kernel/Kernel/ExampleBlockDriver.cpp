@@ -9,7 +9,7 @@
 
 // Constructor
 ExampleBlockDriver::ExampleBlockDriver(const char* driver_name, const char* driver_version, 
-                                       uint32_t vid, uint32_t did, uint32_t irq)
+                                       uint32 vid, uint32 did, uint32 irq)
     : BlockDeviceDriver(driver_name, driver_version, vid, did, irq),
       simulated_disk(nullptr), disk_size(0) {
     LogInfo("ExampleBlockDriver constructor called");
@@ -18,7 +18,7 @@ ExampleBlockDriver::ExampleBlockDriver(const char* driver_name, const char* driv
 // Destructor
 ExampleBlockDriver::~ExampleBlockDriver() {
     if (simulated_disk) {
-        kfree(simulated_disk);  // Assuming kfree is available for kernel memory
+        free(simulated_disk);  // Assuming free is available for kernel memory
         simulated_disk = nullptr;
     }
     LogInfo("ExampleBlockDriver destructor called");
@@ -33,7 +33,7 @@ DriverInitResult ExampleBlockDriver::Initialize() {
     
     // Allocate simulated disk space (8MB for example)
     disk_size = 8 * 1024 * 1024; // 8 MB
-    simulated_disk = (uint8_t*)kmalloc(disk_size);
+    simulated_disk = (uint8*)malloc(disk_size);
     
     if (!simulated_disk) {
         LogError("Failed to allocate simulated disk memory");
@@ -62,7 +62,7 @@ int ExampleBlockDriver::Shutdown() {
     
     // Clean up allocated resources
     if (simulated_disk) {
-        kfree(simulated_disk);
+        free(simulated_disk);
         simulated_disk = nullptr;
     }
     
@@ -107,7 +107,7 @@ int ExampleBlockDriver::ProcessIoRequest(IoRequest* request) {
 }
 
 // Read blocks from simulated disk
-uint32_t ExampleBlockDriver::ReadBlocks(uint32_t start_block, uint32_t num_blocks, void* buffer) {
+uint32 ExampleBlockDriver::ReadBlocks(uint32 start_block, uint32 num_blocks, void* buffer) {
     if (state != DriverState::RUNNING) {
         LogError("Attempt to read blocks when driver not running");
         return 0;
@@ -118,8 +118,8 @@ uint32_t ExampleBlockDriver::ReadBlocks(uint32_t start_block, uint32_t num_block
         return 0;
     }
     
-    uint32_t offset = start_block * block_size;
-    uint32_t bytes_to_read = num_blocks * block_size;
+    uint32 offset = start_block * block_size;
+    uint32 bytes_to_read = num_blocks * block_size;
     
     // Check bounds
     if (offset + bytes_to_read > disk_size) {
@@ -135,7 +135,7 @@ uint32_t ExampleBlockDriver::ReadBlocks(uint32_t start_block, uint32_t num_block
 }
 
 // Write blocks to simulated disk
-uint32_t ExampleBlockDriver::WriteBlocks(uint32_t start_block, uint32_t num_blocks, const void* buffer) {
+uint32 ExampleBlockDriver::WriteBlocks(uint32 start_block, uint32 num_blocks, const void* buffer) {
     if (state != DriverState::RUNNING) {
         LogError("Attempt to write blocks when driver not running");
         return 0;
@@ -151,8 +151,8 @@ uint32_t ExampleBlockDriver::WriteBlocks(uint32_t start_block, uint32_t num_bloc
         return 0;
     }
     
-    uint32_t offset = start_block * block_size;
-    uint32_t bytes_to_write = num_blocks * block_size;
+    uint32 offset = start_block * block_size;
+    uint32 bytes_to_write = num_blocks * block_size;
     
     // Check bounds
     if (offset + bytes_to_write > disk_size) {

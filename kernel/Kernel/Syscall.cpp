@@ -9,11 +9,11 @@ SyscallManager::SyscallManager() {
 
 void SyscallManager::Initialize() {
     // Register system call handlers
-    RegisterHandler(SYSCALL_WRITE, SyscallWrite);
-    RegisterHandler(SYSCALL_GETPID, SyscallGetpid);
-    RegisterHandler(SYSCALL_FORK, SyscallFork);
-    RegisterHandler(SYSCALL_EXECVE, SyscallExecve);
-    RegisterHandler(SYSCALL_YIELD, SyscallYield);
+    RegisterHandler(SYSCALL_WRITE, reinterpret_cast<SyscallHandler>(SyscallWrite));
+    RegisterHandler(SYSCALL_GETPID, reinterpret_cast<SyscallHandler>(SyscallGetpid));
+    RegisterHandler(SYSCALL_FORK, reinterpret_cast<SyscallHandler>(SyscallFork));
+    RegisterHandler(SYSCALL_EXECVE, reinterpret_cast<SyscallHandler>(SyscallExecve));
+    RegisterHandler(SYSCALL_YIELD, reinterpret_cast<SyscallHandler>(SyscallYield));
     
     LOG("System call manager initialized with basic handlers");
 }
@@ -24,16 +24,16 @@ void SyscallManager::RegisterHandler(uint32 syscall_num, SyscallHandler handler)
     }
 }
 
-uint32 SyscallManager::HandleSyscall(uint32 syscall_num, uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5) {
+int SyscallManager::HandleSyscall(uint32 syscall_num, uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
     if (syscall_num < 256 && handlers[syscall_num] != nullptr) {
-        return handlers[syscall_num](arg1, arg2, arg3, arg4, arg5);
+        return handlers[syscall_num](arg1, arg2, arg3, arg4, arg5, arg6);
     }
     
     LOG("Unknown system call: " << syscall_num);
-    return (uint32)-1; // Invalid system call
+    return -1; // Invalid system call
 }
 
-uint32 SyscallManager::SyscallWrite(uint32 fd, uint32 buf, uint32 count, uint32 arg4, uint32 arg5) {
+int SyscallManager::SyscallWrite(uint32 fd, uint32 buf, uint32 count, uint32 arg4, uint32 arg5, uint32 arg6) {
     if (fd == 1 || fd == 2) { // stdout or stderr
         // Convert the buffer to a string and print it
         const char* str = (const char*)buf;
@@ -50,26 +50,26 @@ uint32 SyscallManager::SyscallWrite(uint32 fd, uint32 buf, uint32 count, uint32 
     return 0; // For other file descriptors, return 0 for now
 }
 
-uint32 SyscallManager::SyscallGetpid(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5) {
+int SyscallManager::SyscallGetpid(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
     // Return the current process ID
     // For now, return 1 as a placeholder
     return 1;
 }
 
-uint32 SyscallManager::SyscallFork(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5) {
+int SyscallManager::SyscallFork(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
     // Fork system call implementation
     LOG("Fork system call called by PID: " << 
         (process_manager->GetCurrentProcess() ? process_manager->GetCurrentProcess()->pid : 0));
     
     if (!process_manager) {
         LOG("ERROR: Process manager not initialized");
-        return (uint32)-1;
+        return -1;
     }
     
     ProcessControlBlock* parent_pcb = process_manager->GetCurrentProcess();
     if (!parent_pcb) {
         LOG("ERROR: No current process to fork");
-        return (uint32)-1;
+        return -1;
     }
     
     // In a real implementation, we would:
@@ -87,7 +87,7 @@ uint32 SyscallManager::SyscallFork(uint32 arg1, uint32 arg2, uint32 arg3, uint32
     
     if (!child_pcb) {
         LOG("ERROR: Failed to create child process");
-        return (uint32)-1;
+        return -1;
     }
     
     // Copy parent's memory mappings and other state
@@ -114,12 +114,12 @@ uint32 SyscallManager::SyscallFork(uint32 arg1, uint32 arg2, uint32 arg3, uint32
 }
 
 // Implementation of execve system call
-uint32 SyscallManager::SyscallExecve(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5) {
+int SyscallManager::SyscallExecve(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
     // Get the current process
     ProcessControlBlock* current_pcb = process_manager->GetCurrentProcess();
     if (!current_pcb) {
         LOG("ERROR: No current process for execve");
-        return (uint32)-1;
+        return -1;
     }
     
     LOG("Execve system call called by PID: " << current_pcb->pid);
@@ -132,7 +132,7 @@ uint32 SyscallManager::SyscallExecve(uint32 arg1, uint32 arg2, uint32 arg3, uint
     const char* filename = (const char*)arg1;
     if (!filename) {
         LOG("ERROR: Filename is null for execve");
-        return (uint32)-1;
+        return -1;
     }
     
     LOG("Attempting to execute file: " << filename);
@@ -149,24 +149,24 @@ uint32 SyscallManager::SyscallExecve(uint32 arg1, uint32 arg2, uint32 arg3, uint
     LOG("Execve not fully implemented - would load executable: " << filename);
     
     // For now, just return an error
-    return (uint32)-1; // Not implemented yet
+    return -1; // Not implemented yet
 }
 
 // Implementation of vfork system call
-uint32 SyscallManager::SyscallVfork(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5) {
+int SyscallManager::SyscallVfork(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
     // vfork is similar to fork but with different semantics
     // In vfork, the child shares the parent's address space until exec or _exit
     LOG("Vfork system call called");
     
     if (!process_manager) {
         LOG("ERROR: Process manager not initialized");
-        return (uint32)-1;
+        return -1;
     }
     
     ProcessControlBlock* parent_pcb = process_manager->GetCurrentProcess();
     if (!parent_pcb) {
         LOG("ERROR: No current process to vfork");
-        return (uint32)-1;
+        return -1;
     }
     
     // Create a new process PCB but don't copy memory space
@@ -179,7 +179,7 @@ uint32 SyscallManager::SyscallVfork(uint32 arg1, uint32 arg2, uint32 arg3, uint3
     
     if (!child_pcb) {
         LOG("ERROR: Failed to create child process for vfork");
-        return (uint32)-1;
+        return -1;
     }
     
     // Share memory space (in a real implementation, this would be more complex)
@@ -202,12 +202,12 @@ uint32 SyscallManager::SyscallVfork(uint32 arg1, uint32 arg2, uint32 arg3, uint3
 }
 
 // Implementation of yield system call
-uint32 SyscallManager::SyscallYield(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5) {
+int SyscallManager::SyscallYield(uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6) {
     LOG("Yield system call called");
     
     if (!process_manager) {
         LOG("ERROR: Process manager not initialized");
-        return (uint32)-1;
+        return -1;
     }
     
     // Yield control to the scheduler
@@ -218,6 +218,6 @@ uint32 SyscallManager::SyscallYield(uint32 arg1, uint32 arg2, uint32 arg3, uint3
         return 0; // Success
     } else {
         LOG("Process yield failed");
-        return (uint32)-1; // Failure
+        return -1; // Failure
     }
 }

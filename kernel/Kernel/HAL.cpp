@@ -65,8 +65,8 @@ public:
         return 0;
     }
 
-    virtual uint8_t InByte(uint16_t port) override {
-        uint8_t result;
+    virtual uint8 InByte(uint16_t port) override {
+        uint8 result;
         asm volatile("inb %1, %0" : "=a"(result) : "Nd"(port));
         return result;
     }
@@ -77,13 +77,13 @@ public:
         return result;
     }
 
-    virtual uint32_t InDWord(uint16_t port) override {
-        uint32_t result;
+    virtual uint32 InDWord(uint16_t port) override {
+        uint32 result;
         asm volatile("inl %1, %0" : "=a"(result) : "Nd"(port));
         return result;
     }
 
-    virtual void OutByte(uint16_t port, uint8_t value) override {
+    virtual void OutByte(uint16_t port, uint8 value) override {
         asm volatile("outb %0, %1" :: "a"(value), "Nd"(port));
     }
 
@@ -91,7 +91,7 @@ public:
         asm volatile("outw %0, %1" :: "a"(value), "Nd"(port));
     }
 
-    virtual void OutDWord(uint16_t port, uint32_t value) override {
+    virtual void OutDWord(uint16_t port, uint32 value) override {
         asm volatile("outl %0, %1" :: "a"(value), "Nd"(port));
     }
 
@@ -101,14 +101,14 @@ public:
 
     virtual void InvalidateTlb() override {
         // For x86, invalidate TLB by reloading CR3
-        uint32_t cr3_value;
+        uint32 cr3_value;
         asm volatile("mov %%cr3, %0" : "=r"(cr3_value));
         asm volatile("mov %0, %%cr3" :: "r"(cr3_value) : "memory");
     }
 
 private:
     void DetectCpuVendor() {
-        uint32_t ebx, edx, ecx;
+        uint32 ebx, edx, ecx;
         
         // Execute CPUID with eax=0 to get vendor string
         asm volatile("cpuid" 
@@ -118,9 +118,9 @@ private:
         
         // The vendor string is returned in ebx, edx, ecx
         // Store in vendor_string in the correct order
-        *(uint32_t*)(&vendor_string[0]) = ebx;
-        *(uint32_t*)(&vendor_string[4]) = edx;
-        *(uint32_t*)(&vendor_string[8]) = ecx;
+        *(uint32*)(&vendor_string[0]) = ebx;
+        *(uint32*)(&vendor_string[4]) = edx;
+        *(uint32*)(&vendor_string[8]) = ecx;
         vendor_string[12] = 0;  // Ensure null termination
     }
 };
@@ -146,7 +146,7 @@ public:
         return GetPhysicalMemorySize();  // Simplified
     }
 
-    virtual void* AllocatePages(uint32_t count) override {
+    virtual void* AllocatePages(uint32 count) override {
         // Use kernel memory manager for page allocation
         // This is a simplified implementation
         if (global && global->memory_manager) {
@@ -155,14 +155,14 @@ public:
         return nullptr;
     }
 
-    virtual void FreePages(void* addr, uint32_t count) override {
+    virtual void FreePages(void* addr, uint32 count) override {
         // Use kernel memory manager for page deallocation
         if (global && global->memory_manager) {
             global->memory_manager->FreePages(addr, count);
         }
     }
 
-    virtual void* MapPhysicalMemory(uint32_t physical_addr, uint32_t size) override {
+    virtual void* MapPhysicalMemory(uint32 physical_addr, uint32 size) override {
         // Use paging manager to map physical memory
         if (global && global->paging_manager) {
             return global->paging_manager->MapPhysicalMemory(physical_addr, size);
@@ -177,7 +177,7 @@ public:
         }
     }
 
-    virtual uint32_t GetPageSize() override {
+    virtual uint32 GetPageSize() override {
         return 4096;  // Standard x86 page size
     }
 };
@@ -189,7 +189,7 @@ public:
         return HalResult::SUCCESS;
     }
 
-    virtual HalResult RegisterHandler(uint8_t irq, void (*handler)(void*)) override {
+    virtual HalResult RegisterHandler(uint8 irq, void (*handler)(void*)) override {
         // Use the existing interrupt manager
         if (global && global->descriptor_table) {
             // Note: This is a simplified mapping - in reality, you'd need to convert 
@@ -202,27 +202,27 @@ public:
         return HalResult::ERROR_NOT_INITIALIZED;
     }
 
-    virtual HalResult UnregisterHandler(uint8_t irq) override {
+    virtual HalResult UnregisterHandler(uint8 irq) override {
         // Implementation would go here
         return HalResult::SUCCESS;
     }
 
-    virtual HalResult EnableInterrupt(uint8_t irq) override {
+    virtual HalResult EnableInterrupt(uint8 irq) override {
         // For x86 with PIC, this would involve enabling the IRQ in the PIC
         return HalResult::SUCCESS;
     }
 
-    virtual HalResult DisableInterrupt(uint8_t irq) override {
+    virtual HalResult DisableInterrupt(uint8 irq) override {
         // For x86 with PIC, this would involve disabling the IRQ in the PIC
         return HalResult::SUCCESS;
     }
 
-    virtual bool IsInterruptEnabled(uint8_t irq) override {
+    virtual bool IsInterruptEnabled(uint8 irq) override {
         // Implementation would go here
         return true;
     }
 
-    virtual void EndOfInterrupt(uint8_t irq) override {
+    virtual void EndOfInterrupt(uint8 irq) override {
         // Send EOI to PIC
         if (irq >= 8) {
             OutByte(0xA0, 0x20);  // Send EOI to slave PIC
@@ -235,7 +235,7 @@ public:
     }
 
 private:
-    void OutByte(uint16_t port, uint8_t value) {
+    void OutByte(uint16_t port, uint8 value) {
         asm volatile("outb %0, %1" :: "a"(value), "Nd"(port));
     }
 };
@@ -243,7 +243,7 @@ private:
 // x86-specific Timer HAL implementation
 class X86TimerHal : public TimerHal {
 private:
-    uint32_t frequency;
+    uint32 frequency;
     
 public:
     X86TimerHal() : frequency(0) {}
@@ -254,7 +254,7 @@ public:
         return HalResult::SUCCESS;
     }
 
-    virtual HalResult SetFrequency(uint32_t hz) override {
+    virtual HalResult SetFrequency(uint32 hz) override {
         if (hz == 0 || hz > 10000) {  // Reasonable upper limit
             return HalResult::ERROR_INVALID_PARAMETER;
         }
@@ -264,7 +264,7 @@ public:
         return HalResult::SUCCESS;
     }
 
-    virtual uint32_t GetFrequency() override {
+    virtual uint32 GetFrequency() override {
         return frequency;
     }
 
@@ -281,7 +281,7 @@ public:
         return GetTickCount();
     }
 
-    virtual void Sleep(uint32_t milliseconds) override {
+    virtual void Sleep(uint32 milliseconds) override {
         // Implementation would go here
         // For now, this is a busy wait approach
         uint64_t start_tick = GetTickCount();
@@ -306,33 +306,33 @@ public:
         return HalResult::SUCCESS;
     }
 
-    virtual uint32_t ReadConfig(uint8_t bus, uint8_t device, uint8_t function, uint8_t offset) override {
-        uint32_t address = 0x80000000 | 
-                          ((uint32_t)bus << 16) | 
-                          ((uint32_t)device << 11) | 
-                          ((uint32_t)function << 8) | 
+    virtual uint32 ReadConfig(uint8 bus, uint8 device, uint8 function, uint8 offset) override {
+        uint32 address = 0x80000000 | 
+                          ((uint32)bus << 16) | 
+                          ((uint32)device << 11) | 
+                          ((uint32)function << 8) | 
                           (offset & 0xFC);
         
         OutDWord(0xCF8, address);
         return InDWord(0xCFC);
     }
 
-    virtual void WriteConfig(uint8_t bus, uint8_t device, uint8_t function, uint8_t offset, uint32_t value) override {
-        uint32_t address = 0x80000000 | 
-                          ((uint32_t)bus << 16) | 
-                          ((uint32_t)device << 11) | 
-                          ((uint32_t)function << 8) | 
+    virtual void WriteConfig(uint8 bus, uint8 device, uint8 function, uint8 offset, uint32 value) override {
+        uint32 address = 0x80000000 | 
+                          ((uint32)bus << 16) | 
+                          ((uint32)device << 11) | 
+                          ((uint32)function << 8) | 
                           (offset & 0xFC);
         
         OutDWord(0xCF8, address);
         OutDWord(0xCFC, value);
     }
 
-    virtual HalResult FindDevice(uint16_t vendor_id, uint16_t device_id, uint8_t* bus, uint8_t* device, uint8_t* function) override {
-        for (uint8_t b = 0; b < 256; b++) {
-            for (uint8_t dev = 0; dev < 32; dev++) {
-                for (uint8_t func = 0; func < 8; func++) {
-                    uint32_t id = ReadConfig(b, dev, func, 0);
+    virtual HalResult FindDevice(uint16_t vendor_id, uint16_t device_id, uint8* bus, uint8* device, uint8* function) override {
+        for (uint8 b = 0; b < 256; b++) {
+            for (uint8 dev = 0; dev < 32; dev++) {
+                for (uint8 func = 0; func < 8; func++) {
+                    uint32 id = ReadConfig(b, dev, func, 0);
                     if ((id & 0xFFFF) == vendor_id && ((id >> 16) & 0xFFFF) == device_id) {
                         *bus = b;
                         *device = dev;
@@ -350,12 +350,12 @@ public:
         return HalResult::ERROR_RESOURCE_UNAVAILABLE;
     }
 
-    virtual uint32_t EnumerateDevices() override {
-        uint32_t count = 0;
-        for (uint8_t bus = 0; bus < 256; bus++) {
-            for (uint8_t device = 0; device < 32; device++) {
-                for (uint8_t function = 0; function < 8; function++) {
-                    uint32_t id = ReadConfig(bus, device, function, 0);
+    virtual uint32 EnumerateDevices() override {
+        uint32 count = 0;
+        for (uint8 bus = 0; bus < 256; bus++) {
+            for (uint8 device = 0; device < 32; device++) {
+                for (uint8 function = 0; function < 8; function++) {
+                    uint32 id = ReadConfig(bus, device, function, 0);
                     if (id != 0xFFFFFFFF && id != 0xFFFF0000 && id != 0x0000FFFF) {
                         count++;
                     }
@@ -371,13 +371,13 @@ public:
     }
 
 private:
-    uint32_t InDWord(uint16_t port) {
-        uint32_t result;
+    uint32 InDWord(uint16_t port) {
+        uint32 result;
         asm volatile("inl %1, %0" : "=a"(result) : "Nd"(port));
         return result;
     }
 
-    void OutDWord(uint16_t port, uint32_t value) {
+    void OutDWord(uint16_t port, uint32 value) {
         asm volatile("outl %0, %1" :: "a"(value), "Nd"(port));
     }
 };

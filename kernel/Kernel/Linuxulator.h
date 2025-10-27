@@ -11,6 +11,15 @@
 #define MAX_LINUX_PROCESSES 1024
 #define LINUX_PAGE_SIZE 4096
 
+// File access flags (matching Linux values)
+#define O_RDONLY 0x001
+#define O_WRONLY 0x002
+#define O_RDWR 0x003
+#define O_CREAT 0x040
+#define O_EXCL 0x080
+#define O_TRUNC 0x200
+#define O_APPEND 0x400
+
 // Linux system call numbers (some common ones)
 #define SYS_LINUX_READ 0
 #define SYS_LINUX_WRITE 1
@@ -378,66 +387,66 @@
 
 // Linux process structure
 struct LinuxProcess {
-    uint32_t pid;                   // Linux process ID
-    uint32_t ppid;                  // Parent process ID
-    uint32_t uid;                    // User ID
-    uint32_t gid;                   // Group ID
-    uint32_t euid;                  // Effective user ID
-    uint32_t egid;                  // Effective group ID
-    uint32_t suid;                  // Saved user ID
-    uint32_t sgid;                  // Saved group ID
-    uint32_t fsuid;                 // File system user ID
-    uint32_t fsgid;                 // File system group ID
-    uint32_t start_time;            // Process start time
-    uint32_t utime;                 // User time
-    uint32_t stime;                 // System time
-    uint32_t cutime;                // Children user time
-    uint32_t cstime;                // Children system time
-    uint32_t priority;              // Process priority
-    uint32_t nice;                  // Nice value
-    uint32_t num_threads;           // Number of threads
-    uint32_t vsize;                 // Virtual memory size
-    uint32_t rss;                    // Resident set size
-    uint32_t rsslim;                // RSS limit
-    uint32_t startcode;             // Start of code segment
-    uint32_t endcode;               // End of code segment
-    uint32_t startstack;            // Start of stack
-    uint32_t kstkesp;               // Kernel stack pointer
-    uint32_t kstkeip;               // Kernel instruction pointer
-    uint32_t signal;                // Signal bitmap
-    uint32_t blocked;                // Blocked signal bitmap
-    uint32_t sigignore;             // Ignored signal bitmap
-    uint32_t sigcatch;              // Caught signal bitmap
-    uint32_t wchan;                 // Wait channel
-    uint32_t nswap;                 // Number of pages swapped
-    uint32_t cnswap;                // Cumulative nswap for children
+    uint32 pid;                   // Linux process ID
+    uint32 ppid;                  // Parent process ID
+    uint32 uid;                    // User ID
+    uint32 gid;                   // Group ID
+    uint32 euid;                  // Effective user ID
+    uint32 egid;                  // Effective group ID
+    uint32 suid;                  // Saved user ID
+    uint32 sgid;                  // Saved group ID
+    uint32 fsuid;                 // File system user ID
+    uint32 fsgid;                 // File system group ID
+    uint32 start_time;            // Process start time
+    uint32 utime;                 // User time
+    uint32 stime;                 // System time
+    uint32 cutime;                // Children user time
+    uint32 cstime;                // Children system time
+    uint32 priority;              // Process priority
+    uint32 nice;                  // Nice value
+    uint32 num_threads;           // Number of threads
+    uint32 vsize;                 // Virtual memory size
+    uint32 rss;                    // Resident set size
+    uint32 rsslim;                // RSS limit
+    uint32 startcode;             // Start of code segment
+    uint32 endcode;               // End of code segment
+    uint32 startstack;            // Start of stack
+    uint32 kstkesp;               // Kernel stack pointer
+    uint32 kstkeip;               // Kernel instruction pointer
+    uint32 signal;                // Signal bitmap
+    uint32 blocked;                // Blocked signal bitmap
+    uint32 sigignore;             // Ignored signal bitmap
+    uint32 sigcatch;              // Caught signal bitmap
+    uint32 wchan;                 // Wait channel
+    uint32 nswap;                 // Number of pages swapped
+    uint32 cnswap;                // Cumulative nswap for children
     int32_t exit_signal;           // Signal to be sent at exit
     int32_t processor;               // CPU number last executed on
-    uint32_t rt_priority;           // Real-time priority
-    uint32_t policy;               // Scheduling policy
-    uint32_t delayacct_blkio_ticks; // Delay accounting block io ticks
-    uint32_t guest_time;            // Guest time of the process
-    uint32_t cguest_time;           // Guest time of the process's children
-    uint32_t start_data;            // Start of data segment
-    uint32_t end_data;               // End of data segment
-    uint32_t start_brk;             // Start of heap
-    uint32_t arg_start;             // Start of command line arguments
-    uint32_t arg_end;               // End of command line arguments
-    uint32_t env_start;             // Start of environment variables
-    uint32_t env_end;               // End of environment variables
+    uint32 rt_priority;           // Real-time priority
+    uint32 policy;               // Scheduling policy
+    uint32 delayacct_blkio_ticks; // Delay accounting block io ticks
+    uint32 guest_time;            // Guest time of the process
+    uint32 cguest_time;           // Guest time of the process's children
+    uint32 start_data;            // Start of data segment
+    uint32 end_data;               // End of data segment
+    uint32 start_brk;             // Start of heap
+    uint32 arg_start;             // Start of command line arguments
+    uint32 arg_end;               // End of command line arguments
+    uint32 env_start;             // Start of environment variables
+    uint32 env_end;               // End of environment variables
     int32_t exit_code;             // Exit code of the process
 };
 
 // Linux ELF header structure
 struct LinuxElfHeader {
-    uint8_t e_ident[16];            // ELF identification
+    uint8 e_ident[16];            // ELF identification
     uint16_t e_type;                // Object file type
     uint16_t e_machine;             // Machine type
-    uint32_t e_version;             // Object file version
-    uint32_t e_entry;               // Entry point address
-    uint32_t e_phoff;               // Program header offset
-    uint32_t e_shoff;               // Section header offset
-    uint32_t e_flags;               // Processor-specific flags
+    uint32 e_version;             // Object file version
+    uint32 e_entry;               // Entry point address
+    uint32 e_phoff;               // Program header offset
+    uint32 e_shoff;               // Section header offset
+    uint32 e_flags;               // Processor-specific flags
     uint16_t e_ehsize;              // ELF header size
     uint16_t e_phentsize;           // Size of program header entry
     uint16_t e_phnum;               // Number of program header entries
@@ -448,22 +457,22 @@ struct LinuxElfHeader {
 
 // Linux system call context
 struct LinuxSyscallContext {
-    uint32_t syscall_number;        // System call number
-    uint32_t arg1;                  // First argument
-    uint32_t arg2;                  // Second argument
-    uint32_t arg3;                  // Third argument
-    uint32_t arg4;                  // Fourth argument
-    uint32_t arg5;                  // Fifth argument
-    uint32_t arg6;                  // Sixth argument
-    uint32_t return_value;          // Return value
-    uint32_t error_code;             // Error code (if any)
+    uint32 syscall_number;        // System call number
+    uint32 arg1;                  // First argument
+    uint32 arg2;                  // Second argument
+    uint32 arg3;                  // Third argument
+    uint32 arg4;                  // Fourth argument
+    uint32 arg5;                  // Fifth argument
+    uint32 arg6;                  // Sixth argument
+    uint32 return_value;          // Return value
+    uint32 error_code;             // Error code (if any)
 };
 
 // Linuxulator class
 class Linuxulator {
 private:
     LinuxProcess linux_processes[MAX_LINUX_PROCESSES];
-    uint32_t process_count;
+    uint32 process_count;
     Spinlock linuxulator_lock;      // Lock for thread safety
     
 public:
@@ -481,9 +490,9 @@ public:
     
     // Process management
     LinuxProcess* CreateLinuxProcess(const char* filename, char* const argv[], char* const envp[]);
-    bool DestroyLinuxProcess(uint32_t pid);
-    LinuxProcess* GetLinuxProcess(uint32_t pid);
-    uint32_t GetLinuxProcessCount();
+    bool DestroyLinuxProcess(uint32 pid);
+    LinuxProcess* GetLinuxProcess(uint32 pid);
+    uint32 GetLinuxProcessCount();
     
     // ELF loading
     bool LoadElfFile(const char* filename, LinuxElfHeader* elf_header);
@@ -502,7 +511,7 @@ public:
     int LinuxMmap(void* addr, size_t length, int prot, int flags, int fd, off_t offset);
     int LinuxMunmap(void* addr, size_t length);
     int LinuxBrk(void* addr);
-    int LinuxClone(uint32_t flags, void* stack, int* parent_tid, int* child_tid, uint32_t tls);
+    int LinuxClone(uint32 flags, void* stack, int* parent_tid, int* child_tid, uint32 tls);
     int LinuxFork();
     int LinuxVFork();
     int LinuxExecve(const char* filename, char* const argv[], char* const envp[]);
@@ -657,9 +666,8 @@ public:
     int LinuxFlock(int fd, int operation);
     int LinuxFsync(int fd);
     int LinuxFdatasync(int fd);
-    int LinuxFtruncate(int fd, off_t length);
-    int LinuxFchmod(int fd, mode_t mode);
-    int LinuxFchown(int fd, uid_t owner, gid_t group);
+    // Note: LinuxFtruncate, LinuxFchmod, and LinuxFchown are already declared above in the basic file operations
+    
     int LinuxFchdir(int fd);
     int LinuxFgetxattr(int fd, const char* name, void* value, size_t size);
     int LinuxFsetxattr(int fd, const char* name, const void* value, size_t size, int flags);
@@ -701,10 +709,8 @@ public:
     // Process control
     int LinuxPtrace(long request, pid_t pid, void* addr, void* data);
     int LinuxWaitid(idtype_t idtype, id_t id, siginfo_t* infop, int options);
-    int LinuxWait4(pid_t pid, int* wstatus, int options, struct rusage* rusage);
-    int LinuxKill(pid_t pid, int sig);
+    // Note: LinuxWait4, LinuxKill, and LinuxTgkill are already declared above
     int LinuxTkil(int tid, int sig);
-    int LinuxTgkill(int tgid, int tid, int sig);
     
     // Memory mapping operations
     int LinuxMmap2(unsigned long addr, unsigned long len, unsigned long prot, 
@@ -740,7 +746,7 @@ public:
     int LinuxClockGettime(clockid_t clk_id, struct timespec* tp);
     int LinuxClockGetres(clockid_t clk_id, struct timespec* res);
     int LinuxClockNanosleep(clockid_t clock_id, int flags, const struct timespec* request, struct timespec* remain);
-    int LinuxNanosleep(const struct timespec* req, struct timespec* rem);
+    // int LinuxNanosleep(const struct timespec* req, struct timespec* rem);
     int LinuxGetrandom(void* buf, size_t buflen, unsigned int flags);
     int LinuxMemfdCreate(const char* name, unsigned int flags);
     int LinuxKexecLoad(unsigned long entry, unsigned long nr_segments, struct kexec_segment* segments, unsigned long flags);
@@ -748,13 +754,13 @@ public:
     int LinuxReboot(int magic1, int magic2, unsigned int cmd, void* arg);
     int LinuxSethostname(const char* name, size_t len);
     int LinuxSetdomainname(const char* name, size_t len);
-    int LinuxUname(struct utsname* buf);
+    // int LinuxUname(struct utsname* buf);
     int LinuxUstat(dev_t dev, struct ustat* ubuf);
     int LinuxUtime(const char* filename, const struct utimbuf* times);
     int LinuxUtimes(const char* filename, const struct timeval times[2]);
     int LinuxFutimes(int fd, const struct timeval times[2]);
     int LinuxFutimens(int fd, const struct timespec times[2]);
-    int LinuxUtimensat(int dirfd, const char* pathname, const struct timespec times[2], int flags);
+    // int LinuxUtimensat(int dirfd, const char* pathname, const struct timespec times[2], int flags);
     int LinuxAcct(const char* filename);
     int LinuxSwapon(const char* path, int swapflags);
     int LinuxSwapoff(const char* path);
@@ -777,30 +783,30 @@ public:
     int LinuxPkeyAlloc(unsigned long flags, unsigned long access_rights);
     int LinuxPkeyFree(int pkey);
     int LinuxStatx(int dirfd, const char* pathname, int flags, unsigned int mask, struct statx* statxbuf);
-    int LinuxIoPgetevents(aio_context_t ctx_id, long min_nr, long nr, struct io_event* events,
-                         const struct timespec* timeout, const struct __aio_sigset* sevp);
-    int LinuxRseq(struct rseq* rseq, uint32_t rseq_len, int flags, uint32_t sig);
-    int LinuxPidfdSendSignal(int pidfd, int sig, siginfo_t* info, unsigned int flags);
-    int LinuxOpenTree(int dfd, const char* pathname, unsigned int flags);
-    int LinuxMoveMount(int from_dfd, const char* from_pathname, int to_dfd, const char* to_pathname, unsigned int flags);
-    int LinuxFsopen(const char* fs_name, unsigned int flags);
-    int LinuxFsconfig(int fs_fd, unsigned int cmd, const char* key, const void* value, int aux);
-    int LinuxFsmount(int fs_fd, unsigned int flags, unsigned int mount_attrs);
-    int LinuxFspick(int dfd, const char* path, unsigned int flags);
-    int LinuxPidfdOpen(pid_t pid, unsigned int flags);
-    int LinuxClone3(struct clone_args* cl_args, size_t size);
-    int LinuxCloseRange(unsigned int fd, unsigned int max_fd, unsigned int flags);
-    int LinuxOpenat2(int dirfd, const char* pathname, struct open_how* how, size_t size);
-    int LinuxPidfdGetfd(int pidfd, int targetfd, unsigned int flags);
-    int LinuxFaccessat2(int dirfd, const char* pathname, int mode, int flags);
-    int LinuxProcessMadvise(int pidfd, const struct iovec* iov, size_t iovcnt, int advice, unsigned long flags);
-    int LinuxEpollPwait2(int epfd, struct epoll_event* events, int maxevents, const struct timespec* timeout,
-                        const sigset_t* sigmask, size_t sigsetsize);
-    int LinuxMountSetattr(int dfd, const char* path, unsigned int flags, struct mount_attr* uattr, size_t usize);
-    int LinuxQuotactlFd(unsigned int fd, unsigned int cmd, int id, void* addr);
-    int LinuxLandlockCreateRuleset(const struct landlock_ruleset_attr* attr, size_t size, __u32 flags);
-    int LinuxLandlockAddRule(int ruleset_fd, enum landlock_rule_type rule_type, const void* rule_attr, __u32 flags);
-    int LinuxLandlockRestrictSelf(int ruleset_fd, __u32 flags);
+    // int LinuxIoPgetevents(aio_context_t ctx_id, long min_nr, long nr, struct io_event* events,
+    //                      const struct timespec* timeout, const struct __aio_sigset* sevp);
+    // int LinuxRseq(struct rseq* rseq, uint32 rseq_len, int flags, uint32 sig);
+    // int LinuxPidfdSendSignal(int pidfd, int sig, siginfo_t* info, unsigned int flags);
+    // int LinuxOpenTree(int dfd, const char* pathname, unsigned int flags);
+    // int LinuxMoveMount(int from_dfd, const char* from_pathname, int to_dfd, const char* to_pathname, unsigned int flags);
+    // int LinuxFsopen(const char* fs_name, unsigned int flags);
+    // int LinuxFsconfig(int fs_fd, unsigned int cmd, const char* key, const void* value, int aux);
+    // int LinuxFsmount(int fs_fd, unsigned int flags, unsigned int mount_attrs);
+    // int LinuxFspick(int dfd, const char* path, unsigned int flags);
+    // int LinuxPidfdOpen(pid_t pid, unsigned int flags);
+    // int LinuxClone3(struct clone_args* cl_args, size_t size);
+    // int LinuxCloseRange(unsigned int fd, unsigned int max_fd, unsigned int flags);
+    // int LinuxOpenat2(int dirfd, const char* pathname, struct open_how* how, size_t size);
+    // int LinuxPidfdGetfd(int pidfd, int targetfd, unsigned int flags);
+    // int LinuxFaccessat2(int dirfd, const char* pathname, int mode, int flags);
+    // int LinuxProcessMadvise(int pidfd, const struct iovec* iov, size_t iovcnt, int advice, unsigned long flags);
+    // int LinuxEpollPwait2(int epfd, struct epoll_event* events, int maxevents, const struct timespec* timeout,
+    //                     const sigset_t* sigmask, size_t sigsetsize);
+    // int LinuxMountSetattr(int dfd, const char* path, unsigned int flags, struct mount_attr* uattr, size_t usize);
+    // int LinuxQuotactlFd(unsigned int fd, unsigned int cmd, int id, void* addr);
+    // int LinuxLandlockCreateRuleset(const struct landlock_ruleset_attr* attr, size_t size, __u32 flags);
+    // int LinuxLandlockAddRule(int ruleset_fd, enum landlock_rule_type rule_type, const void* rule_attr, __u32 flags);
+    // int LinuxLandlockRestrictSelf(int ruleset_fd, __u32 flags);
     int LinuxMemfdSecret(unsigned int flags);
     int LinuxProcessMrelease(int pidfd, unsigned int flags);
     int LinuxFutexWaitv(struct futex_waitv* waiters, unsigned int nr_futexes, unsigned int flags,
@@ -808,8 +814,8 @@ public:
     int LinuxSetMempolicyHomeNode(unsigned long start, unsigned long len, unsigned long home_node, unsigned long flags);
     
     // Utility functions
-    const char* GetSyscallName(uint32_t syscall_number);
-    bool IsSyscallImplemented(uint32_t syscall_number);
+    const char* GetSyscallName(uint32 syscall_number);
+    bool IsSyscallImplemented(uint32 syscall_number);
     void PrintLinuxProcessInfo(LinuxProcess* process);
     void PrintLinuxProcesses();
     
@@ -910,9 +916,12 @@ extern Linuxulator* g_linuxulator;
 bool InitializeLinuxulator();
 
 // Handle Linux system calls from the kernel
-extern "C" int HandleLinuxSyscall(uint32_t syscall_number, uint32_t arg1, uint32_t arg2, uint32_t arg3, uint32_t arg4, uint32_t arg5, uint32_t arg6);
+extern "C" int HandleLinuxSyscall(uint32 syscall_number, uint32 arg1, uint32 arg2, uint32 arg3, uint32 arg4, uint32 arg5, uint32 arg6);
 
 // Load and run a Linux executable
 bool RunLinuxExecutable(const char* filename, char* const argv[], char* const envp[]);
+
+// Load a Linux executable and create a process - for ABI multiplexer
+ProcessControlBlock* LoadLinuxExecutable(const char* filename, char* const argv[], char* const envp[]);
 
 #endif

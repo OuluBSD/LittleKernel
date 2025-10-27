@@ -42,31 +42,31 @@ struct RegistryKey {
     char full_path[REGISTRY_MAX_KEY_LENGTH * 2];
     RegistryKey* parent;
     RegistryKey* subkeys[REGISTRY_MAX_SUBKEYS];
-    uint32_t subkey_count;
+    uint32 subkey_count;
     char* value_names[REGISTRY_MAX_VALUES];
-    uint32_t value_types[REGISTRY_MAX_VALUES];
+    uint32 value_types[REGISTRY_MAX_VALUES];
     void* value_data[REGISTRY_MAX_VALUES];
-    uint32_t value_sizes[REGISTRY_MAX_VALUES];
-    uint32_t value_count;
-    uint32_t access_mask;  // Permissions
-    uint32_t last_write_time;
-    uint32_t ref_count;
+    uint32 value_sizes[REGISTRY_MAX_VALUES];
+    uint32 value_count;
+    uint32 access_mask;  // Permissions
+    uint32 last_write_time;
+    uint32 ref_count;
     Spinlock key_lock;
 };
 
 // Registry handle structure
 struct RegistryHandle {
     RegistryKey* key;
-    uint32_t access;
+    uint32 access;
     bool valid;
 };
 
 // Registry value structure for external use
 struct RegistryValue {
     char name[REGISTRY_MAX_VALUE_NAME];
-    uint32_t type;
+    uint32 type;
     void* data;
-    uint32_t size;
+    uint32 size;
 };
 
 // Registry class for kernel-side registry operations
@@ -85,10 +85,10 @@ public:
     bool Initialize();
     
     // Create a new registry key
-    bool CreateKey(const char* path, uint32_t access, RegistryKey** key);
+    bool CreateKey(const char* path, uint32 access, RegistryKey** key);
     
     // Open an existing registry key
-    bool OpenKey(const char* path, uint32_t access, RegistryKey** key);
+    bool OpenKey(const char* path, uint32 access, RegistryKey** key);
     
     // Close a registry key
     bool CloseKey(RegistryKey* key);
@@ -97,25 +97,25 @@ public:
     bool DeleteKey(const char* path);
     
     // Set a registry value
-    bool SetValue(RegistryKey* key, const char* value_name, uint32_t type, const void* data, uint32_t size);
+    bool SetValue(RegistryKey* key, const char* value_name, uint32 type, const void* data, uint32 size);
     
     // Get a registry value
-    bool GetValue(RegistryKey* key, const char* value_name, void* data, uint32_t* size);
+    bool GetValue(RegistryKey* key, const char* value_name, void* data, uint32* size);
     
     // Delete a registry value
     bool DeleteValue(RegistryKey* key, const char* value_name);
     
     // Enumerate subkeys
-    bool EnumerateKey(RegistryKey* key, uint32_t index, char* name, uint32_t name_size);
+    bool EnumerateKey(RegistryKey* key, uint32 index, char* name, uint32 name_size);
     
     // Enumerate values
-    bool EnumerateValue(RegistryKey* key, uint32_t index, char* name, uint32_t name_size, uint32_t* type);
+    bool EnumerateValue(RegistryKey* key, uint32 index, char* name, uint32 name_size, uint32* type);
     
     // Get value information
-    bool QueryValueInfo(RegistryKey* key, const char* value_name, uint32_t* type, uint32_t* size);
+    bool QueryValueInfo(RegistryKey* key, const char* value_name, uint32* type, uint32* size);
     
     // Registry-based path translation - translate device paths via registry mappings
-    bool TranslatePath(const char* input_path, char* output_path, uint32_t max_len);
+    bool TranslatePath(const char* input_path, char* output_path, uint32 max_len);
     
     // Add a path mapping to the registry
     bool AddPathMapping(const char* virtual_path, const char* physical_path);
@@ -139,9 +139,9 @@ extern Registry* g_registry;
 bool InitializeRegistry();
 
 // Registry API for modules to safely access registry with proper permissions
-bool RegistryReadValue(const char* key_path, const char* value_name, void* buffer, uint32_t* size, uint32_t access_mask);
-bool RegistryWriteValue(const char* key_path, const char* value_name, uint32_t type, const void* buffer, uint32_t size, uint32_t access_mask);
-bool RegistryReadString(const char* key_path, const char* value_name, char* buffer, uint32_t* size, uint32_t access_mask);
-bool RegistryWriteString(const char* key_path, const char* value_name, const char* str, uint32_t access_mask);
+bool RegistryReadValue(const char* key_path, const char* value_name, void* buffer, uint32* size, uint32 access_mask);
+bool RegistryWriteValue(const char* key_path, const char* value_name, uint32 type, const void* buffer, uint32 size, uint32 access_mask);
+bool RegistryReadString(const char* key_path, const char* value_name, char* buffer, uint32* size, uint32 access_mask);
+bool RegistryWriteString(const char* key_path, const char* value_name, const char* str, uint32 access_mask);
 
 #endif

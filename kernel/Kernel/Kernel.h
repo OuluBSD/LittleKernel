@@ -8,6 +8,9 @@
 #include "Defs.h"
 #include "Common.h"
 
+// Process Management
+#include "ProcessControlBlock.h"
+
 // System management
 #include "Global.h"
 
@@ -37,6 +40,14 @@
 #include "BootDrives.h"
 #include "Linuxulator.h"
 #include "LinuxSharedLib.h"
+#include "DosSyscalls.h"
+#include "AbiMultiplexer.h"
+#include "SciMultiplexer.h"
+#include "DosKpiV2.h"
+#include "LinuxulatorAbi.h"
+#include "NvidiaSupport.h"
+#include "FloppyDriver.h"
+#include "FloppyTest.h"
 
 // I/O and drivers
 #include "SerialDriver.h"
@@ -63,15 +74,13 @@
 #include "ArchAbstraction.h"
 #include "Thread.h"
 #include "ProcessGroup.h"
-#include "ProcessDebugging.h"
-#include "RealTimeScheduling.h"
-#include "RealTimeScheduling.h"
-#include "ProcessDebugging.h"
+// #include "ProcessDebugging.h"  // Already included above
+// #include "RealTimeScheduling.h"  // Already included above
 #include "ProcessAccounting.h"
 #include "ProcessSuspension.h"
-
-// Process Management
-#include "ProcessControlBlock.h"
+// Add missing driver includes
+#include "KeyboardDriver.h"
+#include "MouseDriver.h"
 
 // Synchronization
 #include "Synchronization.h"

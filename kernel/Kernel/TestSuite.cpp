@@ -72,7 +72,7 @@ bool KernelTestSuite::RunAllTests() {
     
     ResetResults();
     
-    for (uint32_t i = 0; i < test_count; i++) {
+    for (uint32 i = 0; i < test_count; i++) {
         if (tests[i].enabled) {
             RunTest(i);
         } else {
@@ -85,7 +85,7 @@ bool KernelTestSuite::RunAllTests() {
     return (failed_tests == 0 && error_tests == 0);
 }
 
-bool KernelTestSuite::RunTest(uint32_t index) {
+bool KernelTestSuite::RunTest(uint32 index) {
     if (index >= test_count) {
         return false;
     }
@@ -93,7 +93,7 @@ bool KernelTestSuite::RunTest(uint32_t index) {
     StartTest(index);
     
     // Record start time
-    uint32_t start_time = global_timer ? global_timer->GetTickCount() : 0;
+    uint32 start_time = global_timer ? global_timer->GetTickCount() : 0;
     
     TestResult result = TEST_ERROR;
     try {
@@ -104,8 +104,8 @@ bool KernelTestSuite::RunTest(uint32_t index) {
     }
     
     // Record end time
-    uint32_t end_time = global_timer ? global_timer->GetTickCount() : 0;
-    uint32_t elapsed_time = end_time - start_time;
+    uint32 end_time = global_timer ? global_timer->GetTickCount() : 0;
+    uint32 elapsed_time = end_time - start_time;
     if (global_timer) {
         // Convert from timer ticks to milliseconds approximately
         elapsed_time = (elapsed_time * 1000) / global_timer->GetFrequency();
@@ -125,7 +125,7 @@ bool KernelTestSuite::RunTestsByName(const char* pattern) {
     }
     
     bool any_run = false;
-    for (uint32_t i = 0; i < test_count; i++) {
+    for (uint32 i = 0; i < test_count; i++) {
         if (tests[i].enabled && tests[i].name && strstr(tests[i].name, pattern)) {
             RunTest(i);
             any_run = true;
@@ -152,7 +152,7 @@ void KernelTestSuite::PrintResults() {
     LOG("=================================");
     
     // Print individual test results
-    for (uint32_t i = 0; i < test_count; i++) {
+    for (uint32 i = 0; i < test_count; i++) {
         if (tests[i].result != TEST_SKIP) {
             const char* result_str = (tests[i].result == TEST_PASS) ? "PASS" : 
                                     (tests[i].result == TEST_FAIL) ? "FAIL" : "ERROR";
@@ -169,7 +169,7 @@ void KernelTestSuite::ResetResults() {
     error_tests = 0;
     skipped_tests = 0;
     
-    for (uint32_t i = 0; i < test_count; i++) {
+    for (uint32 i = 0; i < test_count; i++) {
         tests[i].result = TEST_SKIP;
         tests[i].execution_time = 0;
     }
@@ -177,7 +177,7 @@ void KernelTestSuite::ResetResults() {
     test_lock.Release();
 }
 
-bool KernelTestSuite::EnableTest(uint32_t index, bool enable) {
+bool KernelTestSuite::EnableTest(uint32 index, bool enable) {
     if (index >= test_count) {
         return false;
     }
@@ -194,7 +194,7 @@ bool KernelTestSuite::EnableTestByName(const char* name, bool enable) {
         return false;
     }
     
-    for (uint32_t i = 0; i < test_count; i++) {
+    for (uint32 i = 0; i < test_count; i++) {
         if (tests[i].name && strcmp(tests[i].name, name) == 0) {
             return EnableTest(i, enable);
         }
@@ -203,12 +203,12 @@ bool KernelTestSuite::EnableTestByName(const char* name, bool enable) {
     return false;  // Test not found
 }
 
-void KernelTestSuite::StartTest(uint32_t index) {
+void KernelTestSuite::StartTest(uint32 index) {
     current_test_index = index;
     DLOG("Starting test: " << tests[index].name);
 }
 
-void KernelTestSuite::EndTest(uint32_t index, TestResult result) {
+void KernelTestSuite::EndTest(uint32 index, TestResult result) {
     tests[index].result = result;
     
     switch (result) {
@@ -227,7 +227,7 @@ void KernelTestSuite::EndTest(uint32_t index, TestResult result) {
     }
 }
 
-void KernelTestSuite::LogTestResult(uint32_t index) {
+void KernelTestSuite::LogTestResult(uint32 index) {
     const char* result_str = (tests[index].result == TEST_PASS) ? "PASS" : 
                             (tests[index].result == TEST_FAIL) ? "FAIL" : "ERROR";
     
@@ -251,9 +251,9 @@ TestResult TestBasicMath() {
 
 TestResult TestMemoryAllocation() {
     // Test basic memory allocation
-    void* ptr = kmalloc(1024);
+    void* ptr = malloc(1024);
     if (!ptr) {
-        LOG("Memory allocation test failed: kmalloc returned null");
+        LOG("Memory allocation test failed: malloc returned null");
         return TEST_ERROR;
     }
     
@@ -265,12 +265,12 @@ TestResult TestMemoryAllocation() {
     
     for (int i = 0; i < 100; i++) {
         if (test_data[i] != (char)i) {
-            kfree(ptr);
+            free(ptr);
             return TEST_FAIL;
         }
     }
     
-    kfree(ptr);
+    free(ptr);
     return TEST_PASS;
 }
 
@@ -332,12 +332,12 @@ TestResult TestTimerFunctionality() {
     }
     
     // Test basic timer functionality
-    uint32_t start_time = global_timer->GetTickCount();
+    uint32 start_time = global_timer->GetTickCount();
     // Wait a few ticks (in a real test, we might wait for a specific time)
     
     // Verify that time is advancing
     for (int i = 0; i < 100; i++) {
-        uint32_t current_time = global_timer->GetTickCount();
+        uint32 current_time = global_timer->GetTickCount();
         if (current_time >= start_time) {
             // Time is advancing as expected
             break;

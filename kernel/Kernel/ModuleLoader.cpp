@@ -20,7 +20,7 @@ ModuleLoader::~ModuleLoader() {
     }
     
     if (symbol_table) {
-        kfree(symbol_table);
+        free(symbol_table);
     }
 }
 
@@ -31,7 +31,7 @@ bool ModuleLoader::Initialize() {
     
     // Allocate symbol table
     max_symbols = MAX_SYMBOLS;
-    symbol_table = (SymbolInfo*)kmalloc(max_symbols * sizeof(SymbolInfo));
+    symbol_table = (SymbolInfo*)malloc(max_symbols * sizeof(SymbolInfo));
     if (!symbol_table) {
         LOG("Error: Failed to allocate symbol table for module loader");
         return false;
@@ -45,7 +45,7 @@ bool ModuleLoader::Initialize() {
     return true;
 }
 
-ModuleLoadResult ModuleLoader::LoadModule(void* module_data, uint32_t size, const char* name) {
+ModuleLoadResult ModuleLoader::LoadModule(void* module_data, uint32 size, const char* name) {
     if (!module_data || size < sizeof(ModuleHeader)) {
         return ModuleLoadResult::INVALID_FORMAT;
     }
@@ -76,7 +76,7 @@ ModuleLoadResult ModuleLoader::LoadModule(void* module_data, uint32_t size, cons
     }
     
     // Allocate memory for the module
-    void* module_base = kmalloc(size);
+    void* module_base = malloc(size);
     if (!module_base) {
         LOG("Failed to allocate memory for module: " << module_name);
         return ModuleLoadResult::INSUFFICIENT_MEMORY;
@@ -86,10 +86,10 @@ ModuleLoadResult ModuleLoader::LoadModule(void* module_data, uint32_t size, cons
     memcpy(module_base, module_data, size);
     
     // Create module info structure
-    ModuleInfo* module_info = (ModuleInfo*)kmalloc(sizeof(ModuleInfo));
+    ModuleInfo* module_info = (ModuleInfo*)malloc(sizeof(ModuleInfo));
     if (!module_info) {
         LOG("Failed to allocate module info for: " << module_name);
-        kfree(module_base);
+        free(module_base);
         return ModuleLoadResult::INSUFFICIENT_MEMORY;
     }
     
@@ -175,7 +175,7 @@ ModuleLoadResult ModuleLoader::UnloadModule(const char* module_name) {
             
             // Execute cleanup if initialized
             if (current->initialized) {
-                ModuleCleanupFn cleanup_fn = (ModuleCleanupFn)((uint8_t*)current->base_address + 
+                ModuleCleanupFn cleanup_fn = (ModuleCleanupFn)((uint8*)current->base_address + 
                                                               current->header->cleanup_function);
                 if (cleanup_fn) {
                     LOG("Executing cleanup for module: " << module_name);
@@ -191,8 +191,8 @@ ModuleLoadResult ModuleLoader::UnloadModule(const char* module_name) {
             }
             
             // Free allocated memory
-            kfree(current->base_address);
-            kfree(current);
+            free(current->base_address);
+            free(current);
             
             module_count--;
             LOG("Module unloaded successfully: " << module_name);
@@ -219,7 +219,7 @@ ModuleLoadResult ModuleLoader::InitializeModule(ModuleInfo* module) {
     }
     
     // Execute the module's initialization function
-    ModuleInitFn init_fn = (ModuleInitFn)((uint8_t*)module->base_address + 
+    ModuleInitFn init_fn = (ModuleInitFn)((uint8*)module->base_address + 
                                          module->header->init_function);
     if (init_fn) {
         LOG("Initializing module: " << module->name);
@@ -249,7 +249,7 @@ ModuleInfo* ModuleLoader::GetModuleInfo(const char* name) {
     return nullptr;
 }
 
-ModuleInfo* ModuleLoader::GetLoadedModules(uint32_t* count) {
+ModuleInfo* ModuleLoader::GetLoadedModules(uint32* count) {
     *count = module_count;
     return loaded_modules;
 }
@@ -262,7 +262,7 @@ void* ModuleLoader::GetSymbolAddress(const char* symbol_name) {
     if (!symbol_name) return nullptr;
     
     // Check in the global symbol table first
-    for (uint32_t i = 0; i < symbol_count; i++) {
+    for (uint32 i = 0; i < symbol_count; i++) {
         if (strcmp(symbol_table[i].name, symbol_name) == 0) {
             return symbol_table[i].address;
         }
@@ -273,13 +273,13 @@ void* ModuleLoader::GetSymbolAddress(const char* symbol_name) {
     return nullptr;
 }
 
-bool ModuleLoader::RegisterSymbol(const char* name, void* address, uint32_t size) {
+bool ModuleLoader::RegisterSymbol(const char* name, void* address, uint32 size) {
     if (!name || !address || symbol_count >= max_symbols) {
         return false;
     }
     
     // Check if symbol already exists
-    for (uint32_t i = 0; i < symbol_count; i++) {
+    for (uint32 i = 0; i < symbol_count; i++) {
         if (strcmp(symbol_table[i].name, name) == 0) {
             // Update existing symbol
             symbol_table[i].address = address;
@@ -298,7 +298,7 @@ bool ModuleLoader::RegisterSymbol(const char* name, void* address, uint32_t size
     return true;
 }
 
-ModuleLoadResult ModuleLoader::ValidateModule(const void* module_data, uint32_t size) {
+ModuleLoadResult ModuleLoader::ValidateModule(const void* module_data, uint32 size) {
     if (!module_data || size < sizeof(ModuleHeader)) {
         LOG("Module validation: Invalid size or null data");
         return ModuleLoadResult::INVALID_FORMAT;
@@ -331,7 +331,7 @@ ModuleLoadResult ModuleLoader::ValidateModule(const void* module_data, uint32_t 
     }
     
     // Calculate and verify checksum
-    uint32_t expected_checksum = CalculateModuleChecksum(module_data, size);
+    uint32 expected_checksum = CalculateModuleChecksum(module_data, size);
     if (expected_checksum != header->checksum) {
         LOG("Module validation: Checksum mismatch - calculated: 0x" << expected_checksum << 
             ", header has: 0x" << header->checksum);
@@ -355,7 +355,7 @@ ModuleLoadResult ModuleLoader::ExecuteModule(ModuleInfo* module) {
     }
     
     // Execute the module's entry point
-    void (*entry_fn)() = (void(*)())((uint8_t*)module->base_address + 
+    void (*entry_fn)() = (void(*)())((uint8*)module->base_address + 
                                     module->header->entry_point);
     if (entry_fn) {
         LOG("Executing module: " << module->name);
@@ -371,7 +371,7 @@ void ModuleLoader::PrintLoadedModules() {
     LOG("=== Loaded Modules ===");
     
     ModuleInfo* current = loaded_modules;
-    uint32_t count = 0;
+    uint32 count = 0;
     
     while (current) {
         LOG(count << ": " << current->name 
@@ -415,7 +415,7 @@ bool ModuleLoader::VerifyModuleSignature(ModuleInfo* module) {
     return true;
 }
 
-void ModuleLoader::GetStatistics(uint32_t* module_count, uint32_t* symbol_count, uint32_t* total_memory) {
+void ModuleLoader::GetStatistics(uint32* module_count, uint32* symbol_count, uint32* total_memory) {
     if (module_count) *module_count = this->module_count;
     if (symbol_count) *symbol_count = this->symbol_count;
     if (total_memory) {
@@ -481,11 +481,11 @@ bool InitializeModuleLoader() {
 }
 
 // Utility function to calculate simple checksum
-uint32_t CalculateModuleChecksum(const void* data, uint32_t size) {
-    const uint8_t* bytes = (const uint8_t*)data;
-    uint32_t checksum = 0;
+uint32 CalculateModuleChecksum(const void* data, uint32 size) {
+    const uint8* bytes = (const uint8*)data;
+    uint32 checksum = 0;
     
-    for (uint32_t i = 0; i < size; i++) {
+    for (uint32 i = 0; i < size; i++) {
         checksum += bytes[i];
     }
     

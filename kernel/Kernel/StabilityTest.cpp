@@ -30,7 +30,7 @@ StabilityTestResult StabilityTester::RunTest(const StabilityTestConfig& config) 
         tester_lock.Release();
         LOG("Stability test already running");
         result.passed = false;
-        strcpy_s(result.error_details, "Stability test already running", sizeof(result.error_details));
+        strcpy_safe(result.error_details, "Stability test already running", sizeof(result.error_details));
         return result;
     }
     
@@ -66,7 +66,7 @@ StabilityTestResult StabilityTester::RunTest(const StabilityTestConfig& config) 
             break;
         default:
             result.passed = false;
-            strcpy_s(result.error_details, "Invalid test type", sizeof(result.error_details));
+            strcpy_safe(result.error_details, "Invalid test type", sizeof(result.error_details));
             break;
     }
     
@@ -83,7 +83,7 @@ StabilityTestResult StabilityTester::RunTest(const StabilityTestConfig& config) 
     if (result.passed) {
         result.passed = ValidateSystemState();
         if (!result.passed) {
-            strcpy_s(result.error_details, "System state invalid after test", sizeof(result.error_details));
+            strcpy_safe(result.error_details, "System state invalid after test", sizeof(result.error_details));
         }
     }
     
@@ -117,16 +117,16 @@ StabilityTestResult StabilityTester::RunMemoryStressTest(const StabilityTestConf
     LOG("Running memory stress test for " << config.duration_seconds << " seconds");
     
     // Start time for the test
-    uint32_t start_ticks = global_timer ? global_timer->GetTickCount() : 0;
-    uint32_t test_duration_ticks = config.duration_seconds * global_timer->GetFrequency(); // Assuming 1Hz timer frequency for simplicity
+    uint32 start_ticks = global_timer ? global_timer->GetTickCount() : 0;
+    uint32 test_duration_ticks = config.duration_seconds * global_timer->GetFrequency(); // Assuming 1Hz timer frequency for simplicity
     
-    uint32_t operations = 0;
-    const uint32_t MAX_BLOCK_SIZE = 64 * 1024; // 64KB max allocation
+    uint32 operations = 0;
+    const uint32 MAX_BLOCK_SIZE = 64 * 1024; // 64KB max allocation
     
     while (true) {
         // Check if test duration has elapsed
         if (global_timer) {
-            uint32_t current_ticks = global_timer->GetTickCount();
+            uint32 current_ticks = global_timer->GetTickCount();
             if ((current_ticks - start_ticks) >= test_duration_ticks) {
                 break;
             }
@@ -138,10 +138,10 @@ StabilityTestResult StabilityTester::RunMemoryStressTest(const StabilityTestConf
         }
         
         // Random allocation size
-        uint32_t size = 32 + (operations % (MAX_BLOCK_SIZE - 32));
+        uint32 size = 32 + (operations % (MAX_BLOCK_SIZE - 32));
         
         // Allocate memory
-        void* ptr = kmalloc(size);
+        void* ptr = malloc(size);
         if (!ptr) {
             result.errors_found++;
             result.passed = false;
@@ -151,25 +151,25 @@ StabilityTestResult StabilityTester::RunMemoryStressTest(const StabilityTestConf
         }
         
         // Write a pattern to the memory
-        uint8_t* data = (uint8_t*)ptr;
-        for (uint32_t i = 0; i < size; i++) {
-            data[i] = (uint8_t)(i & 0xFF);
+        uint8* data = (uint8*)ptr;
+        for (uint32 i = 0; i < size; i++) {
+            data[i] = (uint8)(i & 0xFF);
         }
         
         // Verify the pattern
-        for (uint32_t i = 0; i < size; i++) {
-            if (data[i] != (uint8_t)(i & 0xFF)) {
+        for (uint32 i = 0; i < size; i++) {
+            if (data[i] != (uint8)(i & 0xFF)) {
                 result.errors_found++;
                 result.passed = false;
                 snprintf_s(result.error_details, sizeof(result.error_details), 
                           "Memory corruption detected at operation %d", operations);
-                kfree(ptr);
+                free(ptr);
                 break;
             }
         }
         
         // Deallocate memory
-        kfree(ptr);
+        free(ptr);
         
         operations++;
         result.operations_completed++;
@@ -194,7 +194,7 @@ StabilityTestResult StabilityTester::RunProcessStressTest(const StabilityTestCon
     // For now, just verify the process manager is working
     if (!process_manager) {
         result.passed = false;
-        strcpy_s(result.error_details, "Process manager not available", sizeof(result.error_details));
+        strcpy_safe(result.error_details, "Process manager not available", sizeof(result.error_details));
         return result;
     }
     
@@ -242,7 +242,7 @@ StabilityTestResult StabilityTester::RunFilesystemStressTest(const StabilityTest
     
     if (!g_vfs) {
         result.passed = false;
-        strcpy_s(result.error_details, "VFS not available", sizeof(result.error_details));
+        strcpy_safe(result.error_details, "VFS not available", sizeof(result.error_details));
         return result;
     }
     
@@ -256,7 +256,7 @@ StabilityTestResult StabilityTester::RunFilesystemStressTest(const StabilityTest
         if (stat_result != VFS_SUCCESS) {
             result.errors_found++;
             if (result.errors_found == 1) {
-                strcpy_s(result.error_details, "Failed to stat root directory", sizeof(result.error_details));
+                strcpy_safe(result.error_details, "Failed to stat root directory", sizeof(result.error_details));
             }
             result.passed = false;
             break;
@@ -285,7 +285,7 @@ StabilityTestResult StabilityTester::RunInterruptStressTest(const StabilityTestC
     // For now, just verify the interrupt system is functioning
     if (!global->descriptor_table || !global->descriptor_table->interrupt_manager.IsInitialized()) {
         result.passed = false;
-        strcpy_s(result.error_details, "Interrupt system not available", sizeof(result.error_details));
+        strcpy_safe(result.error_details, "Interrupt system not available", sizeof(result.error_details));
         return result;
     }
     
@@ -305,7 +305,7 @@ StabilityTestResult StabilityTester::RunSchedulerStressTest(const StabilityTestC
     
     if (!process_manager) {
         result.passed = false;
-        strcpy_s(result.error_details, "Process manager not available", sizeof(result.error_details));
+        strcpy_safe(result.error_details, "Process manager not available", sizeof(result.error_details));
         return result;
     }
     
@@ -313,7 +313,7 @@ StabilityTestResult StabilityTester::RunSchedulerStressTest(const StabilityTestC
     ProcessState state = process_manager->GetCurrentProcessState();
     if (state == PROCESS_STATE_INVALID) {
         result.errors_found++;
-        strcpy_s(result.error_details, "Unexpected process state", sizeof(result.error_details));
+        strcpy_safe(result.error_details, "Unexpected process state", sizeof(result.error_details));
         result.passed = false;
     }
     
@@ -337,7 +337,7 @@ StabilityTestResult StabilityTester::RunConcurrentStressTest(const StabilityTest
     return result;
 }
 
-bool StabilityTester::RunAllStabilityTests(uint32_t duration_seconds) {
+bool StabilityTester::RunAllStabilityTests(uint32 duration_seconds) {
     LOG("Running all stability tests for " << duration_seconds << " seconds each...");
     
     StabilityTestConfig config;
@@ -394,17 +394,17 @@ bool StabilityTester::ValidateSystemState() {
     bool valid = true;
     
     // Check if memory manager is still functional
-    void* test_ptr = kmalloc(32);
+    void* test_ptr = malloc(32);
     if (!test_ptr) {
         LOG("ERROR: Memory manager not functioning after test");
         valid = false;
     } else {
-        kfree(test_ptr);
+        free(test_ptr);
     }
     
     // Check if timer is still working
     if (global_timer) {
-        uint32_t ticks = global_timer->GetTickCount();
+        uint32 ticks = global_timer->GetTickCount();
         // Basic validation - ticks should be reasonable (not an invalid value)
         if (ticks == 0xFFFFFFFF) {
             LOG("ERROR: Timer not functioning properly after test"); 
@@ -460,7 +460,7 @@ StabilityTestResult RunMemoryStressTest() {
     } else {
         StabilityTestResult result;
         result.passed = false;
-        strcpy_s(result.error_details, "Stability tester not initialized", sizeof(result.error_details));
+        strcpy_safe(result.error_details, "Stability tester not initialized", sizeof(result.error_details));
         return result;
     }
 }
@@ -477,7 +477,7 @@ StabilityTestResult RunProcessStressTest() {
     } else {
         StabilityTestResult result;
         result.passed = false;
-        strcpy_s(result.error_details, "Stability tester not initialized", sizeof(result.error_details));
+        strcpy_safe(result.error_details, "Stability tester not initialized", sizeof(result.error_details));
         return result;
     }
 }
@@ -494,7 +494,7 @@ StabilityTestResult RunFilesystemStressTest() {
     } else {
         StabilityTestResult result;
         result.passed = false;
-        strcpy_s(result.error_details, "Stability tester not initialized", sizeof(result.error_details));
+        strcpy_safe(result.error_details, "Stability tester not initialized", sizeof(result.error_details));
         return result;
     }
 }

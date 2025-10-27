@@ -60,5 +60,6 @@ void TimerIrqHandler(Registers regs);
 void KeyboardIrqHandler(Registers regs);
 void MouseIrqHandler(Registers regs);
 void PageFaultHandler(Registers regs);
+void DosInterruptHandler(Registers regs);
 
 #endif
