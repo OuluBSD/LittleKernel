@@ -13,12 +13,12 @@ SharedMemoryManager::~SharedMemoryManager() {
     SharedMemoryRegion* current = region_list;
     while (current) {
         SharedMemoryRegion* next = current->next;
-        
+
         // Free the actual shared memory
         if (current->virtual_address) {
             free(current->virtual_address);
         }
-        
+
         // Free process mappings
         SharedMemoryRegion::ProcessMapping* mapping = current->mappings;
         while (mapping) {
@@ -26,27 +26,25 @@ SharedMemoryManager::~SharedMemoryManager() {
             free(mapping);
             mapping = next_mapping;
         }
-        
+
         free(current);
         current = next;
     }
-    
-    region_list = nullptr;
 }
 
 SharedMemoryRegion* SharedMemoryManager::CreateSharedMemory(uint32 size) {
     if (size == 0) {
-        LOG("Cannot create shared memory region with size 0");
+        LOG("Cannot create shared memory region with zero size");
         return nullptr;
     }
-    
-    // Allocate and initialize a new shared memory region
+
+    // Create a new shared memory region structure
     SharedMemoryRegion* region = (SharedMemoryRegion*)malloc(sizeof(SharedMemoryRegion));
     if (!region) {
         LOG("Failed to allocate shared memory region structure");
         return nullptr;
     }
-    
+
     // Initialize the region
     region->id = next_shmid++;
     region->size = size;
@@ -55,9 +53,9 @@ SharedMemoryRegion* SharedMemoryManager::CreateSharedMemory(uint32 size) {
     region->is_deleted = false;
     region->mappings = nullptr;
     region->next = nullptr;
-    
+
     // Allocate the actual shared memory (aligned to page boundaries for efficiency)
-    uint32 page_aligned_size = (size + PAGE_SIZE - 1) & ~(PAGE_SIZE - 1);
+    uint32 page_aligned_size = (size + KERNEL_PAGE_SIZE - 1) & ~(KERNEL_PAGE_SIZE - 1);
     region->virtual_address = malloc(page_aligned_size);
     if (!region->virtual_address) {
         LOG("Failed to allocate shared memory block of size " << size);
@@ -65,44 +63,61 @@ SharedMemoryRegion* SharedMemoryManager::CreateSharedMemory(uint32 size) {
         return nullptr;
     }
     
-    // Get the physical address
+    // Get the physical address for the shared memory
     region->physical_address = VirtualToPhysical(region->virtual_address);
-    
-    // Add to the beginning of the global list
+
+    // Initialize all bytes to zero
+    memset(region->virtual_address, 0, size);
+
+    // Add to the global list of shared memory regions
     region->next = region_list;
     region_list = region;
-    
-    DLOG("Created shared memory region ID " << region->id << " with size " << size 
-          << " at virtual: 0x" << (uint32)region->virtual_address 
-          << ", physical: 0x" << region->physical_address);
-    
+
+    DLOG("Created shared memory region ID " << region->id << " of size " << size 
+          << ", virtual address: 0x" << (uint32)region->virtual_address 
+          << ", physical address: 0x" << region->physical_address);
+
     return region;
 }
 
 SharedMemoryRegion* SharedMemoryManager::GetSharedMemory(uint32 id) {
-    return FindRegionById(id);
+    SharedMemoryRegion* current = region_list;
+    while (current) {
+        if (current->id == id && !current->is_deleted) {
+            return current;
+        }
+        current = current->next;
+    }
+    return nullptr;
 }
 
-void* SharedMemoryManager::MapSharedMemoryToProcess(SharedMemoryRegion* region, 
-                                                    ProcessControlBlock* pcb, 
+void* SharedMemoryManager::MapSharedMemoryToProcess(SharedMemoryRegion* region,
+                                                    ProcessControlBlock* pcb,
                                                     void* desired_vaddr) {
     if (!region || !pcb) {
-        LOG("Invalid parameters to MapSharedMemoryToProcess");
+        LOG("Invalid region or process control block");
         return nullptr;
     }
-    
-    // Find a suitable virtual address if none is provided
-    void* target_vaddr = desired_vaddr ? desired_vaddr : (void*)(0x40000000 + region->id * 0x1000000); // Example: 0x40xxxxxx
-    
+
+    // If no desired address is specified, try to find a suitable one
+    void* target_vaddr = desired_vaddr;
+    if (!target_vaddr) {
+        // For now, we'll use a simple approach: start looking from 0x70000000
+        // In a real implementation, you'd have a more sophisticated virtual address allocator
+        static uint32 next_addr = 0x70000000;
+        target_vaddr = (void*)next_addr;
+        next_addr += (region->size + KERNEL_PAGE_SIZE - 1) & ~(KERNEL_PAGE_SIZE - 1);  // Align to page boundary
+    }
+
     // Map the physical page to the process's virtual address
     if (global && global->paging_manager) {
         // Map the shared memory pages to the process's address space
-        uint32 page_count = (region->size + PAGE_SIZE - 1) / PAGE_SIZE;
+        uint32 page_count = (region->size + KERNEL_PAGE_SIZE - 1) / KERNEL_PAGE_SIZE;
         uint32 shared_phys_addr = region->physical_address;
         
         for (uint32 i = 0; i < page_count; i++) {
-            uint32 virt_addr = (uint32)target_vaddr + i * PAGE_SIZE;
-            uint32 phys_addr = shared_phys_addr + i * PAGE_SIZE;
+            uint32 virt_addr = (uint32)target_vaddr + i * KERNEL_PAGE_SIZE;
+            uint32 phys_addr = shared_phys_addr + i * KERNEL_PAGE_SIZE;
             
             // Map the page in the process's page directory
             bool success = global->paging_manager->MapPage(
@@ -116,7 +131,7 @@ void* SharedMemoryManager::MapSharedMemoryToProcess(SharedMemoryRegion* region,
                 LOG("Failed to map shared memory page to process");
                 // Unmap any pages already mapped
                 for (uint32 j = 0; j < i; j++) {
-                    uint32 undo_virt_addr = (uint32)target_vaddr + j * PAGE_SIZE;
+                    uint32 undo_virt_addr = (uint32)target_vaddr + j * KERNEL_PAGE_SIZE;
                     global->paging_manager->UnmapPage(undo_virt_addr, pcb->page_directory);
                 }
                 return nullptr;
@@ -142,9 +157,9 @@ void* SharedMemoryManager::MapSharedMemoryToProcess(SharedMemoryRegion* region,
     if (!AddProcessMapping(region, pcb->pid, target_vaddr, pcb->page_directory)) {
         LOG("Failed to add process mapping for shared memory");
         // Unmap the pages we just mapped
-        uint32 page_count = (region->size + PAGE_SIZE - 1) / PAGE_SIZE;
+        uint32 page_count = (region->size + KERNEL_PAGE_SIZE - 1) / KERNEL_PAGE_SIZE;
         for (uint32 i = 0; i < page_count; i++) {
-            uint32 virt_addr = (uint32)target_vaddr + i * PAGE_SIZE;
+            uint32 virt_addr = (uint32)target_vaddr + i * KERNEL_PAGE_SIZE;
             global->paging_manager->UnmapPage(virt_addr, pcb->page_directory);
         }
         return nullptr;
@@ -185,113 +200,187 @@ bool SharedMemoryManager::UnmapSharedMemoryFromProcess(SharedMemoryRegion* regio
     }
     
     // Unmap the pages in the process's address space
-    uint32 page_count = (region->size + PAGE_SIZE - 1) / PAGE_SIZE;
+    uint32 page_count = (region->size + KERNEL_PAGE_SIZE - 1) / KERNEL_PAGE_SIZE;
     for (uint32 i = 0; i < page_count; i++) {
-        uint32 virt_addr = (uint32)mapping->process_vaddr + i * PAGE_SIZE;
+        uint32 virt_addr = (uint32)mapping->process_vaddr + i * KERNEL_PAGE_SIZE;
         global->paging_manager->UnmapPage(virt_addr, pcb->page_directory);
     }
     
     // Remove the mapping from the region's list
-    if (!RemoveProcessMapping(region, pcb->pid)) {
-        LOG("Failed to remove process mapping for shared memory");
-        return false;
-    }
-    
-    // Decrement reference count
-    if (region->ref_count > 0) {
-        region->ref_count--;
-    }
+    RemoveProcessMapping(region, pcb->pid);
     
     // Decrement attachment count
     if (region->attach_count > 0) {
         region->attach_count--;
     }
     
-    // If ref count is 0 and the region is marked for deletion, delete it completely
-    if (region->ref_count == 0 && region->is_deleted) {
-        // Check if the region should be completely removed
-        // (This could be done by a cleanup thread or in a later function call)
+    // If the region is marked for deletion and there are no more attachments, delete it
+    if (region->is_deleted && region->attach_count == 0) {
+        DeleteSharedMemory(region->id);
     }
     
     DLOG("Unmapped shared memory ID " << region->id << " from process " << pcb->pid);
-    
     return true;
 }
 
 void* SharedMemoryManager::AttachSharedMemory(uint32 id, ProcessControlBlock* pcb) {
+    if (!pcb) {
+        LOG("Cannot attach shared memory to null process control block");
+        return nullptr;
+    }
+    
+    // Find the shared memory region
     SharedMemoryRegion* region = FindRegionById(id);
     if (!region) {
-        LOG("Shared memory ID " << id << " not found");
+        LOG("Shared memory region ID " << id << " not found for attachment");
         return nullptr;
     }
     
     if (region->is_deleted) {
-        LOG("Shared memory ID " << id << " is marked for deletion");
+        LOG("Cannot attach to shared memory region " << id << " - marked for deletion");
         return nullptr;
     }
     
-    // Check if this process already has this shared memory mapped
+    // Check if this process already has this region attached
+    SharedMemoryRegion::ProcessMapping* current_mapping = region->mappings;
+    while (current_mapping) {
+        if (current_mapping->pid == pcb->pid) {
+            // Process already has this region attached, return the existing address
+            DLOG("Process " << pcb->pid << " already attached to shared memory " << id 
+                  << " at address 0x" << (uint32)current_mapping->process_vaddr);
+            return current_mapping->process_vaddr;
+        }
+        current_mapping = current_mapping->next;
+    }
+    
+    // Map the shared memory to this process - this will also add the process mapping
+    void* mapped_address = MapSharedMemoryToProcess(region, pcb);
+    if (!mapped_address) {
+        LOG("Failed to map shared memory ID " << id << " to process " << pcb->pid);
+        return nullptr;
+    }
+    
+    DLOG("Attached shared memory ID " << id << " to process " << pcb->pid 
+          << " at address 0x" << (uint32)mapped_address);
+    
+    return mapped_address;
+}
+
+bool SharedMemoryManager::DetachSharedMemory(uint32 id, ProcessControlBlock* pcb) {
+    if (!pcb) {
+        LOG("Cannot detach shared memory from null process control block");
+        return false;
+    }
+    
+    // Find the shared memory region
+    SharedMemoryRegion* region = FindRegionById(id);
+    if (!region) {
+        LOG("Shared memory region ID " << id << " not found for detachment");
+        return false;
+    }
+    
+    // Find the mapping for this process
     SharedMemoryRegion::ProcessMapping* mapping = region->mappings;
     while (mapping) {
         if (mapping->pid == pcb->pid) {
-            // Already mapped, return the existing address
-            // Increment the attach count for this process
-            region->attach_count++;
-            return mapping->process_vaddr;
+            break;
         }
         mapping = mapping->next;
     }
     
-    // Map the shared memory to this process
-    void* result = MapSharedMemoryToProcess(region, pcb);
-    if (result) {
-        // Increment attach count when successful
-        region->attach_count++;
-    }
-    return result;
-}
-
-bool SharedMemoryManager::DetachSharedMemory(uint32 id, ProcessControlBlock* pcb) {
-    SharedMemoryRegion* region = FindRegionById(id);
-    if (!region) {
-        LOG("Shared memory ID " << id << " not found");
+    if (!mapping) {
+        LOG("Process " << pcb->pid << " not attached to shared memory region " << id);
         return false;
     }
     
-    bool result = UnmapSharedMemoryFromProcess(region, pcb);
+    // Unmap the pages in the process's address space
+    uint32 page_count = (region->size + KERNEL_PAGE_SIZE - 1) / KERNEL_PAGE_SIZE;
+    for (uint32 i = 0; i < page_count; i++) {
+        uint32 virt_addr = (uint32)mapping->process_vaddr + i * KERNEL_PAGE_SIZE;
+        global->paging_manager->UnmapPage(virt_addr, pcb->page_directory);
+    }
     
-    // Decrement attach count if the detach was successful
-    if (result && region->attach_count > 0) {
+    // Remove the mapping from the region's list
+    RemoveProcessMapping(region, pcb->pid);
+    
+    // Decrement attachment count
+    if (region->attach_count > 0) {
         region->attach_count--;
     }
     
-    return result;
+    // Decrement reference count if this was the last attachment from this process
+    bool found_other_attachments = false;
+    SharedMemoryRegion::ProcessMapping* check_mapping = region->mappings;
+    while (check_mapping) {
+        if (check_mapping->pid == pcb->pid) {
+            found_other_attachments = true;
+            break;
+        }
+        check_mapping = check_mapping->next;
+    }
+    
+    if (!found_other_attachments && region->ref_count > 0) {
+        region->ref_count--;
+    }
+    
+    // If the region is marked for deletion and there are no more attachments, delete it
+    if (region->is_deleted && region->attach_count == 0) {
+        DeleteSharedMemory(region->id);
+    }
+    
+    DLOG("Detached shared memory ID " << id << " from process " << pcb->pid);
+    return true;
 }
 
 bool SharedMemoryManager::DeleteSharedMemory(uint32 id) {
     SharedMemoryRegion* region = FindRegionById(id);
     if (!region) {
-        LOG("Shared memory ID " << id << " not found for deletion");
+        LOG("Cannot delete shared memory region - ID " << id << " not found");
         return false;
-    }
-    
-    // Check if there are still attachments to this region
-    if (region->attach_count > 0) {
-        LOG("Warning: Shared memory ID " << id << " still has " << region->attach_count 
-             << " attachments, but marked for deletion. Region will be deleted when all attachments are removed.");
     }
     
     // Mark the region for deletion
     region->is_deleted = true;
     
-    DLOG("Marked shared memory ID " << id << " for deletion");
-    
-    // If there are no references (processes), we can potentially remove it now
-    // But we'll wait for all attachments to be removed first
-    if (region->ref_count == 0) {
-        CleanupDeletedRegions();
+    // If there are no attachments, we can delete it immediately
+    if (region->attach_count == 0) {
+        // Remove from the global list
+        SharedMemoryRegion* current = region_list;
+        SharedMemoryRegion* prev = nullptr;
+        
+        while (current) {
+            if (current == region) {
+                if (prev) {
+                    prev->next = current->next;
+                } else {
+                    region_list = current->next;
+                }
+                
+                // Free the memory and mappings
+                if (region->virtual_address) {
+                    free(region->virtual_address);
+                }
+                
+                // Free mappings
+                SharedMemoryRegion::ProcessMapping* mapping = region->mappings;
+                while (mapping) {
+                    SharedMemoryRegion::ProcessMapping* next = mapping->next;
+                    free(mapping);
+                    mapping = next;
+                }
+                
+                // Free the region itself
+                free(region);
+                
+                DLOG("Deleted shared memory region ID " << id);
+                return true;
+            }
+            prev = current;
+            current = current->next;
+        }
     }
     
+    DLOG("Marked shared memory region ID " << id << " for deletion");
     return true;
 }
 
@@ -300,41 +389,37 @@ void SharedMemoryManager::CleanupDeletedRegions() {
     SharedMemoryRegion* prev = nullptr;
     
     while (current) {
-        if (current->is_deleted && current->ref_count == 0) {
-            // Check if all attachments have been removed
-            if (current->attach_count == 0) {
-                SharedMemoryRegion* next = current->next;
-                
-                // Remove from the list
-                if (prev) {
-                    prev->next = current->next;
-                } else {
-                    region_list = current->next;
-                }
-                
-                // Free the actual shared memory
-                if (current->virtual_address) {
-                    free(current->virtual_address);
-                }
-                
-                // Free process mappings
-                SharedMemoryRegion::ProcessMapping* mapping = current->mappings;
-                while (mapping) {
-                    SharedMemoryRegion::ProcessMapping* next_mapping = mapping->next;
-                    free(mapping);
-                    mapping = next_mapping;
-                }
-                
-                // Free the region structure
-                free(current);
-                
-                current = next;
-                continue;  // Continue with the next item, don't update prev
+        if (current->is_deleted && current->attach_count == 0) {
+            SharedMemoryRegion* to_delete = current;
+            current = current->next;
+            
+            if (prev) {
+                prev->next = current;
+            } else {
+                region_list = current;
             }
+            
+            // Free the memory and mappings
+            if (to_delete->virtual_address) {
+                free(to_delete->virtual_address);
+            }
+            
+            // Free mappings
+            SharedMemoryRegion::ProcessMapping* mapping = to_delete->mappings;
+            while (mapping) {
+                SharedMemoryRegion::ProcessMapping* next = mapping->next;
+                free(mapping);
+                mapping = next;
+            }
+            
+            // Free the region itself
+            free(to_delete);
+            
+            DLOG("Cleaned up deleted shared memory region");
+        } else {
+            prev = current;
+            current = current->next;
         }
-        
-        prev = current;
-        current = current->next;
     }
 }
 
@@ -371,34 +456,34 @@ SharedMemoryRegion* SharedMemoryManager::FindRegionById(uint32 id) {
     return nullptr;
 }
 
-bool SharedMemoryManager::AddProcessMapping(SharedMemoryRegion* region, 
-                                            uint32 pid, 
-                                            void* process_vaddr, 
+bool SharedMemoryManager::AddProcessMapping(SharedMemoryRegion* region,
+                                            uint32 pid,
+                                            void* process_vaddr,
                                             PageDirectory* page_dir) {
     // Create a new mapping
-    SharedMemoryRegion::ProcessMapping* mapping = 
+    SharedMemoryRegion::ProcessMapping* mapping =
         (SharedMemoryRegion::ProcessMapping*)malloc(sizeof(SharedMemoryRegion::ProcessMapping));
-    
+
     if (!mapping) {
         LOG("Failed to allocate process mapping structure");
         return false;
     }
-    
+
     mapping->pid = pid;
     mapping->process_vaddr = process_vaddr;
     mapping->page_dir = page_dir;
     mapping->next = region->mappings;
-    
+
     // Add to the beginning of the mapping list
     region->mappings = mapping;
-    
+
     return true;
 }
 
 bool SharedMemoryManager::RemoveProcessMapping(SharedMemoryRegion* region, uint32 pid) {
     SharedMemoryRegion::ProcessMapping* current = region->mappings;
     SharedMemoryRegion::ProcessMapping* prev = nullptr;
-    
+
     while (current) {
         if (current->pid == pid) {
             // Remove from the list
@@ -407,16 +492,16 @@ bool SharedMemoryManager::RemoveProcessMapping(SharedMemoryRegion* region, uint3
             } else {
                 region->mappings = current->next;
             }
-            
+
             // Free the mapping structure
             free(current);
-            
+
             return true;
         }
-        
+
         prev = current;
         current = current->next;
     }
-    
+
     return false;  // PID not found
 }

@@ -150,7 +150,7 @@ void PageFaultHandler(Registers regs) {
                             uint32 new_page_phys = VirtualToPhysical(new_page);
                             
                             // Zero the page
-                            memset(new_page, 0, PAGE_SIZE);
+                            memset(new_page, 0, KERNEL_PAGE_SIZE);
                             
                             // Map the page in the current process's page directory
                             uint32 page_vaddr = faulting_address & PAGE_MASK;

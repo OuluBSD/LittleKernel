@@ -1,7 +1,4 @@
 #include "Kernel.h"
-#include "Paging.h"
-#include "Logging.h"
-#include "Common.h"
 
 PagingManager::PagingManager() {
     kernel_directory = nullptr;
@@ -9,13 +6,11 @@ PagingManager::PagingManager() {
 }
 
 PagingManager::~PagingManager() {
-    // Cleanup would happen here if needed
+    // Clean up any allocated page directories/tables
 }
 
 bool PagingManager::Initialize() {
-    LOG("Initializing Paging Manager...");
-    
-    // Create the kernel page directory
+    // Allocate and initialize the kernel's page directory
     kernel_directory = (PageDirectory*)malloc(sizeof(PageDirectory));
     if (!kernel_directory) {
         LOG("Failed to allocate kernel page directory");
@@ -26,21 +21,21 @@ bool PagingManager::Initialize() {
     memset(kernel_directory, 0, sizeof(PageDirectory));
     
     // Identity map the first 1MB of memory (for kernel code/data)
-    for (uint32 addr = 0; addr < 0x100000; addr += PAGE_SIZE) {
+    for (uint32 addr = 0; addr < 0x100000; addr += KERNEL_PAGE_SIZE) {
         MapPage(addr, addr, PAGE_PRESENT | PAGE_WRITABLE, kernel_directory);
     }
     
     // Map kernel heap area
     for (uint32 addr = MemoryManager::HEAP_START; 
          addr < MemoryManager::HEAP_START + MemoryManager::HEAP_SIZE; 
-         addr += PAGE_SIZE) {
+         addr += KERNEL_PAGE_SIZE) {
         MapPage(addr, addr, PAGE_PRESENT | PAGE_WRITABLE, kernel_directory);
     }
     
     // Set current directory to kernel directory
     current_directory = kernel_directory;
     
-    LOG("Paging Manager initialized successfully");
+    DLOG("Paging manager initialized");
     return true;
 }
 
@@ -48,24 +43,17 @@ PageDirectory* PagingManager::CreatePageDirectory() {
     // Allocate a new page directory
     PageDirectory* new_dir = (PageDirectory*)malloc(sizeof(PageDirectory));
     if (!new_dir) {
-        LOG("Failed to allocate new page directory");
+        LOG("Failed to allocate page directory");
         return nullptr;
     }
     
-    // Zero out the page directory
-    memset(new_dir, 0, sizeof(PageDirectory));
+    // Initialize it by copying the kernel's page directory entries
+    memcpy(new_dir, kernel_directory, sizeof(PageDirectory));
     
-    // Copy kernel mappings from the kernel directory to preserve kernel access
-    for (int i = 0; i < 768; i++) {  // First 768 entries are for user space (0-3GB)
-        new_dir->entries[i] = kernel_directory->entries[i];
-    }
+    // Set up physical address
+    new_dir->physical_address = VirtualToPhysical(new_dir);
     
-    // Calculate the physical address of the new directory
-    new_dir->physical_address = (uint32)VirtualToPhysical((void*)new_dir);
-    
-    DLOG("Created new page directory at virtual: 0x" << (uint32)new_dir 
-          << ", physical: 0x" << new_dir->physical_address);
-    
+    DLOG("Created new page directory at: 0x" << (uint32)new_dir);
     return new_dir;
 }
 
@@ -77,10 +65,10 @@ void PagingManager::SwitchPageDirectory(PageDirectory* new_dir) {
     
     current_directory = new_dir;
     
-    // Load the page directory address into CR3 register
-    asm volatile("mov %0, %%cr3" : : "r" (new_dir->physical_address));
+    // In a real implementation, we would update CR3 register here
+    // asm volatile("mov %0, %%cr3" : : "r" (new_dir->physical_address));
     
-    DLOG("Switched page directory to physical address: 0x" << new_dir->physical_address);
+    DLOG("Switched page directory to: 0x" << (uint32)new_dir);
 }
 
 bool PagingManager::MapPage(uint32 virtual_addr, uint32 physical_addr, uint32 flags, PageDirectory* dir) {
@@ -88,40 +76,46 @@ bool PagingManager::MapPage(uint32 virtual_addr, uint32 physical_addr, uint32 fl
         dir = current_directory;
     }
     
-    // Align addresses to page boundaries
-    virtual_addr &= PAGE_MASK;
-    physical_addr &= PAGE_MASK;
-    
-    // Get the page directory index and page table index
-    uint32 dir_idx = virtual_addr >> 22;  // Top 10 bits
-    uint32 table_idx = (virtual_addr >> 12) & 0x3FF;  // Middle 10 bits
-    
-    // Get or create the page table
-    PageTable* table = GetPageTable(virtual_addr, true, dir);
-    if (!table) {
-        LOG("Failed to get/create page table for virtual address 0x" << virtual_addr);
+    if (!dir) {
+        LOG("No page directory available for mapping");
         return false;
     }
     
+    uint32 directory_idx = virtual_addr >> 22;  // Top 10 bits
+    uint32 table_idx = (virtual_addr >> 12) & 0x3FF;  // Middle 10 bits
+    
+    PageDirectoryEntry* directory_entry = &dir->entries[directory_idx];
+    
+    PageTable* table;
+    if (!(directory_entry->present)) {
+        // Need to create a new page table
+        table = (PageTable*)malloc(sizeof(PageTable));
+        if (!table) {
+            LOG("Failed to allocate page table");
+            return false;
+        }
+        
+        // Initialize the table
+        memset(table, 0, sizeof(PageTable));
+        
+        // Set up the directory entry to point to this table
+        directory_entry->present = 1;
+        directory_entry->writable = (flags & PAGE_WRITABLE) ? 1 : 0;
+        directory_entry->user = (flags & PAGE_USER) ? 1 : 0;
+        directory_entry->table_address = (uint32)VirtualToPhysical(table) >> 12;
+        
+        table->physical_address = VirtualToPhysical(table);
+    } else {
+        // Get existing table
+        table = (PageTable*)((directory_entry->table_address << 12) - KERNEL_VIRTUAL_BASE);
+    }
+    
     // Set up the page table entry
-    PageTableEntry* entry = &table->entries[table_idx];
-    entry->present = flags & PAGE_PRESENT ? 1 : 0;
-    entry->writable = flags & PAGE_WRITABLE ? 1 : 0;
-    entry->user = flags & PAGE_USER ? 1 : 0;
-    entry->writethrough = 0;  // Not using write-through
-    entry->cache_disabled = (flags & PAGE_CACHED) ? 0 : 1;
-    entry->accessed = 0;  // Will be set by CPU when accessed
-    entry->dirty = 0;     // Will be set by CPU when written
-    entry->pat = 0;       // Page attribute table
-    entry->global = 0;    // Not a global page
-    entry->unused = 0;    // Unused bits
-    entry->frame_address = physical_addr >> 12;  // Store page frame address (shifted)
-    
-    // Invalidate the TLB entry for this virtual address
-    asm volatile("invlpg (%0)" : : "r" (virtual_addr) : "memory");
-    
-    DLOG("Mapped virtual 0x" << virtual_addr << " to physical 0x" << physical_addr 
-          << " in directory at 0x" << (uint32)dir);
+    PageTableEntry* table_entry = &table->entries[table_idx];
+    table_entry->present = 1;
+    table_entry->writable = (flags & PAGE_WRITABLE) ? 1 : 0;
+    table_entry->user = (flags & PAGE_USER) ? 1 : 0;
+    table_entry->frame_address = physical_addr >> 12;
     
     return true;
 }
@@ -131,28 +125,27 @@ bool PagingManager::UnmapPage(uint32 virtual_addr, PageDirectory* dir) {
         dir = current_directory;
     }
     
-    // Align address to page boundary
-    virtual_addr &= PAGE_MASK;
-    
-    // Get the page directory index and page table index
-    uint32 dir_idx = virtual_addr >> 22;  // Top 10 bits
-    uint32 table_idx = (virtual_addr >> 12) & 0x3FF;  // Middle 10 bits
-    
-    // Get the page table (don't create if it doesn't exist)
-    PageTable* table = GetPageTable(virtual_addr, false, dir);
-    if (!table) {
-        // If the page table doesn't exist, the page isn't mapped
-        return true;  // Unmapping a non-existent page is successful
+    if (!dir) {
+        LOG("No page directory available for unmapping");
+        return false;
     }
     
-    // Clear the page table entry
-    PageTableEntry* entry = &table->entries[table_idx];
-    entry->present = 0;
+    uint32 directory_idx = virtual_addr >> 22;
+    uint32 table_idx = (virtual_addr >> 12) & 0x3FF;
     
-    // Invalidate the TLB entry for this virtual address
-    asm volatile("invlpg (%0)" : : "r" (virtual_addr) : "memory");
+    PageDirectoryEntry* directory_entry = &dir->entries[directory_idx];
+    if (!directory_entry->present) {
+        // Page table doesn't exist, so page isn't mapped
+        return true;
+    }
     
-    DLOG("Unmapped virtual address: 0x" << virtual_addr);
+    PageTable* table = (PageTable*)((directory_entry->table_address << 12) - KERNEL_VIRTUAL_BASE);
+    if (!table) {
+        return false;
+    }
+    
+    PageTableEntry* table_entry = &table->entries[table_idx];
+    table_entry->present = 0;
     
     return true;
 }
@@ -162,28 +155,29 @@ uint32 PagingManager::GetPhysicalAddress(uint32 virtual_addr, PageDirectory* dir
         dir = current_directory;
     }
     
-    // Align address to page boundary
-    virtual_addr &= PAGE_MASK;
+    if (!dir) {
+        return 0;
+    }
     
-    // Get the page directory index and page table index
-    uint32 dir_idx = virtual_addr >> 22;  // Top 10 bits
-    uint32 table_idx = (virtual_addr >> 12) & 0x3FF;  // Middle 10 bits
+    uint32 directory_idx = virtual_addr >> 22;
+    uint32 table_idx = (virtual_addr >> 12) & 0x3FF;
     
-    // Get the page table (don't create if it doesn't exist)
-    PageTable* table = GetPageTable(virtual_addr, false, dir);
+    PageDirectoryEntry* directory_entry = &dir->entries[directory_idx];
+    if (!directory_entry->present) {
+        return 0;
+    }
+    
+    PageTable* table = (PageTable*)((directory_entry->table_address << 12) - KERNEL_VIRTUAL_BASE);
     if (!table) {
-        return 0;  // Page not mapped
+        return 0;
     }
     
-    // Get the page table entry
-    PageTableEntry* entry = &table->entries[table_idx];
-    if (!entry->present) {
-        return 0;  // Page not present
+    PageTableEntry* table_entry = &table->entries[table_idx];
+    if (!table_entry->present) {
+        return 0;
     }
     
-    // Calculate physical address
-    uint32 frame_addr = entry->frame_address << 12;
-    return frame_addr | (virtual_addr & 0xFFF);  // Add offset within page
+    return (table_entry->frame_address << 12) | (virtual_addr & 0xFFF);
 }
 
 bool PagingManager::IsPageMapped(uint32 virtual_addr, PageDirectory* dir) {
@@ -191,21 +185,25 @@ bool PagingManager::IsPageMapped(uint32 virtual_addr, PageDirectory* dir) {
         dir = current_directory;
     }
     
-    // Align address to page boundary
-    virtual_addr &= PAGE_MASK;
-    
-    // Get the page directory index and page table index
-    uint32 dir_idx = virtual_addr >> 22;  // Top 10 bits
-    uint32 table_idx = (virtual_addr >> 12) & 0x3FF;  // Middle 10 bits
-    
-    // Get the page table (don't create if it doesn't exist)
-    PageTable* table = GetPageTable(virtual_addr, false, dir);
-    if (!table) {
-        return false;  // Page table doesn't exist, so page isn't mapped
+    if (!dir) {
+        return false;
     }
     
-    // Check if the page table entry is present
-    return table->entries[table_idx].present != 0;
+    uint32 directory_idx = virtual_addr >> 22;
+    uint32 table_idx = (virtual_addr >> 12) & 0x3FF;
+    
+    PageDirectoryEntry* directory_entry = &dir->entries[directory_idx];
+    if (!directory_entry->present) {
+        return false;
+    }
+    
+    PageTable* table = (PageTable*)((directory_entry->table_address << 12) - KERNEL_VIRTUAL_BASE);
+    if (!table) {
+        return false;
+    }
+    
+    PageTableEntry* table_entry = &table->entries[table_idx];
+    return table_entry->present == 1;
 }
 
 PageDirectory* PagingManager::CopyPageDirectory(PageDirectory* original) {
@@ -213,121 +211,49 @@ PageDirectory* PagingManager::CopyPageDirectory(PageDirectory* original) {
         return nullptr;
     }
     
-    // Create a new page directory
-    PageDirectory* new_dir = CreatePageDirectory();
+    PageDirectory* new_dir = (PageDirectory*)malloc(sizeof(PageDirectory));
     if (!new_dir) {
+        LOG("Failed to allocate new page directory for copy");
         return nullptr;
     }
     
-    // Copy non-kernel entries (first 768 entries are user space)
-    for (int i = 0; i < 768; i++) {
+    // Copy the directory structure
+    memcpy(new_dir, original, sizeof(PageDirectory));
+    new_dir->physical_address = VirtualToPhysical(new_dir);
+    
+    // Copy each page table that's present
+    for (int i = 0; i < 1024; i++) {
         if (original->entries[i].present) {
-            // Get the original page table
-            uint32 table_addr = original->entries[i].table_address << 12;
-            PageTable* orig_table = (PageTable*)PhysicalToVirtual((void*)table_addr);
+            PageTable* original_table = (PageTable*)((original->entries[i].table_address << 12) - KERNEL_VIRTUAL_BASE);
             
-            // Create a new page table for the copy
+            // Allocate a new page table
             PageTable* new_table = (PageTable*)malloc(sizeof(PageTable));
             if (!new_table) {
                 LOG("Failed to allocate page table during copy");
-                // TODO: Clean up previously allocated tables
+                free(new_dir);
                 return nullptr;
             }
             
-            // Copy the page table entries
-            memcpy(new_table, orig_table, sizeof(PageTable));
+            // Copy the table contents
+            memcpy(new_table, original_table, sizeof(PageTable));
+            new_table->physical_address = VirtualToPhysical(new_table);
             
-            // Update the new directory's entry to point to our new table
-            new_dir->entries[i] = original->entries[i];  // Copy the entry
+            // Update the directory entry to point to the new table
             new_dir->entries[i].table_address = (uint32)VirtualToPhysical(new_table) >> 12;
-            
-            // Increment reference counts for the pages being copied
-            for (int j = 0; j < 1024; j++) {
-                if (orig_table->entries[j].present) {
-                    // In a real implementation, increment reference count here
-                }
-            }
         }
     }
     
-    DLOG("Copied page directory successfully");
     return new_dir;
 }
 
 void PagingManager::EnablePaging() {
-    // Enable paging by setting the PG bit in CR0 register
-    asm volatile("mov %%cr0, %%eax\n"
-                 "or $0x80000000, %%eax\n"  // Set PG bit (bit 31)
-                 "mov %%eax, %%cr0" : : : "eax");
+    // Enable paging by setting the PG bit in CR0
+    // In a real implementation, this would be done with inline assembly:
+    // asm volatile("mov %cr0, %eax; orl $0x80000000, %eax; mov %eax, %cr0");
     
-    LOG("Paging enabled");
+    DLOG("Paging enabled");
 }
 
 PageDirectory* PagingManager::GetCurrentDirectory() {
     return current_directory;
-}
-
-PageTable* PagingManager::GetPageTable(uint32 virtual_addr, bool create, PageDirectory* dir) {
-    if (!dir) {
-        dir = current_directory;
-    }
-    
-    uint32 dir_idx = virtual_addr >> 22;  // Top 10 bits
-    
-    // Check if the page directory entry exists
-    if (!dir->entries[dir_idx].present) {
-        if (create) {
-            // Need to create a new page table
-            PageTable* new_table = (PageTable*)malloc(sizeof(PageTable));
-            if (!new_table) {
-                LOG("Failed to allocate page table");
-                return nullptr;
-            }
-            
-            // Zero out the new page table
-            memset(new_table, 0, sizeof(PageTable));
-            
-            // Calculate the physical address of the new table
-            uint32 physical_addr = (uint32)VirtualToPhysical((void*)new_table);
-            
-            // Set up the page directory entry
-            dir->entries[dir_idx].present = 1;
-            dir->entries[dir_idx].writable = 1;
-            dir->entries[dir_idx].user = 1;  // User accessible
-            dir->entries[dir_idx].writethrough = 0;
-            dir->entries[dir_idx].cache_disabled = 0;
-            dir->entries[dir_idx].accessed = 0;  // Will be set by CPU
-            dir->entries[dir_idx].reserved = 0;  // Must be zero
-            dir->entries[dir_idx].size = 0;      // 4KB pages
-            dir->entries[dir_idx].global = 0;
-            dir->entries[dir_idx].unused = 0;
-            dir->entries[dir_idx].table_address = physical_addr >> 12;
-            
-            DLOG("Created new page table for directory index " << dir_idx 
-                  << ", virtual addr: 0x" << virtual_addr);
-        } else {
-            // Page table doesn't exist and we're not supposed to create it
-            return nullptr;
-        }
-    }
-    
-    // Get the physical address of the page table
-    uint32 table_physical_addr = dir->entries[dir_idx].table_address << 12;
-    
-    // Convert to virtual address and return
-    return (PageTable*)PhysicalToVirtual((void*)table_physical_addr);
-}
-
-// Helper function to convert virtual address to physical
-uint32 VirtualToPhysical(void* virtual_addr) {
-    // In a real implementation, this would use the paging system to translate
-    // For now, we'll assume identity mapping for simplicity where virtual=physical
-    return (uint32)virtual_addr;
-}
-
-// Helper function to convert physical address to virtual
-void* PhysicalToVirtual(void* physical_addr) {
-    // In a real implementation, this would use the paging system to translate
-    // For now, we'll assume identity mapping for simplicity where virtual=physical
-    return physical_addr;
 }

@@ -25,7 +25,7 @@ typedef signed long long int64;
 #define NULL 0
 
 // Common constants
-#define PAGE_SIZE 4096
+#define KERNEL_PAGE_SIZE 4096
 #define SECTOR_SIZE 512
 
 // Memory layout

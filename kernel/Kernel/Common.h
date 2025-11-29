@@ -5,8 +5,16 @@
 
 // Common structures and functions following Ultimate++ conventions
 
-// Include stdarg for variable argument functions
-#include <stdarg.h>
+// Define stdarg functionality for kernel (since we can't use standard headers)
+#ifndef __va_list_defined
+#define __va_list_defined
+typedef __builtin_va_list va_list;
+#endif
+
+#define va_start(v, l) __builtin_va_start(v, l)
+#define va_end(v) __builtin_va_end(v)
+#define va_arg(v, l) __builtin_va_arg(v, l)
+#define va_copy(dest, src) __builtin_va_copy(dest, src)
 
 struct Registers {
     uint32 ds;                  // Data segment selector

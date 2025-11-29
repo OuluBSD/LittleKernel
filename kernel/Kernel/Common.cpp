@@ -170,9 +170,9 @@ int vsnprintf(char* buffer, uint32 buffer_size, const char* format, va_list args
                     buffer[i++] = temp[j];
                 }
             } else if (*format_ptr == 's') { // String
-                char* str = va_arg(temp_args, char*);
+                const char* str = va_arg(temp_args, const char*);
                 if (!str) str = "(null)";
-                
+
                 int j = 0;
                 while (str[j] && i < buffer_size - 1) {
                     buffer[i++] = str[j++];

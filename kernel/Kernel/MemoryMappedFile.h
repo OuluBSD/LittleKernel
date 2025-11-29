@@ -29,7 +29,8 @@ enum MemoryMapFlags {
     MAP_WRITE = 2,
     MAP_EXECUTE = 4,
     MAP_PRIVATE = 8,      // Changes are private to the process
-    MAP_SHARED = 16      // Changes are shared with other processes
+    MAP_SHARED = 16,      // Changes are shared with other processes
+    MAP_FIXED = 32        // Use exact address given
 };
 
 // Memory mapping manager class

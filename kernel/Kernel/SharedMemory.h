@@ -4,6 +4,9 @@
 #include "Common.h"
 #include "Paging.h"
 
+// Forward declaration to avoid circular dependencies
+struct ProcessControlBlock;
+
 // Structure to represent a shared memory region
 struct SharedMemoryRegion {
     uint32 id;                    // Unique identifier for this shared memory
