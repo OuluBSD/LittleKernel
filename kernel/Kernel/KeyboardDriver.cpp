@@ -114,7 +114,8 @@ void KeyboardDriver::ProcessScancode(uint8 scancode) {
         event_buffer.Push(event);
     } else {
         // Buffer full, drop the oldest event
-        event_buffer.Pop();
+        KeyboardEvent dummy;
+        event_buffer.Pop(dummy);
         event_buffer.Push(event);
     }
     buffer_lock.Release();
@@ -123,9 +124,9 @@ void KeyboardDriver::ProcessScancode(uint8 scancode) {
 bool KeyboardDriver::GetKeyEvent(KeyboardEvent& event) {
     buffer_lock.Acquire();
     if (!event_buffer.IsEmpty()) {
-        event = event_buffer.Pop();
+        bool result = event_buffer.Pop(event);
         buffer_lock.Release();
-        return true;
+        return result;
     }
     buffer_lock.Release();
     return false;

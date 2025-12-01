@@ -149,7 +149,8 @@ void MouseDriver::ProcessPacket() {
         event_buffer.Push(event);
     } else {
         // Buffer full, drop the oldest event
-        event_buffer.Pop();
+        MouseEvent dummy;
+        event_buffer.Pop(dummy);
         event_buffer.Push(event);
     }
     buffer_lock.Release();
@@ -162,9 +163,9 @@ void MouseDriver::ProcessPacket() {
 bool MouseDriver::GetMouseEvent(MouseEvent& event) {
     buffer_lock.Acquire();
     if (!event_buffer.IsEmpty()) {
-        event = event_buffer.Pop();
+        bool result = event_buffer.Pop(event);
         buffer_lock.Release();
-        return true;
+        return result;
     }
     buffer_lock.Release();
     return false;

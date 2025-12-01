@@ -32,6 +32,8 @@ struct IoRequest {
     uint32 flags;            // Request-specific flags
     int result;              // Result of the operation
     void* user_data;          // User data associated with the request
+    uint32 command;           // Command for IOCTL operations
+    void* arg;               // Argument for IOCTL operations
 };
 
 // Driver states enum
@@ -50,16 +52,6 @@ enum class DriverInitResult {
     NOT_SUPPORTED = -2,
     INSUFFICIENT_RESOURCES = -3,
     DEVICE_NOT_FOUND = -4
-};
-
-// I/O request types
-enum class IoRequestType {
-    READ,
-    WRITE,
-    IOCTL,
-    OPEN,
-    CLOSE,
-    FLUSH
 };
 
 // Base driver class - abstract class that all drivers should inherit from
@@ -131,6 +123,8 @@ public:
     virtual uint32 GetBlockSize() const { return block_size; }
     virtual uint32 GetTotalBlocks() const { return total_blocks; }
     virtual bool IsReadOnly() const { return read_only; }
+    virtual bool RegisterAsBlockDevice();
+    virtual bool UnregisterAsBlockDevice();
 };
 
 // Base class for character device drivers (serial, keyboard, etc.)

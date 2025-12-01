@@ -69,26 +69,36 @@ DriverLoadResult DriverLoader::LoadDriver(const char* driver_name, const char* d
     }
     
     // Load the module using the module loader
-    ModuleHandle handle = g_module_loader->LoadModule(driver_path);
-    if (!handle) {
-        LOG("Failed to load driver module: " << driver_path);
-        loader_lock.Release();
-        return DriverLoadResult::FAILED;
+    ModuleInfo* module = g_module_loader->GetModuleInfo(driver_path);
+    if (!module) {
+        // If the module isn't already loaded, load it from file
+        ModuleLoadResult load_result = g_module_loader->LoadModuleFromFile(driver_path);
+        if (load_result != ModuleLoadResult::SUCCESS) {
+            LOG("Failed to load driver module: " << driver_path << " (result: " << (int)load_result << ")");
+            loader_lock.Release();
+            return DriverLoadResult::FAILED;
+        }
+
+        // Try to get the module info again
+        module = g_module_loader->GetModuleInfo(driver_path);
+        if (!module) {
+            LOG("Loaded module but couldn't get info: " << driver_path);
+            loader_lock.Release();
+            return DriverLoadResult::FAILED;
+        }
     }
-    
+
     // Get the module base address
-    void* module_base = g_module_loader->GetModuleBase(handle);
+    void* module_base = module->base_address;
     if (!module_base) {
         LOG("Failed to get module base for: " << driver_name);
-        g_module_loader->UnloadModule(handle);
         loader_lock.Release();
         return DriverLoadResult::FAILED;
     }
-    
+
     // Validate the driver module
-    if (!ValidateDriverModule(module_base, g_module_loader->GetModuleSize(handle))) {
+    if (!ValidateDriverModule(module_base, module->size)) {
         LOG("Driver module validation failed: " << driver_name);
-        g_module_loader->UnloadModule(handle);
         loader_lock.Release();
         return DriverLoadResult::INVALID_FORMAT;
     }
@@ -98,7 +108,7 @@ DriverLoadResult DriverLoader::LoadDriver(const char* driver_name, const char* d
     
     if (result != DriverLoadResult::SUCCESS) {
         LOG("Failed to load driver: " << driver_name << " (result: " << (int)result << ")");
-        g_module_loader->UnloadModule(handle);
+        g_module_loader->UnloadModule(driver_path);
     }
     
     loader_lock.Release();

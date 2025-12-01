@@ -69,8 +69,18 @@ LogStream& LogStream::operator<<(uint32 val) {
     return *this;
 }
 
+LogStream& LogStream::operator<<(uint64 val) {
+    AppendUint64(val);
+    return *this;
+}
+
 LogStream& LogStream::operator<<(char c) {
     AppendChar(c);
+    return *this;
+}
+
+LogStream& LogStream::operator<<(void* ptr) {
+    AppendHex((uint32)ptr);
     return *this;
 }
 
@@ -130,15 +140,38 @@ void LogStream::AppendUint32(uint32 val) {
         buffer[pos] = '\0';
         return;
     }
-    
+
     char temp[16];
     uint32 i = 0;
-    
+
     while (val > 0) {
         temp[i++] = '0' + (val % 10);
         val /= 10;
     }
-    
+
+    for (int j = i - 1; j >= 0; j--) {
+        if (pos < 510) {
+            buffer[pos++] = temp[j];
+        }
+    }
+    buffer[pos] = '\0';
+}
+
+void LogStream::AppendUint64(uint64 val) {
+    if (val == 0) {
+        if (pos < 510) buffer[pos++] = '0';
+        buffer[pos] = '\0';
+        return;
+    }
+
+    char temp[24];
+    uint32 i = 0;
+
+    while (val > 0) {
+        temp[i++] = '0' + (val % 10);
+        val /= 10;
+    }
+
     for (int j = i - 1; j >= 0; j--) {
         if (pos < 510) {
             buffer[pos++] = temp[j];

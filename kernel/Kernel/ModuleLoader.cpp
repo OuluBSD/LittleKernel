@@ -109,7 +109,7 @@ ModuleLoadResult ModuleLoader::LoadModule(void* module_data, uint32 size, const 
     loaded_modules = module_info;
     module_count++;
     
-    LOG("Module loaded successfully: " << module_name << " at 0x" << module_base);
+    LOG("Module loaded successfully: " << module_name << " at 0x" << (uint32)module_base);
     
     // Perform security checks
     ModuleLoadResult security_result = SecurityCheck(module_info);
@@ -374,9 +374,9 @@ void ModuleLoader::PrintLoadedModules() {
     uint32 count = 0;
     
     while (current) {
-        LOG(count << ": " << current->name 
-            << " at 0x" << current->base_address 
-            << ", size: " << current->size 
+        LOG(count << ": " << current->name
+            << " at 0x" << (uint32)current->base_address
+            << ", size: " << current->size
             << ", refs: " << current->reference_count
             << ", loaded: " << (current->loaded ? "yes" : "no")
             << ", init: " << (current->initialized ? "yes" : "no"));

@@ -8,25 +8,81 @@
 // #include <climits>  // Not available in kernel space, defining constants directly
 
 // Standard constants that would normally come from climits
+#ifndef CHAR_BIT
 #define CHAR_BIT 8
+#endif
+
+#ifndef SCHAR_MIN
 #define SCHAR_MIN (-128)
+#endif
+
+#ifndef SCHAR_MAX
 #define SCHAR_MAX 127
+#endif
+
+#ifndef UCHAR_MAX
 #define UCHAR_MAX 255
+#endif
+
+#ifndef CHAR_MIN
 #define CHAR_MIN SCHAR_MIN
+#endif
+
+#ifndef CHAR_MAX
 #define CHAR_MAX SCHAR_MAX
+#endif
+
+#ifndef MB_LEN_MAX
 #define MB_LEN_MAX 16
+#endif
+
+#ifndef SHRT_MIN
 #define SHRT_MIN (-32768)
+#endif
+
+#ifndef SHRT_MAX
 #define SHRT_MAX 32767
+#endif
+
+#ifndef USHRT_MAX
 #define USHRT_MAX 65535
+#endif
+
+#ifndef INT_MIN
 #define INT_MIN (-2147483648)
+#endif
+
+#ifndef INT_MAX
 #define INT_MAX 2147483647
+#endif
+
+#ifndef UINT_MAX
 #define UINT_MAX 4294967295U
+#endif
+
+#ifndef LONG_MIN
 #define LONG_MIN INT_MIN
+#endif
+
+#ifndef LONG_MAX
 #define LONG_MAX INT_MAX
+#endif
+
+#ifndef ULONG_MAX
 #define ULONG_MAX UINT_MAX
+#endif
+
+#ifndef LLONG_MIN
 #define LLONG_MIN (-9223372036854775808LL)
+#endif
+
+#ifndef LLONG_MAX
 #define LLONG_MAX 9223372036854775807LL
+#endif
+
+#ifndef ULLONG_MAX
 #define ULLONG_MAX 18446744073709551615ULL
+#endif
 
 // File system constants
 #define MAX_PATH_LENGTH 260
@@ -80,6 +136,7 @@ struct FileStat {
     uint32 owner_gid;       // Owner group ID
     uint32 permissions;      // File permissions
     uint8  attributes;      // File attributes
+    uint32 st_size;         // For compatibility with POSIX stat structure
 };
 
 // Directory entry structure
@@ -129,6 +186,7 @@ struct VfsNode {
     int (*readdir)(VfsNode* node, uint32 index, DirEntry* entry);
     int (*create)(VfsNode* node, const char* name, uint8 attributes);
     int (*Delete)(VfsNode* node);
+    int (*delete_fn)(VfsNode* node);  // For backward compatibility with existing code
     
     void* fs_specific;        // Filesystem-specific data
     Device* device;           // Associated device
@@ -246,8 +304,11 @@ public:
 
 private:
     // Internal helper functions
-    VfsNode* CreateVfsNode(const char* name, VfsNode* parent);
     void DestroyVfsNode(VfsNode* node);
+
+public:
+    // Public helper functions
+    VfsNode* CreateVfsNode(const char* name, VfsNode* parent);
     FileHandle* GetFreeFileHandle();
     FileHandle* GetFileHandle(int fd);
     bool IsValidFileHandle(int fd);

@@ -399,20 +399,20 @@ extern "C" int HandleNvidiaSyscall(uint32 syscall_num,
     return g_nvidia_driver_support->NvidiaSyscall(syscall_num, arg1, arg2, arg3, arg4, arg5, arg6);
 }
 
-// Setup NVIDIA driver syscall table for the ABI multiplexer
+// Setup NVIDIA driver syscall table for the SCI multiplexer
 bool SetupNvidiaDriverSyscallTable() {
-    if (!g_abi_multiplexer) {
-        LOG("ABI multiplexer not initialized for NVIDIA driver setup");
+    if (!g_sci_multiplexer) {
+        LOG("SCI multiplexer not initialized for NVIDIA driver setup");
         return false;
     }
-    
+
     // Create syscall table for NVIDIA driver
-    AbiSyscallTable* table = (AbiSyscallTable*)malloc(sizeof(AbiSyscallTable));
+    SciSyscallTable* table = (SciSyscallTable*)malloc(sizeof(SciSyscallTable));
     if (!table) {
-        LOG("Failed to allocate ABI syscall table for NVIDIA driver");
+        LOG("Failed to allocate SCI syscall table for NVIDIA driver");
         return false;
     }
-    
+
     // We'll use 100 syscall slots for NVIDIA driver
     const uint32 max_syscalls = 100;
     table->handlers = (SyscallHandler*)malloc(max_syscalls * sizeof(SyscallHandler));
@@ -421,19 +421,19 @@ bool SetupNvidiaDriverSyscallTable() {
         LOG("Failed to allocate syscall handlers for NVIDIA driver");
         return false;
     }
-    
+
     // Initialize all handlers to a default handler
     for (uint32 i = 0; i < max_syscalls; i++) {
         table->handlers[i] = nullptr;
     }
-    
+
     // Register specific handlers for NVIDIA driver syscalls
     table->max_syscall_num = max_syscalls;
     table->names = nullptr; // For now, no names array
-    
-    // Register the table with the ABI multiplexer
-    bool result = g_abi_multiplexer->RegisterAbiSyscalls(NVIDIA_DRIVER, table);
-    
+
+    // Register the table with the SCI multiplexer - using NATIVE SCI type for now
+    bool result = g_sci_multiplexer->RegisterSciSyscalls(NATIVE, table);
+
     // The table will be freed by the multiplexer on shutdown
     return result;
 }

@@ -14,16 +14,8 @@ VirtioDriver::VirtioDriver(const char* driver_name, const char* driver_version,
     virtio_device = nullptr;
     negotiated_features = 0;
     
-    // Set up driver framework callbacks
-    static DriverOperations ops = {
-        VirtioInit,
-        VirtioDriver::VirtioRead,
-        VirtioDriver::VirtioWrite,
-        VirtioDriver::VirtioIoctl,
-        VirtioDriver::VirtioClose
-    };
-    
-    device_handle->ops = &ops;
+    // Note: The driver operations are set up later during device registration
+    // since device_handle is not available in constructor
 }
 
 VirtioDriver::~VirtioDriver() {

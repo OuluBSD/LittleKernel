@@ -150,10 +150,87 @@ uint32 BlockDeviceDriver::WriteBlocks(uint32 start_block, uint32 num_blocks, con
         LogError("Attempt to write to read-only block device");
         return 0;
     }
-    
+
     LogDebug("WriteBlocks called - start_block: " << start_block << ", num_blocks: " << num_blocks);
     // In a real implementation, this would perform the actual block write operation
     return num_blocks;  // Return number of blocks successfully written
+}
+
+// BlockDeviceDriver RegisterAsBlockDevice implementation
+bool BlockDeviceDriver::RegisterAsBlockDevice() {
+    // This would register the device with the device framework
+    // For now, we'll just create a device structure and register it
+    Device* new_device = (Device*)malloc(sizeof(Device));
+    if (!new_device) {
+        LogError("Failed to allocate memory for device structure");
+        return false;
+    }
+
+    // Initialize the device structure
+    new_device->id = global->next_device_id++;
+    strncpy(new_device->name, name, sizeof(new_device->name) - 1);
+    new_device->name[sizeof(new_device->name) - 1] = '\0';
+    new_device->type = DEVICE_TYPE_DISK;
+    new_device->private_data = this;
+    new_device->flags = DRIVER_ACTIVE;
+    new_device->next = nullptr;
+
+    // Set up the operations structure
+    static DriverOperations ops = {
+        nullptr, // init function
+        [](Device* dev, void* buf, uint32 sz, uint32 off) -> bool {
+            BlockDeviceDriver* driver = (BlockDeviceDriver*)dev->private_data;
+            uint32 start_block = off / driver->GetBlockSize();
+            uint32 num_blocks = sz / driver->GetBlockSize();
+            uint32 result = driver->ReadBlocks(start_block, num_blocks, buf);
+            return result > 0;
+        },
+        [](Device* dev, const void* buf, uint32 sz, uint32 off) -> bool {
+            BlockDeviceDriver* driver = (BlockDeviceDriver*)dev->private_data;
+            uint32 start_block = off / driver->GetBlockSize();
+            uint32 num_blocks = sz / driver->GetBlockSize();
+            uint32 result = driver->WriteBlocks(start_block, num_blocks, buf);
+            return result > 0;
+        },
+        nullptr, // ioctl function
+        nullptr  // close function
+    };
+    new_device->ops = &ops;
+
+    // Register the device with the global driver framework
+    if (!global->driver_framework->RegisterDevice(new_device)) {
+        LogError("Failed to register block device with driver framework");
+        free(new_device);
+        return false;
+    }
+
+    // Store the device reference for later use
+    device_handle = new_device;
+
+    LogInfo("Successfully registered as block device");
+    return true;
+}
+
+// BlockDeviceDriver UnregisterAsBlockDevice implementation
+bool BlockDeviceDriver::UnregisterAsBlockDevice() {
+    // Unregister the device from the device framework
+    if (!device_handle) {
+        LogError("No device registered to unregister");
+        return false;
+    }
+
+    Device* device = (Device*)device_handle;
+    bool result = global->driver_framework->UnregisterDevice(device->id);
+
+    if (result) {
+        LogInfo("Successfully unregistered block device");
+        device_handle = nullptr;
+        free(device);
+    } else {
+        LogError("Failed to unregister block device");
+    }
+
+    return result;
 }
 
 // CharacterDeviceDriver constructor

@@ -38,7 +38,7 @@ int TestFloppyDriver() {
             if (i % 16 == 0) {
                 LOG("");
             }
-            LOG(hex << (int)boot_sector[i] << " ");
+            LOG("0x" << (uint32)boot_sector[i] << " ");
         }
         LOG("");
         

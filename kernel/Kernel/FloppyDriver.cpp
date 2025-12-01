@@ -92,7 +92,7 @@ int FloppyDriver::HandleInterrupt() {
     uint8 st0 = ReceiveByteFromFdc();
     uint8 pcn = ReceiveByteFromFdc();
     
-    LOG("Floppy interrupt: ST0=" << hex << (int)st0 << ", PCN=" << (int)pcn);
+    LOG("Floppy interrupt: ST0=0x" << (uint32)st0 << ", PCN=" << (int)pcn);
     
     // Clear interrupt pending flag
     return 0;  // Success
@@ -295,7 +295,7 @@ bool FloppyDriver::LoadDiskImage(const char* image_path) {
     g_vfs->Close(fd);
     
     // Store the image path
-    strncpy_safe(disk_image_path, image_path, sizeof(disk_image_path));
+    strcpy_safe(disk_image_path, image_path, sizeof(disk_image_path));
     
     LOG("Successfully loaded disk image: " << image_path << " (" << stat_buf.st_size << " bytes)");
     return true;
@@ -417,7 +417,7 @@ bool FloppyDriver::CalibrateDrive(uint8 drive) {
     uint8 st0 = ReceiveByteFromFdc();
     uint8 pcn = ReceiveByteFromFdc();
     
-    LOG("Recalibrate result: ST0=" << hex << (int)st0 << ", PCN=" << (int)pcn);
+    LOG("Recalibrate result: ST0=0x" << (uint32)st0 << ", PCN=" << (int)pcn);
     
     controller_state.cylinders[drive] = 0;  // Cylinder should be 0 after recalibrate
     return true;
@@ -446,7 +446,7 @@ bool FloppyDriver::SeekToSector(uint8 drive, uint8 cylinder, uint8 head, uint8 s
     uint8 st0 = ReceiveByteFromFdc();
     uint8 pcn = ReceiveByteFromFdc();
     
-    LOG("Seek result: ST0=" << hex << (int)st0 << ", PCN=" << (int)pcn);
+    LOG("Seek result: ST0=0x" << (uint32)st0 << ", PCN=" << (int)pcn);
     
     // Check if we reached the correct cylinder
     if (pcn != cylinder) {
@@ -503,11 +503,11 @@ bool FloppyDriver::ReadSector(uint8 drive, uint8 cylinder, uint8 head, uint8 sec
     uint8 rse = ReceiveByteFromFdc();
     uint8 rlc = ReceiveByteFromFdc();
     
-    LOG("Read result: ST0=" << hex << (int)st0 << ", ST1=" << (int)st1 << ", ST2=" << (int)st2);
+    LOG("Read result: ST0=0x" << (uint32)st0 << ", ST1=0x" << (uint32)st1 << ", ST2=0x" << (uint32)st2);
     
     // Check for errors
     if ((st0 & 0xC0) || (st1 & 0x80) || (st2 & 0x80)) {
-        LOG("Read error: ST0=" << hex << (int)st0 << ", ST1=" << (int)st1 << ", ST2=" << (int)st2);
+        LOG("Read error: ST0=0x" << (uint32)st0 << ", ST1=0x" << (uint32)st1 << ", ST2=0x" << (uint32)st2);
         TurnMotorOff(drive);
         return false;
     }
@@ -570,11 +570,11 @@ bool FloppyDriver::WriteSector(uint8 drive, uint8 cylinder, uint8 head, uint8 se
     uint8 rse = ReceiveByteFromFdc();
     uint8 rlc = ReceiveByteFromFdc();
     
-    LOG("Write result: ST0=" << hex << (int)st0 << ", ST1=" << (int)st1 << ", ST2=" << (int)st2);
+    LOG("Write result: ST0=0x" << (uint32)st0 << ", ST1=0x" << (uint32)st1 << ", ST2=0x" << (uint32)st2);
     
     // Check for errors
     if ((st0 & 0xC0) || (st1 & 0x80) || (st2 & 0x80)) {
-        LOG("Write error: ST0=" << hex << (int)st0 << ", ST1=" << (int)st1 << ", ST2=" << (int)st2);
+        LOG("Write error: ST0=0x" << (uint32)st0 << ", ST1=0x" << (uint32)st1 << ", ST2=0x" << (uint32)st2);
         TurnMotorOff(drive);
         return false;
     }

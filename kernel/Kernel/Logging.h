@@ -34,6 +34,7 @@ private:
     void AppendString(const char* str);
     void AppendInt(int32 val);
     void AppendUint32(uint32 val);
+    void AppendUint64(uint64 val);
     void AppendHex(uint32 val);
     void AppendChar(char c);
     
@@ -42,7 +43,9 @@ public:
     LogStream& operator<<(const char* str);
     LogStream& operator<<(int32 val);
     LogStream& operator<<(uint32 val);
+    LogStream& operator<<(uint64 val);
     LogStream& operator<<(char c);
+    LogStream& operator<<(void* ptr);
     void Flush(const char* prefix);
 };
 
