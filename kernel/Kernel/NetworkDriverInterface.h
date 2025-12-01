@@ -111,7 +111,7 @@ struct NetworkPacket {
 };
 
 // Base class for network drivers
-class NetworkDriver {
+class NetworkInterfaceDriver {
 protected:
     Device network_device;
     NetworkInterface interface_info;
@@ -119,20 +119,20 @@ protected:
     RingBuffer<NetworkPacket, 64> tx_buffer;  // Transmit buffer
     NetworkStats stats;
     Spinlock buffer_lock;
-    
+
 public:
-    NetworkDriver(const char* interface_name);
-    virtual ~NetworkDriver();
-    
+    NetworkInterfaceDriver(const char* interface_name);
+    virtual ~NetworkInterfaceDriver();
+
     // Initialize the network driver
     virtual bool Initialize() = 0;
-    
+
     // Network-specific functions
     virtual bool SendPacket(const uint8* data, uint32 length) = 0;
     virtual bool ReceivePacket(uint8* buffer, uint32* length, uint32 max_length);
     virtual bool ProcessReceivedData(const uint8* data, uint32 length);
     virtual void HandleInterrupt();
-    
+
     // Interface configuration
     bool SetIpAddress(uint32 ip);
     uint32 GetIpAddress();
@@ -144,18 +144,18 @@ public:
     void SetMacAddress(const uint8* mac);
     bool IsLinkUp();
     uint32 GetMtu();
-    
+
     // Statistics
     void GetNetworkStats(NetworkStats& stats_out);
     void ResetStats();
-    
+
     // Packet buffer management
     bool GetReceivedPacket(NetworkPacket& packet);
     void FlushBuffers();
-    
+
     // Handle network-specific IOCTL commands
     virtual bool HandleIoctl(uint32 command, void* arg);
-    
+
     // Get the device structure for registration
     Device* GetDevice() { return &network_device; }
 
@@ -166,7 +166,7 @@ protected:
     static bool NetworkWrite(Device* device, const void* buffer, uint32 size, uint32 offset);
     static bool NetworkIoctl(Device* device, uint32 command, void* arg);
     static bool NetworkClose(Device* device);
-    
+
     // Helper functions
     bool IsValidEthernetFrame(const uint8* frame, uint32 length);
     uint16_t CalculateChecksum(const uint8* data, uint32 length);
@@ -174,16 +174,16 @@ protected:
 };
 
 // Base class for specific network hardware drivers
-class EthernetDriver : public NetworkDriver {
+class EthernetDriver : public NetworkInterfaceDriver {
 public:
     EthernetDriver(const char* interface_name);
     virtual ~EthernetDriver();
-    
+
     // Pure virtual functions that hardware-specific drivers must implement
     virtual bool HardwareInitialize() = 0;
     virtual bool SendRawFrame(const uint8* frame, uint32 length) = 0;
     virtual bool ReceiveRawFrame(uint8* frame, uint32* length, uint32 max_length) = 0;
-    
+
     // Implement base class pure virtual functions
     virtual bool Initialize() override;
     virtual bool SendPacket(const uint8* data, uint32 length) override;

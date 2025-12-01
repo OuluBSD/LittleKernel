@@ -217,8 +217,8 @@ int vsnprintf(char* buffer, uint32 buffer_size, const char* format, va_list args
 
 } // extern "C"
 
-void Spinlock::Acquire() {
-    while (__sync_val_compare_and_swap(&lock, 0, 1) == 1) {
+void Spinlock::Acquire() const {
+    while (__sync_val_compare_and_swap(const_cast<volatile uint32*>(&lock), 0, 1) == 1) {
         // Wait until the lock is available
         while (lock == 1) {
             // Add a pause instruction to be nice to hyperthreading CPUs
@@ -227,12 +227,12 @@ void Spinlock::Acquire() {
     }
 }
 
-void Spinlock::Release() {
-    __sync_lock_release(&lock);
+void Spinlock::Release() const {
+    __sync_lock_release(const_cast<volatile uint32*>(&lock));
 }
 
-bool Spinlock::TryAcquire() {
-    return __sync_val_compare_and_swap(&lock, 0, 1) == 0;
+bool Spinlock::TryAcquire() const {
+    return __sync_val_compare_and_swap(const_cast<volatile uint32*>(&lock), 0, 1) == 0;
 }
 
 // C++ operator new and delete implementations for freestanding kernel

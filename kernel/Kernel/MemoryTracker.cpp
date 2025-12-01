@@ -44,7 +44,7 @@ void MemoryTracker::TrackAllocation(void* ptr, uint32 size, const char* file, ui
     alloc->file = file;  // Note: This should be copied if we keep the string permanently
     alloc->line = line;
     alloc->next = allocation_list;
-    alloc->timestamp = global ? global->timer->GetTicks() : 0;  // Use global timer if available
+    alloc->timestamp = global ? global->timer->GetTickCount() : 0;  // Use global timer if available
     
     allocation_list = alloc;
     total_allocated += size;

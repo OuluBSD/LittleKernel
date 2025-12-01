@@ -60,12 +60,12 @@ void operator delete[](void* ptr, uint32 size);
 
 // Spinlock implementation
 struct Spinlock {
-    volatile uint32 lock;
+    mutable volatile uint32 lock;
     
     void Initialize() { lock = 0; }
-    void Acquire();
-    void Release();
-    bool TryAcquire();
+    void Acquire() const;
+    void Release() const;
+    bool TryAcquire() const;
 };
 
 // Inline assembly functions

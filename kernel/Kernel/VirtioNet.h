@@ -80,7 +80,7 @@ struct VirtioNetStats {
 };
 
 // Virtio network device driver class
-class VirtioNetDriver : public NetworkDriver, public VirtioDriver {
+class VirtioNetDriver : public NetworkInterfaceDriver, public VirtioDriver {
 private:
     VirtioNetConfig config;           // Device configuration
     VirtioNetStats stats;            // Network statistics

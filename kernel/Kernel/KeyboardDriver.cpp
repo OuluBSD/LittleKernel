@@ -134,7 +134,7 @@ bool KeyboardDriver::GetKeyEvent(KeyboardEvent& event) {
 
 uint32 KeyboardDriver::GetEventCount() {
     buffer_lock.Acquire();
-    uint32 count = event_buffer.Count();
+    uint32 count = event_buffer.GetCount();
     buffer_lock.Release();
     return count;
 }

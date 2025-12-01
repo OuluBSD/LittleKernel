@@ -34,6 +34,9 @@ struct IoRequest {
     void* user_data;          // User data associated with the request
     uint32 command;           // Command for IOCTL operations
     void* arg;               // Argument for IOCTL operations
+    // Block device specific fields
+    uint32 start_block;       // Starting block for block I/O operations
+    uint32 num_blocks;        // Number of blocks for block I/O operations
 };
 
 // Driver states enum

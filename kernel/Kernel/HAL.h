@@ -14,7 +14,8 @@ enum class HalResult {
     ERROR_NOT_SUPPORTED = -2,
     ERROR_NOT_INITIALIZED = -3,
     ERROR_RESOURCE_UNAVAILABLE = -4,
-    ERROR_TIMEOUT = -5
+    ERROR_TIMEOUT = -5,
+    ERROR_INVALID_DEVICE = -6
 };
 
 // CPU architecture types

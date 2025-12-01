@@ -2,7 +2,7 @@
 #include "NetworkDriverInterface.h"
 #include "Logging.h"
 
-NetworkDriver::NetworkDriver(const char* interface_name) {
+NetworkInterfaceDriver::NetworkInterfaceDriver(const char* interface_name) {
     // Initialize the device structure
     network_device.id = 0;  // Will be assigned by framework
     strcpy_safe(network_device.name, interface_name, sizeof(network_device.name));
@@ -39,12 +39,12 @@ NetworkDriver::NetworkDriver(const char* interface_name) {
     buffer_lock.Initialize();
 }
 
-NetworkDriver::~NetworkDriver() {
+NetworkInterfaceDriver::~NetworkInterfaceDriver() {
     // Clean up any allocated resources
     FlushBuffers();
 }
 
-bool NetworkDriver::ReceivePacket(uint8* buffer, uint32* length, uint32 max_length) {
+bool NetworkInterfaceDriver::ReceivePacket(uint8* buffer, uint32* length, uint32 max_length) {
     buffer_lock.Acquire();
     
     if (!rx_buffer.IsEmpty()) {
@@ -66,7 +66,7 @@ bool NetworkDriver::ReceivePacket(uint8* buffer, uint32* length, uint32 max_leng
     return false;
 }
 
-bool NetworkDriver::ProcessReceivedData(const uint8* data, uint32 length) {
+bool NetworkInterfaceDriver::ProcessReceivedData(const uint8* data, uint32 length) {
     if (!data || length == 0 || length > ETH_FRAME_MAX) {
         return false;
     }
@@ -106,72 +106,72 @@ bool NetworkDriver::ProcessReceivedData(const uint8* data, uint32 length) {
     return false;
 }
 
-void NetworkDriver::HandleInterrupt() {
+void NetworkInterfaceDriver::HandleInterrupt() {
     // Handle network interrupts - to be implemented by derived classes
     // In a real implementation, this would read received packets from hardware
     // and call ProcessReceivedData for each packet
 }
 
-bool NetworkDriver::SetIpAddress(uint32 ip) {
+bool NetworkInterfaceDriver::SetIpAddress(uint32 ip) {
     interface_info.ip_address = ip;
     return true;
 }
 
-uint32 NetworkDriver::GetIpAddress() {
+uint32 NetworkInterfaceDriver::GetIpAddress() {
     return interface_info.ip_address;
 }
 
-bool NetworkDriver::SetSubnetMask(uint32 mask) {
+bool NetworkInterfaceDriver::SetSubnetMask(uint32 mask) {
     interface_info.subnet_mask = mask;
     return true;
 }
 
-uint32 NetworkDriver::GetSubnetMask() {
+uint32 NetworkInterfaceDriver::GetSubnetMask() {
     return interface_info.subnet_mask;
 }
 
-bool NetworkDriver::SetGateway(uint32 gateway) {
+bool NetworkInterfaceDriver::SetGateway(uint32 gateway) {
     interface_info.gateway = gateway;
     return true;
 }
 
-uint32 NetworkDriver::GetGateway() {
+uint32 NetworkInterfaceDriver::GetGateway() {
     return interface_info.gateway;
 }
 
-void NetworkDriver::GetMacAddress(uint8* mac) {
+void NetworkInterfaceDriver::GetMacAddress(uint8* mac) {
     if (mac) {
         memcpy(mac, interface_info.mac_address, ETH_ADDRESS_SIZE);
     }
 }
 
-void NetworkDriver::SetMacAddress(const uint8* mac) {
+void NetworkInterfaceDriver::SetMacAddress(const uint8* mac) {
     if (mac) {
         memcpy(interface_info.mac_address, mac, ETH_ADDRESS_SIZE);
     }
 }
 
-bool NetworkDriver::IsLinkUp() {
+bool NetworkInterfaceDriver::IsLinkUp() {
     return interface_info.link_up;
 }
 
-uint32 NetworkDriver::GetMtu() {
+uint32 NetworkInterfaceDriver::GetMtu() {
     return interface_info.mtu;
 }
 
-void NetworkDriver::GetNetworkStats(NetworkStats& stats_out) {
+void NetworkInterfaceDriver::GetNetworkStats(NetworkStats& stats_out) {
     buffer_lock.Acquire();
     stats_out = stats;
     buffer_lock.Release();
 }
 
-void NetworkDriver::ResetStats() {
+void NetworkInterfaceDriver::ResetStats() {
     buffer_lock.Acquire();
     memset(&stats, 0, sizeof(stats));
     buffer_lock.Release();
 }
 
-bool NetworkDriver::GetReceivedPacket(NetworkPacket& packet) {
+bool NetworkInterfaceDriver::GetReceivedPacket(NetworkPacket& packet) {
     buffer_lock.Acquire();
     if (!rx_buffer.IsEmpty()) {
         packet = rx_buffer.Pop();
@@ -182,14 +182,14 @@ bool NetworkDriver::GetReceivedPacket(NetworkPacket& packet) {
     return false;
 }
 
-void NetworkDriver::FlushBuffers() {
+void NetworkInterfaceDriver::FlushBuffers() {
     buffer_lock.Acquire();
     rx_buffer.Clear();
     tx_buffer.Clear();
     buffer_lock.Release();
 }
 
-bool NetworkDriver::HandleIoctl(uint32 command, void* arg) {
+bool NetworkInterfaceDriver::HandleIoctl(uint32 command, void* arg) {
     switch (command) {
         case NETWORK_GET_MAC_ADDRESS: {
             uint8* mac = (uint8*)arg;
@@ -289,7 +289,7 @@ bool NetworkDriver::HandleIoctl(uint32 command, void* arg) {
     return true;
 }
 
-bool NetworkDriver::IsValidEthernetFrame(const uint8* frame, uint32 length) {
+bool NetworkInterfaceDriver::IsValidEthernetFrame(const uint8* frame, uint32 length) {
     if (!frame || length < ETH_FRAME_MIN || length > ETH_FRAME_MAX) {
         return false;
     }
@@ -308,7 +308,7 @@ bool NetworkDriver::IsValidEthernetFrame(const uint8* frame, uint32 length) {
     return true;
 }
 
-uint16_t NetworkDriver::CalculateChecksum(const uint8* data, uint32 length) {
+uint16_t NetworkInterfaceDriver::CalculateChecksum(const uint8* data, uint32 length) {
     uint32 sum = 0;
     
     for (uint32 i = 0; i < length - 1; i += 2) {
@@ -326,7 +326,7 @@ uint16_t NetworkDriver::CalculateChecksum(const uint8* data, uint32 length) {
     return ~sum;
 }
 
-uint16_t NetworkDriver::CalculateIpChecksum(const IpHeader* ip_header) {
+uint16_t NetworkInterfaceDriver::CalculateIpChecksum(const IpHeader* ip_header) {
     // Save original checksum
     uint16_t original_checksum = ip_header->header_checksum;
     
@@ -344,13 +344,13 @@ uint16_t NetworkDriver::CalculateIpChecksum(const IpHeader* ip_header) {
 }
 
 // Driver framework callbacks
-bool NetworkDriver::NetworkInit(Device* device) {
+bool NetworkInterfaceDriver::NetworkInit(Device* device) {
     if (!device) {
         return false;
     }
     
     // Get the network driver instance from private_data
-    NetworkDriver* driver = (NetworkDriver*)device->private_data;
+    NetworkDriver* driver = (NetworkInterfaceDriver*)device->private_data;
     if (!driver) {
         return false;
     }
@@ -367,12 +367,12 @@ bool NetworkDriver::NetworkInit(Device* device) {
     return result;
 }
 
-bool NetworkDriver::NetworkRead(Device* device, void* buffer, uint32 size, uint32 offset) {
+bool NetworkInterfaceDriver::NetworkRead(Device* device, void* buffer, uint32 size, uint32 offset) {
     if (!device || !buffer || size == 0) {
         return false;
     }
     
-    NetworkDriver* driver = (NetworkDriver*)device->private_data;
+    NetworkDriver* driver = (NetworkInterfaceDriver*)device->private_data;
     if (!driver) {
         return false;
     }
@@ -393,12 +393,12 @@ bool NetworkDriver::NetworkRead(Device* device, void* buffer, uint32 size, uint3
     return result;
 }
 
-bool NetworkDriver::NetworkWrite(Device* device, const void* buffer, uint32 size, uint32 offset) {
+bool NetworkInterfaceDriver::NetworkWrite(Device* device, const void* buffer, uint32 size, uint32 offset) {
     if (!device || !buffer || size == 0 || size > ETH_FRAME_MAX) {
         return false;
     }
     
-    NetworkDriver* driver = (NetworkDriver*)device->private_data;
+    NetworkDriver* driver = (NetworkInterfaceDriver*)device->private_data;
     if (!driver) {
         return false;
     }
@@ -416,12 +416,12 @@ bool NetworkDriver::NetworkWrite(Device* device, const void* buffer, uint32 size
     return result;
 }
 
-bool NetworkDriver::NetworkIoctl(Device* device, uint32 command, void* arg) {
+bool NetworkInterfaceDriver::NetworkIoctl(Device* device, uint32 command, void* arg) {
     if (!device) {
         return false;
     }
     
-    NetworkDriver* driver = (NetworkDriver*)device->private_data;
+    NetworkDriver* driver = (NetworkInterfaceDriver*)device->private_data;
     if (!driver) {
         return false;
     }
@@ -429,12 +429,12 @@ bool NetworkDriver::NetworkIoctl(Device* device, uint32 command, void* arg) {
     return driver->HandleIoctl(command, arg);
 }
 
-bool NetworkDriver::NetworkClose(Device* device) {
+bool NetworkInterfaceDriver::NetworkClose(Device* device) {
     if (!device) {
         return false;
     }
     
-    NetworkDriver* driver = (NetworkDriver*)device->private_data;
+    NetworkDriver* driver = (NetworkInterfaceDriver*)device->private_data;
     if (!driver) {
         return false;
     }
@@ -449,8 +449,8 @@ bool NetworkDriver::NetworkClose(Device* device) {
 
 // EthernetDriver implementation
 
-EthernetDriver::EthernetDriver(const char* interface_name) 
-    : NetworkDriver(interface_name) {
+EthernetDriver::EthernetDriver(const char* interface_name)
+    : NetworkInterfaceDriver(interface_name) {
     // Initialize the device type specifically for Ethernet
     network_device.type = DEVICE_TYPE_NETWORK;
 }

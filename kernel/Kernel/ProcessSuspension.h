@@ -201,6 +201,7 @@ struct ProcessSuspensionStats {
     uint32 security_suspensions;         // Number of security suspensions
     uint32 error_suspensions;            // Number of error suspensions
     uint32 unknown_suspensions;          // Number of unknown suspensions
+    uint32 buffer_overflows;             // Number of buffer overflows
 };
 
 // Process suspension manager
@@ -214,7 +215,9 @@ private:
     bool is_initialized;
     uint32 last_activity_time;
     ProcessControlBlock* monitored_processes;
-    
+    uint32 suspend_timeout_default;  // Default timeout for suspensions
+    uint32 auto_resume_interval;     // Auto-resume interval in milliseconds
+
 public:
     ProcessSuspensionManager();
     ~ProcessSuspensionManager();

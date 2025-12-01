@@ -274,6 +274,14 @@ ProcessControlBlock* ProcessManager::GetCurrentProcess() {
     return current_process;
 }
 
+ProcessState ProcessManager::GetCurrentProcessState() {
+    ProcessControlBlock* current = GetCurrentProcess();
+    if (current) {
+        return current->state;
+    }
+    return PROCESS_STATE_INVALID;  // Return invalid state if no current process
+}
+
 uint32 ProcessManager::GetNextPID() {
     uint32 pid = next_pid++;
     // If we exceed max PID, wrap around (in a real system, there would be more complex logic)

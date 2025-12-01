@@ -16,7 +16,8 @@ enum ProcessState {
     PROCESS_STATE_BLOCKED,        // Process is blocked (e.g., waiting for I/O)
     PROCESS_STATE_SUSPENDED,      // Process is suspended (e.g., by user or debugger)
     PROCESS_STATE_ZOMBIE,         // Process has terminated but parent hasn't collected exit code
-    PROCESS_STATE_TERMINATED      // Process has completed execution
+    PROCESS_STATE_TERMINATED,     // Process has completed execution
+    PROCESS_STATE_INVALID = 0xFF  // Invalid state for error checking
 };
 
 // Real-time scheduling parameters (already defined in RealTimeScheduling.h)
@@ -163,9 +164,12 @@ struct ProcessControlBlock {
     ProcessControlBlock* next;    // Next PCB in the queue
     ProcessControlBlock* prev;    // Previous PCB in the queue
     
-    // ABI-specific context data
-    void* abi_context;            // ABI-specific context (AbiContext*)
-    
+    // SCI-specific context data
+    void* sci_context;            // SCI-specific context (SciContext*)
+
+    // Suspension context data
+    void* suspension_context;     // Process suspension context (ProcessSuspensionContext*)
+
     // Additional flags
     uint32 flags;                 // Additional process flags
 };

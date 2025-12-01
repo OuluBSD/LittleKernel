@@ -43,7 +43,10 @@ struct Global {
     
     // System flags
     bool initialized;
-    
+
+    // Device management
+    uint32 next_device_id;           // Next available device ID for assignment
+
     // Initialize the global structure
     void Initialize();
 };

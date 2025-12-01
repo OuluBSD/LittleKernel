@@ -234,13 +234,13 @@ public:
 
 protected:
     // Internal helper functions
-    virtual bool InitializePciDevice();
-    virtual bool InitializeMmioDevice();
-    virtual bool SetupRing(uint32 queue_index, uint16_t queue_size);
-    virtual bool CleanupRing(uint32 queue_index);
-    virtual bool AddBufferToQueue(uint32 queue_index, void* buffer, uint32 size, bool write);
-    virtual bool ProcessUsedBuffers(uint32 queue_index);
-    virtual bool HandleConfigChange();
+    virtual bool InitializePciDevice() override;
+    virtual bool InitializeMmioDevice() override;
+    virtual bool SetupRing(uint32 queue_index, uint16_t queue_size) override;
+    virtual bool CleanupRing(uint32 queue_index) override;
+    virtual bool AddBufferToQueue(uint32 queue_index, void* buffer, uint32 size, bool write) override;
+    virtual bool ProcessUsedBuffers(uint32 queue_index) override;
+    virtual bool HandleConfigChange() override;
     
 private:
     // Driver framework callbacks

@@ -173,7 +173,7 @@ bool MouseDriver::GetMouseEvent(MouseEvent& event) {
 
 uint32 MouseDriver::GetEventCount() {
     buffer_lock.Acquire();
-    uint32 count = event_buffer.Count();
+    uint32 count = event_buffer.GetCount();
     buffer_lock.Release();
     return count;
 }

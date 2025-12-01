@@ -153,6 +153,70 @@ struct io_event {
     int64_t res2;
 };
 
+// System information structure (utsname)
+struct utsname {
+    char sysname[65];    // Operating system name
+    char nodename[65];   // Network node name
+    char release[65];    // Operating system release
+    char version[65];    // Operating system version
+    char machine[65];    // Hardware identifier
+    char domainname[65]; // NIS or YP domain name
+};
+
+// Timezone structure
+struct timezone {
+    int tz_minuteswest;  // Minutes west of GMT
+    int tz_dsttime;      // Daylight saving time correction
+};
+
+// Additional system call error codes (Linux-compatible)
+#define ENOENT      2    // No such file or directory
+#define EACCES      13   // Permission denied
+#define ENOMEM      12   // Cannot allocate memory
+#define EEXIST      17   // File exists
+#define EINVAL      22   // Invalid argument
+#define EISDIR      21   // Is a directory
+#define ENOTDIR     20   // Not a directory
+#define ENFILE      23   // Too many open files in system
+#define EMFILE      24   // Too many open files
+#define ENOTTY      25   // Inappropriate I/O control operation
+#define EFBIG       27   // File too large
+#define ENOSPC      28   // No space left on device
+#define ESPIPE      29   // Invalid seek
+#define EROFS       30   // Read-only file system
+#define EMLINK      31   // Too many links
+#define EPIPE       32   // Broken pipe
+#define EAGAIN      11   // Resource temporarily unavailable
+#define EWOULDBLOCK 11   // Operation would block
+#define EINPROGRESS 115  // Operation now in progress
+#define EALREADY    114  // Operation already in progress
+#define ENOTSOCK    88   // Socket operation on non-socket
+#define EDESTADDRREQ 89   // Destination address required
+#define EMSGSIZE    90   // Message too long
+#define EPROTOTYPE  91   // Protocol wrong type for socket
+#define ENOPROTOOPT 92   // Protocol not available
+#define EPROTONOSUPPORT 93 // Protocol not supported
+#define ESOCKTNOSUPPORT 94 // Socket type not supported
+#define EOPNOTSUPP  95   // Operation not supported
+#define EPFNOSUPPORT 96  // Protocol family not supported
+#define EAFNOSUPPORT 97   // Address family not supported
+#define EADDRINUSE  98   // Address already in use
+#define EADDRNOTAVAIL 99  // Cannot assign requested address
+#define ENETDOWN    100  // Network is down
+#define ENETUNREACH 101  // Network is unreachable
+#define ENETRESET   102  // Network dropped connection on reset
+#define ECONNABORTED 103 // Software caused connection abort
+#define ECONNRESET  104  // Connection reset by peer
+#define ENOBUFS     105  // No buffer space available
+#define EISCONN     106  // Transport endpoint is already connected
+#define ENOTCONN    107  // Transport endpoint is not connected
+#define ESHUTDOWN   108  // Cannot send after transport endpoint shutdown
+#define ETOOMANYREFS 109 // Too many references: cannot splice
+#define ETIMEDOUT   110  // Connection timed out
+#define ECONNREFUSED 111 // Connection refused
+#define EHOSTDOWN   112  // Host is down
+#define EHOSTUNREACH 113 // No route to host
+
 // Define Boolean values as macros for compatibility
 #define TRUE 1
 #define FALSE 0
@@ -168,15 +232,16 @@ struct io_event {
 #define NULL 0
 
 // Common constants
-#define KERNEL_PAGE_SIZE 4096
 #define SECTOR_SIZE 512
-#define UINT32_MAX 0xFFFFFFFF
 #define DOS_MAX_PATH_LENGTH 260
 
 // Memory layout
 #define KERNEL_VIRTUAL_BASE 0xC0000000
 #define DEFAULT_KERNEL_HEAP_START 0xD0000000
 #define DEFAULT_KERNEL_HEAP_SIZE 0x1000000  // 16MB
+
+// DOS compatibility constants
+#define DOS_MAX_DRIVE_LETTERS 26  // A-Z drives
 
 // Useful macros
 #define HIGH_BYTE_OF_WORD(x) ((x & 0xFF00) >> 8)

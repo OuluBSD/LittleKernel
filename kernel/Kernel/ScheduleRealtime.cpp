@@ -436,3 +436,27 @@ void ProcessManager::ResetSchedulingStatistics() {
     
     DLOG("Scheduling statistics reset");
 }
+
+uint32 ProcessManager::GetTotalProcessCount() {
+    // Count all processes in the system
+    uint32 count = 0;
+    ProcessControlBlock* current = process_list_head;
+    while (current) {
+        count++;
+        current = current->next;
+    }
+    return count;
+}
+
+uint32 ProcessManager::GetTotalContextSwitches() {
+    // Calculate total context switches across all processes
+    uint32 total_context_switches = 0;
+
+    ProcessControlBlock* current = process_list_head;
+    while (current) {
+        total_context_switches += current->context_switch_count;
+        current = current->next;
+    }
+
+    return total_context_switches;
+}

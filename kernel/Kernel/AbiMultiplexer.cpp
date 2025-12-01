@@ -3,220 +3,220 @@
 #include "Logging.h"
 #include "DosSyscalls.h"
 
-// Global instance of the ABI multiplexer
-AbiMultiplexer* g_abi_multiplexer = nullptr;
+// Global instance of the SCI multiplexer
+SciMultiplexer* g_sci_multiplexer = nullptr;
 
-AbiMultiplexer::AbiMultiplexer() {
+SciMultiplexer::SciMultiplexer() {
     initialized = false;
-    for (int i = 0; i < MAX_ABI_TYPES; i++) {
-        abi_tables[i] = nullptr;
+    for (int i = 0; i < MAX_SCI_TYPES; i++) {
+        sci_tables[i] = nullptr;
     }
 }
 
-AbiMultiplexer::~AbiMultiplexer() {
+SciMultiplexer::~SciMultiplexer() {
     // Cleanup handled by kernel shutdown
-    for (int i = 0; i < MAX_ABI_TYPES; i++) {
-        if (abi_tables[i]) {
-            if (abi_tables[i]->handlers) {
-                free(abi_tables[i]->handlers);
+    for (int i = 0; i < MAX_SCI_TYPES; i++) {
+        if (sci_tables[i]) {
+            if (sci_tables[i]->handlers) {
+                free(sci_tables[i]->handlers);
             }
-            if (abi_tables[i]->names) {
-                free(abi_tables[i]->names);
+            if (sci_tables[i]->names) {
+                free(sci_tables[i]->names);
             }
-            free(abi_tables[i]);
-            abi_tables[i] = nullptr;
+            free(sci_tables[i]);
+            sci_tables[i] = nullptr;
         }
     }
 }
 
-bool AbiMultiplexer::Initialize() {
-    LOG("Initializing ABI Multiplexer");
-    
-    // Initialize syscall tables for each ABI
-    for (int i = 0; i < MAX_ABI_TYPES; i++) {
-        abi_tables[i] = (AbiSyscallTable*)malloc(sizeof(AbiSyscallTable));
-        if (!abi_tables[i]) {
-            LOG("Failed to allocate ABI table for type: " << i);
+bool SciMultiplexer::Initialize() {
+    LOG("Initializing SCI Multiplexer");
+
+    // Initialize syscall tables for each SCI
+    for (int i = 0; i < MAX_SCI_TYPES; i++) {
+        sci_tables[i] = (SciSyscallTable*)malloc(sizeof(SciSyscallTable));
+        if (!sci_tables[i]) {
+            LOG("Failed to allocate SCI table for type: " << i);
             return false;
         }
-        
+
         // Initialize each table
-        abi_tables[i]->handlers = nullptr;
-        abi_tables[i]->max_syscall_num = 0;
-        abi_tables[i]->names = nullptr;
+        sci_tables[i]->handlers = nullptr;
+        sci_tables[i]->max_syscall_num = 0;
+        sci_tables[i]->names = nullptr;
     }
-    
-    // Initialize default tables for known ABIs
-    if (!InitializeDosKpiV1()) {
-        LOG("Failed to initialize DOS KPI v1 ABI");
+
+    // Initialize default tables for known SCIs
+    if (!InitializeDosSciV1()) {
+        LOG("Failed to initialize DOS SCI v1");
     }
-    
-    if (!InitializeLinuxulatorAbi()) {
-        LOG("Failed to initialize Linuxulator ABI");
+
+    if (!InitializeLinuxulatorSci()) {
+        LOG("Failed to initialize Linuxulator SCI");
     }
-    
+
     initialized = true;
-    LOG("ABI Multiplexer initialized successfully");
+    LOG("SCI Multiplexer initialized successfully");
     return true;
 }
 
-bool AbiMultiplexer::RegisterAbiSyscalls(AbiType type, AbiSyscallTable* table) {
-    if (type <= ABI_UNKNOWN || type >= MAX_ABI_TYPES || !table) {
+bool SciMultiplexer::RegisterSciSyscalls(SciType type, SciSyscallTable* table) {
+    if (type <= SCI_UNKNOWN || type >= MAX_SCI_TYPES || !table) {
         return false;
     }
-    
-    // Store the syscall table for this ABI type
-    if (abi_tables[type]) {
+
+    // Store the syscall table for this SCI type
+    if (sci_tables[type]) {
         // Free existing table if present
-        if (abi_tables[type]->handlers) {
-            free(abi_tables[type]->handlers);
+        if (sci_tables[type]->handlers) {
+            free(sci_tables[type]->handlers);
         }
-        if (abi_tables[type]->names) {
-            free(abi_tables[type]->names);
+        if (sci_tables[type]->names) {
+            free(sci_tables[type]->names);
         }
-        free(abi_tables[type]);
+        free(sci_tables[type]);
     }
-    
+
     // Create new table
-    abi_tables[type] = (AbiSyscallTable*)malloc(sizeof(AbiSyscallTable));
-    if (!abi_tables[type]) {
+    sci_tables[type] = (SciSyscallTable*)malloc(sizeof(SciSyscallTable));
+    if (!sci_tables[type]) {
         return false;
     }
-    
+
     // Copy the table
-    abi_tables[type]->max_syscall_num = table->max_syscall_num;
-    
+    sci_tables[type]->max_syscall_num = table->max_syscall_num;
+
     // Allocate handlers
-    abi_tables[type]->handlers = (SyscallHandler*)malloc(table->max_syscall_num * sizeof(SyscallHandler));
-    if (!abi_tables[type]->handlers) {
-        free(abi_tables[type]);
-        abi_tables[type] = nullptr;
+    sci_tables[type]->handlers = (SyscallHandler*)malloc(table->max_syscall_num * sizeof(SyscallHandler));
+    if (!sci_tables[type]->handlers) {
+        free(sci_tables[type]);
+        sci_tables[type] = nullptr;
         return false;
     }
-    
+
     // Copy handlers
     for (uint32 i = 0; i < table->max_syscall_num; i++) {
-        abi_tables[type]->handlers[i] = table->handlers[i];
+        sci_tables[type]->handlers[i] = table->handlers[i];
     }
-    
+
     // Allocate names if provided
     if (table->names) {
-        abi_tables[type]->names = (const char**)malloc(table->max_syscall_num * sizeof(const char*));
-        if (!abi_tables[type]->names) {
-            free(abi_tables[type]->handlers);
-            free(abi_tables[type]);
-            abi_tables[type] = nullptr;
+        sci_tables[type]->names = (const char**)malloc(table->max_syscall_num * sizeof(const char*));
+        if (!sci_tables[type]->names) {
+            free(sci_tables[type]->handlers);
+            free(sci_tables[type]);
+            sci_tables[type] = nullptr;
             return false;
         }
-        
+
         // Copy names
         for (uint32 i = 0; i < table->max_syscall_num; i++) {
-            abi_tables[type]->names[i] = table->names[i];
+            sci_tables[type]->names[i] = table->names[i];
         }
     } else {
-        abi_tables[type]->names = nullptr;
+        sci_tables[type]->names = nullptr;
     }
-    
+
     return true;
 }
 
-int AbiMultiplexer::DispatchSyscall(AbiType type, uint32 syscall_num, 
-                                   uint32 arg1, uint32 arg2, uint32 arg3, 
+int SciMultiplexer::DispatchSyscall(SciType type, uint32 syscall_num,
+                                   uint32 arg1, uint32 arg2, uint32 arg3,
                                    uint32 arg4, uint32 arg5, uint32 arg6) {
-    if (!initialized || type <= ABI_UNKNOWN || type >= MAX_ABI_TYPES) {
-        LOG("ABI Multiplexer not initialized or invalid ABI type");
+    if (!initialized || type <= SCI_UNKNOWN || type >= MAX_SCI_TYPES) {
+        LOG("SCI Multiplexer not initialized or invalid SCI type");
         return -1;
     }
-    
-    AbiSyscallTable* table = abi_tables[type];
+
+    SciSyscallTable* table = sci_tables[type];
     if (!table || !table->handlers) {
-        LOG("No syscall table for ABI type: " << type);
+        LOG("No syscall table for SCI type: " << type);
         return -1;
     }
-    
+
     if (syscall_num >= table->max_syscall_num) {
-        LOG("Syscall number out of range for ABI type: " << type << ", num: " << syscall_num);
+        LOG("Syscall number out of range for SCI type: " << type << ", num: " << syscall_num);
         return -1;
     }
-    
+
     SyscallHandler handler = table->handlers[syscall_num];
     if (!handler) {
-        LOG("Unimplemented syscall for ABI type: " << type << ", num: " << syscall_num);
+        LOG("Unimplemented syscall for SCI type: " << type << ", num: " << syscall_num);
         return -1;
     }
-    
+
     // Call the appropriate handler
     int result = handler(arg1, arg2, arg3, arg4, arg5, arg6);
-    
+
     // Log the syscall for debugging (optional)
     if (table->names && table->names[syscall_num]) {
-        DLOG("ABI " << type << " syscall " << table->names[syscall_num] << " returned: " << result);
+        DLOG("SCI " << type << " syscall " << table->names[syscall_num] << " returned: " << result);
     } else {
-        DLOG("ABI " << type << " syscall " << syscall_num << " returned: " << result);
+        DLOG("SCI " << type << " syscall " << syscall_num << " returned: " << result);
     }
-    
+
     return result;
 }
 
-AbiType AbiMultiplexer::GetCurrentProcessAbi() {
+SciType SciMultiplexer::GetCurrentProcessSci() {
     if (!g_current_process) {
-        return ABI_UNKNOWN;
+        return SCI_UNKNOWN;
     }
-    return GetProcessAbi(g_current_process);
+    return GetProcessSci(g_current_process);
 }
 
-AbiType AbiMultiplexer::GetProcessAbi(ProcessControlBlock* pcb) {
-    if (!pcb || !pcb->abi_context) {
-        return ABI_UNKNOWN;
+SciType SciMultiplexer::GetProcessSci(ProcessControlBlock* pcb) {
+    if (!pcb || !pcb->sci_context) {
+        return SCI_UNKNOWN;
     }
-    
-    AbiContext* context = (AbiContext*)pcb->abi_context;
+
+    SciContext* context = (SciContext*)pcb->sci_context;
     return context->type;
 }
 
-bool AbiMultiplexer::SetProcessAbi(ProcessControlBlock* pcb, AbiType type) {
+bool SciMultiplexer::SetProcessSci(ProcessControlBlock* pcb, SciType type) {
     if (!pcb) {
         return false;
     }
-    
-    // Create or update the ABI context
-    if (!pcb->abi_context) {
-        pcb->abi_context = (void*)CreateAbiContext(type);
-        if (!pcb->abi_context) {
+
+    // Create or update the SCI context
+    if (!pcb->sci_context) {
+        pcb->sci_context = (void*)CreateSciContext(type);
+        if (!pcb->sci_context) {
             return false;
         }
     } else {
-        AbiContext* context = (AbiContext*)pcb->abi_context;
+        SciContext* context = (SciContext*)pcb->sci_context;
         context->type = type;
     }
-    
+
     return true;
 }
 
-AbiContext* AbiMultiplexer::GetProcessAbiContext(ProcessControlBlock* pcb) {
-    if (!pcb || !pcb->abi_context) {
+SciContext* SciMultiplexer::GetProcessSciContext(ProcessControlBlock* pcb) {
+    if (!pcb || !pcb->sci_context) {
         return nullptr;
     }
-    
-    return (AbiContext*)pcb->abi_context;
+
+    return (SciContext*)pcb->sci_context;
 }
 
-AbiContext* AbiMultiplexer::CreateAbiContext(AbiType type) {
-    AbiContext* context = (AbiContext*)malloc(sizeof(AbiContext));
+SciContext* SciMultiplexer::CreateSciContext(SciType type) {
+    SciContext* context = (SciContext*)malloc(sizeof(SciContext));
     if (!context) {
         return nullptr;
     }
-    
+
     context->type = type;
     context->context_data = nullptr;
-    context->abi_flags = 0;
-    
+    context->sci_flags = 0;
+
     return context;
 }
 
-void AbiMultiplexer::DestroyAbiContext(AbiContext* context) {
+void SciMultiplexer::DestroySciContext(SciContext* context) {
     if (context) {
-        // Free any ABI-specific data
+        // Free any SCI-specific data
         if (context->context_data) {
             free(context->context_data);
         }
@@ -224,7 +224,7 @@ void AbiMultiplexer::DestroyAbiContext(AbiContext* context) {
     }
 }
 
-bool AbiMultiplexer::ConvertDosPathToUnix(const char* dos_path, char* unix_path, uint32 max_len) {
+bool SciMultiplexer::ConvertDosPathToUnix(const char* dos_path, char* unix_path, uint32 max_len) {
     if (!dos_path || !unix_path || max_len == 0) {
         return false;
     }
@@ -273,7 +273,7 @@ bool AbiMultiplexer::ConvertDosPathToUnix(const char* dos_path, char* unix_path,
     return true;
 }
 
-bool AbiMultiplexer::ConvertUnixPathToDos(const char* unix_path, char* dos_path, uint32 max_len) {
+bool SciMultiplexer::ConvertUnixPathToDos(const char* unix_path, char* dos_path, uint32 max_len) {
     if (!unix_path || !dos_path || max_len == 0) {
         return false;
     }
@@ -292,7 +292,7 @@ bool AbiMultiplexer::ConvertUnixPathToDos(const char* unix_path, char* dos_path,
     return true;
 }
 
-bool AbiMultiplexer::SetupDosDriveMappings() {
+bool SciMultiplexer::SetupDosDriveMappings() {
     // Set up default drive letter mappings in registry
     if (g_registry_manager) {
         RegistryWriteString("HKEY_LOCAL_MACHINE\\SYSTEM\\MountPoints", "A:", "/A", KEY_WRITE);
@@ -303,55 +303,55 @@ bool AbiMultiplexer::SetupDosDriveMappings() {
     return true;
 }
 
-ProcessControlBlock* AbiMultiplexer::LoadDosExecutable(const char* filename, char* const argv[], char* const envp[]) {
+ProcessControlBlock* SciMultiplexer::LoadDosExecutable(const char* filename, char* const argv[], char* const envp[]) {
     LOG("Loading DOS executable: " << filename);
-    
+
     // For now, delegate to the existing DOS executable loading
     if (g_dos_syscall_interface) {
         if (g_dos_syscall_interface->RunDosExecutable(filename, argv, envp)) {
-            // Get the newly created process and set its ABI type
+            // Get the newly created process and set its SCI type
             ProcessControlBlock* new_process = process_manager->GetCurrentProcess();
             if (new_process) {
-                SetProcessAbi(new_process, DOS_KPI_V1);
+                SetProcessSci(new_process, DOS_SCI_V1);
             }
             return new_process;
         }
     }
-    
+
     LOG("Failed to load DOS executable: " << filename);
     return nullptr;
 }
 
-ProcessControlBlock* AbiMultiplexer::LoadLinuxExecutable(const char* filename, char* const argv[], char* const envp[]) {
+ProcessControlBlock* SciMultiplexer::LoadLinuxExecutable(const char* filename, char* const argv[], char* const envp[]) {
     LOG("Loading Linux executable: " << filename);
-    
+
     // For now, delegate to the Linuxulator
     if (g_linuxulator) {
         ProcessControlBlock* new_process = g_linuxulator->LoadLinuxExecutable(filename, argv, envp);
         if (new_process) {
-            SetProcessAbi(new_process, LINUXULATOR);
+            SetProcessSci(new_process, LINUXULATOR);
         }
         return new_process;
     }
-    
+
     LOG("Failed to load Linux executable: " << filename);
     return nullptr;
 }
 
-ProcessControlBlock* AbiMultiplexer::LoadNativeExecutable(const char* filename, char* const argv[], char* const envp[]) {
+ProcessControlBlock* SciMultiplexer::LoadNativeExecutable(const char* filename, char* const argv[], char* const envp[]) {
     LOG("Loading native executable: " << filename);
-    
+
     // This would be for native LittleKernel executables
-    // For now, return null - this would be implemented as the native ABI
+    // For now, return null - this would be implemented as the native SCI
     return nullptr;
 }
 
-ProcessControlBlock* AbiMultiplexer::LoadExecutable(const char* filename, char* const argv[], char* const envp[]) {
+ProcessControlBlock* SciMultiplexer::LoadExecutable(const char* filename, char* const argv[], char* const envp[]) {
     // Determine executable type and load appropriately
-    AbiType abi_type = DetectAbiTypeFromExecutable(filename);
-    
-    switch (abi_type) {
-        case DOS_KPI_V1:
+    SciType sci_type = DetectSciTypeFromExecutable(filename);
+
+    switch (sci_type) {
+        case DOS_SCI_V1:
             return LoadDosExecutable(filename, argv, envp);
         case LINUXULATOR:
             return LoadLinuxExecutable(filename, argv, envp);
@@ -363,19 +363,19 @@ ProcessControlBlock* AbiMultiplexer::LoadExecutable(const char* filename, char* 
     }
 }
 
-AbiType AbiMultiplexer::DetectAbiTypeFromExecutable(const char* filename) {
+SciType SciMultiplexer::DetectSciTypeFromExecutable(const char* filename) {
     // Determine the executable type by examining the file header
     // This is a simplified implementation
-    
+
     // Check file extension as a simple heuristic
     const char* ext = strrchr(filename, '.');
     if (ext) {
         if (strcmp(ext, ".exe") == 0 || strcmp(ext, ".EXE") == 0) {
             // Could be DOS .exe, check more thoroughly in a real implementation
-            return DOS_KPI_V1;
+            return DOS_SCI_V1;
         } else if (strcmp(ext, ".com") == 0 || strcmp(ext, ".COM") == 0) {
             // DOS .com file
-            return DOS_KPI_V1;
+            return DOS_SCI_V1;
         } else if (strcmp(ext, ".elf") == 0 || strcmp(ext, ".ELF") == 0) {
             // ELF executable (Linux)
             return LINUXULATOR;
@@ -384,52 +384,52 @@ AbiType AbiMultiplexer::DetectAbiTypeFromExecutable(const char* filename) {
             return LINUXULATOR;
         }
     }
-    
+
     // If no extension match, try to determine by examining file contents
     // This would involve reading the file header in a real implementation
-    
+
     // Default to native if nothing matches
     return NATIVE;
 }
 
 // Global functions
-bool InitializeAbiMultiplexer() {
-    if (!g_abi_multiplexer) {
-        g_abi_multiplexer = new AbiMultiplexer();
-        if (!g_abi_multiplexer) {
-            LOG("Failed to create ABI multiplexer instance");
+bool InitializeSciMultiplexer() {
+    if (!g_sci_multiplexer) {
+        g_sci_multiplexer = new SciMultiplexer();
+        if (!g_sci_multiplexer) {
+            LOG("Failed to create SCI multiplexer instance");
             return false;
         }
-        
-        if (!g_abi_multiplexer->Initialize()) {
-            LOG("Failed to initialize ABI multiplexer");
-            delete g_abi_multiplexer;
-            g_abi_multiplexer = nullptr;
+
+        if (!g_sci_multiplexer->Initialize()) {
+            LOG("Failed to initialize SCI multiplexer");
+            delete g_sci_multiplexer;
+            g_sci_multiplexer = nullptr;
             return false;
         }
-        
-        LOG("ABI multiplexer initialized successfully");
+
+        LOG("SCI multiplexer initialized successfully");
     }
-    
+
     return true;
 }
 
-extern "C" int HandleMultiplexedSyscall(uint32 syscall_num, 
-                                       uint32 arg1, uint32 arg2, uint32 arg3, 
+extern "C" int HandleMultiplexedSyscall(uint32 syscall_num,
+                                       uint32 arg1, uint32 arg2, uint32 arg3,
                                        uint32 arg4, uint32 arg5, uint32 arg6) {
-    if (!g_abi_multiplexer) {
-        LOG("ABI multiplexer not initialized");
+    if (!g_sci_multiplexer) {
+        LOG("SCI multiplexer not initialized");
         return -1;
     }
-    
-    // Get current process ABI and dispatch accordingly
-    AbiType abi_type = g_abi_multiplexer->GetCurrentProcessAbi();
-    if (abi_type == ABI_UNKNOWN) {
-        LOG("Unknown ABI type for current process");
+
+    // Get current process SCI and dispatch accordingly
+    SciType sci_type = g_sci_multiplexer->GetCurrentProcessSci();
+    if (sci_type == SCI_UNKNOWN) {
+        LOG("Unknown SCI type for current process");
         return -1;
     }
-    
-    return g_abi_multiplexer->DispatchSyscall(abi_type, syscall_num, arg1, arg2, arg3, arg4, arg5, arg6);
+
+    return g_sci_multiplexer->DispatchSyscall(sci_type, syscall_num, arg1, arg2, arg3, arg4, arg5, arg6);
 }
 
 // ABI-specific initialization functions
@@ -440,56 +440,56 @@ bool InitializeDosKpiV1() {
     return true;
 }
 
-bool InitializeDosKpiV2() {
-    // Initialize the DOS KPI v2 interface
+bool InitializeDosSciV2() {
+    // Initialize the DOS SCI v2 interface
     if (!g_dos_kpi_v2_interface) {
         g_dos_kpi_v2_interface = new DosKpiV2Interface();
         if (!g_dos_kpi_v2_interface) {
-            LOG("Failed to create DOS-KPIv2 interface instance");
+            LOG("Failed to create DOS-SCIV2 interface instance");
             return false;
         }
-        
+
         if (!g_dos_kpi_v2_interface->Initialize()) {
-            LOG("Failed to initialize DOS-KPIv2 interface");
+            LOG("Failed to initialize DOS-SCIV2 interface");
             delete g_dos_kpi_v2_interface;
             g_dos_kpi_v2_interface = nullptr;
             return false;
         }
     }
-    
-    // Setup the syscall table for DOS-KPIv2
+
+    // Setup the syscall table for DOS-SCIV2
     if (!SetupDosKpiV2SyscallTable()) {
-        LOG("Failed to setup DOS-KPIv2 syscall table");
+        LOG("Failed to setup DOS-SCIV2 syscall table");
         return false;
     }
-    
-    LOG("DOS KPI v2 ABI initialized successfully");
+
+    LOG("DOS SCI v2 initialized successfully");
     return true;
 }
 
-bool InitializeLinuxulatorAbi() {
-    // Initialize the Linuxulator ABI interface
+bool InitializeLinuxulatorSci() {
+    // Initialize the Linuxulator SCI interface
     if (!g_linuxulator_abi) {
         g_linuxulator_abi = new LinuxulatorAbi();
         if (!g_linuxulator_abi) {
-            LOG("Failed to create Linuxulator ABI instance");
+            LOG("Failed to create Linuxulator SCI instance");
             return false;
         }
-        
+
         if (!g_linuxulator_abi->Initialize()) {
-            LOG("Failed to initialize Linuxulator ABI");
+            LOG("Failed to initialize Linuxulator SCI");
             delete g_linuxulator_abi;
             g_linuxulator_abi = nullptr;
             return false;
         }
     }
-    
-    // Setup the syscall table for Linuxulator ABI
+
+    // Setup the syscall table for Linuxulator SCI
     if (!SetupLinuxulatorAbiSyscallTable()) {
-        LOG("Failed to setup Linuxulator ABI syscall table");
+        LOG("Failed to setup Linuxulator SCI syscall table");
         return false;
     }
-    
-    LOG("Linuxulator ABI initialized successfully");
+
+    LOG("Linuxulator SCI initialized successfully");
     return true;
 }
