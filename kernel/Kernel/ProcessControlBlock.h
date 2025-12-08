@@ -226,10 +226,11 @@ public:
     ProcessControlBlock* GetProcessById(uint32 pid);
     ProcessControlBlock* GetCurrentProcess();
     uint32 GetNextPID();
-    
+
     // Process state management
     bool SetProcessState(uint32 pid, ProcessState new_state);
     ProcessState GetProcessState(uint32 pid);
+    ProcessState GetCurrentProcessState();  // Added missing declaration
     
     // Enhanced state management
     bool TransitionProcessState(uint32 pid, ProcessState new_state);  // Validates state transitions

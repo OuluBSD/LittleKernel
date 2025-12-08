@@ -204,6 +204,70 @@ struct ProcessSuspensionStats {
     uint32 buffer_overflows;             // Number of buffer overflows
 };
 
+// Record structure for storing process suspension data
+struct ProcessSuspensionRecord {
+    uint32 pid;                    // Process ID
+    uint32 parent_pid;            // Parent process ID
+    uint32 uid;                   // User ID
+    uint32 gid;                   // Group ID
+    char command[16];             // Command name (truncated to 16 chars)
+    uint32 start_time;            // Time when process was suspended (ticks)
+    uint32 end_time;              // Time when process was resumed (ticks)
+    uint32 cpu_time;              // Total CPU time used by the process
+    uint32 user_time;             // User-mode CPU time
+    uint32 system_time;           // System-mode CPU time
+    uint32 wait_time;             // Time spent waiting
+    uint32 read_bytes;            // Number of bytes read
+    uint32 write_bytes;           // Number of bytes written
+    uint32 read_operations;       // Number of read operations
+    uint32 write_operations;      // Number of write operations
+    uint32 memory_max;            // Maximum memory used by the process
+    uint32 memory_avg;            // Average memory used by the process
+    uint32 context_switches;      // Total context switches
+    uint32 voluntary_switches;    // Voluntary context switches
+    uint32 involuntary_switches;  // Involuntary context switches
+    uint32 page_faults;           // Number of page faults
+    uint32 page_ins;              // Number of pages read in
+    uint32 page_outs;             // Number of pages written out
+    uint32 signals_delivered;     // Number of signals delivered
+    uint32 exit_status;           // Exit status of the process
+    int32 priority;               // Process priority
+    int32 nice_value;             // Nice value of the process
+    uint32 session_id;            // Session ID
+    uint32 process_group_id;      // Process group ID
+    uint32 terminal_id;           // Terminal ID
+    uint32 flags;                 // Process flags
+    uint32 minor_faults;          // Minor page faults
+    uint32 major_faults;          // Major page faults
+    uint32 swaps;                 // Number of swaps
+    uint32 ipc_sent;              // IPC messages sent
+    uint32 ipc_received;          // IPC messages received
+    uint32 socket_in;             // Socket bytes in
+    uint32 socket_out;            // Socket bytes out
+    uint32 characters_read;       // Characters read
+    uint32 characters_written;    // Characters written
+    uint32 creation_time;         // Time of record creation
+    uint32 suspend_reason;        // Reason for suspension
+    uint32 suspend_flags;         // Flags associated with suspension
+    uint32 suspend_duration;      // Duration of suspension
+    uint32 resume_flags;          // Flags associated with resumption
+    uint32 timestamp;             // Timestamp of the record
+    // Additional fields as needed may be added here
+};
+
+// ProcessSuspensionManager buffer structure for managing records
+struct ProcessSuspensionBuffer {
+    ProcessSuspensionRecord* records;      // Array of suspension records
+    uint32* timestamps;                  // Array of timestamps for records
+    uint32 capacity;                    // Maximum number of records that can be stored
+    uint32 count;                       // Current number of records
+    uint32 head;                        // Index of oldest record
+    uint32 tail;                        // Index of newest record
+    bool is_full;                       // Flag indicating if buffer is full
+    uint32 next_record_id;              // ID to assign to next record
+    uint32 last_update_time;            // Last time the buffer was updated
+};
+
 // Process suspension manager
 class ProcessSuspensionManager {
 private:
@@ -213,10 +277,15 @@ private:
     ProcessSuspensionStats stats;
     uint32 next_checkpoint_id;
     bool is_initialized;
+    bool is_enabled;  // Add this flag to track enabled state
     uint32 last_activity_time;
+    uint32 last_update_time;         // Last time the buffer was updated
+    uint32 next_record_id;           // Next record ID to assign
     ProcessControlBlock* monitored_processes;
     uint32 suspend_timeout_default;  // Default timeout for suspensions
     uint32 auto_resume_interval;     // Auto-resume interval in milliseconds
+    ProcessSuspensionBuffer buffer;  // Buffer for maintaining suspension records
+    ProcessSuspensionContext config; // Configuration for the suspension manager
 
 public:
     ProcessSuspensionManager();
@@ -243,7 +312,12 @@ public:
     uint32 GetSuspendTimeout(uint32 pid);
     bool CancelSuspend(uint32 pid);
     bool AbortSuspend(uint32 pid);
-    
+
+    // Process suspension update functions
+    bool UpdateProcessSuspension(uint32 pid);
+    bool ForceUpdateAll();
+    bool CollectProcessData(uint32 pid, ProcessSuspensionRecord* record);
+
     // Nested suspension support
     bool SuspendProcessNested(uint32 pid, ProcessSuspensionReason reason = SUSPEND_REASON_USER_REQUEST, 
                              uint32 flags = SUSPEND_FLAG_GRACEFUL, uint32 timeout_ms = 0);
@@ -569,6 +643,111 @@ public:
     void OnWarn10(uint32 pid, uint32 warn_code);
     void OnNotice10(uint32 pid, uint32 notice_code);
     void OnInfo10(uint32 pid, uint32 info_code);
+
+    // Additional methods that were referenced in the implementation
+    bool CollectResourceUsage(uint32 pid, ProcessResourceUsage* usage);
+    bool SnapshotAllProcesses();
+    bool UpdateProcessStatistics(uint32 pid);
+
+    // Additional method definitions that were missing for the kernel build
+    uint32 GetBufferCapacity();
+    uint32 GetRecordCount();
+    bool AddRecord(const ProcessSuspensionRecord* record);
+    bool GetRecord(uint32 record_id, ProcessSuspensionRecord* record);
+    bool RemoveRecord(uint32 record_id);
+    bool ClearRecords();
+    bool WriteRecordToFile(const ProcessSuspensionRecord* record);
+    bool WriteAllRecordsToFile();
+    bool ReadRecordsFromFile();
+    bool RotateLogFile();
+    bool CompressOldRecords();
+    uint32 QueryRecordsByPID(uint32 pid, ProcessSuspensionRecord* records, uint32 max_records);
+    uint32 QueryRecordsByUser(uint32 uid, ProcessSuspensionRecord* records, uint32 max_records);
+    uint32 QueryRecordsByTimeRange(uint32 start_time, uint32 end_time,
+                                  ProcessSuspensionRecord* records, uint32 max_records);
+    uint32 QueryRecordsByResourceUsage(uint32 min_cpu_time, ProcessSuspensionRecord* records, uint32 max_records);
+    uint32 QueryActiveProcesses(ProcessSuspensionRecord* records, uint32 max_records);
+    bool GenerateSummaryReport();
+    bool GenerateUserReport(uint32 uid);
+    bool GenerateProcessGroupReport(uint32 pgid);
+    bool GenerateSessionReport(uint32 sid);
+    bool GenerateSystemLoadReport();
+    bool GenerateResourceUsageReport();
+    bool GeneratePerformanceReport();
+    const char* GetProcessCommand(uint32 pid);
+    uint32 GetProcessStartTime(uint32 pid);
+    uint32 GetProcessEndTime(uint32 pid);
+    uint32 GetProcessCPUTime(uint32 pid);
+    uint32 GetProcessMemoryUsage(uint32 pid);
+    uint32 GetProcessIOBytes(uint32 pid);
+    uint32 GetProcessPageFaults(uint32 pid);
+    uint32 GetProcessContextSwitches(uint32 pid);
+
+    // Process monitoring methods
+    bool MonitorProcess(uint32 pid);
+    bool UnmonitorProcess(uint32 pid);
+    bool IsProcessMonitored(uint32 pid);
+    uint32 GetMonitoredProcessCount();
+    void MonitorAllProcesses();
+    void UnmonitorAllProcesses();
+
+    // Process lifecycle callbacks
+    void OnProcessCreate(uint32 pid);
+    void OnProcessTerminate(uint32 pid);
+    void OnProcessSwitch(uint32 old_pid, uint32 new_pid);
+    void OnSystemCall(uint32 pid, uint32 syscall_number);
+    void OnPageFault(uint32 pid);
+    void OnContextSwitch(uint32 pid);
+    void OnTimerTick();
+    void OnIOPerformed(uint32 pid, uint32 bytes_read, uint32 bytes_written);
+    void OnSignalDelivered(uint32 pid, uint32 signal);
+    void OnResourceLimitExceeded(uint32 pid, uint32 resource);
+
+    // Buffer management methods
+    bool ResizeBuffer(uint32 new_capacity);
+    bool FlushBuffer();
+    bool IsBufferFull();
+    uint32 GetBufferUsage();
+    uint32 GetBufferFreeSpace();
+    void PrintBufferStatus();
+
+    // Thresholds and alerts
+    bool SetCPUThreshold(uint32 pid, uint32 threshold);
+    bool SetMemoryThreshold(uint32 pid, uint32 threshold);
+    bool SetIOMThreshold(uint32 pid, uint32 threshold);
+    bool CheckThresholds(uint32 pid);
+    void OnThresholdExceeded(uint32 pid, uint32 resource, uint32 value);
+    bool IsThresholdExceeded(uint32 pid, uint32 resource);
+
+    // Record cleanup methods
+    bool CleanupOldRecords();
+    bool CleanupTerminatedProcesses();
+    bool PurgeAllRecords();
+    uint32 GetCleanupCount();
+};
+
+// Missing type definition: ProcessResourceUsage
+struct ProcessResourceUsage {
+    uint32 cpu_time;              // Total CPU time used
+    uint32 user_time;             // User-mode CPU time
+    uint32 system_time;           // System-mode CPU time
+    uint32 memory_current;        // Current memory usage
+    uint32 memory_peak;           // Peak memory usage
+    uint32 memory_average;        // Average memory usage
+    uint32 disk_reads;            // Number of disk reads
+    uint32 disk_writes;           // Number of disk writes
+    uint32 network_in;            // Network bytes in
+    uint32 network_out;           // Network bytes out
+    uint32 page_faults;           // Number of page faults
+    uint32 context_switches;      // Total context switches
+    uint32 signals_received;      // Number of signals received
+    uint32 file_descriptors;      // Number of file descriptors
+    uint32 threads;               // Number of threads
+    uint32 child_processes;       // Number of child processes
+    uint32 total_io_bytes;        // Total I/O bytes
+    uint32 io_operations;         // Total I/O operations
+    uint32 interrupts_handled;    // Interrupts handled
+    uint32 system_calls;          // Number of system calls
 };
 
 // Process suspension system calls

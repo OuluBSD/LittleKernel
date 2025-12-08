@@ -6,8 +6,8 @@
 #ifndef DRIVERBASE_H
 #define DRIVERBASE_H
 
-#include "Kernel.h"  // Include main kernel header
 #include "Defs.h"    // Include definitions header
+#include "Common.h"  // Include common definitions
 
 // Forward declarations
 struct DeviceBase;

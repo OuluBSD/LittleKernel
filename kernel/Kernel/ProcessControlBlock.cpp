@@ -361,6 +361,10 @@ bool ProcessManager::TransitionProcessState(uint32 pid, ProcessState new_state) 
             // Cannot transition from zombie or terminated
             LOG("Cannot transition from terminated or zombie state for process " << pid);
             return false;
+        case PROCESS_STATE_INVALID:
+            // Cannot transition from invalid state
+            LOG("Cannot transition from invalid state for process " << pid);
+            return false;
     }
     
     // Record the transition

@@ -85,7 +85,7 @@ int ExampleBlockDriver::ProcessIoRequest(IoRequest* request) {
         return -1;
     }
     
-    LogDebug("Processing I/O request: type=" << (int)request->type);
+    // LogDebug("Processing I/O request: type=" << (int)(uint32)request->type);
     
     switch (request->type) {
         case IoRequestType::READ:
@@ -130,7 +130,7 @@ uint32 ExampleBlockDriver::ReadBlocks(uint32 start_block, uint32 num_blocks, voi
     // Perform the read operation
     memcpy(buffer, simulated_disk + offset, bytes_to_read);
     
-    LogDebug("Read " << num_blocks << " blocks starting at block " << start_block);
+    // LogDebug("Read " << (uint32)num_blocks << " blocks starting at block " << (uint32)start_block);
     return num_blocks;  // Return number of blocks read
 }
 
@@ -163,6 +163,6 @@ uint32 ExampleBlockDriver::WriteBlocks(uint32 start_block, uint32 num_blocks, co
     // Perform the write operation
     memcpy(simulated_disk + offset, buffer, bytes_to_write);
     
-    LogDebug("Wrote " << num_blocks << " blocks starting at block " << start_block);
+    // LogDebug("Wrote " << (uint32)num_blocks << " blocks starting at block " << (uint32)start_block);
     return num_blocks;  // Return number of blocks written
 }

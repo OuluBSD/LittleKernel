@@ -16,16 +16,18 @@ DriverBase::DriverBase(const char* driver_name, const char* driver_version,
     
     // Copy name and version safely
     strncpy(name, driver_name, sizeof(name) - 1);
-    name[sizeof(name) - 1] = '\\0';
+    name[sizeof(name) - 1] = '\0';
     strncpy(version, driver_version, sizeof(version) - 1);
-    version[sizeof(version) - 1] = '\\0';
+    version[sizeof(version) - 1] = '\0';
 }
 
 // Destructor for DriverBase
 DriverBase::~DriverBase() {
     // If driver is still running, try to shut it down
+    // Only call non-pure virtual functions or check type before calling virtual functions
     if (state == DriverState::RUNNING || state == DriverState::STARTING) {
-        Shutdown();
+        // For safety, we don't call the pure virtual Shutdown() in destructor
+        // derived classes should handle shutdown in their own destructors
     }
 }
 
@@ -138,7 +140,7 @@ int BlockDeviceDriver::ProcessIoRequest(IoRequest* request) {
 // BlockDeviceDriver ReadBlocks implementation
 uint32 BlockDeviceDriver::ReadBlocks(uint32 start_block, uint32 num_blocks, void* buffer) {
     // Placeholder implementation
-    LogDebug("ReadBlocks called - start_block: " << start_block << ", num_blocks: " << num_blocks);
+    // LogDebug("ReadBlocks called - start_block: " << start_block << ", num_blocks: " << num_blocks);
     // In a real implementation, this would perform the actual block read operation
     return num_blocks;  // Return number of blocks successfully read
 }
@@ -151,7 +153,7 @@ uint32 BlockDeviceDriver::WriteBlocks(uint32 start_block, uint32 num_blocks, con
         return 0;
     }
 
-    LogDebug("WriteBlocks called - start_block: " << start_block << ", num_blocks: " << num_blocks);
+    // LogDebug("WriteBlocks called - start_block: " << start_block << ", num_blocks: " << num_blocks);
     // In a real implementation, this would perform the actual block write operation
     return num_blocks;  // Return number of blocks successfully written
 }
@@ -290,7 +292,7 @@ int CharacterDeviceDriver::ProcessIoRequest(IoRequest* request) {
 // CharacterDeviceDriver Read implementation
 int CharacterDeviceDriver::Read(void* buffer, uint32 size) {
     // Placeholder implementation
-    LogDebug("Character device read called - size: " << size);
+    // LogDebug("Character device read called - size: " << size);
     // In a real implementation, this would read data into the buffer
     return size;  // Return number of bytes read
 }
@@ -298,7 +300,7 @@ int CharacterDeviceDriver::Read(void* buffer, uint32 size) {
 // CharacterDeviceDriver Write implementation
 int CharacterDeviceDriver::Write(const void* buffer, uint32 size) {
     // Placeholder implementation
-    LogDebug("Character device write called - size: " << size);
+    // LogDebug("Character device write called - size: " << size);
     // In a real implementation, this would write data from the buffer
     return size;  // Return number of bytes written
 }
@@ -386,13 +388,13 @@ int NetworkDriver::SendPacket(const void* packet, uint32 size) {
         LogError("Attempt to send packet when link is down");
         return -1;
     }
-    
+
     if (size > mtu) {
         LogError("Packet size exceeds MTU");
         return -1;
     }
-    
-    LogDebug("Sending packet - size: " << size);
+
+    // LogDebug("Sending packet - size: " << size);
     // In a real implementation, this would send the packet via the network interface
     return size;  // Return number of bytes sent
 }
@@ -404,8 +406,8 @@ int NetworkDriver::ReceivePacket(void* packet, uint32 max_size) {
         LogError("Attempt to receive packet when link is down");
         return -1;
     }
-    
-    LogDebug("Receiving packet with max_size: " << max_size);
+
+    // LogDebug("Receiving packet with max_size: " << max_size);
     // In a real implementation, this would receive a packet into the buffer
     return 0;  // Return number of bytes received (0 means no packet available)
 }
@@ -458,15 +460,15 @@ int UsbDriver::ProcessIoRequest(IoRequest* request) {
 }
 
 // UsbDriver control transfer implementation
-int UsbDriver::UsbControlTransfer(uint8 request_type, uint8 request, 
-                                  uint16_t value, uint16_t index, 
+int UsbDriver::UsbControlTransfer(uint8 request_type, uint8 request,
+                                  uint16_t value, uint16_t index,
                                   void* data, uint16_t length) {
     // Placeholder implementation
-    LogDebug("USB Control Transfer - type: 0x" << request_type << 
-             ", req: 0x" << request << 
-             ", val: 0x" << value << 
-             ", idx: 0x" << index << 
-             ", len: " << length);
+    // LogDebug("USB Control Transfer - type: 0x" << (int)request_type
+    //           << ", req: 0x" << (int)request
+    //           << ", val: 0x" << (int)value
+    //           << ", idx: 0x" << (int)index
+    //           << ", len: " << (uint32)length);
     // In a real implementation, this would execute a USB control transfer
     return 0;  // Return bytes transferred or error code
 }
@@ -474,9 +476,9 @@ int UsbDriver::UsbControlTransfer(uint8 request_type, uint8 request,
 // UsbDriver bulk transfer implementation
 int UsbDriver::UsbBulkTransfer(uint8 endpoint, void* data, uint32 length, bool in) {
     // Placeholder implementation
-    LogDebug("USB Bulk Transfer - ep: 0x" << endpoint << 
-             ", len: " << length << 
-             ", dir: " << (in ? "IN" : "OUT"));
+    // LogDebug("USB Bulk Transfer - ep: 0x" << (int)endpoint
+    //           << ", len: " << (int)length
+    //           << ", dir: " << (in ? "IN" : "OUT"));
     // In a real implementation, this would execute a USB bulk transfer
     return 0;  // Return bytes transferred or error code
 }
@@ -484,9 +486,9 @@ int UsbDriver::UsbBulkTransfer(uint8 endpoint, void* data, uint32 length, bool i
 // UsbDriver interrupt transfer implementation
 int UsbDriver::UsbInterruptTransfer(uint8 endpoint, void* data, uint32 length, bool in) {
     // Placeholder implementation
-    LogDebug("USB Interrupt Transfer - ep: 0x" << endpoint << 
-             ", len: " << length << 
-             ", dir: " << (in ? "IN" : "OUT"));
+    // LogDebug("USB Interrupt Transfer - ep: 0x" << (int)endpoint
+    //           << ", len: " << (int)length
+    //           << ", dir: " << (in ? "IN" : "OUT"));
     // In a real implementation, this would execute a USB interrupt transfer
     return 0;  // Return bytes transferred or error code
 }
@@ -496,15 +498,17 @@ SystemModuleBase::SystemModuleBase(const char* name, const char* version)
     : loaded(false), load_address(0) {
     // Copy name and version safely
     strncpy(module_name, name, sizeof(module_name) - 1);
-    module_name[sizeof(module_name) - 1] = '\\0';
+    module_name[sizeof(module_name) - 1] = '\0';
     strncpy(module_version, version, sizeof(module_version) - 1);
-    module_version[sizeof(module_version) - 1] = '\\0';
+    module_version[sizeof(module_version) - 1] = '\0';
 }
 
 // SystemModuleBase destructor
 SystemModuleBase::~SystemModuleBase() {
     // If module is loaded, try to unload it
+    // For safety, we don't call the pure virtual Unload() in destructor
+    // derived classes should handle unloading in their own destructors
     if (loaded) {
-        Unload();
+        // Don't call the pure virtual function in destructor
     }
 }

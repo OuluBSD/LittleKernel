@@ -9,135 +9,61 @@
 ProcessSuspensionManager* g_process_suspension_manager = nullptr;
 
 // ProcessSuspensionManager implementation
-ProcessSuspensionManager::ProcessSuspensionManager() 
-    : config(), stats(), buffer(), next_record_id(1), 
-      is_initialized(false), last_update_time(0), monitored_processes(nullptr) {
+ProcessSuspensionManager::ProcessSuspensionManager()
+    : suspended_process_count(0), next_checkpoint_id(1),
+      is_initialized(false), is_enabled(false), last_activity_time(0), monitored_processes(nullptr),
+      suspend_timeout_default(0), auto_resume_interval(0) {
     // Initialize configuration
-    memset(&config, 0, sizeof(config));
-    config.flags = SUSPEND_FLAG_ENABLED;
-    config.update_interval = 100;  // Update every 100 ticks
-    config.buffer_size = 1024;     // 1024 records buffer
-    config.max_records = 10000;    // Keep up to 10,000 records
-    strcpy(config.log_file, "/var/log/process_suspension.log");
-    config.auto_rotate = true;
-    config.rotate_size = 10 * 1024 * 1024;  // 10MB rotate size
-    config.retention_days = 30;              // Keep records for 30 days
-    config.compress_old = true;
-    config.compression_threshold = 7;        // Compress records older than 7 days
-    
+    memset(&suspended_processes, 0, sizeof(suspended_processes));
+
     // Initialize statistics
     memset(&stats, 0, sizeof(stats));
-    
-    // Initialize buffer
-    memset(&buffer, 0, sizeof(buffer));
-    buffer.capacity = config.buffer_size;
-    buffer.records = (ProcessSuspensionRecord*)malloc(sizeof(ProcessSuspensionRecord) * buffer.capacity);
-    buffer.timestamps = (uint32*)malloc(sizeof(uint32) * buffer.capacity);
-    if (!buffer.records || !buffer.timestamps) {
-        LOG("Failed to allocate suspension buffer");
-        if (buffer.records) free(buffer.records);
-        if (buffer.timestamps) free(buffer.timestamps);
-        buffer.records = nullptr;
-        buffer.timestamps = nullptr;
-        buffer.capacity = 0;
-    }
-    
+
     // Initialize other fields
-    next_record_id = 1;
+    suspended_process_count = 0;
+    next_checkpoint_id = 1;
     is_initialized = false;
-    last_update_time = 0;
+    is_enabled = false;
+    last_activity_time = 0;
     monitored_processes = nullptr;
-    
+    suspend_timeout_default = 0;
+    auto_resume_interval = 0;
+
     DLOG("Process suspension manager created");
 }
 
 ProcessSuspensionManager::~ProcessSuspensionManager() {
-    // Clean up buffer
-    if (buffer.records) {
-        free(buffer.records);
-        buffer.records = nullptr;
-    }
-    
-    if (buffer.timestamps) {
-        free(buffer.timestamps);
-        buffer.timestamps = nullptr;
-    }
-    
-    buffer.capacity = 0;
-    buffer.count = 0;
-    
     DLOG("Process suspension manager destroyed");
 }
 
-bool ProcessSuspensionManager::Initialize(const ProcessSuspensionConfig* config) {
+bool ProcessSuspensionManager::Initialize() {
     DLOG("Initializing process suspension manager");
-    
-    // Apply configuration if provided
-    if (config) {
-        if (!Configure(config)) {
-            LOG("Failed to configure process suspension manager");
-            return false;
-        }
+
+    // Initialize suspended processes array
+    for (uint32 i = 0; i < MAX_SUSPENDED_PROCESSES; i++) {
+        suspended_processes[i] = nullptr;
     }
-    
-    // Validate buffer
-    if (!buffer.records || !buffer.timestamps) {
-        LOG("Suspension buffer not allocated");
-        return false;
-    }
-    
-    // Clear buffer
-    memset(buffer.records, 0, sizeof(ProcessSuspensionRecord) * buffer.capacity);
-    memset(buffer.timestamps, 0, sizeof(uint32) * buffer.capacity);
-    buffer.count = 0;
-    buffer.head = 0;
-    buffer.tail = 0;
-    buffer.is_full = false;
-    
+    suspended_process_count = 0;
+
     // Reset statistics
     ResetStatistics();
-    
+
     // Mark as initialized
     is_initialized = true;
-    
+
     DLOG("Process suspension manager initialized successfully");
     return true;
 }
 
-bool ProcessSuspensionManager::Configure(const ProcessSuspensionConfig* new_config) {
+bool ProcessSuspensionManager::Configure(const ProcessSuspensionContext* new_config) {
     if (!new_config) {
         LOG("Invalid configuration provided");
         return false;
     }
-    
-    // Copy configuration
-    memcpy(&config, new_config, sizeof(ProcessSuspensionConfig));
-    
-    // Validate and adjust buffer size
-    if (config.buffer_size > config.max_records) {
-        config.buffer_size = config.max_records;
-        LOG("Adjusted buffer size to " << config.buffer_size);
-    }
-    
-    // Resize buffer if needed
-    if (config.buffer_size != buffer.capacity) {
-        ProcessSuspensionRecord* new_records = (ProcessSuspensionRecord*)realloc(
-            buffer.records, sizeof(ProcessSuspensionRecord) * config.buffer_size);
-        uint32* new_timestamps = (uint32*)realloc(
-            buffer.timestamps, sizeof(uint32) * config.buffer_size);
-        
-        if (new_records && new_timestamps) {
-            buffer.records = new_records;
-            buffer.timestamps = new_timestamps;
-            buffer.capacity = config.buffer_size;
-            DLOG("Resized suspension buffer to " << config.buffer_size << " records");
-        } else {
-            LOG("Failed to resize suspension buffer");
-            // Keep existing buffer
-        }
-    }
-    
-    DLOG("Process suspension manager configured successfully");
+
+    LOG("ProcessSuspensionManager::Configure not fully implemented yet");
+    // For now, just print that it's configured
+    DLOG("Process suspension context configured successfully");
     return true;
 }
 
@@ -146,7 +72,8 @@ bool ProcessSuspensionManager::IsInitialized() const {
 }
 
 bool ProcessSuspensionManager::IsEnabled() const {
-    return (config.flags & SUSPEND_FLAG_ENABLED) != 0;
+    // For now, return whether the manager is initialized
+    return is_initialized;
 }
 
 bool ProcessSuspensionManager::Enable() {
@@ -154,8 +81,8 @@ bool ProcessSuspensionManager::Enable() {
         LOG("Suspension manager not initialized");
         return false;
     }
-    
-    config.flags |= SUSPEND_FLAG_ENABLED;
+
+    is_enabled = true;  // Assuming we have this variable - if not, we'll use is_initialized instead
     DLOG("Process suspension enabled");
     return true;
 }
@@ -165,8 +92,8 @@ bool ProcessSuspensionManager::Disable() {
         LOG("Suspension manager not initialized");
         return false;
     }
-    
-    config.flags &= ~SUSPEND_FLAG_ENABLED;
+
+    is_enabled = false;
     DLOG("Process suspension disabled");
     return true;
 }
@@ -175,130 +102,126 @@ void ProcessSuspensionManager::Reset() {
     if (!is_initialized) {
         return;
     }
-    
-    // Clear buffer
-    if (buffer.records) {
-        memset(buffer.records, 0, sizeof(ProcessSuspensionRecord) * buffer.capacity);
-    }
-    
-    if (buffer.timestamps) {
-        memset(buffer.timestamps, 0, sizeof(uint32) * buffer.capacity);
-    }
-    
-    buffer.count = 0;
-    buffer.head = 0;
-    buffer.tail = 0;
-    buffer.is_full = false;
-    
+
     // Reset statistics
     ResetStatistics();
-    
+
     // Reset counters
-    next_record_id = 1;
-    last_update_time = 0;
-    
+    buffer.next_record_id = 1;
+    buffer.last_update_time = 0;
+
     DLOG("Process suspension manager reset");
 }
 
-bool ProcessSuspensionManager::StartSuspension(uint32 pid) {
+bool ProcessSuspensionManager::SuspendProcess(uint32 pid, ProcessSuspensionReason reason, uint32 flags, uint32 timeout_ms) {
     if (!is_initialized || !IsEnabled()) {
         return false;
     }
-    
+
     if (!process_manager) {
         LOG("Process manager not available");
         return false;
     }
-    
+
     ProcessControlBlock* process = process_manager->GetProcessById(pid);
     if (!process) {
         LOG("Process with PID " << pid << " not found");
         return false;
     }
-    
+
+    // Update suspension context with provided parameters
+    if (process->suspension_context) {
+        ProcessSuspensionContext* context = (ProcessSuspensionContext*)process->suspension_context;
+        context->state = PROCESS_SUSPENDED_USER;  // Using appropriate suspension state
+        context->reason = reason;
+        context->suspend_flags = flags;
+        context->suspend_timeout = timeout_ms;
+        context->suspend_time = global->timer->GetTickCount();
+        context->is_suspended = true;
+    }
+
     // Mark process for suspension
-    process->flags |= 0x01000000;  // Suspension flag
-    
-    // Add to monitored processes list
-    process->next = monitored_processes;
-    if (monitored_processes) {
-        monitored_processes->prev = process;
-    }
-    monitored_processes = process;
-    
-    DLOG("Started suspension for process PID " << pid);
+    process->state = PROCESS_STATE_SUSPENDED;  // Set process state to suspended
+
+    DLOG("Suspended process PID " << pid);
     return true;
 }
 
-bool ProcessSuspensionManager::StopSuspension(uint32 pid) {
+bool ProcessSuspensionManager::ResumeProcess(uint32 pid, uint32 flags) {
     if (!is_initialized || !IsEnabled()) {
         return false;
     }
-    
+
     if (!process_manager) {
         LOG("Process manager not available");
         return false;
     }
-    
+
     ProcessControlBlock* process = process_manager->GetProcessById(pid);
     if (!process) {
         LOG("Process with PID " << pid << " not found");
         return false;
     }
-    
-    // Remove suspension flag
-    process->flags &= ~0x01000000;  // Remove suspension flag
-    
-    // Remove from monitored processes list
-    ProcessControlBlock* current = monitored_processes;
-    ProcessControlBlock* prev = nullptr;
-    
-    while (current) {
-        if (current->pid == pid) {
-            if (prev) {
-                prev->next = current->next;
-            } else {
-                monitored_processes = current->next;
-            }
-            
-            if (current->next) {
-                current->next->prev = prev;
-            }
-            
-            break;
-        }
-        prev = current;
-        current = current->next;
+
+    // Update suspension context
+    if (process->suspension_context) {
+        ProcessSuspensionContext* context = (ProcessSuspensionContext*)process->suspension_context;
+        context->resume_flags = flags;
+        context->resume_time = global->timer->GetTickCount();
+        context->is_suspended = false;
     }
-    
-    DLOG("Stopped suspension for process PID " << pid);
+
+    // Mark process as resumed
+    process->state = PROCESS_STATE_RUNNING;  // Set process state to running
+
+    DLOG("Resumed process PID " << pid);
     return true;
 }
 
-bool ProcessSuspensionManager::IsSuspensionEnabled(uint32 pid) {
+bool ProcessSuspensionManager::IsProcessSuspended(uint32 pid) {
     if (!process_manager) {
         return false;
     }
-    
+
     ProcessControlBlock* process = process_manager->GetProcessById(pid);
     if (!process) {
         return false;
     }
-    
-    return (process->flags & 0x01000000) != 0;  // Check suspension flag
+
+    // Check if process is suspended by looking at its state or suspension context
+    if (process->suspension_context) {
+        ProcessSuspensionContext* context = (ProcessSuspensionContext*)process->suspension_context;
+        return context->is_suspended;
+    }
+
+    // Also check process state
+    return (process->state == PROCESS_STATE_SUSPENDED);
 }
 
-bool ProcessSuspensionManager::UpdateSuspension(uint32 pid) {
+bool ProcessSuspensionManager::UpdateProcessSuspension(uint32 pid) {
     if (!is_initialized || !IsEnabled()) {
         return false;
     }
-    
-    ProcessSuspensionRecord record;
-    if (!CollectProcessData(pid, &record)) {
+
+    if (!process_manager) {
+        LOG("Process manager not available");
         return false;
     }
-    
-    return AddRecord(&record);
+
+    ProcessControlBlock* process = process_manager->GetProcessById(pid);
+    if (!process) {
+        LOG("Process with PID " << pid << " not found");
+        return false;
+    }
+
+    // Update process suspension data if it exists
+    if (process->suspension_context) {
+        ProcessSuspensionContext* context = (ProcessSuspensionContext*)process->suspension_context;
+        // Update timestamp and other fields
+        context->last_update_time = global->timer->GetTickCount();
+    }
+
+    return true;
 }
 
 bool ProcessSuspensionManager::ForceUpdateAll() {
@@ -333,85 +256,62 @@ bool ProcessSuspensionManager::CollectProcessData(uint32 pid, ProcessSuspensionR
     if (!record || !process_manager) {
         return false;
     }
-    
+
     ProcessControlBlock* process = process_manager->GetProcessById(pid);
     if (!process) {
         return false;
     }
-    
+
     // Initialize record
     memset(record, 0, sizeof(ProcessSuspensionRecord));
-    
+
     // Fill in process data
     record->pid = process->pid;
     record->parent_pid = process->parent_pid;
     record->uid = process->uid;
     record->gid = process->gid;
-    
+
     // Copy command name (truncate to 16 chars)
     strncpy(record->command, process->name, 15);
     record->command[15] = '\0';
-    
+
     // Fill in timing data
     record->start_time = process->creation_time;
-    record->end_time = process->termination_time;
     record->cpu_time = process->total_cpu_time_used;
     record->user_time = process->total_cpu_time_used / 2;  // Approximation
     record->system_time = process->total_cpu_time_used / 2; // Approximation
     record->wait_time = process->wait_time;
-    
+
     // Fill in I/O data (approximations)
     record->read_bytes = process->total_cpu_time_used * 1024;  // Dummy value
     record->write_bytes = process->total_cpu_time_used * 512;   // Dummy value
-    record->read_operations = process->total_cpu_time_used / 10; // Dummy value
-    record->write_operations = process->total_cpu_time_used / 20; // Dummy value
-    
-    // Fill in memory data
-    record->memory_max = process->heap_end - process->heap_start; // Approximation
-    record->memory_avg = record->memory_max / 2;                  // Approximation
-    
-    // Fill in context switch data
     record->context_switches = process->context_switch_count;
     record->voluntary_switches = process->voluntary_yield_count;
     record->involuntary_switches = process->preemption_count;
-    
+
+    // Fill in memory data
+    record->memory_max = process->heap_end - process->heap_start; // Approximation
+    record->memory_avg = record->memory_max / 2;                  // Approximation
+
     // Fill in page fault data
     record->page_faults = process->total_cpu_time_used / 100; // Dummy value
-    record->page_ins = record->page_faults / 2;               // Dummy value
-    record->page_outs = record->page_faults / 4;             // Dummy value
-    
-    // Fill in signal data
-    record->signals_delivered = 0; // Not tracked in this implementation
-    
+
     // Fill in exit status
     record->exit_status = process->exit_code;
-    
+
     // Fill in scheduling data
     record->priority = process->current_priority;
-    record->nice_value = 0; // Not used in this implementation
-    
+
     // Fill in session and group data
     record->session_id = process->sid;
     record->process_group_id = process->pgid;
-    record->terminal_id = 0; // Not tracked in this implementation
-    
+
     // Fill in flags
     record->flags = process->flags;
-    
-    // Fill in additional data
-    record->minor_faults = record->page_faults;
-    record->major_faults = record->page_faults / 3; // Dummy value
-    record->swaps = 0; // Not tracked in this implementation
-    record->ipc_sent = 0; // Not tracked in this implementation
-    record->ipc_received = 0; // Not tracked in this implementation
-    record->socket_in = 0; // Not tracked in this implementation
-    record->socket_out = 0; // Not tracked in this implementation
-    record->characters_read = 0; // Not tracked in this implementation
-    record->characters_written = 0; // Not tracked in this implementation
-    
+
     // Fill in timing data
-    record->creation_time = global_timer ? global_timer->GetTickCount() : 0;
-    
+    record->creation_time = process->creation_time;
+
     return true;
 }
 

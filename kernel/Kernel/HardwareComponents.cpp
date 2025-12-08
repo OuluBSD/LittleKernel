@@ -564,8 +564,8 @@ HardwareComponent* HardwareComponentFactory::CreateComponent(HardwareComponentTy
             return nullptr;
         default:
             LOG("Warning: Creating generic hardware component for type: " << (int)type);
-            // For now, just return a generic component
-            return new HardwareComponent(name, type, vendor_id, device_id);
+            // For now, just return a generic component - we'll create a concrete implementation
+            return new GenericHardwareComponent(name, type, vendor_id, device_id);
     }
 }
 
@@ -718,4 +718,40 @@ void MemoryController::PrintInfo() {
     LOG("  Available Memory: " << available_memory / (1024*1024) << " MB");
     LOG("  Initialized: " << (initialized ? "Yes" : "No"));
     LOG("  Enabled: " << (enabled ? "Yes" : "No"));
+}
+
+// GenericHardwareComponent implementation
+HalResult GenericHardwareComponent::Initialize() {
+    LOG("Initializing generic hardware component: " << name);
+    initialized = true;
+    return HalResult::SUCCESS;
+}
+
+HalResult GenericHardwareComponent::Shutdown() {
+    LOG("Shutting down generic hardware component: " << name);
+    initialized = false;
+    enabled = false;
+    return HalResult::SUCCESS;
+}
+
+HalResult GenericHardwareComponent::Enable() {
+    LOG("Enabling generic hardware component: " << name);
+    enabled = true;
+    return HalResult::SUCCESS;
+}
+
+HalResult GenericHardwareComponent::Disable() {
+    LOG("Disabling generic hardware component: " << name);
+    enabled = false;
+    return HalResult::SUCCESS;
+}
+
+HalResult GenericHardwareComponent::Reset() {
+    LOG("Resetting generic hardware component: " << name);
+    return HalResult::SUCCESS;
+}
+
+HalResult GenericHardwareComponent::HandleInterrupt() {
+    LOG("Handling interrupt for generic hardware component: " << name);
+    return HalResult::SUCCESS;
 }

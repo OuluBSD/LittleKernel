@@ -269,6 +269,21 @@ public:
     virtual void PrintInfo() override;
 };
 
+// Generic hardware component implementation - provides default implementations for abstract methods
+class GenericHardwareComponent : public HardwareComponent {
+public:
+    GenericHardwareComponent(const char* name, HardwareComponentType comp_type,
+                             uint32 vendor = 0, uint32 device = 0)
+        : HardwareComponent(name, comp_type, vendor, device) {}
+
+    virtual HalResult Initialize() override;
+    virtual HalResult Shutdown() override;
+    virtual HalResult Enable() override;
+    virtual HalResult Disable() override;
+    virtual HalResult Reset() override;
+    virtual HalResult HandleInterrupt() override;
+};
+
 // Global PCI device manager instance
 extern PCIDeviceManager* g_pci_device_manager;
 
